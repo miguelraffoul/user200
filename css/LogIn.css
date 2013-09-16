@@ -37,8 +37,8 @@ aside{
     position: relative;
     float: left;
     width: 49.5%;
-    height: calc(100% - 170px);
-    -webkit-height: calc(100% - 170px);
+    height: calc(100% - 173px);
+    -webkit-height: calc(100% - 173px);
     margin: 0px;
     min-height: 270px;
 }
