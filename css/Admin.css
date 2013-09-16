@@ -27,20 +27,21 @@ header #header_logo{
 
 header #header_logo img{
     float: left;
-    padding-top: 1.8em;
+    padding-top: 3.3em;
     padding-left: 3em;
 }
 
 header #header_logo h1{
     float: left;
-    padding-top: 0.8em;
+    padding-top: 1.35em;
+    padding-left: 0.15em;
     margin: 0px;
     color :#FFF;
 }
 
 header #header_opciones{
     float: right;
-    padding: 2.2em 2em 0em 0em;
+    padding: 3.3em 2em 0em 0em;
 }
 
 header #header_opciones img{
