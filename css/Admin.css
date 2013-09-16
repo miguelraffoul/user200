@@ -73,16 +73,3 @@ footer p{
     padding-top: 0.5em; 
     color: #848484;
 }
-
-@media ( max-width: 768px ){
-
-    #derecha p{
-        top: 10%;
-        left: 50%;
-        text-align: center;
-    }
-
-    #derecha div{
-        border-style: none;
-    }
-}
