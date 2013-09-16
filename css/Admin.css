@@ -13,18 +13,12 @@ body{
 
 header{
     position: relative;
-<<<<<<< HEAD
     height: 90px;
-=======
->>>>>>> 99ba63a1c8c8980ccc9a24773bd4ae773e2183b7
     background-color: #03436A;
     width: 100%;
     border-bottom: 2px solid black;
     margin: 0px;
-<<<<<<< HEAD
     min-width: 390px;
-=======
->>>>>>> 99ba63a1c8c8980ccc9a24773bd4ae773e2183b7
 }
 
 header #header_logo{
@@ -33,21 +27,13 @@ header #header_logo{
 
 header #header_logo img{
     float: left;
-<<<<<<< HEAD
     padding-top: 1.8em;
-=======
-    padding-top: 0.7em;
->>>>>>> 99ba63a1c8c8980ccc9a24773bd4ae773e2183b7
     padding-left: 3em;
 }
 
 header #header_logo h1{
     float: left;
-<<<<<<< HEAD
     padding-top: 0.8em;
-=======
-    padding-top: 0.4em;
->>>>>>> 99ba63a1c8c8980ccc9a24773bd4ae773e2183b7
     margin: 0px;
     color :#FFF;
 }
@@ -59,20 +45,14 @@ header #header_opciones{
 
 header #header_opciones img{
     float: left;
-<<<<<<< HEAD
     padding-top: 1.8em;
-=======
->>>>>>> 99ba63a1c8c8980ccc9a24773bd4ae773e2183b7
 }
 
 header #header_opciones p{
     float: left;
     color: #FFF;
     margin: 0px;
-<<<<<<< HEAD
     padding-top: 1.8em;
-=======
->>>>>>> 99ba63a1c8c8980ccc9a24773bd4ae773e2183b7
 }
 
 aside{
