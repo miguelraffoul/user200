@@ -57,12 +57,28 @@ header #header_opciones p{
 }
 
 aside{
+    position: relative;
+    float: left;
     width: 200px;
-    height: 80%;
+    height: calc(100% - 90px);
     background-color: #D8D8D8;
     min-height: 200px;
 }
 
+section{
+    position: relative;
+    float: left;
+    width: calc(100% - 200px);
+    height: calc(100% - 125px);
+    background-color: #81BEF7;
+}
+
+footer{
+    position: relative;
+    float: left;
+    width: calc(100% - 200px);
+    padding-top: 1em;
+}
 footer div{
     position: absolute;
     width: 86%;
@@ -76,6 +92,5 @@ footer p{
     left: 7%;
     margin: 0.3em 0em 0.3em 0em;
     font-size: 0.8em;
-    padding-top: 0.5em; 
     color: #848484;
 }
