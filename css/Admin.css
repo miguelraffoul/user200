@@ -61,6 +61,7 @@ aside{
     float: left;
     width: 200px;
     height: calc(100% - 92px);
+    -webkit-height: calc(100% - 92px);
     background-color: #D8D8D8;
     min-height: 200px;
 }
@@ -70,6 +71,8 @@ section{
     float: left;
     width: calc(100% - 200px);
     height: calc(100% - 120px);
+    -webkit-width: calc(100% - 200px);
+    -webkit-height: calc(100% - 120px);
     background-color: #81BEF7;
 }
 
@@ -77,6 +80,7 @@ footer{
     position: relative;
     float: left;
     width: calc(100% - 200px);
+    -webkit-width: calc(100% - 200px);
 }
 footer div{
     position: absolute;

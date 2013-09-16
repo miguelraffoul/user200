@@ -37,7 +37,8 @@ aside{
     position: relative;
     float: left;
     width: 49.5%;
-    height: calc(80% - 92px);
+    height: calc(85% - 92px);
+    -webkit-height: calc(85% - 92px);
     margin: 0px;
     min-height: 270px;
 }
@@ -98,7 +99,8 @@ aside{
 footer{
     position: relative;
     width: 100%;
-    height: calc(20% - 92px);
+    height: calc(25% - 92px);
+    -webkit-height: calc(25% - 92px);
     min-height: 50px;
 }
 
