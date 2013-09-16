@@ -1,0 +1,88 @@
+.clear {
+    clear: both;
+}
+
+html, body{
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    min-width: 550px;
+}
+
+header{
+    position: relative;
+    background-color: #03436A;
+    width: 100%;
+    border-bottom: 2px solid black;
+    margin: 0px;
+}
+
+header #header_logo{
+    float: left;
+}
+
+header #header_logo img{
+    float: left;
+    padding-top: 0.7em;
+    padding-left: 3em;
+}
+
+header #header_logo h1{
+    float: left;
+    padding-top: 0.4em;
+    margin: 0px;
+    color :#FFF;
+}
+
+header #header_opciones{
+    float: right;
+    padding: 2.2em 2em 0em 0em;
+}
+
+header #header_opciones img{
+    float: left;
+}
+
+header #header_opciones p{
+    float: left;
+    color: #FFF;
+    margin: 0px;
+}
+
+aside{
+    width: 200px;
+    height: 100%;
+    background-color: #D8D8D8;
+}
+
+footer div{
+    position: absolute;
+    width: 86%;
+    left: 7%;
+    border: 1px solid #BDBDBD;
+}
+
+footer p{
+    position: relative;
+    width: 300px;
+    left: 7%;
+    margin: 0.3em 0em 0.3em 0em;
+    font-size: 0.8em;
+    padding-top: 0.5em; 
+    color: #848484;
+}
+
+@media ( max-width: 768px ){
+
+    #derecha p{
+        top: 10%;
+        left: 50%;
+        text-align: center;
+    }
+
+    #derecha div{
+        border-style: none;
+    }
+}
