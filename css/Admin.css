@@ -8,7 +8,7 @@ html, body{
 }
 
 body{
-    min-width: 550px;
+    min-width: 580px;
 }
 
 header{
@@ -23,6 +23,7 @@ header{
 
 header #header_logo{
     float: left;
+    width: 320px;
 }
 
 header #header_logo img{
@@ -41,6 +42,7 @@ header #header_logo h1{
 
 header #header_opciones{
     float: right;
+    width: 210px;
     padding: 3.3em 2em 0em 0em;
 }
 
