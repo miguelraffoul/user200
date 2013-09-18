@@ -70,19 +70,22 @@ section{
 	height: 80%;
 }
 
-footer div{
-	float: left;
-	margin: 3px 0 0 50px;
-	border: 1px solid #BDBDBD;
-    width: 86%;
-    left: 7%; 
+footer{
+    width: 100%;
 }
 
-footer p{
+footer div{
+    position: absolute;
+    width: 86%;
+    left: 7%;
+    border: 1px solid #BDBDBD;
+}
+
+footer #copyright{
     position: relative;
     width: 300px;
     left: 7%;
-    margin: 0.3em 0em 0em 0em;
+    margin: 0.3em 0em 0.3em 0em;
     font-size: 0.8em;
     padding-top: 0.5em; 
     color: #848484;
