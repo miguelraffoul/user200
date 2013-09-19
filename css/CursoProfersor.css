@@ -1,0 +1,57 @@
+body{
+    font-family: "Arial","Courier","Times","Sans-Serif";
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+nav ul{
+    list-style-type: none;
+}
+
+a:hover{
+    color: #045FB4;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:active{
+    color: #01A9DB;
+    font-weight: bold;
+}
+
+nav#menu_maestro p{
+    font-weight: 900;
+}
+
+nav#menu_maestro{
+    margin: 30% 0 0 7%;
+}
+
+nav#menu_maestro li{
+    padding-top: 10px; 
+}
+
+section{
+    color: #610B0B;
+}
+
+nav#menu_rubro{
+    position: relative; 
+    top: 12%;
+    left: 10%;
+}
+
+nav#menu_rubro p{
+    position: relative; 
+    padding-bottom: 5%;
+    font-size: 2.1em;
+}
+
+nav#menu_rubro ul li{
+    font-size: 1.5em;
+    padding-bottom: 3%;
+}
+
