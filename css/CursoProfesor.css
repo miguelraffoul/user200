@@ -4,33 +4,33 @@ body{
 
 section{
     color: #610B0B;
-    min-height: 500px;
+    min-height: 400px;
 }
 
-nav#menu_rubro a:hover{
+nav#menu_practica a:hover{
     font-weight: bold;
     text-decoration: none;
     color: #B40404;
 }
 
-nav#menu_rubro a:active{
+nav#menu_practica a:active{
     color: #FE2E2E;
 }
 
 
-nav#menu_rubro{
+nav#menu_practica{
     position: relative; 
     top: 12%;
     left: 10%;
 }
 
-nav#menu_rubro p{
+nav#menu_practica p{
     position: relative; 
     padding-bottom: 5%;
     font-size: 2.1em;
 }
 
-nav#menu_rubro ul li{
+nav#menu_practica ul li{
     font-size: 1.5em;
     padding-bottom: 3%;
 }
