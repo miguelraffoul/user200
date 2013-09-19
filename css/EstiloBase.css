@@ -141,6 +141,7 @@ nav#menu_aside li{
 
 
 section{
+    position: relative;
 	float: left;
 	height: 80%;
 }
