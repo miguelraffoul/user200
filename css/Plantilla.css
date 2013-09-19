@@ -103,6 +103,22 @@ aside{
     min-height: 200px;
 }
 
+aside h3{
+   margin: 2em 0em 0em 0.3em;
+   color: #333;
+}
+
+aside ul{
+    list-style: none;
+    margin: 0em 0em 0em 1.5em;
+}
+
+aside ul li a{
+    display: block;
+    color: #333;
+    padding: 0.5em 0em;
+}
+
 section{
 	float: left;
 	width: 70%;
