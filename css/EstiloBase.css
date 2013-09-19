@@ -6,6 +6,26 @@
     clear: both;
 }
 
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    font-weight: bold;
+    text-decoration: none;
+    color: #045FB4;
+}
+
+a:active{
+    color: #01A9DB;
+}
+
+ul{
+    list-style: none;
+}
+
 html, body{
     width: 100%;
     height: 100%;
@@ -107,16 +127,18 @@ aside h3{
    margin: 2em 0em 0em 0.3em;
 }
 
-aside ul{
-    list-style: none;
-    margin: 0em 0em 0em 1.5em;
+nav#menu_aside p{
+    font-weight: 900;
 }
 
-aside ul li a{
-    display: block;
-    color: #333;
-    padding: 0.5em 0em;
+nav#menu_aside{
+    margin: 30% 0 0 7%;
 }
+
+nav#menu_aside li{
+    padding-top: 10px; 
+}
+
 
 section{
 	float: left;

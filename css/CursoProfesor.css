@@ -2,37 +2,6 @@ body{
     font-family: "Arial","Courier","Times","Sans-Serif";
 }
 
-a{
-    text-decoration: none;
-    color: black;
-}
-
-nav ul{
-    list-style-type: none;
-}
-
-nav#menu_maestro a:hover{
-    font-weight: bold;
-    text-decoration: none;
-    color: #045FB4;
-}
-
-nav#menu_maestro a:active{
-    color: #01A9DB;
-}
-
-nav#menu_maestro p{
-    font-weight: 900;
-}
-
-nav#menu_maestro{
-    margin: 30% 0 0 7%;
-}
-
-nav#menu_maestro li{
-    padding-top: 10px; 
-}
-
 section{
     color: #610B0B;
     min-height: 500px;
