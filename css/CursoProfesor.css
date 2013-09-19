@@ -1,10 +1,12 @@
 body{
     font-family: "Arial","Courier","Times","Sans-Serif";
+    min-width: 925px;
 }
 
 section{
     color: #610B0B;
     min-height: 400px;
+    width: auto;
 }
 
 nav#menu_practica a:hover{
@@ -20,8 +22,14 @@ nav#menu_practica a:active{
 
 nav#menu_practica{
     position: relative; 
-    top: 12%;
-    left: 10%;
+    min-width: 600px;
+    padding: 70px 0 0 100px;
+
+}
+
+nav#menu_practica ul{
+    height: 300px;
+    overflow: scroll;
 }
 
 nav#menu_practica p{
