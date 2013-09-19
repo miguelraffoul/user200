@@ -100,7 +100,7 @@ aside{
     width: 200px;
     height: 80%;
     background-color: #D8D8D8;
-    min-height: 200px;
+    min-height: 500px;
 }
 
 aside h3{
@@ -120,7 +120,7 @@ aside ul li a{
 
 section{
 	float: left;
-	width: 70%;
+	width: 85%;
 	height: 80%;
 }
 

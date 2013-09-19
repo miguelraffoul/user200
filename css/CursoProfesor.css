@@ -11,15 +11,14 @@ nav ul{
     list-style-type: none;
 }
 
-a:hover{
-    color: #045FB4;
+nav#menu_maestro a:hover{
     font-weight: bold;
     text-decoration: none;
+    color: #045FB4;
 }
 
-a:active{
+nav#menu_maestro a:active{
     color: #01A9DB;
-    font-weight: bold;
 }
 
 nav#menu_maestro p{
@@ -36,7 +35,19 @@ nav#menu_maestro li{
 
 section{
     color: #610B0B;
+    min-height: 500px;
 }
+
+nav#menu_rubro a:hover{
+    font-weight: bold;
+    text-decoration: none;
+    color: #B40404;
+}
+
+nav#menu_rubro a:active{
+    color: #FE2E2E;
+}
+
 
 nav#menu_rubro{
     position: relative; 
