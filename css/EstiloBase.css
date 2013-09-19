@@ -61,8 +61,8 @@ header #header_logo h1{
 
 header #header_opciones{
     float: right;
-    width: 210px;
-    padding: 3.3em 2em 0em 0em;
+    width: 235px;
+    padding: 3.3em 3em 0em 0em;
 }
 
 header #header_opciones #nav_cuenta{
