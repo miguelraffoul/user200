@@ -13,6 +13,7 @@
 		<link href="../css/bootstrap.css" rel="stylesheet">
 		<link href="../css/bootstrap-responsive.css" rel="stylesheet">
 		<link href="../css/Registro.css" rel="stylesheet">
+		<link href="../css/EstiloBase.css" rel="stylesheet">
 	</head>
 	<body>
 		<script src="../js/bootstrap.js"></script>
@@ -24,28 +25,28 @@
 			</div>
 			<div class="clear"></div>
 		</header>
-		<aside>
-		</aside>
 		<section>
-			<h2>Registro</h2>
-			<label for="nombre">Nombre</label>
-			<input type="text" id="nombre" name="nombre">
-			<label for="nombre">Codigo</label>
-			<input type="text" id="codigo" name="codigo">
-			<label for="nombre">Carrera</label>
-			<select>
-				<option value ="computacion">Ing. Computación</option>
-				<option value ="informatica">Ing. Informatica</option>
-				<option value ="biomedica">Ing. Biomedica</option>
-				<option value ="electronica">Ing. en Com. y Elect.</option>
-			</select>
-			<label for="mail">Correo</label> 
-			<input type="email" id="mail" name="mail" />
-			<label for="pass">Contraseña</label>
-			<input type="password" id="pass" name="pass" />
-			<button id="enviar" type="submit">Enviar</button>
-			<!--<label for="nombre">Carrera</label>
-			<input type="text" id="nombre" name="nombre"> -->	
+			<form id="formulario_registro">
+				<h2>Registro</h2>
+				<label for="nombre">Nombre</label>
+				<input type="text" id="nombre" name="nombre">
+				<label for="nombre">Codigo</label>
+				<input type="text" id="codigo" name="codigo">
+				<label for="nombre">Carrera</label>
+				<select>
+					<option value ="computacion">Ing. Computación</option>
+					<option value ="informatica">Ing. Informatica</option>
+					<option value ="biomedica">Ing. Biomedica</option>
+					<option value ="electronica">Ing. en Com. y Elect.</option>
+				</select>
+				<label for="mail">Correo</label> 
+				<input type="email" id="mail" name="mail" />
+				<label for="pass">Contraseña</label>
+				<input type="password" id="pass" name="pass" />
+				<button id="enviar" type="submit">Enviar</button>
+				<!--<label for="nombre">Carrera</label>
+				<input type="text" id="nombre" name="nombre"> -->	
+			</form>
 		</section>
 		<div class="clear"></div>
 		<footer>

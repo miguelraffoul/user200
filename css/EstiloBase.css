@@ -31,10 +31,6 @@ html, body{
     height: 100%;
 }
 
-body{
-    min-width: 580px;
-}
-
 header{
     float: left;
     height: 90px;
@@ -42,8 +38,7 @@ header{
     width: 100%;
     border-bottom: 2px solid black;
     margin: 0px;
-    min-width: 390px;
-}
+ }
 
 header #header_logo{
     float: left;
