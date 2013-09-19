@@ -14,12 +14,6 @@ body{
     width: 400px;
 }
 
-
-/*#formulario h2,label,input,p,button{
-    float: left;
-    display: block;
-}*/
-
 #formulario h2, label,p{
     position: relative;
     text-align: center;
