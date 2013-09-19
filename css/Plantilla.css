@@ -1,7 +1,7 @@
-.IE header{
+/*.IE header{
     height: 70px;
 }
-
+*/
 .clear {
     clear: both;
 }
@@ -72,7 +72,7 @@ aside{
 
 section{
 	float: left;
-	width: 85%;
+	width: 70%;
 	height: 80%;
 }
 
