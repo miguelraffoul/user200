@@ -1,0 +1,29 @@
+body{
+    font-family: "Arial","Courier","Times","Sans-Serif";
+    min-width: 925px;
+}
+
+section{
+    color: #610B0B;
+    min-height: 400px;
+    width: auto;
+}
+
+form#alta_curso_izq{
+    position: relative;
+    min-width: 600px;
+    padding: 70px 0 0 100px;
+}
+
+form#alta_curso_der{
+    position: relative;
+    min-width: 600px;
+    padding: 70px 0 0 100px;
+}
+
+#alta_curso_der #registrar{
+    padding: .1em .8em .1em .8em;
+    background-color: #03436A;
+    color: white;
+}
+
