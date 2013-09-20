@@ -1,0 +1,14 @@
+body{
+    min-width: 580px;
+}
+
+section{
+    width: 80%;
+}
+
+#tabla_calificaciones{
+    position: relative;
+    top:60px;
+    margin: auto;
+    width: 80%;   
+}
