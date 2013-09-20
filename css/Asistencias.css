@@ -7,7 +7,7 @@ section{
     min-height: 500px;
 }
 
-#tabla_calificaciones{
+#tabla_asistencias{
 	overflow: scroll;
     position: relative;
     top: 70px;
