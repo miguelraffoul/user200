@@ -16,3 +16,8 @@ section{
 td{
 	width: auto;
 }
+
+header #header_opciones{
+	width: 170px;
+    padding: 3.3em 0em 0em 0em;
+}
