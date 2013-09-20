@@ -1,14 +1,17 @@
 body{
-    min-width: 580px;
+    min-width: 820px;
 }
 
 section{
-    width: 80%;
+    width: 75%;
+    min-height: 500px;
 }
 
 #tabla_calificaciones{
+	overflow: scroll;
     position: relative;
-    top:60px;
+    top: 70px;
     margin: auto;
-    width: 80%;   
+    width: 90%;   
+    height: 80%;
 }
