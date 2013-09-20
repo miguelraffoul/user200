@@ -12,8 +12,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="../css/bootstrap.css" rel="stylesheet">
 		<link href="../css/bootstrap-responsive.css" rel="stylesheet">
-		<link href="../css/RegistroCurso.css" rel="stylesheet">
 		<link href="../css/EstiloBase.css" rel="stylesheet">
+		<link href="../css/RegistroCurso.css" rel="stylesheet">
 	</head>
 	<body>
 		<script src="../js/bootstrap.js"></script>
@@ -37,18 +37,7 @@
 			<div class="clear"></div>
 		</header>
 		<aside>
-			<nav id="menu_aside">
-				<h3>Captura Curso</h3>
-				<ul>
-					<li><a href="#">Inicio</a></li>
-					<li><a href="#">Alta alumnos</a></li>
-					<li><a href="#">Captura calificaciones</a></li>
-					<li><a href="#">Algun otro</a></li>
-				</ul>
-			</nav>
-		</aside>
-		<section>
-		<form id="alta_curso_izq">
+			<form id="alta_curso_izq">
 				<label for="nombre">Nombre</label>
 				<input type="text" id="nombre" name="nombre" required/>
 				<label for="seccion">Seccion</label>
@@ -64,7 +53,9 @@
 				<label for="horas_dia">Horas/dia</label>
 				<input type="number" id="horas_dia" name="horas_dia" min="1" step="1" pattern="\d+" required/> <button id="registrar" type="submit">Registrar</button>
 			</form>  
-		<!--	<form id="alta_curso_der">
+		</aside>
+		<aside>
+			<form id="alta_curso_der">
 				<p>Horarios por dia</p>
 				<label for="hr">Lunes</label>
 				<input type="time" id="hr" name="hr" required/> 
@@ -78,9 +69,8 @@
 				<input type="time" id="hr" name="hr" required/> 
 				<label for="hr">Sabado</label>
 				<input type="time" id="hr" name="hr" required/> 
-				<button id="registrar" type="submit">Registrar</button> -->
 			</form> 			
-		</section>
+		</aside>
 		<div class="clear"></div>
 		<footer>
 			<div></div>
