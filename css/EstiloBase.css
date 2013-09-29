@@ -31,13 +31,25 @@ html, body{
     height: 100%;
 }
 
+#wrapper{
+    min-height: 100%;
+    position: relative;
+}
+
+div.container-fluid{
+    padding-top: 100px;
+    padding-bottom: 80px;
+}
+
 header{
-    float: left;
-    height: 90px;
-    background-color: #03436A;
+    position: absolute;
+    z-index: 1032;
+    top: 0;
     width: 100%;
-    border-bottom: 2px solid black;
+    height: 90px;
     margin: 0px;
+    background-color: #03436A;
+    border-bottom: 2px solid black;
  }
 
 header #header_logo{
@@ -59,15 +71,9 @@ header #header_logo h1{
     color :#FFF;
 }
 
-header #header_opciones{
-    float: right;
-    width: 235px;
-    padding: 3.3em 3em 0em 0em;
-}
-
 header #header_opciones #nav_cuenta{
     float: left;
-    padding-top: 1.8em;
+    padding-top: 1.6em;
 }
 
 header ul{
@@ -77,9 +83,7 @@ header ul{
 }
 
 header #nav_cuenta #opciones_cuenta{
-    border-right: 2px solid black;
-    border-left: 2px solid black;
-    border-bottom: 2px solid black;
+    border: 2px solid black;
 }
 
 header #nav_cuenta #opciones_cuenta li a{ 
@@ -110,53 +114,20 @@ header #header_opciones p{
     padding-top: 1.8em;
 }
 
-aside{
-	float: left;
-    width: 200px;
-    height: 80%;
-    background-color: #D8D8D8;
-    min-height: 500px;
-}
-
-aside h3{
-   margin: 2em 0em 0em 0.3em;
-}
-
-nav#menu_aside p{
-    font-weight: 900;
-}
-
-nav#menu_aside{
-    margin: 30% 0 0 7%;
-}
-
-nav#menu_aside li{
-    padding-top: 10px; 
-}
-
-
-section{
-    position: relative;
-	float: left;
-	height: 80%;
-}
-
 footer{
     width: 100%;
+    position: absolute;
+    bottom: 0;
+    background-color: white;
 }
 
-footer div{
-    position: absolute;
-    width: 86%;
-    left: 7%;
-    border: 1px solid #BDBDBD;
+footer #pie_pagina{
+    width: 94%;
+    padding: 0 3%;
 }
 
 footer #copyright{
-    position: relative;
     width: 300px;
-    left: 7%;
-    margin: 0.3em 0em 0.3em 0em;
     font-size: 0.8em;
     padding-top: 0.5em; 
     color: #848484;
