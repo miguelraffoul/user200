@@ -76,6 +76,14 @@ header #header_opciones #nav_cuenta{
     padding-top: 1.6em;
 }
 
+
+header #header_opciones p{
+    float: left;
+    color: #FFF;
+    margin: 0px;
+    padding-top: 1.8em;
+}
+
 header ul{
     list-style: none;
     padding: 0px;
@@ -105,13 +113,6 @@ header #nav_cuenta li ul{
 
 header #nav_cuenta li:hover > ul {
     display: block;
-}
-
-header #header_opciones p{
-    float: left;
-    color: #FFF;
-    margin: 0px;
-    padding-top: 1.8em;
 }
 
 footer{
