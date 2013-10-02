@@ -7,6 +7,10 @@ html, body{
     height: 100%;
 }
 
+a {
+    text-decoration: none;
+}
+
 header{
     height: 90px;
     background-color: #03436A;
