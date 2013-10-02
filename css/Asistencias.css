@@ -1,17 +1,37 @@
 body{
-    min-width: 820px;
+	min-width: 550px;
 }
 
-section{
-    width: 75%;
-    min-height: 500px;
+header #header_opciones{
+    float: right;
+    width: 240px;
+    padding: 3.3em 2em 0em 0em;
 }
 
-#tabla_asistencias{
-	overflow: scroll;
-    position: relative;
-    top: 70px;
-    margin: auto;
-    width: 90%;   
-    height: 80%;
+@media ( max-width: 605px ){
+    header{
+        height: 120px;
+    }
+    
+    div.container-fluid{
+        padding-top: 130px;
+    }
+                
+    header #header_opciones{
+        float: left;
+        width: 240px;
+        padding: 0em 0em 0em 3em;
+    }
+
+    header #header_opciones #nav_cuenta{
+        float: left;
+        padding-top: 0.5em;
+    }
+
+    header #header_opciones p{
+        float: left;
+        color: #FFF;
+        margin: 0px;
+        padding-top: 0.7em;
+    }
 }

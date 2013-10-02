@@ -38,8 +38,6 @@ nav#menu_practica ul li{
     padding-bottom: 3%;
 }
 
-
-
 @media ( max-width: 605px ){
     header{
         height: 120px;
