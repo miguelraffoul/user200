@@ -1,13 +1,13 @@
-body{
-    font-family: "Arial","Courier","Times","Sans-Serif";
-    min-width: 925px;
+header #header_opciones{
+    float: right;
+    width: 240px;
+    padding: 3.3em 2em 0em 0em;
 }
 
 
 section{
+    min-width: 320px;
     color: #610B0B;
-    min-height: 400px;
-    width: auto;
 }
 
 nav#menu_practica a:hover{
@@ -21,16 +21,10 @@ nav#menu_practica a:active{
 }
 
 
+
 nav#menu_practica{
     position: relative; 
-    min-width: 600px;
-    padding: 70px 0 0 100px;
-
-}
-
-nav#menu_practica ul{
-    height: 300px;
-    overflow: scroll;
+    padding: 40px 0 0 40px;
 }
 
 nav#menu_practica p{
@@ -44,3 +38,42 @@ nav#menu_practica ul li{
     padding-bottom: 3%;
 }
 
+
+
+@media ( max-width: 550px ){
+    header{
+        height: 120px;
+    }
+    
+    div.container-fluid{
+        padding-top: 130px;
+    }
+                
+    header #header_opciones{
+        float: left;
+        width: 240px;
+        padding: 0em 0em 0em 3em;
+    }
+
+    header #header_opciones #nav_cuenta{
+        float: left;
+        padding-top: 0.5em;
+    }
+
+    header #header_opciones p{
+        float: left;
+        color: #FFF;
+        margin: 0px;
+        padding-top: 0.7em;
+    }
+}
+
+@media ( max-width: 340px ){
+    header #header_logo img{
+         padding-left: 0;
+    }
+    
+    header #header_opciones{
+        padding-left: 0;
+    }
+}
