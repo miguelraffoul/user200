@@ -6,7 +6,7 @@ header #header_opciones{
 
 
 section{
-    min-width: 320px;
+    min-width: 340px;
     color: #610B0B;
 }
 
@@ -40,7 +40,7 @@ nav#menu_practica ul li{
 
 
 
-@media ( max-width: 550px ){
+@media ( max-width: 605px ){
     header{
         height: 120px;
     }
