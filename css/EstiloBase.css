@@ -19,6 +19,10 @@ a:active{
     color: #01A9DB;
 }
 
+a:visited{
+    color: #333;
+}
+
 ul{
     list-style: none;
 }
