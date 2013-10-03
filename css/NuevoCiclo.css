@@ -10,12 +10,19 @@ header #header_opciones{
 	width: 25%;
 }
 
+h2{
+    margin-bottom: 10%;
+}
+
 label{
 	margin-top: 3%;
 }
 
+label a{
+    font-weight:bold;
+}
+
 label a:hover{
-	font-weight: bold;
     text-decoration: none;
     color: #B40404;
 }
