@@ -42,7 +42,7 @@
 					<aside class="span3">
 						<nav id="menu_aside" class="well">
 							<ul class="nav nav-list">
-								<li class="nav-header">Nombre menu</li>
+								<li class="nav-header">Menu de curso</li>
 								<li><a href="#">Lista de asistencias</a></li>
 								<li><a href="#">Lista de calificaciones</a></li>
 								<li><a href="#">Evaluación</a></li>
@@ -51,20 +51,27 @@
 						</nav>
 					</aside>
 					<section class="span9">
+						<div id="periodo_asistencias">
+							<a href="#" class="icon-chevron-left"></a>
+							<div id="periodo_fechas">
+								<p>Desde --/--/---- hasta --/--/----</p>
+							</div>
+							<a href="#" class="icon-chevron-right"></a>
+						</div>
 						<table id="lista_asistencias" class="table table-bordered table-hover">
 							<thead>
 								<tr>
 									<th>Nombre</th>
-									<th>fecha</th>
-									<th>fecha</th>
-									<th>fecha</th>
-									<th>fecha</th>
-									<th>fecha</th>
-									<th>fecha</th>
+									<th><input type="checkbox" id="chbx">fecha</th>
+									<th><input type="checkbox" id="chbx">fecha</th>
+									<th><input type="checkbox" id="chbx">fecha</th>
+									<th><input type="checkbox" id="chbx">fecha</th>
+									<th><input type="checkbox" id="chbx">fecha</th>
+									<th><input type="checkbox" id="chbx">fecha</th>
 							</thead>
 							<tbody>
 								<tr>
-									<td>&lt;nombre&gt;</td>
+									<td><input type="checkbox" id="chbx">&lt;nombre&gt;</td>
 									<td></td>
 									<td></td>
 									<td></td>
@@ -73,7 +80,7 @@
 									<td></td>
 								</tr>
 								<tr>
-									<td>&lt;nombre&gt;</td>
+									<td><input type="checkbox" id="chbx">&lt;nombre&gt;</td>
 									<td></td>
 									<td></td>
 									<td></td>
@@ -82,7 +89,7 @@
 									<td></td>
 								</tr>
 								<tr>
-									<td>&lt;nombre&gt;</td>
+									<td><input type="checkbox" id="chbx">&lt;nombre&gt;</td>
 									<td></td>
 									<td></td>
 									<td></td>
@@ -91,7 +98,7 @@
 									<td></td>
 								</tr>
 								<tr>
-									<td>&lt;nombre&gt;</td>
+									<td><input type="checkbox" id="chbx">&lt;nombre&gt;</td>
 									<td></td>
 									<td></td>
 									<td></td>
@@ -100,7 +107,7 @@
 									<td></td>
 								</tr>
 								<tr>
-									<td>&lt;nombre&gt;</td>
+									<td><input type="checkbox" id="chbx">&lt;nombre&gt;</td>
 									<td></td>
 									<td></td>
 									<td></td>
@@ -109,96 +116,7 @@
 									<td></td>
 								</tr>
 								<tr>
-									<td>&lt;nombre&gt;</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>&lt;nombre&gt;</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>&lt;nombre&gt;</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>&lt;nombre&gt;</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>&lt;nombre&gt;</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>&lt;nombre&gt;</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>&lt;nombre&gt;</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>&lt;nombre&gt;</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>&lt;nombre&gt;</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>&lt;nombre&gt;</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>&lt;nombre&gt;</td>
+									<td><input type="checkbox" id="chbx">&lt;nombre&gt;</td>
 									<td></td>
 									<td></td>
 									<td></td>
@@ -208,6 +126,10 @@
 								</tr>
 							</tbody>
 						</table>
+						<div id="asistencia_falta">
+							<input type="button" value="Asistencia" onClick=""/>
+							<input type="button" value="Falta" onClick=""/>
+						</div>
 					</section>
 				</div>
 			</div>

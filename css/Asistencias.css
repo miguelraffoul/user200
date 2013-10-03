@@ -8,6 +8,31 @@ header #header_opciones{
     padding: 3.3em 2em 0em 0em;
 }
 
+#periodo_asistencias{
+    padding: 0.8em 0;
+    width: 290px;
+    margin: auto;
+}
+
+#periodo_fechas{
+    display: inline;
+    margin: auto;
+    padding: 0 1.2em;
+}
+
+#periodo_fechas p{
+    display: inline;
+    font-size: 1.2em;
+}
+
+#lista_asistencias{
+    margin-top: 0.5em;
+}
+
+#chbx{
+    margin: 0.3em;
+}
+
 @media ( max-width: 605px ){
     header{
         height: 120px;
