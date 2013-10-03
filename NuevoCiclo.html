@@ -6,13 +6,24 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="css/bootstrap.css" rel="stylesheet">
 		<link href="css/bootstrap-responsive.css" rel="stylesheet">
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  		<link rel="stylesheet" href="/resources/demos/style.css" />
 		<link href="css/EstiloBase.css" rel="stylesheet">
-		<link href="css/CicloEscolar.css" rel="stylesheet">
+		<link href="css/NuevoCiclo.css" rel="stylesheet">
 	</head>
 	<body>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 		<script src="js/bootstrap.js"></script>
 		<script src="js/modernizr.js"></script>
-		<div id="wrapper">	
+
+		<script>
+  			$(function() {
+    			$( ".datepicker" ).datepicker();
+  			});
+  		</script>
+
+		<div id="wrapper">
 			<header>
 				<div id="header_logo">
 					<img src="img/brain_white.png">
@@ -33,29 +44,17 @@
 			</header>
 			<div class="container-fluid">
 				<div class="row-fluid">
-					<aside class="span3">
-						<nav id="menu_aside" class="well">
-							<ul class="nav nav-list">								
-								<li class="nav-header">MENU CICLO ESCOLAR</li>
-								<li><a href="#">Nuevo Ciclo Escolar</a></li>
-								<li><a href="#">Eliminar Ciclo Escolar</a></li>
-							</ul>
-						</nav>
-					</aside>
-					<section class="span9 min_width_section">
-						<nav class="menu_section">
-							<p>Ciclos Escolares</p>
-							<ul>
-								<li><a href="#">&lt;Ciclo1&gt;</a></li>
-								<li><a href="#">&lt;Ciclo2&gt;</a></li>
-								<li><a href="#">&lt;Ciclo3&gt;</a></li>
-								<li><a href="#">&lt;Ciclo4&gt;</a></li>
-								<li><a href="#">&lt;Ciclo5&gt;</a></li>
-								<li><a href="#">&lt;Ciclo6&gt;</a></li>
-								<li><a href="#">&lt;Ciclo7&gt;</a></li>
-								<li><a href="#">&lt;Ciclo8&gt;</a></li>
-							</ul>
-						</nav>
+					<section class="min_width_section">
+						<form id="form_nuevo_ciclo">
+							<h2>Nuevo Ciclo Escolar</h2>
+							<label for="ciclo">Ciclo</label>
+							<input type="text" id="ciclo" name="ciclo"/>
+							<label for="inicio_curso">Inicio de Ciclo</label>
+							<input type="text" id="inicio_curso" class="datepicker"/>
+							<label for="fin_curso">Fin de Ciclo</label>
+							<input type="text" id="fin_curso" class="datepicker">
+							<label><a href="#">+Agregar Día Inhábil</a></label>
+						</form>
 					</section>
 				</div>
 			</div>
@@ -67,4 +66,4 @@
 			</footer>
 		</div>	
 	</body>
-</html>	
+</html>		
