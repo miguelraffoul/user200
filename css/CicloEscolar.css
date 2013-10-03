@@ -1,10 +1,11 @@
 header #header_opciones{
-    float: right;
-    width: 240px;
-    padding: 3.3em 2em 0em 0em;
+	float: right;
+	width: 185px;
+	padding: 3.3em 2em 0em 0em;
 }
 
-@media ( max-width: 605px ){
+
+@media ( max-width: 550px ){
     header{
         height: 120px;
     }

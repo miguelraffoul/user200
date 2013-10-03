@@ -1,7 +1,4 @@
-/*.IE header{
-    height: 70px;
-}
-*/
+
 .clear {
     clear: both;
 }
@@ -113,6 +110,37 @@ header #nav_cuenta li ul{
 
 header #nav_cuenta li:hover > ul {
     display: block;
+}
+
+.min_width_section{
+    min-width: 340px;
+}
+
+.menu_section{
+    position: relative; 
+    color: #610B0B;
+    padding: 40px 0 0 40px;
+}
+
+.menu_section a:hover{
+    font-weight: bold;
+    text-decoration: none;
+    color: #B40404;
+}
+
+.menu_section a:active{
+    color: #FE2E2E;
+}
+
+.menu_section p{
+    position: relative; 
+    padding-bottom: 5%;
+    font-size: 2.1em;
+}
+
+.menu_section ul li{
+    font-size: 1.5em;
+    padding-bottom: 3%;
 }
 
 footer{

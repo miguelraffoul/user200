@@ -4,10 +4,6 @@ header #header_opciones{
     padding: 3.3em 2em 0em 0em;
  }
 
-section{
-	width: 100%;
-}
-
 #alumno_calificaciones{
 	width: 40%;
 	margin: 2% auto;
