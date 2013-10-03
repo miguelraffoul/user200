@@ -5,6 +5,26 @@ header #header_opciones{
 }
 
 
+#form_nuevo_ciclo{
+	margin: 2% auto;	
+	width: 25%;
+}
+
+label{
+	margin-top: 3%;
+}
+
+label a:hover{
+	font-weight: bold;
+    text-decoration: none;
+    color: #B40404;
+}
+
+label a:active{
+	 color: #FE2E2E;
+}
+
+
 @media ( max-width: 550px ){
     header{
         height: 120px;
