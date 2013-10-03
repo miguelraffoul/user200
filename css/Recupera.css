@@ -1,43 +1,63 @@
-body{
-    min-width: 400px;
+section{
+    width: 100%;
 }
 
-#Titulo h2{
-    float: left;
+h2{
+    text-align: center;
     font-weight: lighter;
     font-family: Arial, Helvetica, sans-serif;    
 }
 
 #formulario{
     position: relative;
-    margin: 30px auto 0;
-    width: 400px;
+    margin: 90px auto;
+    width: 350px;
 }
 
 #formulario h2, label,p{
     position: relative;
     text-align: center;
 
-} 
+}
 
 label{
     padding: 10% 0 0 0;
 }
 
 input{
-    width: 385px;
+    width: 330px;
 }
 
 #enviar{
     position: relative;
-    left: 44%;
+    left: 42%;
     background-color: #03436A;
     color: white;
-    margin-top: 6%;
+    margin: 6% auto;
 }
 
-section{
-	width: 100%;
-	height: 80%;
-    min-height: 270px;
+@media ( max-width: 380px ){
+    header #header_logo img{
+        padding-left: 10px;
+    }
+    #formulario{
+        position: relative;
+        margin: 70px auto;
+        width: 220px;
+    }
+    #formulario h2, label,p{
+        position: relative;
+        text-align: center;
+
+    }
+    input{
+        width: 200px;
+        position: relative;
+        left: 2%;
+    }
+    #enviar{    
+     left: 37%;    
+    }
 }
+
+
