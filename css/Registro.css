@@ -1,12 +1,5 @@
-body{
-    min-width: 340px; 
-}
-
 section{
-    width: 100%;
-    min-height: 430px;
-    padding: 0px;
-    margin: 0px;
+    width: 100%;    
 }
 
 #formulario_registro{
@@ -29,4 +22,12 @@ section{
     padding: .1em .8em .1em .8em;
     background-color: #03436A;
     color: white;
+}
+
+@media ( max-width: 380px ){
+    header #header_logo img{
+        float: left;
+        padding-top: 3.3em;
+        padding-left: 0.7em;
+    }
 }
