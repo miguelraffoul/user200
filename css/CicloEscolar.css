@@ -4,6 +4,27 @@ header #header_opciones{
 	padding: 3.3em 2em 0em 0em;
 }
 
+#form_nuevo_ciclo{
+    margin: 2% auto;    
+    width: 300px;
+}
+
+
+.ver_detalles{
+    margin-top: 3%;
+    margin-left: 4%;
+}
+
+.ver_detalles label{
+    font-size: 1.5em;
+}
+
+#dias_inhabiles div{
+    margin-top: 25px;
+    margin-left: 3%;
+}
+
+
 
 @media ( max-width: 550px ){
     header{
