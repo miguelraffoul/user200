@@ -4,6 +4,37 @@ header #header_opciones{
     padding: 3.3em 2em 0em 0em;
 }
 
+
+section p{
+    position: relative;
+    margin-top: 4%;
+    color: #610B0B;
+    padding-bottom: 5%;
+    font-size: 2.1em;
+}
+
+#evaluacion{
+    width: 40%;
+    min-width: 340px;
+    margin-left: 25%;
+}
+
+#evaluacion h3{
+    margin: 4% auto;
+}
+
+
+#evaluacion a:hover{
+    font-weight: bold;
+    text-decoration: none;
+    color: #B40404;
+}
+
+#evaluacion a:active{
+    color: #FE2E2E;
+}
+
+
 @media ( max-width: 605px ){
     header{
         height: 120px;
