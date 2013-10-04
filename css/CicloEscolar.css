@@ -4,9 +4,10 @@ header #header_opciones{
 	padding: 3.3em 2em 0em 0em;
 }
 
-#form_nuevo_ciclo{
+form#nuevo_ciclo, 
+form#modificacion_ciclo{
     margin: 2% auto;    
-    width: 300px;
+    width: 340px;
 }
 
 
@@ -22,6 +23,15 @@ header #header_opciones{
 #dias_inhabiles div{
     margin-top: 25px;
     margin-left: 3%;
+}
+
+div.dia_inhabil_agregado{
+    margin-top: 5%;
+}
+
+
+label.agregar_dia_inhabil{
+    margin-top: 12px;
 }
 
 

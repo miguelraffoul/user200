@@ -45,15 +45,27 @@
 			<div class="container-fluid">
 				<div class="row-fluid">
 					<section class="min_width_section">
-						<form id="form_nuevo_ciclo">
+						<form id="modificacion_ciclo">
 							<h2>Ciclo Escolar &lt;Ciclo&gt;</h2>
-							<label for="ciclo">Ciclo</label>
-							<input type="text" id="ciclo" name="ciclo"/>
-							<label for="inicio_curso">Inicio de Ciclo</label>
-							<input type="text" id="inicio_curso" class="datepicker"/>
-							<label for="fin_curso">Fin de Ciclo</label>
-							<input type="text" id="fin_curso" class="datepicker">
-							<label><a href="#">+Agregar Día Inhábil</a></label>
+							<label for="ciclo_modificar">Ciclo</label>
+							<input type="text" id="ciclo_modificar" name="ciclo_modificar"/>
+							<label for="inicio_curso_modificar">Inicio de Ciclo</label>
+							<input type="text" id="inicio_curso_modificar" name="inicio_curso_modificar" class="datepicker"/>
+							<label for="fin_curso_modificar">Fin de Ciclo</label>
+							<input type="text" id="fin_curso_modificar" name="fin_curso_modificar" class="datepicker"/>
+							<div class="dia_inhabil_agregado">
+								<label for="fecha_dia_inhabil">Fecha</label>
+								<input type="text" id="fecha_dia_inhabil" name="fecha_dia_inhabil" class="datepicker"/>
+								<label for="descripcion_modificar">Descripcion</label>
+								<textarea id="descripcion_modificar" name="descripcion_modificar" rows="5" cols="10" wrap"hard"></textarea>
+							</div>
+							<div class="dia_inhabil_agregado">
+								<label for="fecha_dia_inhabil2">Fecha</label>
+								<input type="text" id="fecha_dia_inhabil2" name="fecha_dia_inhabil2" class="datepicker"/>
+								<label for="descripcion_modificar2">Descripcion</label>
+								<textarea id="descripcion_modificar" id="descripcion_modificar2" name="descripcion_modificar2" rows="5" cols="10" wrap"hard"></textarea>
+							</div>
+							<label class="agregar_dia_inhabil" id="aregar_dia_modificaicon"><a href="#">+Agregar Día Inhábil</a></label>
 						</form>
 					</section>
 				</div>
