@@ -46,26 +46,33 @@
 				<div class="row-fluid">
 					<section class="min_width_section">
 						<form id="modificacion_ciclo">
-							<h2>Ciclo Escolar &lt;Ciclo&gt;</h2>
-							<label for="ciclo_modificar">Ciclo</label>
-							<input type="text" id="ciclo_modificar" name="ciclo_modificar"/>
-							<label for="inicio_curso_modificar">Inicio de Ciclo</label>
-							<input type="text" id="inicio_curso_modificar" name="inicio_curso_modificar" class="datepicker"/>
+							<h2>Ciclo &lt;Ciclo&gt;</h2>
+							<label for="ciclo">Ciclo</label>
+							<select id="carrera" name="ingenierias" >
+								<option value="0" disable="disable" selected >Selecciona ciclo</option>
+								<option value ="1">2013A</option>
+								<option value ="2">2013B</option>
+								<option value ="3">2014A</option>
+								<option value ="4">2014B</option>
+							</select>
+							<label for="inicio_curso">Inicio de Ciclo</label>
+							<input type="text" id="inicio_curso" name="inicio_curso" class="datepicker"/>
 							<label for="fin_curso_modificar">Fin de Ciclo</label>
-							<input type="text" id="fin_curso_modificar" name="fin_curso_modificar" class="datepicker"/>
+							<input type="text" id="fin_curso" name="fin_curso" class="datepicker"/>
 							<div class="dia_inhabil_agregado">
 								<label for="fecha_dia_inhabil">Fecha</label>
 								<input type="text" id="fecha_dia_inhabil" name="fecha_dia_inhabil" class="datepicker"/>
-								<label for="descripcion_modificar">Descripcion</label>
-								<textarea id="descripcion_modificar" name="descripcion_modificar" rows="5" cols="10" wrap"hard"></textarea>
+								<label for="descripcion">Descripcion</label>
+								<textarea id="descripcion" name="descripcion" rows="5" cols="10" wrap"hard"></textarea>
 							</div>
 							<div class="dia_inhabil_agregado">
-								<label for="fecha_dia_inhabil2">Fecha</label>
-								<input type="text" id="fecha_dia_inhabil2" name="fecha_dia_inhabil2" class="datepicker"/>
-								<label for="descripcion_modificar2">Descripcion</label>
-								<textarea id="descripcion_modificar" id="descripcion_modificar2" name="descripcion_modificar2" rows="5" cols="10" wrap"hard"></textarea>
+								<label for="fecha_dia_inhabil">Fecha</label>
+								<input type="text" id="fecha_dia_inhabil" name="fecha_dia_inhabil" class="datepicker"/>
+								<label for="descripcion">Descripcion</label>
+								<textarea id="descripcion" name="descripcion" rows="5" cols="10" wrap"hard"></textarea>
 							</div>
-							<label class="agregar_dia_inhabil" id="aregar_dia_modificaicon"><a href="#">+Agregar Día Inhábil</a></label>
+							<label class="agregar_dia_inhabil" id="aregar_dia"><a href="#">+Agregar Día Inhábil</a></label>
+							<button id="guardar_ciclo">Guardar</button>
 						</form>
 					</section>
 				</div>
