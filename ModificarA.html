@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7 ]> <html class="IE no-js"> <![endif]-->
+<!--[if IE 7 ]>    <html class="IE no-js"> <![endif]-->
+<!--[if IE 8 ]>    <html class="IE no-js"> <![endif]-->
+<!--[if IE 9 ]>    <html class="IE no-js"> <![endif]-->
+<!--[if IE 10 ]>    <html class="IE no-js"> <![endif]-->
+<!--[if (gt IE 10)|!(IE)]><!--> <html class="no-js" lang="es"> <!--<![endif]-->
+	<head>
+		<title>SmartClass</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/bootstrap-responsive.css" rel="stylesheet">
+		<link href="css/EstiloBase.css" rel="stylesheet">
+		<link href="css/ModificarEliminar.css" rel="stylesheet">
+		<style type="text/css">
+			#area_alumnos{
+			    width: 270px;
+			    margin: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<script src="js/bootstrap.js"></script>
+		<script src="js/modernizr.js"></script>
+		<div id="wrapper">
+			<header>
+				<div id="header_logo">
+					<img src="img/brain_white.png">
+					<h1>SmartClass</h1>
+				</div>
+				<div id="header_opciones">
+					<ul id="nav_cuenta">
+						<li><a href=""><img src="img/appbar.cog.png"></a>
+							<ul id="opciones_cuenta">
+								<li><a href="">Opcion 1</a></li>
+								<li><a href="">Opcion 2</a></li>
+						    </ul>
+						</li>
+					</ul>
+					<p>Bienvenido Profesor@ &lt;Nombre&gt;</p>
+				</div>
+				<div class="clear"></div>
+			</header>
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<aside class="span3">
+						<nav id="menu_aside" class="well">
+							<ul class="nav nav-list">
+								<li class="nav-header">MENU PROFESOR</li>
+								<li><a href="AltaAlumno.html">Agregar Alumno</a></li>
+								<li><a href="ModificarEliminar.html">Modificar/Eliminar Alumno</a></li>
+								<li><a href="Asistencias.html">Lista de asistencias</a></li>
+								<li><a href="#">Lista de calificaciones</a></li>
+							</ul>
+						</nav>
+					</aside>
+					<section class="span9">
+						<h2>&lt;Nombre Curso&gt; - Alumnos</h2>
+						<div id="area_alumnos">
+							<form>
+								<label for="nombre">Nombre*</label>
+								<input type="text" id="nombre" name="nombre" required/>
+								<label for="codigo">Codigo*</label>
+								<input type="text" id="codigo" name="codigo" required/>
+								<label for="ingenierias">Carrera*</label>
+								<select id="carrera" name="ingenierias" required>
+									<option value="0" disabled="disabled">Selecciona Carrera</option>
+									<option value ="computacion">Ing. Computación</option>
+									<option value ="informatica">Ing. Informatica</option>
+									<option value ="biomedica">Ing. Biomedica</option>
+									<option value ="electronica">Ing. en Com. y Elect.</option>
+								</select>
+								<label for="mail">Correo*</label> 
+								<input type="email" id="mail" name="mail" placeholder="tucorreo@dominio.com" required/>
+								<label for="celular">Celular</label>
+								<input type="text" id="celular" name="celular"/>
+								<label for="cuenta_git">Cuenta de Github</label>
+								<input type="text" id="cuenta_git" name="cuenta_git"/>
+								<label for="pagina_web">Pagina Web</label>
+								<input type="text" id="pagina_web" name="pagina_web"/>
+								<button class="btn">Guardar</button>
+							</form>						
+						</div>
+					</section>
+				</div>
+			</div>
+			<footer class="footer">
+				<div id="pie_pagina">
+					<hr>
+					<p id="copyright">© TwoHundred 2013</p>
+				</div>
+			</footer>	
+		</div>
+	</body>
+</html>	

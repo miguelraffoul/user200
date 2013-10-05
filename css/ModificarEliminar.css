@@ -4,12 +4,12 @@ header #header_opciones{
     padding: 3.3em 2em 0em 0em;
 }
 
-#lista_alumnos{
+#area_alumnos{
     width: 340px;
     margin: auto;
 }
 
-#lista_alumnos a:hover{
+#area_alumnos a:hover{
     font-weight: lighter;
 }
 
