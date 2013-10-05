@@ -4,8 +4,13 @@ header #header_opciones{
     padding: 3.3em 2em 0em 0em;
 }
 
-#lista_alumnos ul li{
-    padding: 0.3em 0 0.3em 0.1em;
+#lista_alumnos{
+    width: 340px;
+    margin: auto;
+}
+
+#lista_alumnos a:hover{
+    font-weight: lighter;
 }
 
 #chbx{
