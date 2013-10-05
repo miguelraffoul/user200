@@ -47,8 +47,14 @@
 					<section class="min_width_section">
 						<form id="nuevo_ciclo">
 							<h2>Nuevo Ciclo Escolar</h2>
-							<label for="nuevo_ciclo">Ciclo</label>
-							<input type="text" id="nuevo_ciclo" name="nuevo_ciclo"/>
+							<label for="nuevo_ciclo_select">Ciclo</label>
+							<select id="nuevo_ciclo_select" name="nuevo_ciclo_select">
+								<option value="0" disable="disable" selected >Selecciona ciclo</option>
+								<option value ="1">2013A</option>
+								<option value ="2">2013B</option>
+								<option value ="3">2014A</option>
+								<option value ="4">2014B</option>
+							</select>
 							<label for="inicio_curso">Inicio de Ciclo</label>
 							<input type="text" id="nuevo_inicio_curso"  name="nuevo_inicio_curso" class="datepicker"/>
 							<label for="nuevo_fin_curso">Fin de Ciclo</label>
