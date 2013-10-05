@@ -6,12 +6,22 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="css/bootstrap.css" rel="stylesheet">
 		<link href="css/bootstrap-responsive.css" rel="stylesheet">
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 		<link href="css/EstiloBase.css" rel="stylesheet">
 		<link href="css/CicloEscolar.css" rel="stylesheet">
 	</head>
 	<body>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 		<script src="js/bootstrap.js"></script>
 		<script src="js/modernizr.js"></script>
+
+		<script>
+  			$(function() {
+    			$( ".datepicker" ).datepicker();
+  			});
+  		</script>
+
 		<div id="wrapper">	
 			<header>
 				<div id="header_logo">
@@ -42,24 +52,33 @@
 						</nav>
 					</aside>
 					<section class="span9 min_width_section">
-						<h2>Ciclo Escolar &lt;ciclo&gt;</h2>
+						<h2>Ciclo Escolar</h2>
 						<div class="ver_detalles">
+							<label>Ciclo:</label>
+							<select id="carrera" name="ingenierias" >
+								<option value="0" disable="disable" selected >Selecciona ciclo</option>
+								<option value ="1">2013A</option>
+								<option value ="2">2013B</option>
+								<option value ="3">2014A</option>
+								<option value ="4">2014B</option>
+							</select>	
 							<label>Fecha inicio:</label>
-							<p>--/--/--</p>
+							<input type="text" id="iniCur" name="iniCur" class="datepicker"/>
 							<label>Fecha fin:</label>
-							<p>--/--/--</p>
+							<input type="text" id="finCur" name="finCur" class="datepicker"/>
 							<label>Dias inhábiles:</label>
 							<div id="dias_inhabiles">
 								<div>
 									<p>Fecha: --/--/--</p>
 									<p>Descripción</p>
-									<p>&lt;Aquí se describe el porqué del dia inhábil&gt;</p>
+									<textarea id="descDiaInh" id="descDiaInh2" rows="5" cols="10" wrap"hard"></textarea>
 								</div>
 								<div>
 									<p>Fecha: --/--/--</p>
 									<p>Descripción</p>
-									<p>&lt;Aquí se describe el porqué del dia inhábil&gt;</p>
+									<textarea id="descDiaInh" id="descDiaInh2" rows="5" cols="10" wrap"hard"></textarea>
 								</div>
+								<label id="nuevoDiaIn"><a href="#">+Agregar Nuevo Día Inhábil</a></label>
 							</div>
 						</div>
 					</section>

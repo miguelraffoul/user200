@@ -34,6 +34,9 @@ label.agregar_dia_inhabil{
     margin-top: 12px;
 }
 
+#nuevoDiaIn{
+    font-size: 1.0em;
+}
 
 
 @media ( max-width: 550px ){
