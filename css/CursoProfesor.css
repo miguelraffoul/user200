@@ -16,13 +16,16 @@ section p{
 #evaluacion{
     width: 40%;
     min-width: 340px;
-    margin-left: 25%;
+    margin-left: 19%;
 }
 
 #evaluacion h3{
     margin: 4% auto;
 }
 
+#evaluacion table{
+    margin-bottom: 5%;
+}
 
 #evaluacion a:hover{
     font-weight: bold;
@@ -34,6 +37,29 @@ section p{
     color: #FE2E2E;
 }
 
+.checkbox_columna{
+    width: auto;
+}
+
+button#guardar_evaluacion{
+    margin-left: 20%;
+}
+
+button#guardar_rubro{
+    margin-top: 2%;
+}
+
+#columnas_rubro{
+    width: 30px;
+}
+
+form#rubro_evaluacion{
+    width: 340px;
+    margin: auto;
+}
+
+
+/*========================== MEDIAS PARA TODO CURSO PROFESOR ====================================*/
 
 @media ( max-width: 605px ){
     header{
