@@ -117,8 +117,12 @@ footer #copyright{
     color: #848484;
 }
 
-@media ( max-width: 768px ){
+@media ( max-width: 696px ){
     #derecha div{
         border-style: none;
+    }
+    aside{
+        width: 100%;
+        height: 50%;
     }
 }
