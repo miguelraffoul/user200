@@ -54,14 +54,21 @@ button#guardar_rubro{
 }
 
 form#rubro_evaluacion{
-    width: 340px;
+    width: 310px;
     margin: auto;
 }
 
 
 /*========================== MEDIAS PARA TODO CURSO PROFESOR ====================================*/
+@media ( max-width: 1308px ){
+    button#guardar_evaluacion{
+        margin-left: 0%;
+    }
+
+}
 
 @media ( max-width: 605px ){
+
     header{
         height: 120px;
     }
@@ -90,6 +97,10 @@ form#rubro_evaluacion{
 }
 
 @media ( max-width: 340px ){
+    #evaluacion{
+        margin-left: 0%;
+    }
+
     header #header_logo img{
          padding-left: 0;
     }
