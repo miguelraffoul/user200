@@ -17,14 +17,14 @@ section{
     min-height: 530px;
 }
 
-#hr{
-    width: 30px;
-}
-
 #alta_curso_izq, #alta_curso_der{
     width: 230px;
     padding: 3em  0em 0em 0em;
     margin: auto;
+}
+
+#hr{
+    width: 30px;
 }
 
 #horasReg{
@@ -43,7 +43,7 @@ section{
 }
 
 #registrar{
-    margin: 2cm 0cm;
+    margin: 2em 0em 0em 5em;
 }
 
 
@@ -69,8 +69,20 @@ section{
         margin: 0px;
         padding-top: 0.7em;
     }
+    #izquierdo #alta_curso_izq{
+        width: 220px;
+        position: relative;
+        top: 30%;
+        margin: auto
+   }
+   #izquierdo{
+        min-height: 250px;
+   }
+   section{
+        width: 100%;
+        height: 50%;
+    }
+    #registrar{
+          margin: 2em 0em 0em 10em;
 }
-
-@media ( max-width: 480px ){
-   
 }
