@@ -111,6 +111,10 @@ header #nav_cuenta li:hover > ul {
     display: block;
 }
 
+section.span9 h2{
+    padding-left: 1.5em;
+}
+
 .min_width_section{
     min-width: 340px;
 }
