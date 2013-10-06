@@ -39,6 +39,12 @@ label.agregar_dia_inhabil{
 }
 
 
+#columnas_rubro{
+    margin-right: 30%;
+}
+
+
+
 @media ( max-width: 550px ){
     header{
         height: 120px;

@@ -41,6 +41,16 @@ section p{
     width: auto;
 }
 
+#div_checkbox_hoja{
+    margin: 16px;
+}
+
+#columnas_rubro{
+    width: 30px;
+    margin-right: 200px;
+}
+
+
 button#guardar_evaluacion{
     margin-left: 20%;
 }
@@ -49,9 +59,6 @@ button#guardar_rubro{
     margin-top: 2%;
 }
 
-#columnas_rubro{
-    width: 30px;
-}
 
 form#rubro_evaluacion{
     width: 310px;
