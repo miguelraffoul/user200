@@ -34,7 +34,7 @@ section{
 
 #alta_curso_der p{
     float: left;
-    padding: 0em 2em;
+    padding: 0em 3em;
 }
 
 #time{
@@ -68,10 +68,6 @@ section{
         color: #FFF;
         margin: 0px;
         padding-top: 0.7em;
-    }
-    #alta_curso_izq, #alta_curso_der{
-        float: left;
-        display: block;
     }
 }
 
