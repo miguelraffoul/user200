@@ -1,0 +1,83 @@
+section{
+    width: 100%;
+}
+
+header #header_opciones{
+    float: right;
+    width: 240px;
+    padding: 3.3em 2em 0em 0em;
+}
+
+h2{
+    text-align: center;
+    font-weight: lighter;
+    font-family: Arial, Helvetica, sans-serif;    
+}
+
+input{
+    width: 330px;
+}
+
+#formulario{
+    position: relative;
+    margin: 50px auto;
+    width: 350px;
+}
+
+#formulario h2, p{
+    position: relative;
+    text-align: center;
+}
+
+.btn{
+    position: relative;
+    left: 38%;
+    margin: 9% auto;
+}
+
+@media ( max-width: 605px ){
+    header{
+        height: 120px;
+    }    
+    header #header_logo img{
+        padding-left: 10px;
+    }
+    div.container-fluid{
+        padding-top: 130px;
+    }   
+    header #header_opciones{
+        float: left;
+        width: 240px;
+        padding: 0em 0em 0em 3em;
+    }
+    header #header_opciones #nav_cuenta{
+        float: left;
+        padding-top: 0.5em;
+    }
+    header #header_opciones p{
+        float: left;
+        color: #FFF;
+        margin: 0px;
+        padding-top: 0.7em;
+    }
+    #formulario{
+        position: relative;
+        margin: 70px auto;
+        width: 220px;
+    }
+    #formulario h2, p{
+        position: relative;
+        text-align: center;
+    }
+    label{
+        padding: 0px 0px 0px 0px;
+    }
+    input{
+        width: 210px;
+        position: relative;
+        left: 2%;
+    }
+    .btn{    
+     left: 33%;    
+    }
+}
