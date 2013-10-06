@@ -10,7 +10,7 @@ function validarFormCE(){
 			error_vacio = document.createElement( 'div' );
 			error_vacio.setAttribute( 'class', 'error' );
 			error_vacio.setAttribute( 'id', 'error_ciclo_vacio' );
-			error_vacio.appendChild( document.createTextNode( 'Error: Selecciona un ciclo.' ) );
+			error_vacio.appendChild( document.createTextNode( 'Selecciona un ciclo' ) );
 
 			form.insertBefore( error_vacio, elemento.nextSibling );
 		}
@@ -28,7 +28,7 @@ function validarFormCE(){
 			error_vacio = document.createElement( 'div' );
 			error_vacio.setAttribute( 'class', 'error' );
 			error_vacio.setAttribute( 'id', 'error_fechai_vacia' );
-			error_vacio.appendChild( document.createTextNode( 'Error: Selecciona fecha' ) );
+			error_vacio.appendChild( document.createTextNode( 'Selecciona una fecha' ) );
 
 			form.insertBefore( error_vacio, elemento.nextSibling );
 		}	
@@ -47,7 +47,7 @@ function validarFormCE(){
 			error_vacio = document.createElement( 'div' );
 			error_vacio.setAttribute( 'class', 'error' );
 			error_vacio.setAttribute( 'id', 'error_fechaf_vacia' );
-			error_vacio.appendChild( document.createTextNode( 'Error: Selecciona fecha.' ) );
+			error_vacio.appendChild( document.createTextNode( 'Selecciona una fecha.' ) );
 
 			form.insertBefore( error_vacio, elemento.nextSibling );
 		}	
@@ -66,7 +66,7 @@ function validarFormCE(){
 			error_vacio = document.createElement( 'div' );
 			error_vacio.setAttribute( 'class', 'error' );
 			error_vacio.setAttribute( 'id', 'error_dia_inhabil_vacio' );
-			error_vacio.appendChild( document.createTextNode( 'Error: Selecciona fecha.' ) );
+			error_vacio.appendChild( document.createTextNode( 'Selecciona una fecha.' ) );
 
 			div_dia_inhabil.insertBefore( error_vacio, elemento.nextSibling );
 		}	
@@ -93,7 +93,7 @@ function validarFormCE(){
 			error_vacio = document.createElement( 'div' );
 			error_vacio.setAttribute( 'class', 'error' );
 			error_vacio.setAttribute( 'id', 'error_descripcion_vacio' );
-			error_vacio.appendChild( document.createTextNode( 'Error: Introduce la descripción.') );
+			error_vacio.appendChild( document.createTextNode( 'Rellena este campo') );
 
 			//insertar mensaje en el formulario
 			div_dia_inhabil.insertBefore( error_vacio, elemento.nextSibling );
@@ -110,7 +110,7 @@ function validarFormCE(){
 			error_regexp = document.createElement( 'div' );
 			error_regexp.setAttribute( 'class', 'error' );
 			error_regexp.setAttribute( 'id', 'error_descripcion_regexp' );
-			error_regexp.appendChild( document.createTextNode( 'Error: Introducir solo caracteres alfabéticos' ) );
+			error_regexp.appendChild( document.createTextNode( 'Introducir solo caracteres alfabéticos' ) );
 
 			//insertar mensaje en el formulario
 			div_dia_inhabil.insertBefore( error_regexp, elemento.nextSibling );
