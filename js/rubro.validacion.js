@@ -148,7 +148,6 @@ function estaActivado(){
 	var tiene_hoja = document.getElementById( 'tiene_hoja' );
 
 	if( !tiene_hoja.checked ){
-
 		var form = document.getElementById( 'rubro_evaluacion' );
 		var error_vacio = document.getElementById( 'error_columnas_rubro_vacio' );
 		var error_regexp = document.getElementById( 'error_columnas_rubro_regexp' );
