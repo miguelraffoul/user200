@@ -17,9 +17,15 @@ section{
     min-height: 530px;
 }
 
-#alta_curso_izq, #alta_curso_der{
+#alta_curso_izq{
+    width: 225px;
+    padding: 2em  0em 0em 0em;
+    margin: auto;
+}
+
+#alta_curso_der{
     width: 270px;
-    padding: 3em  0em 0em 0em;
+    padding: 2em  0em 0em 0em;
     margin: auto;
 }
 

@@ -75,19 +75,19 @@ function validarCodigo()  {
 	}
 }
 
-function validarCarrera() {
-	var carrera = document.getElementById( 'carrera' );
-	var carrera_error = document.getElementById( 'carrera_error' );
-	if( carrera_error != null )
-		carrera_error.parentNode.removeChild( carrera_error );
-	if( carrera.selectedIndex == 0  ) {
+function validarSelect( id_select ) {
+	var select = document.getElementById( id_select );
+	var select_error = document.getElementById( id_select + '_error' );
+	if( select_error != null )
+		select_error.parentNode.removeChild( select_error );
+	if( select.selectedIndex == 0  ) {
 		var div = document.createElement( 'div' );
 		div.setAttribute( 'class', 'error' );
-		div.setAttribute( 'id', 'carrera_error' );
-		div.appendChild( document.createTextNode( "Selecciona una carrera" ) );
+		div.setAttribute( 'id', id_select + '_error' );
+		div.appendChild( document.createTextNode( 'Selecciona ' + id_select ) );
 
-		var padre = carrera.parentNode;
-		padre.insertBefore( div, carrera.nextSibling );
+		var padre = select.parentNode;
+		padre.insertBefore( div, select.nextSibling );
 	}
 }
 
@@ -138,7 +138,7 @@ function validarPassword() {
 function validarFormAltaAlumno() {
 	validarNombre();
 	validarCodigo();
-	validarCarrera();
+	validarSelect( 'carrera' );
 	validarCorreo();
 	validarPassword();
 }
@@ -146,6 +146,68 @@ function validarFormAltaAlumno() {
 function validarFormModifAlumno() {
 	validarNombre();
 	validarCodigo();
-	validarCarrera();
+	validarSelect( 'carrera' );
 	validarCorreo();
+}
+
+function validarGenerico( id_elemento ) {
+	var elemento = document.getElementById( id_elemento );
+	var elemento_error = document.getElementById( id_elemento + '_error' );
+	if( elemento_error != null )
+		elemento_error.parentNode.removeChild( elemento_error );
+	if( elemento.value != "" ) {
+		var reg_exp = /^[a-z0-9\s]+$/i;
+		if( !reg_exp.test( elemento.value ) ) {
+			var div = document.createElement( 'div' );
+			div.setAttribute( 'class', 'error' );
+			div.setAttribute( 'id', id_elemento + '_error' );
+			div.appendChild( document.createTextNode( "Formato no valido" ) );
+
+			var padre = elemento.parentNode;
+			padre.insertBefore( div, elemento.nextSibling );
+		}
+	}
+	else {
+		var div = document.createElement( 'div' );
+		div.setAttribute( 'class', 'error' );
+		div.setAttribute( 'id', id_elemento + '_error' );
+		div.appendChild( document.createTextNode( "Rellena este campo" ) );
+
+		var padre = elemento.parentNode;
+		padre.insertBefore( div, elemento.nextSibling );
+	}
+}
+
+function validarFormRegistroCurso() {
+	validarGenerico( 'nombre' );
+	validarGenerico( 'seccion' );
+	validarGenerico( 'academia' );
+	validarSelect( 'ciclo' );
+
+	//validacion NRC
+	var nrc = document.getElementById( 'nrc' );
+	var nrc_error = document.getElementById( 'nrc_error' );
+	if( nrc_error != null )
+		nrc_error.parentNode.removeChild( nrc_error );
+	if( nrc.value != "" ) {
+		var reg_exp = /^[0-9]+$/;
+		if( !reg_exp.test( nrc.value ) ) {
+			var div = document.createElement( 'div' );
+			div.setAttribute( 'class', 'error' );
+			div.setAttribute( 'id', 'nrc_error' );
+			div.appendChild( document.createTextNode( "Utiliza unicamente digitos" ) );
+
+			var padre = nrc.parentNode;
+			padre.insertBefore( div, nrc.nextSibling );
+		}
+	}
+	else {
+		var div = document.createElement( 'div' );
+		div.setAttribute( 'class', 'error' );
+		div.setAttribute( 'id', 'nrc_error' );
+		div.appendChild( document.createTextNode( "Rellena este campo" ) );
+
+		var padre = nrc.parentNode;
+		padre.insertBefore( div, nrc.nextSibling );
+	}
 }

@@ -12,7 +12,7 @@
 	<body>
 		<script src="js/bootstrap.js"></script>
 		<script src="js/modernizr.js"></script>
-
+		<script src="js/forms.js"></script>
 		<div id="wrapper">		
 			<header>
 				<div id="header_logo">
@@ -43,11 +43,11 @@
 							<input type="text" id="seccion" name="seccion">
 							<label for="nrc">NRC</label>
 							<input type="text" id="nrc" name="nrc">
-							<label for="nrc">Academia</label>
+							<label for="academia">Academia</label>
 							<input type="text" id="academia" name="academia" >
 							<label for="ciclo">Ciclo </label>
-							<select id="ciclo_año" name="ingenierias" >
-								<option value="0" disable="disable" selected >Selecciona ciclo</option>
+							<select id="ciclo" name="ingenierias" >
+								<option value="0" disabled selected >Selecciona ciclo</option>
 								<option value ="1">2013A</option>
 								<option value ="2">2013B</option>
 								<option value ="3">2014A</option>
@@ -59,7 +59,7 @@
 						<form id="alta_curso_der">
 							<label id="hr">Lunes</label>							
 							<select id="horasReg" name="horas_curso" >
-								<option value="0" disable="disable" selected >Hrs/dia</option>
+								<option value="0" disabled selected >Hrs/dia</option>
 								<option value ="1">1</option>
 								<option value ="2">2</option>
 								<option value ="3">3</option>
@@ -71,7 +71,7 @@
 
 							<label id="hr">Martes</label>							
 							<select id="horasReg" name="horas_curso" >
-								<option value="0" disable="disable" selected >Hrs/dia</option>
+								<option value="0" disabled selected >Hrs/dia</option>
 								<option value ="1">1</option>
 								<option value ="2">2</option>
 								<option value ="3">3</option>
@@ -83,7 +83,7 @@
 							
 							<label id="hr">Miercoles</label>							
 							<select id="horasReg" name="horas_curso" >
-								<option value="0" disable="disable" selected >Hrs/dia</option>
+								<option value="0" disabled selected >Hrs/dia</option>
 								<option value ="1">1</option>
 								<option value ="2">2</option>
 								<option value ="3">3</option>
@@ -95,7 +95,7 @@
 							
 							<label id="hr">Jueves</label>							
 							<select id="horasReg" name="horas_curso" >
-								<option value="0" disable="disable" selected >Hrs/dia</option>
+								<option value="0" disabled selected >Hrs/dia</option>
 								<option value ="1">1</option>
 								<option value ="2">2</option>
 								<option value ="3">3</option>
@@ -107,7 +107,7 @@
 							
 							<label id="hr">Viernes</label>							
 							<select id="horasReg" name="horas_curso" >
-								<option value="0" disable="disable" selected >Hrs/dia</option>
+								<option value="0" disabled selected >Hrs/dia</option>
 								<option value ="1">1</option>
 								<option value ="2">2</option>
 								<option value ="3">3</option>
@@ -119,7 +119,7 @@
 							
 							<label id="hr">Sabado</label>							
 							<select id="horasReg" name="horas_curso" >
-								<option value="0" disable="disable" selected >Hrs/dia</option>
+								<option value="0" disabled selected >Hrs/dia</option>
 								<option value ="1">1</option>
 								<option value ="2">2</option>
 								<option value ="3">3</option>
@@ -129,7 +129,7 @@
 							<input id="time" name="sabado" value="08:30 PM"/>
 							<br><br><br>
 
-							<button class="btn" id="registrar" type="submit">Registrar</button>														
+							<input class="btn" type="button" value="Registrar" onclick="validarFormRegistroCurso()"/>												
 						</form> 			
 					</section>
 				</div>
