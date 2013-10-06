@@ -10,7 +10,7 @@ header #header_opciones{
 }
 
 #area_alumnos a:hover{
-    font-weight: bold;
+    font-weight: lighter;
     text-decoration: none;
     color: #B40404;
 }
