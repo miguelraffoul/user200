@@ -211,3 +211,29 @@ function validarFormRegistroCurso() {
 		padre.insertBefore( div, nrc.nextSibling );
 	}
 }
+
+function validarFormCambioPass() {
+	var error = document.getElementById( 'cambio_error' );
+	if( error != null ) {
+		error.parentNode.removeChild( error );
+	}
+
+	var pass_actual = document.getElementById( 'pass_actual' );
+	var nuevo_pass = document.getElementById( 'nuevo_pass' );
+	var confirmacion = document.getElementById( 'confirmacion' );
+
+	var div = document.createElement( 'div' );
+	div.setAttribute( 'class', 'error' );
+	div.setAttribute( 'id', 'cambio_error' );
+
+	if( pass_actual.value != "" && nuevo_pass.value != "" && confirmacion.value != "" ) {
+		if( nuevo_pass.value != confirmacion.value ) {
+			div.appendChild( document.createTextNode( 'La nueva constraseña no coincide' ) );
+			confirmacion.parentNode.insertBefore( div, confirmacion.nextSibling  );
+		}
+	}
+	else {
+		div.appendChild( document.createTextNode( 'Llenar todos los campos' ) );
+		confirmacion.parentNode.insertBefore( div, confirmacion.nextSibling );
+	}
+}

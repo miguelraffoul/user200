@@ -23,12 +23,6 @@ input{
     text-align: center;
 }
 
-.btn{
-    position: relative;
-    left: 38%;
-    margin: 9% auto;
-}
-
 @media ( max-width: 605px ){
     header #header_logo img{
         padding-left: 10px;

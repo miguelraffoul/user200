@@ -15,6 +15,7 @@
 		<![endif]-->
 		<script src="js/bootstrap.js"></script>
 		<script src="js/modernizr.js"></script>
+		<script src="js/forms.js"></script>
 		<div id="wrapper">	
 			<header>
 				<div id="header_logo">
@@ -33,9 +34,9 @@
 							<input type="password" id="pass_actual" name="pass_actual">
 							<label for="nuevo_pass">Nueva contraseña</label> 
 							<input type="password" id="nuevo_pass" name="nuevo_pass">
-							<label for="confirmacion">Confirmar nueva contraseña</label> 
+							<label for="confirmacion">Confirmar nueva contraseña</label>
 							<input type="password" id="confirmacion" name="confirmacion"><br>							
-							<button class="btn">Guardar</button>
+							<input type="button" class="btn" id="cambiar_pass" value="Cambiar Contraseña" onclick="validarFormCambioPass()"/>
 						</form>
 					</section>
 				</div>
