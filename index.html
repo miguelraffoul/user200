@@ -14,16 +14,27 @@
 		<![endif]-->
 		<script src="js/bootstrap.js"></script>
 		<script src="js/modernizr.js"></script>
+		<script src="js/forms.js"></script>
+		<style type="text/css">
+			.error{
+				display: block;
+			    color:red;
+			    font-style: italic; 
+			    font-size: .8em;
+			    margin-bottom: 4px; 
+			    text-align: center;
+			}
+		</style>
 		<header>
 			<img src="img/brain_white.png" width="67">
-			<a href="index.html"><h1>SmartClass</h1> </a>
+			<h1>SmartClass</h1>
 		</header>
 		<aside id="izquierda">
 			<form id="formulario_inicio">
-			<h2>Iniciar sesión</h2> 
-			<input id="codigo" type="text" placeholder="Código" />
-			<input id="pass" type="password" placeholder="Contraseña" /> 
-			<button class="btn" id="entrar" type="submit">Entrar</button>
+				<h2>Iniciar sesión</h2> 
+				<input id="codigo" type="text" placeholder="Código" />
+				<input id="pass" type="password" placeholder="Contraseña" /> 
+				<input type="button" class="btn" id="entrar" value="Entrar" onclick="validarFormInicio()"/>
 			</form>
 		</aside>
 		<aside id="derecha">
