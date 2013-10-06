@@ -14,7 +14,7 @@ section p{
 }
 
 #evaluacion{
-    width: 40%;
+    width: 50%;
     min-width: 340px;
     margin-left: 19%;
 }
@@ -52,7 +52,8 @@ section p{
 
 
 button#guardar_evaluacion{
-    margin-left: 20%;
+    float: right;
+    /*margin-left: 20%;*/
 }
 
 button#guardar_rubro{
