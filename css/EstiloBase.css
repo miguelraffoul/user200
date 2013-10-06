@@ -1,3 +1,9 @@
+.error{
+    color:red;
+    font-style: italic; 
+    font-size: .8em;
+    margin-bottom: 4px; 
+}
 
 .clear {
     clear: both;
