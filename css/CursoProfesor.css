@@ -103,11 +103,19 @@ form#rubro_evaluacion{
     }
 }
 
-@media ( max-width: 340px ){
+@media ( max-width:436px ){
     #evaluacion{
-        margin-left: 0%;
+        margin-left: 4%; 
     }
+}
 
+@media ( max-width:370px ){
+    #evaluacion{
+        margin-left: 0%; 
+    }
+}
+
+@media ( max-width: 340px ){
     header #header_logo img{
          padding-left: 0;
     }
