@@ -66,6 +66,16 @@ form#rubro_evaluacion{
     margin: auto;
 }
 
+section li img{
+    visibility: hidden;
+}
+
+section li:hover img{
+    visibility: visible;
+    margin-right: 10px;
+}
+
+
 
 /*========================== MEDIAS PARA TODO CURSO PROFESOR ====================================*/
 @media ( max-width: 1308px ){
