@@ -10,7 +10,13 @@ header #header_opciones{
 }
 
 #area_alumnos a:hover{
-    font-weight: lighter;
+    font-weight: bold;
+    text-decoration: none;
+    color: #B40404;
+}
+
+#area_alumnos a:active{
+    color: #FE2E2E;
 }
 
 #chbx{
