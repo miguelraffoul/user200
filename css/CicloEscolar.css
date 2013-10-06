@@ -38,12 +38,14 @@ label.agregar_dia_inhabil{
     font-size: 1.0em;
 }
 
-
-#columnas_rubro{
-    margin-right: 30%;
+section li img{
+    visibility: hidden;
 }
 
-
+section li:hover img{
+    visibility: visible;
+    margin-right: 10px;
+}
 
 @media ( max-width: 550px ){
     header{
