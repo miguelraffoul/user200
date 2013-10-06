@@ -15,6 +15,8 @@
 		<![endif]-->
 		<script src="js/bootstrap.js"></script>
 		<script src="js/modernizr.js"></script>
+		<script src="js/forms.js"></script>
+
 		<div id="wrapper">	
 			<header href="index.html">
 				<div id="header_logo">
@@ -31,7 +33,7 @@
 							<label for="mail">Correo</label> 
 							<input type="email" id="mail" name="mail">
 							<p>La contraseña será enviada a tu correo electrónico.</p>
-							<button class="btn" id="enviar" type="submit">Enviar</button>
+							<input type="button" id="enviar" value="Enviar" onlcick="validarCorreo()"/>
 						</form>
 					</section>
 				</div>
