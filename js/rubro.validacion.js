@@ -17,7 +17,7 @@ function validarFormRubro(){
 			error_vacio = document.createElement( 'div' );
 			error_vacio.setAttribute( 'class', 'error' );
 			error_vacio.setAttribute( 'id', 'error_nombre_rubro_vacio' );
-			error_vacio.appendChild( document.createTextNode( 'Error: Introduce el nombre del rubro.') );
+			error_vacio.appendChild( document.createTextNode( 'Rellana este campo') );
 
 			//insertar mensaje en el formulario
 			form.insertBefore( error_vacio, elemento.nextSibling );
@@ -34,7 +34,7 @@ function validarFormRubro(){
 			error_regexp = document.createElement( 'div' );
 			error_regexp.setAttribute( 'class', 'error' );
 			error_regexp.setAttribute( 'id', 'error_nombre_rubro_regexp' );
-			error_regexp.appendChild( document.createTextNode( 'Error: Introducir solo caracteres alfabéticos' ) );
+			error_regexp.appendChild( document.createTextNode( 'Introducir solo caracteres alfabéticos' ) );
 
 			//insertar mensaje en el formulario
 			form.insertBefore( error_regexp, elemento.nextSibling );
@@ -63,7 +63,7 @@ function validarFormRubro(){
 			error_vacio = document.createElement( 'div' );
 			error_vacio.setAttribute( 'class', 'error' );
 			error_vacio.setAttribute( 'id', 'error_valor_rubro_vacio' );
-			error_vacio.appendChild( document.createTextNode( 'Error: Introduce el valor del rubro.') );
+			error_vacio.appendChild( document.createTextNode( 'Rellena este campo') );
 
 			//insertar mensaje en el formulario
 			form.insertBefore( error_vacio, elemento.nextSibling );
@@ -80,7 +80,7 @@ function validarFormRubro(){
 			error_regexp = document.createElement( 'div' );
 			error_regexp.setAttribute( 'class', 'error' );
 			error_regexp.setAttribute( 'id', 'error_valor_rubro_regexp' );
-			error_regexp.appendChild( document.createTextNode( 'Error: Introducir solo números' ) );
+			error_regexp.appendChild( document.createTextNode( 'Introducir solo números' ) );
 
 			//insertar mensaje en el formulario
 			form.insertBefore( error_regexp, elemento.nextSibling );
@@ -109,7 +109,7 @@ function validarFormRubro(){
 				error_vacio = document.createElement( 'div' );
 				error_vacio.setAttribute( 'class', 'error' );
 				error_vacio.setAttribute( 'id', 'error_columnas_rubro_vacio' );
-				error_vacio.appendChild( document.createTextNode( 'Error: Introduce el numero de columnas.') );
+				error_vacio.appendChild( document.createTextNode( 'Rellena este campo.') );
 
 				//insertar mensaje en el formulario
 				form.insertBefore( error_vacio, elemento.nextSibling );
@@ -126,7 +126,7 @@ function validarFormRubro(){
 				error_regexp = document.createElement( 'div' );
 				error_regexp.setAttribute( 'class', 'error' );
 				error_regexp.setAttribute( 'id', 'error_columnas_rubro_regexp' );
-				error_regexp.appendChild( document.createTextNode( 'Error: Introducir solo números' ) );
+				error_regexp.appendChild( document.createTextNode( 'Introducir solo números' ) );
 
 				//insertar mensaje en el formulario
 				form.insertBefore( error_regexp, elemento.nextSibling );
@@ -148,8 +148,6 @@ function estaActivado(){
 	var tiene_hoja = document.getElementById( 'tiene_hoja' );
 
 	if( !tiene_hoja.checked ){
-		alert("hola");
-
 		var form = document.getElementById( 'rubro_evaluacion' );
 		var error_vacio = document.getElementById( 'error_columnas_rubro_vacio' );
 		var error_regexp = document.getElementById( 'error_columnas_rubro_regexp' );
