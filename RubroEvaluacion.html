@@ -15,6 +15,8 @@
 		<![endif]-->
 		<script src="js/bootstrap.js"></script>
 		<script src="js/modernizr.js"></script>
+		<script src="js/rubro.validacion.js"></script>
+
 		<div id="wrapper">		
 			<header>
 				<div id="header_logo">
@@ -44,11 +46,11 @@
 							<label for="valor_rubro">Valor (%)*</label>
 							<input type="text" id="valor_rubro" name="valor_rubro">
 							<div id="div_checkbox_hoja" class="checkbox">
-								<label for="rubro"><input type="checkbox" name="rubro" value="rubro" checked="checked">Tiene Hoja de Evaluación</label>
+								<label for="tiene_hoja"><input type="checkbox" id="tiene_hoja" name="tiene_hoja" value="rubro" checked="checked" ="estaActivado()">Tiene Hoja de Evaluación</label>
 							</div>
-							<label for="columnas_rubro">Número de columnas</label>
+							<label for="columnas_rubro">Número de columnas de la hoja</label>
 							<input type="text" id="columnas_rubro" name="columnas_rubro">
-							<button class="btn" id="guardar_rubro">Guardar</button>
+							<input type="button" id="guardar_rubro" value="Guardar" onclick="validarFormRubro()"/>
 							<label>
 						</form>
 					</section>
