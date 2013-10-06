@@ -4,8 +4,7 @@ header #header_opciones{
 	padding: 3.3em 2em 0em 0em;
 }
 
-form#nuevo_ciclo, 
-form#modificacion_ciclo{
+form#form_ciclo{
     margin: 2% auto;    
     width: 300px;
 }
