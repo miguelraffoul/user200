@@ -15,6 +15,7 @@
 		<![endif]-->
 		<script src="js/bootstrap.js"></script>
 		<script src="js/modernizr.js"></script>
+		<script src="js/profesor.validacion.js"></script>
 		<div id="wrapper">		
 			<header>
 				<div id="header_logo">
@@ -51,7 +52,7 @@
 						<h2>&lt;Nombre de curso&gt;</h2>
 						<div id="evaluacion">
 							<h3>Evaluación</h3>
-							<table class="table table-bordered table-hover">
+							<table class="table table-bordered table-hover" id="tabla_evaluacion">
 								<thead>
 									<tr>
 										<th class="checkbox_columna"></th>
@@ -87,9 +88,9 @@
 									</tr>
 								</tbody>
 							</table>
-							<button class="btn" type="button" id="eliminar_rubro">Eliminar Rubro</button>
-							<button class="btn" type="button" id="agregar_rubro">Agregar Rubro</button>
-							<button class="btn" type="button" id="guardar_evaluacion">Guardar</button>
+							<button class="btn" type="button" id="eliminar_rubro" onclick="validarCheckBox()">Eliminar Rubro</button>
+							<button class="btn" type="button" id="agregar_rubro" onclick="location.href='RubroEvaluacion.html'">Agregar Rubro
+							</button>
 						</div>
 					</section>
 				</div>
