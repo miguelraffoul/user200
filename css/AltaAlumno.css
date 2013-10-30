@@ -30,6 +30,10 @@ section{
     padding: 0px;
 }
 
+#formulario_registro #checkbox_campo_opcional{
+    margin: 10px 10px;
+}
+
 #formulario_registro #enviar{
     padding: .1em .8em .1em .8em;
     background-color: #03436A;

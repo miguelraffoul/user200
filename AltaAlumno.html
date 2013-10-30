@@ -55,23 +55,42 @@
 								</select>
 								<label for="mail">Correo*</label> 
 								<input type="email" id="mail" name="mail" placeholder="tucorreo@dominio.com" required/>
-								<label for="pass">Contraseña*</label>
-								<input type="password" id="pass" name="pass" required/>
-								<label for="celular">Celular</label>
-								<input type="text" id="celular" name="celular"/>
-								<label for="cuenta_git">Cuenta de Github</label>
-								<input type="text" id="cuenta_git" name="cuenta_git"/>
-								<label for="pagina_web">Pagina Web</label>
-								<input type="text" id="pagina_web" name="pagina_web"/>
-								<input class="btn" type="button" value="Enviar" onclick="validarFormAltaAlumno()"/>
+								<div id="checkbox_campo_opcional"  class="checkbox">
+									<label for="tiene_celular">
+										<input type="checkbox" id="tiene_celular" name="tiene_celular" onclick="estaActivado( this )">Agregar celular
+									</label>
+								</div>
+								<div id="campo_celular" style="display: none;">
+									<label for="celular">Celular</label>
+									<input type="text" id="celular" name="celular"/>
+								</div>
+								<div id="checkbox_campo_opcional"  class="checkbox">
+									<label for="tiene_github">
+										<input type="checkbox" id="tiene_github" name="tiene_github" onclick="estaActivado( this )">Agregar cuenta de github
+									</label>
+								</div>
+								<div id="campo_github" style="display: none;">
+									<label for="cuenta_git">Cuenta de Github</label>
+									<input type="text" id="cuenta_git" name="cuenta_git"/>
+								</div>
+								<div id="checkbox_campo_opcional"  class="checkbox">
+									<label for="tiene_pagina">
+										<input type="checkbox" id="tiene_pagina" name="tiene_pagina" onclick="estaActivado( this )">Agregar página web
+									</label>
+								</div>
+								<div id="campo_pagina" style="display: none;">
+									<label for="pagina_web">Pagina Web</label>
+									<input type="text" id="pagina_web" name="pagina_web"/>
+								</div>
+								<button type="button" class="btn" onclick="validarFormAltaAlumno()">Enviar</button>
 							</form>
 						</div>
 						<div id="alta_archivo">
 							<div id="contenedor_archivo">
 								<h2>Registro Archivo</h2>
 								<input id="archivo" name="archivo" type="file" accept=".txt"/>
-								<input class="btn" type="button" value="Enviar"/>
-							<Idiv>
+								<button class="btn" type="button" onclick="validarAltaArchivo()">Enviar</button>
+							</div>
 						</div>
 					</section>
 				</div>

@@ -24,7 +24,7 @@ function validarNombre() {
 	var nombre_error = document.getElementById( 'nombre_error' );
 	if( nombre_error != null )
 		nombre_error.parentNode.removeChild( nombre_error );
-	if( nombre.value != "" ) {
+	if( nombre.value.trim() != "" ) {
 		var reg_exp = /^[a-z\s]+$/i;
 		if( !reg_exp.test( nombre.value ) ) {
 			var div = document.createElement( 'div' );
@@ -119,20 +119,92 @@ function validarCorreo() {
 	}
 }
 
-function validarPassword() {
-	var pass = document.getElementById( 'pass' );
-	var pass_error = document.getElementById( 'pass_error' );
-	if( pass_error != null )
-		pass_error.parentNode.removeChild( pass_error );
-	if( pass.value == "" ) {
+function validarCelular() {
+	var celular = document.getElementById( 'celular' );
+	var celular_error = document.getElementById( 'celular_error' );
+	if( celular_error != null )
+		celular_error.parentNode.removeChild( celular_error );
+	if( celular.value != "" ) {
+		var reg_exp = /^[0-9]+$/;
+		if( !reg_exp.test( celular.value ) ) {
+			var div = document.createElement( 'div' );
+			div.setAttribute( 'class', 'error' );
+			div.setAttribute( 'id', 'celular_error' );
+			div.appendChild( document.createTextNode( "Introduce unicamente digitos" ) );
+
+			var padre = celular.parentNode;
+			padre.insertBefore( div, celular.nextSibling );
+		}
+	}
+	else {
 		var div = document.createElement( 'div' );
 		div.setAttribute( 'class', 'error' );
-		div.setAttribute( 'id', 'pass_error' );
+		div.setAttribute( 'id', 'celular_error' );
 		div.appendChild( document.createTextNode( "Rellena este campo" ) );
 
-		var padre = pass.parentNode;
-		padre.insertBefore( div, pass.nextSibling );		
-	}	
+		var padre = celular.parentNode;
+		padre.insertBefore( div, celular.nextSibling );
+	}
+}
+
+function validarCampoOcional( campo_id ) {
+	var campo = document.getElementById( campo_id );
+	var campo_error = document.getElementById( campo_id + '_error' );
+	if( campo_error != null )
+		campo_error.parentNode.removeChild( campo_error );
+	if( campo.value.trim() == "" ) {
+		var div = document.createElement( 'div' );
+		div.setAttribute( 'class', 'error' );
+		div.setAttribute( 'id', campo_id + '_error' );
+		div.appendChild( document.createTextNode( "Rellena este campo" ) );
+
+		var padre = campo.parentNode;
+		padre.insertBefore( div, campo.nextSibling );
+	}
+}
+
+function estaActivado( checkbox ) {
+	if( checkbox.checked ) {
+		if( checkbox.id == "tiene_celular" ) {
+			var campo = document.getElementById( 'campo_celular' );
+			campo.setAttribute( 'style', 'display: block' );
+		}
+		else if( checkbox.id == "tiene_github" ) {
+			var campo = document.getElementById( 'campo_github' );
+			campo.setAttribute( 'style', 'display: block' );
+		}
+		else { //tiene_pagina
+			var campo = document.getElementById( 'campo_pagina' );
+			campo.setAttribute( 'style', 'display: block' );
+		}
+
+	}
+	else {
+		if( checkbox.id == "tiene_celular" ) {
+			var campo = document.getElementById( 'campo_celular' );
+			campo.setAttribute( 'style', 'display: none' );
+
+			var celular_error = document.getElementById( 'celular_error' );
+			if( celular_error != null )
+				celular_error.parentNode.removeChild( celular_error );
+		}
+		else if( checkbox.id == "tiene_github" ) {
+			var campo = document.getElementById( 'campo_github' );
+			campo.setAttribute( 'style', 'display: none' );
+		
+			var github_error = document.getElementById( 'cuenta_git_error' );
+			if( github_error != null )
+				github_error.parentNode.removeChild( github_error );
+		}
+		else { //tiene_pagina
+			var campo = document.getElementById( 'campo_pagina' );
+			campo.setAttribute( 'style', 'display: none' );
+		
+			var pagina_error = document.getElementById( 'pagina_web_error' );
+			if( pagina_error != null )
+				pagina_error.parentNode.removeChild( pagina_error );
+		}
+	}
 }
 
 function validarFormAltaAlumno() {
@@ -140,7 +212,32 @@ function validarFormAltaAlumno() {
 	validarCodigo();
 	validarSelect( 'carrera' );
 	validarCorreo();
-	validarPassword();
+
+	var celular = document.getElementById( 'tiene_celular' );
+	if( celular.checked )
+		validarCelular();
+	var github = document.getElementById( 'tiene_github' );
+	if( github.checked )
+		validarCampoOcional( 'cuenta_git' );
+	var pagina = document.getElementById( 'tiene_pagina' );
+	if( pagina.checked )
+		validarCampoOcional( 'pagina_web' );
+}
+
+
+function validarAltaArchivo() {
+	var archivo = document.getElementById( 'archivo' );
+	var archivo_error = document.getElementById( 'archivo_error' );
+	if( archivo_error != null )
+		archivo_error.parentNode.removeChild( archivo_error );
+	if( archivo.value == "" ) {
+		var div = document.createElement( 'div' );
+		div.setAttribute( 'class', 'error' );
+		div.setAttribute( 'id', 'archivo_error' );
+		div.appendChild( document.createTextNode( "Debes seleccionar un archivo" ) );
+
+		archivo.parentNode.insertBefore( div, archivo.nextSibling );
+	}
 }
 
 function validarFormModifAlumno() {
