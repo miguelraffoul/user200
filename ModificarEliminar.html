@@ -15,6 +15,22 @@
 		<![endif]-->
 		<script src="js/bootstrap.js"></script>
 		<script src="js/modernizr.js"></script>
+		<script src="js/jquery-1.10.2.js"></script>
+		<script>
+
+		$( document ).ready( function() {
+			$( '#check_uncheck' ).change( function(){
+				var checkboxes = $( 'td input' );
+				if( $( '#check_uncheck' ).is( ':checked' ) ) {
+					checkboxes.prop( 'checked', true );
+				}
+				else {
+					checkboxes.prop( 'checked', false );
+				}
+			});
+		});
+
+		</script>
 		<div id="wrapper">
 			<header>
 				<div id="header_logo">
@@ -53,65 +69,65 @@
 							<table class="table table-bordered table-hover">
 								<thead>
 									<tr>
-										<th><i class="icon-remove"></i></th>
+										<th><input type="checkbox" id="check_uncheck" class="chbx"></th>
 										<th>Nombre</th>
 										<th>Código</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td><input type="checkbox" id="chbx"></td>
+										<td><input type="checkbox" class="chbx"></td>
 										<td><a href="ModificarA.html">&lt;Nombre Alumno&gt;</a></td>
 										<td></td>
 									</tr>
 									<tr>
-										<td><input type="checkbox" id="chbx"></td>
+										<td><input type="checkbox" class="chbx"></td>
 										<td><a href="ModificarA.html">&lt;Nombre Alumno&gt;</a></td>
 										<td></td>
 									</tr>
 									<tr>
-										<td><input type="checkbox" id="chbx"></td>
+										<td><input type="checkbox" class="chbx"></td>
 										<td><a href="ModificarA.html">&lt;Nombre Alumno&gt;</a></td>
 										<td></td>
 									</tr>
 									<tr>
-										<td><input type="checkbox" id="chbx"></td>
+										<td><input type="checkbox" class="chbx"></td>
 										<td><a href="ModificarA.html">&lt;Nombre Alumno&gt;</a></td>
 										<td></td>
 									</tr>
 									<tr>
-										<td><input type="checkbox" id="chbx"></td>
+										<td><input type="checkbox" class="chbx"></td>
 										<td><a href="ModificarA.html">&lt;Nombre Alumno&gt;</a></td>
 										<td></td>
 									</tr>
 									<tr>
-										<td><input type="checkbox" id="chbx"></td>
+										<td><input type="checkbox" class="chbx"></td>
 										<td><a href="ModificarA.html">&lt;Nombre Alumno&gt;</a></td>
 										<td></td>
 									</tr>
 									<tr>
-										<td><input type="checkbox" id="chbx"></td>
+										<td><input type="checkbox" class="chbx"></td>
 										<td><a href="ModificarA.html">&lt;Nombre Alumno&gt;</a></td>
 										<td></td>
 									</tr>
 									<tr>
-										<td><input type="checkbox" id="chbx"></td>
+										<td><input type="checkbox" class="chbx"></td>
 										<td><a href="ModificarA.html">&lt;Nombre Alumno&gt;</a></td>
 										<td></td>
 									</tr>
 									<tr>
-										<td><input type="checkbox" id="chbx"></td>
+										<td><input type="checkbox" class="chbx"></td>
 										<td><a href="ModificarA.html">&lt;Nombre Alumno&gt;</a></td>
 										<td></td>
 									</tr>
 									<tr>
-										<td><input type="checkbox" id="chbx"></td>
+										<td><input type="checkbox" class="chbx"></td>
 										<td><a href="ModificarA.html">&lt;Nombre Alumno&gt;</a></td>
 										<td></td>
 									</tr>
 								</tbody>
 							</table>
-							<button class="btn" type="button">Eliminar</button>						
+							<button class="btn btn-danger" type="button">Eliminar</button>						
 						</div>
 					</section>
 				</div>

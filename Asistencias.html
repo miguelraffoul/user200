@@ -15,6 +15,22 @@
 		<![endif]-->
 		<script src="js/bootstrap.js"></script>
 		<script src="js/modernizr.js"></script>
+		<script src="js/jquery-1.10.2.js"></script>
+		<script>
+
+		$( document ).ready( function() {
+			$( '#check_uncheck' ).change( function(){
+				var checkboxes = $( 'td input' );
+				if( $( '#check_uncheck' ).is( ':checked' ) ) {
+					checkboxes.prop( 'checked', true );
+				}
+				else {
+					checkboxes.prop( 'checked', false );
+				}
+			});
+		});
+
+		</script>
 		<div id="wrapper">
 			<header>
 				<div id="header_logo">
@@ -58,18 +74,18 @@
 						<table id="lista_asistencias" class="table table-bordered table-hover">
 							<thead>
 								<tr>
-									<th></th>
+									<th><input type="checkbox" id="check_uncheck" class="chbx"></th>
 									<th>Nombre</th>
-									<th><input type="checkbox" id="chbx">fecha</th>
-									<th><input type="checkbox" id="chbx">fecha</th>
-									<th><input type="checkbox" id="chbx">fecha</th>
-									<th><input type="checkbox" id="chbx">fecha</th>
-									<th><input type="checkbox" id="chbx">fecha</th>
-									<th><input type="checkbox" id="chbx">fecha</th>
+									<th><input type="checkbox" class="chbx">fecha</th>
+									<th><input type="checkbox" class="chbx">fecha</th>
+									<th><input type="checkbox" class="chbx">fecha</th>
+									<th><input type="checkbox" class="chbx">fecha</th>
+									<th><input type="checkbox" class="chbx">fecha</th>
+									<th><input type="checkbox" class="chbx">fecha</th>
 							</thead>
 							<tbody>
 								<tr>
-									<td><input type="checkbox" id="chbx"></td>
+									<td><input type="checkbox" class="chbx"></td>
 									<td>&lt;nombre&gt;</td>
 									<td></td>
 									<td></td>
@@ -79,7 +95,7 @@
 									<td></td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" id="chbx"></td>
+									<td><input type="checkbox" class="chbx"></td>
 									<td>&lt;nombre&gt;</td>
 									<td></td>
 									<td></td>
@@ -89,7 +105,7 @@
 									<td></td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" id="chbx"></td>
+									<td><input type="checkbox" class="chbx"></td>
 									<td>&lt;nombre&gt;</td>
 									<td></td>
 									<td></td>
@@ -99,7 +115,7 @@
 									<td></td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" id="chbx"></td>
+									<td><input type="checkbox" class="chbx"></td>
 									<td>&lt;nombre&gt;</td>
 									<td></td>
 									<td></td>
@@ -109,7 +125,7 @@
 									<td></td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" id="chbx"></td>
+									<td><input type="checkbox" class="chbx"></td>
 									<td>&lt;nombre&gt;</td>
 									<td></td>
 									<td></td>
@@ -119,7 +135,7 @@
 									<td></td>
 								</tr>
 								<tr>
-									<td><input type="checkbox" id="chbx"></td>
+									<td><input type="checkbox" class="chbx"></td>
 									<td>&lt;nombre&gt;</td>
 									<td></td>
 									<td></td>

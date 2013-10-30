@@ -16,6 +16,22 @@
 		<script src="js/bootstrap.js"></script>
 		<script src="js/modernizr.js"></script>
 		<script src="js/profesor.validacion.js"></script>
+		<script src="js/jquery-1.10.2.js"></script>
+		<script>
+
+		$( document ).ready( function() {
+			$( '#check_uncheck' ).change( function(){
+				var checkboxes = $( 'td input' );
+				if( $( '#check_uncheck' ).is( ':checked' ) ) {
+					checkboxes.prop( 'checked', true );
+				}
+				else {
+					checkboxes.prop( 'checked', false );
+				}
+			});
+		});
+
+		</script>
 		<div id="wrapper">		
 			<header>
 				<div id="header_logo">
@@ -55,7 +71,7 @@
 							<table class="table table-bordered table-hover" id="tabla_evaluacion">
 								<thead>
 									<tr>
-										<th class="checkbox_columna"></th>
+										<th class="checkbox_columna"><input type="checkbox" id="check_uncheck"></th>
 										<th>Rubro de Evacualión</th>
 										<th>Hoja de Evaluación</th>
 										<th>Valor (%)</th>
