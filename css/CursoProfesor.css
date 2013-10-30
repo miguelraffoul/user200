@@ -78,12 +78,12 @@ section li:hover img{
 
 
 /*========================== MEDIAS PARA TODO CURSO PROFESOR ====================================*/
-@media ( max-width: 1308px ){
+/*@media ( max-width: 1308px ){
     button#guardar_evaluacion{
         margin-left: 0%;
     }
 
-}
+}*/
 
 @media ( max-width: 605px ){
 
