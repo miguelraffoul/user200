@@ -325,13 +325,26 @@ function validarFormCambioPass() {
 	div.setAttribute( 'class', 'error' );
 	div.setAttribute( 'id', 'cambio_error' );
 
-	if( pass_actual.value != "" && nuevo_pass.value != "" && confirmacion.value != "" ) {
+	if( pass_actual.value.trim() != "" && nuevo_pass.value.trim() != "" && confirmacion.value.trim() != "" ) {		
 		if( nuevo_pass.value != confirmacion.value ) {
+			pass_actual.value = "";
+			nuevo_pass.value = "";
+			confirmacion.value = "";
+			
 			div.appendChild( document.createTextNode( 'La nueva constraseña no coincide' ) );
 			confirmacion.parentNode.insertBefore( div, confirmacion.nextSibling  );
 		}
+		else {
+			pass_actual.value = sha1( pass_actual.value );
+			nuevo_pass.value = sha1( nuevo_pass.value );
+			confirmacion.value = sha1( confirmacion.value );
+		}
 	}
 	else {
+		pass_actual.value = "";
+		nuevo_pass.value = "";
+		confirmacion.value = "";
+
 		div.appendChild( document.createTextNode( 'Llenar todos los campos' ) );
 		confirmacion.parentNode.insertBefore( div, confirmacion.nextSibling );
 	}
