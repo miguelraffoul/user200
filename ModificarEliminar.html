@@ -16,21 +16,21 @@
 		<script src="js/bootstrap.js"></script>
 		<script src="js/modernizr.js"></script>
 		<script src="js/jquery-1.10.2.js"></script>
+		
 		<script>
-
-		$( document ).ready( function() {
-			$( '#check_uncheck' ).change( function(){
-				var checkboxes = $( 'td input' );
-				if( $( '#check_uncheck' ).is( ':checked' ) ) {
-					checkboxes.prop( 'checked', true );
-				}
-				else {
-					checkboxes.prop( 'checked', false );
-				}
+			$( document ).ready( function() {
+				$( '#check_uncheck' ).change( function(){
+					var checkboxes = $( 'td input' );
+					if( $( '#check_uncheck' ).is( ':checked' ) ) {
+						checkboxes.prop( 'checked', true );
+					}
+					else {
+						checkboxes.prop( 'checked', false );
+					}
+				});
 			});
-		});
-
 		</script>
+		
 		<div id="wrapper">
 			<header>
 				<div id="header_logo">

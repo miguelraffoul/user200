@@ -10,19 +10,13 @@ header #header_opciones{
 
 #periodo_asistencias{
     padding: 0.8em 0;
-    width: 290px;
+    width: 220px;
     margin: auto;
 }
 
-#periodo_fechas{
+#periodo_asistencias label{
+    margin: 0px 51px; 
     display: inline;
-    margin: auto;
-    padding: 0 1.2em;
-}
-
-#periodo_fechas p{
-    display: inline;
-    font-size: 1.2em;
 }
 
 #lista_asistencias{

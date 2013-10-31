@@ -8,29 +8,37 @@
 		<link href="css/bootstrap-responsive.css" rel="stylesheet">
 		<link href="css/EstiloBase.css" rel="stylesheet">
 		<link href="css/Asistencias.css" rel="stylesheet">
+		<link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
 	</head>
 	<body>
 		<!--[if lt IE 9]>
 			<script src="css3-mediaqueries.js"></script>
 		<![endif]-->
+		<script src="js/jquery-1.10.2.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 		<script src="js/bootstrap.js"></script>
 		<script src="js/modernizr.js"></script>
-		<script src="js/jquery-1.10.2.js"></script>
-		<script>
 
-		$( document ).ready( function() {
-			$( '#check_uncheck' ).change( function(){
-				var checkboxes = $( 'td input' );
-				if( $( '#check_uncheck' ).is( ':checked' ) ) {
-					checkboxes.prop( 'checked', true );
-				}
-				else {
-					checkboxes.prop( 'checked', false );
-				}
+		<script type="text/javascript">
+			$( document ).ready( function() {
+				$( '#check_uncheck' ).change( function(){
+					var checkboxes = $( 'td input' );
+					if( $( '#check_uncheck' ).is( ':checked' ) ) {
+						checkboxes.prop( 'checked', true );
+					}
+					else {
+						checkboxes.prop( 'checked', false );
+					}
+				});
 			});
-		});
-
 		</script>
+
+		<script type="text/javascript">
+  			$( function() {
+    			$( ".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' });
+  			});
+  		</script>
+
 		<div id="wrapper">
 			<header>
 				<div id="header_logo">
@@ -65,18 +73,14 @@
 					</aside>
 					<section class="span9">
 						<div id="periodo_asistencias">
-							<a href="#" class="icon-chevron-left"></a>
-							<div id="periodo_fechas">
-								<p>Desde --/--/---- hasta --/--/----</p>
-							</div>
-							<a href="#" class="icon-chevron-right"></a>
+							<label for="asistencias_desde">Asistencias desde:</label>
+							<input type="text" id="asistencias_desde" name="asistencias_desde" class="datepicker hasDatepicker" readonly="">
 						</div>
 						<table id="lista_asistencias" class="table table-bordered table-hover">
 							<thead>
 								<tr>
 									<th><input type="checkbox" id="check_uncheck" class="chbx"></th>
 									<th>Nombre</th>
-									<th><input type="checkbox" class="chbx">fecha</th>
 									<th><input type="checkbox" class="chbx">fecha</th>
 									<th><input type="checkbox" class="chbx">fecha</th>
 									<th><input type="checkbox" class="chbx">fecha</th>
@@ -92,22 +96,10 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td></td>
 								</tr>
 								<tr>
 									<td><input type="checkbox" class="chbx"></td>
 									<td>&lt;nombre&gt;</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" class="chbx"></td>
-									<td>&lt;nombre&gt;</td>
-									<td></td>
 									<td></td>
 									<td></td>
 									<td></td>
@@ -122,6 +114,14 @@
 									<td></td>
 									<td></td>
 									<td></td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" class="chbx"></td>
+									<td>&lt;nombre&gt;</td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
 									<td></td>
 								</tr>
 								<tr>
@@ -132,12 +132,10 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td></td>
 								</tr>
 								<tr>
 									<td><input type="checkbox" class="chbx"></td>
 									<td>&lt;nombre&gt;</td>
-									<td></td>
 									<td></td>
 									<td></td>
 									<td></td>
