@@ -35,103 +35,105 @@
 			<div class="container-fluid">
 				<h2>Captura Curso</h2>
 				<div class="row-fluid">
-					<section id="izquierdo">
-						<form id="alta_curso_izq">
-							<label for="nombre">Nombre</label>
-							<input type="text" id="nombre" name="nombre">
-							<label for="seccion">Sección</label>
-							<input type="text" id="seccion" name="seccion">
-							<label for="nrc">NRC</label>
-							<input type="text" id="nrc" name="nrc">
-							<label for="academia">Academia</label>
-							<input type="text" id="academia" name="academia" >
-							<label for="ciclo">Ciclo </label>
-							<select id="ciclo" name="ingenierias" >
-								<option value="0" disabled selected >Selecciona ciclo</option>
-								<option value ="1">2013A</option>
-								<option value ="2">2013B</option>
-								<option value ="3">2014A</option>
-								<option value ="4">2014B</option>
-							</select>
-						</form>  
-					</section>
-					<section id="derecho">
-						<form id="alta_curso_der">
-							<label id="hr">Lunes</label>							
-							<select id="horasReg" name="horas_curso" >
-								<option value="0" disabled selected >Hrs/dia</option>
-								<option value ="1">1</option>
-								<option value ="2">2</option>
-								<option value ="3">3</option>
-								<option value ="4">4</option>
-							</select>						
-							<p>Hora inicio</p>
-							<input id="time" name="lunes" value="08:30 PM"/>
-							<br><br><br>
+					<form id="alta_curso" method='POST'>	
+						<section id="izquierdo">
+							<div id="alta_curso_izq">
+								<label for="nombre">Nombre</label>
+								<input type="text" id="nombre" name="nombre">
+								<label for="seccion">Sección</label>
+								<input type="text" id="seccion" name="seccion">
+								<label for="nrc">NRC</label>
+								<input type="text" id="nrc" name="nrc">
+								<label for="academia">Academia</label>
+								<input type="text" id="academia" name="academia" >
+								<label for="ciclo">Ciclo </label>
+								<select id="ciclo" name="ingenierias" >
+									<option value="0" disabled selected >Selecciona ciclo</option>
+									<option value ="1">2013A</option>
+									<option value ="2">2013B</option>
+									<option value ="3">2014A</option>
+									<option value ="4">2014B</option>
+								</select>
+							</div>  
+						</section>
+						<section id="derecho">
+							<div id="alta_curso_der">
+								<label id="hr">Lunes</label>							
+								<select id="horasReg" name="horas_curso" >
+									<option value="0" disabled selected >Hrs/dia</option>
+									<option value ="1">1</option>
+									<option value ="2">2</option>
+									<option value ="3">3</option>
+									<option value ="4">4</option>
+								</select>						
+								<p>Hora inicio</p>
+								<input id="time" name="lunes" value="08:30 PM"/>
+								<br><br><br>
 
-							<label id="hr">Martes</label>							
-							<select id="horasReg" name="horas_curso" >
-								<option value="0" disabled selected >Hrs/dia</option>
-								<option value ="1">1</option>
-								<option value ="2">2</option>
-								<option value ="3">3</option>
-								<option value ="4">4</option>
-							</select>						
-							<p>Hora inicio</p>
-							<input id="time" name="martes" value="08:30 PM"/>
-							<br><br><br>							
-							
-							<label id="hr">Miercoles</label>							
-							<select id="horasReg" name="horas_curso" >
-								<option value="0" disabled selected >Hrs/dia</option>
-								<option value ="1">1</option>
-								<option value ="2">2</option>
-								<option value ="3">3</option>
-								<option value ="4">4</option>
-							</select>						
-							<p>Hora inicio</p>
-							<input id="time" name="miercoles" value="08:30 PM"/>
-							<br><br><br>
-							
-							<label id="hr">Jueves</label>							
-							<select id="horasReg" name="horas_curso" >
-								<option value="0" disabled selected >Hrs/dia</option>
-								<option value ="1">1</option>
-								<option value ="2">2</option>
-								<option value ="3">3</option>
-								<option value ="4">4</option>
-							</select>						
-							<p>Hora inicio</p>
-							<input id="time" name="jueves" value="08:30 PM"/>
-							<br><br><br>
-							
-							<label id="hr">Viernes</label>							
-							<select id="horasReg" name="horas_curso" >
-								<option value="0" disabled selected >Hrs/dia</option>
-								<option value ="1">1</option>
-								<option value ="2">2</option>
-								<option value ="3">3</option>
-								<option value ="4">4</option>
-							</select>						
-							<p>Hora inicio</p>
-							<input id="time" name="viernes" value="08:30 PM"/>
-							<br><br><br>
-							
-							<label id="hr">Sabado</label>							
-							<select id="horasReg" name="horas_curso" >
-								<option value="0" disabled selected >Hrs/dia</option>
-								<option value ="1">1</option>
-								<option value ="2">2</option>
-								<option value ="3">3</option>
-								<option value ="4">4</option>
-							</select>						
-							<p>Hora inicio</p>
-							<input id="time" name="sabado" value="08:30 PM"/>
-							<br><br><br>
+								<label id="hr">Martes</label>							
+								<select id="horasReg" name="horas_curso" >
+									<option value="0" disabled selected >Hrs/dia</option>
+									<option value ="1">1</option>
+									<option value ="2">2</option>
+									<option value ="3">3</option>
+									<option value ="4">4</option>
+								</select>						
+								<p>Hora inicio</p>
+								<input id="time" name="martes" value="08:30 PM"/>
+								<br><br><br>							
+								
+								<label id="hr">Miercoles</label>							
+								<select id="horasReg" name="horas_curso" >
+									<option value="0" disabled selected >Hrs/dia</option>
+									<option value ="1">1</option>
+									<option value ="2">2</option>
+									<option value ="3">3</option>
+									<option value ="4">4</option>
+								</select>						
+								<p>Hora inicio</p>
+								<input id="time" name="miercoles" value="08:30 PM"/>
+								<br><br><br>
+								
+								<label id="hr">Jueves</label>							
+								<select id="horasReg" name="horas_curso" >
+									<option value="0" disabled selected >Hrs/dia</option>
+									<option value ="1">1</option>
+									<option value ="2">2</option>
+									<option value ="3">3</option>
+									<option value ="4">4</option>
+								</select>						
+								<p>Hora inicio</p>
+								<input id="time" name="jueves" value="08:30 PM"/>
+								<br><br><br>
+								
+								<label id="hr">Viernes</label>							
+								<select id="horasReg" name="horas_curso" >
+									<option value="0" disabled selected >Hrs/dia</option>
+									<option value ="1">1</option>
+									<option value ="2">2</option>
+									<option value ="3">3</option>
+									<option value ="4">4</option>
+								</select>						
+								<p>Hora inicio</p>
+								<input id="time" name="viernes" value="08:30 PM"/>
+								<br><br><br>
+								
+								<label id="hr">Sabado</label>							
+								<select id="horasReg" name="horas_curso" >
+									<option value="0" disabled selected >Hrs/dia</option>
+									<option value ="1">1</option>
+									<option value ="2">2</option>
+									<option value ="3">3</option>
+									<option value ="4">4</option>
+								</select>						
+								<p>Hora inicio</p>
+								<input id="time" name="sabado" value="08:30 PM"/>
+								<br><br><br>
 
-							<button class="btn" type="button" onclick="validarFormRegistroCurso()">Registrar</button>												
-						</form> 			
-					</section>
+								<button class="btn" type="button" onclick="validarFormRegistroCurso()">Registrar</button>											
+							</div> 			
+						</section>
+					</form>
 				</div>
 			</div>
 			<div class="clear"></div>

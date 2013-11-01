@@ -90,7 +90,10 @@ function validarSelect( id_select ) {
 
 		var padre = select.parentNode;
 		padre.insertBefore( div, select.nextSibling );
+
+		return false;
 	}
+	return true;
 }
 
 function validarCorreo() {
@@ -254,7 +257,7 @@ function validarGenerico( id_elemento ) {
 	var elemento_error = document.getElementById( id_elemento + '_error' );
 	if( elemento_error != null )
 		elemento_error.parentNode.removeChild( elemento_error );
-	if( elemento.value != "" ) {
+	if( elemento.value.trim() != "" ) {
 		var reg_exp = /^[a-z0-9\s]+$/i;
 		if( !reg_exp.test( elemento.value ) ) {
 			var div = document.createElement( 'div' );
@@ -264,6 +267,8 @@ function validarGenerico( id_elemento ) {
 
 			var padre = elemento.parentNode;
 			padre.insertBefore( div, elemento.nextSibling );
+			
+			return false;
 		}
 	}
 	else {
@@ -274,21 +279,24 @@ function validarGenerico( id_elemento ) {
 
 		var padre = elemento.parentNode;
 		padre.insertBefore( div, elemento.nextSibling );
+	
+		return false;
 	}
+	return true;
 }
 
 function validarFormRegistroCurso() {
-	validarGenerico( 'nombre' );
-	validarGenerico( 'seccion' );
-	validarGenerico( 'academia' );
-	validarSelect( 'ciclo' );
+	var nombre = validarGenerico( 'nombre' );
+	var seccion = validarGenerico( 'seccion' ); 
+	var academia = validarGenerico( 'academia' );
+	var ciclo = validarSelect( 'ciclo' ); 
 
 	//validacion NRC
 	var nrc = document.getElementById( 'nrc' );
 	var nrc_error = document.getElementById( 'nrc_error' );
 	if( nrc_error != null )
 		nrc_error.parentNode.removeChild( nrc_error );
-	if( nrc.value != "" ) {
+	if( nrc.value.trim() != "" ) {
 		var reg_exp = /^[0-9]+$/;
 		if( !reg_exp.test( nrc.value ) ) {
 			var div = document.createElement( 'div' );
@@ -298,6 +306,11 @@ function validarFormRegistroCurso() {
 
 			var padre = nrc.parentNode;
 			padre.insertBefore( div, nrc.nextSibling );
+		}
+		else {
+			if( nombre && seccion && academia && ciclo ) {
+				document.getElementById( 'alta_curso' ).submit();
+			}
 		}
 	}
 	else {
