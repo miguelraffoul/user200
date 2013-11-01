@@ -235,7 +235,7 @@ function validarDiaInhabil( div_dias_inhabiles, dia_inhabil, descripcion ){
 
 	var error_vacio = document.getElementById( 'error_dia_inhabil_vacio' );
 
-	if( dia_inhabil.value == "" || descripcion.value == "" ){
+	if( dia_inhabil.value == "" || descripcion.value.trim() == "" ){
 		if( error_vacio == null){
 			error_vacio = document.createElement( 'div' );
 			error_vacio.setAttribute( 'class', 'error' );

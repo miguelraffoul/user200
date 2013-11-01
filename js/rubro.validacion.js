@@ -31,7 +31,7 @@ function validarNombre( form ){
 	var error_regexp = document.getElementById( 'error_nombre_rubro_regexp' );
 
 
-	if(  elemento.value == "" ){
+	if(  elemento.value.trim() == "" ){
 		
 		if( error_vacio == null){
 
@@ -85,7 +85,7 @@ function validarValor( form ){
 	var error_vacio = document.getElementById( 'error_valor_rubro_vacio' );
 	var error_regexp = document.getElementById( 'error_valor_rubro_regexp' );
 
-	if(  elemento.value == "" ){
+	if(  elemento.value.trim() == "" ){
 		
 		if( error_vacio == null){
 
@@ -103,7 +103,7 @@ function validarValor( form ){
 		return false;
 
 	}
-	else if( !numero_regexp.test( elemento.value ) ){
+	else if( !numero_regexp.test( elemento.value.trim() ) ){
 
 		if( error_regexp == null){
 
@@ -139,7 +139,7 @@ function validarColumnasRubro( div_columnas_rubro ){
 	var error_regexp = document.getElementById( 'error_columnas_rubro_regexp' );
 
 	if( document.getElementById('tiene_hoja').checked ){
-		if(  elemento.value == "" ){
+		if(  elemento.value.trim() == "" ){
 		
 			if( error_vacio == null){
 
@@ -157,7 +157,7 @@ function validarColumnasRubro( div_columnas_rubro ){
 			return false;
 
 		}
-		else if( !numero_regexp.test( elemento.value ) ){
+		else if( !numero_regexp.test( elemento.value.trim() ) ){
 
 			if( error_regexp == null){
 

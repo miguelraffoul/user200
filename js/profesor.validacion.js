@@ -1,4 +1,5 @@
 function validarCheckBox(){
+	
 	var div_evaluacion = document.getElementById( "evaluacion" );
 	var table = document.getElementById( "tabla_evaluacion" );
 	var checkbox = document.getElementsByTagName( "input" );
