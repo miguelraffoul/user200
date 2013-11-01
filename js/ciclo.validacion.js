@@ -1,6 +1,18 @@
 function validarFormCE(){
 	
 	var form = document.getElementById( 'form_ciclo' );
+	var fecha_inicio = document.getElementById( 'inicio_ciclo' );
+	var fecha_fin = document.getElementById( 'fin_ciclo' );
+
+	validarCiclosSelect( form );
+	validarIntervaloCE( form, fecha_inicio, fecha_fin );
+	validarDiasInhabilesEnCE( fecha_inicio, fecha_fin );
+
+	
+}
+
+
+function validarCiclosSelect( form ){
 
 	var elemento = document.getElementById( 'ciclo_select' );
 	var error_vacio = document.getElementById( 'error_ciclo_vacio' );
@@ -14,14 +26,53 @@ function validarFormCE(){
 
 			form.insertBefore( error_vacio, elemento.nextSibling );
 		}
+		return false;
 	}
 	else{
 		if( error_vacio != null )
 			form.removeChild( error_vacio );
 	}
 
-	var fecha_inicio = document.getElementById( 'inicio_curso' );
-	error_vacio = document.getElementById( 'error_fechai_vacia');
+	return true;
+}
+
+
+function validarIntervaloCE( form, fecha_inicio, fecha_fin ){
+
+	var es_fi_valido = validarInicioCiclo( form, fecha_inicio);
+	var es_ff_valido = validarFinCiclo( form, fecha_fin);
+
+	if(  es_fi_valido && es_ff_valido ){
+		var fi = ( fecha_inicio.value ). split("/").reverse().join("/");
+		var ff = ( fecha_fin.value ).split("/").reverse().join("/");
+
+		var error_fecha = document.getElementById( "error_fecha_intervalo" );
+		if( fi >= ff ){
+			if( error_fecha == null ){
+				error_fecha = document.createElement( "div" );
+				error_fecha.setAttribute( "class", "error" );
+				error_fecha.setAttribute( "id", "error_fecha_intervalo" );
+				error_fecha.appendChild( document.createTextNode( "*El rango de fechas es inválido" ) );
+
+				form.insertBefore( error_fecha, fecha_fin.nextSibling );
+			}
+		}
+		else{
+			if( error_fecha != null )
+				form.removeChild( error_fecha );
+			return true;
+		}	
+	}
+	
+	return false;
+}
+
+
+
+
+function validarInicioCiclo( form, fecha_inicio ){
+
+	var error_vacio = document.getElementById( 'error_fechai_vacia');
 
 	if( fecha_inicio.value == "" ){
 		if( error_vacio == null){
@@ -32,15 +83,20 @@ function validarFormCE(){
 
 			form.insertBefore( error_vacio, fecha_inicio.nextSibling );
 		}	
+		return false;
 	}
 	else{
 		if( error_vacio != null )
 			form.removeChild( error_vacio );
-	} 
+	}
+
+	return true;
+}
 
 
-	var fecha_fin = document.getElementById( 'fin_curso' );
-	error_vacio = document.getElementById( 'error_fechaf_vacia');
+function validarFinCiclo( form, fecha_fin ){
+
+	var error_vacio = document.getElementById( 'error_fechaf_vacia');
 
 	if( fecha_fin.value == "" ){
 		if( error_vacio == null){
@@ -51,142 +107,153 @@ function validarFormCE(){
 
 			form.insertBefore( error_vacio, fecha_fin.nextSibling );
 		}	
+		return false;
 	}
 	else{
 		if( error_vacio != null )
 			form.removeChild( error_vacio );
 	} 
 
-	validarIntervaloCE( form, fecha_inicio, fecha_fin );
+	return true;
+}
 
 
-	var div_dia_inhabil = document.getElementById( 'dia_inhabil' );
-	var dia_inhabil = document.getElementById( 'fecha_dia_inhabil' );
-	error_vacio = document.getElementById( 'error_dia_inhabil_vacio' );
+function validarDiasInhabilesEnCE( fecha_inicio, fecha_fin ){
 
-	if( dia_inhabil.value == "" ){
+	var div_dias_inhabiles = document.getElementById( "dias_inhabiles" );
+	
+	var	dia_inhabil = new Array();
+	var	descripcion = new Array();
+	dia_inhabil = $( '.fecha_dia_inhabil' ).toArray();
+	descripcion = $( '.descripcion' ).toArray();
+	dia_inhabil.pop();
+	descripcion.pop();
+
+	var error_vacio = document.getElementById( 'error_dia_inhabil_vacio' );
+	var error_dia_invalido = document.getElementById( "error_dia_invalido" );
+	var error_dia_repetido = document.getElementById( "error_dia_repetido" );
+
+	//HAY DIAS INHABILES
+	if( dia_inhabil.length == 0 ){
+
+		if( error_vacio != null )
+			div_dias_inhabiles.removeChild( error_vacio );
+
+		if( error_dia_invalido != null )
+			div_dias_inhabiles.removeChild( error_dia_invalido );
+
+		if( error_dia_repetido != null )
+			div_dias_inhabiles.removeChild( error_dia_repetido );
+
+		return true;
+	}
+
+
+	//DIAS INHABILES VACIOS
+	for( var i = 0 ; i < dia_inhabil.length ; ++i ){
+
+		if( !validarDiaInhabil( div_dias_inhabiles, dia_inhabil[i], descripcion[i] ) ){
+
+			if( error_dia_invalido != null )
+			div_dias_inhabiles.removeChild( error_dia_invalido );
+
+			if( error_dia_repetido != null )
+				div_dias_inhabiles.removeChild( error_dia_repetido );
+
+			return false;
+		}
+	}
+
+
+	// DIAS INHABILES DENTRO DE INTERVALO
+	if( fecha_fin.value != "" && fecha_inicio.value != "" ){
+
+		var fi = ( fecha_inicio.value ). split("/").reverse().join("/");
+		var ff = ( fecha_fin.value ).split("/").reverse().join("/");
+
+		for( var i = 0 ; i < dia_inhabil.length ; ++i ){
+
+			var di = ( dia_inhabil[i].value ).split("/").reverse().join("/");
+			error_dia_invalido = document.getElementById( "error_dia_invalido" );
+			
+			if( di < fi || di > ff ){
+				if( error_dia_repetido != null )
+					div_dias_inhabiles.removeChild( error_dia_repetido );
+
+				if( error_dia_invalido == null ){
+					error_dia_invalido = document.createElement( "div" );
+					error_dia_invalido.setAttribute( "class", "error" );
+					error_dia_invalido.setAttribute( "id", "error_dia_invalido" );
+					error_dia_invalido.appendChild( document.createTextNode( "*Hay dias inhabiles que no pertenecen al ciclo" ) );
+
+					div_dias_inhabiles.insertBefore( error_dia_invalido, div_dias_inhabiles.lastChild );
+				}
+				return false;
+			}
+			else{
+				if( error_dia_invalido != null )
+					div_dias_inhabiles.removeChild( error_dia_invalido );
+			}
+		}
+			
+	}
+	else
+		return false;
+
+
+	//DIAS INHABILES REPETIDOS
+	console.log("hola");
+	for( var i = 0 ; i < dia_inhabil.length ; ++i ){
+		for( var j = i + 1 ; j < dia_inhabil.length ; ++j ){
+			 error_dia_repetido = document.getElementById( "error_dia_repetido" );
+
+			if( dia_inhabil[i].value == dia_inhabil[j].value ){
+				if( error_dia_repetido == null ){
+					error_dia_repetido = document.createElement( "div" );
+					error_dia_repetido.setAttribute( "class", "error" );
+					error_dia_repetido.setAttribute( "id", "error_dia_repetido" );
+					error_dia_repetido.appendChild( document.createTextNode( "*Hay dias inhabiles repetidos" ) );
+
+					div_dias_inhabiles.insertBefore( error_dia_repetido, div_dias_inhabiles.lastChild );
+				} 
+				return false;
+			}
+			else{
+				if( error_dia_repetido != null )
+					div_dias_inhabiles.removeChild( error_dia_repetido );
+			}
+		}
+	}
+
+	return true;
+}
+
+
+
+
+function validarDiaInhabil( div_dias_inhabiles, dia_inhabil, descripcion ){
+
+	var error_vacio = document.getElementById( 'error_dia_inhabil_vacio' );
+
+	if( dia_inhabil.value == "" || descripcion.value == "" ){
 		if( error_vacio == null){
 			error_vacio = document.createElement( 'div' );
 			error_vacio.setAttribute( 'class', 'error' );
 			error_vacio.setAttribute( 'id', 'error_dia_inhabil_vacio' );
-			error_vacio.appendChild( document.createTextNode( 'Selecciona una fecha.' ) );
+			error_vacio.appendChild( document.createTextNode( '*Falta llenar campos en dias inhábiles' ) );
 
-			div_dia_inhabil.insertBefore( error_vacio, dia_inhabil.nextSibling );
-		}	
+			div_dias_inhabiles.insertBefore( error_vacio, div_dias_inhabiles.lastChild );
+		}
+		return false;	
 	}
 	else{
 		if( error_vacio != null )
-			div_dia_inhabil.removeChild( error_vacio );
-	}
-
-	validarDiaInhabilCE( div_dia_inhabil, fecha_inicio, fecha_fin, dia_inhabil );
-
-	var alfabeto_regexp = /^[a-z ]+$/i;
-	elemento = document.getElementById( 'descripcion' );
-	error_vacio = document.getElementById( 'error_descripcion_vacio' );
-	error_regexp = document.getElementById( 'error_descripcion_regexp' );
-
-
-	if(  elemento.value == "" ){
-		
-		if( error_vacio == null){
-
-			if( error_regexp != null )
-				div_dia_inhabil.removeChild( error_regexp );
-
-			error_vacio = document.createElement( 'div' );
-			error_vacio.setAttribute( 'class', 'error' );
-			error_vacio.setAttribute( 'id', 'error_descripcion_vacio' );
-			error_vacio.appendChild( document.createTextNode( 'Rellena este campo') );
-
-			//insertar mensaje en el formulario
-			div_dia_inhabil.insertBefore( error_vacio, elemento.nextSibling );
-		}
-
-	}
-	else if( !alfabeto_regexp.test( elemento.value ) ){
-
-		if( error_regexp == null){
-
-			if( error_vacio != null )
-				div_dia_inhabil.removeChild( error_vacio );
-
-			error_regexp = document.createElement( 'div' );
-			error_regexp.setAttribute( 'class', 'error' );
-			error_regexp.setAttribute( 'id', 'error_descripcion_regexp' );
-			error_regexp.appendChild( document.createTextNode( 'Introducir solo caracteres alfabéticos' ) );
-
-			//insertar mensaje en el formulario
-			div_dia_inhabil.insertBefore( error_regexp, elemento.nextSibling );
-		}
-	}
-	else{
-		if( error_vacio != null)
-			div_dia_inhabil.removeChild( error_vacio );
-
-		if( error_regexp != null )
-			div_dia_inhabil.removeChild( error_regexp );
-	}
-
-
-
-	
-
-}
-
-
-//VALIDACON DE INTERVALO ENTRE FECHA INICIO Y FIN
-function validarIntervaloCE( form, fecha_inicio, fecha_fin ){
-
-	if( fecha_fin.value != "" && fecha_inicio.value != "" ){
-		var fi = ( fecha_inicio.value ). split("/").reverse().join("/");
-		var ff = ( fecha_fin.value ).split("/").reverse().join("/");
-
-		var error_fecha = document.getElementById( "error_fecha_intervalo" );
-		if( fi >= ff ){
-			if( error_fecha == null ){
-				error_fecha = document.createElement( "div" );
-				error_fecha.setAttribute( "class", "error" );
-				error_fecha.setAttribute( "id", "error_fecha_intervalo" );
-				error_fecha.appendChild( document.createTextNode( "*La fecha inicio y fin del ciclo son inválidas" ) );
-
-				form.insertBefore( error_fecha, fecha_fin.nextSibling );
-			}
-		}
-		else{
-			if( error_fecha != null )
-				form.removeChild( error_fecha );
-		}
-			
+			div_dias_inhabiles.removeChild( error_vacio );
+		return true;
 	}
 
 }
 
 
-//VALIDACON DE DIA INHABIL DENTRO DE FECHA INICIO Y FIN
-function validarDiaInhabilCE( div_dia, fecha_inicio, fecha_fin, dia_inhabil ){
 
-	if( fecha_fin.value != "" && fecha_inicio.value != "" && dia_inhabil.value != "" ){
-		var fi = ( fecha_inicio.value ). split("/").reverse().join("/");
-		var ff = ( fecha_fin.value ).split("/").reverse().join("/");
-		var di = ( dia_inhabil.value ).split("/").reverse().join("/");
 
-		var error_dia_invalido = document.getElementById( "error_dia_invalido" );
-		if( di < fi || di > ff ){
-			if( error_dia_invalido == null ){
-				error_dia_invalido = document.createElement( "div" );
-				error_dia_invalido.setAttribute( "class", "error" );
-				error_dia_invalido.setAttribute( "id", "error_dia_invalido" );
-				error_dia_invalido.appendChild( document.createTextNode( "El dia inhábil no pertenece al ciclo" ) );
-
-				div_dia.insertBefore( error_dia_invalido, dia_inhabil.nextSibling );
-			}
-		}
-		else{
-			if( error_dia_invalido != null )
-				div_dia.removeChild( error_dia_invalido );
-		}
-			
-	}
-
-}

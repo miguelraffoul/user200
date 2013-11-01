@@ -4,6 +4,22 @@ header #header_opciones{
 	padding: 3.3em 2em 0em 0em;
 }
 
+label p{
+    color: #333;
+    text-decoration: none;
+}
+
+label p:hover{
+    font-weight: bold;
+    text-decoration: none;
+    color: #045FB4;
+}
+
+label p:active{
+    color: #01A9DB;
+}
+
+
 form#form_ciclo{    
     width: 220px;
     margin: auto;
@@ -19,13 +35,8 @@ form#form_ciclo{
     font-size: 1.5em;
 }
 
-#dias_inhabiles div{
-    margin-top: 25px;
-    margin-left: 3%;
-}
-
-div.dia_inhabil_agregado{
-    margin-top: 5%;
+div.dia_inhabil{
+    margin-top: 8%;
 }
 
 

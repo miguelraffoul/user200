@@ -18,11 +18,15 @@
   		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 		<script src="js/bootstrap.js"></script>
 		<script src="js/modernizr.js"></script>
+
 		<script src="js/ciclo.validacion.js"></script>
+		<script src="js/ciclo-dinamico.js"></script>
 
 		<script>
   			$(function() {
-    			$( ".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' });
+    			$( 'body' ).on( 'click', '.datepicker', function() {
+    				$( this ).datepicker( 'destroy' ).datepicker( {showOn: 'focus', dateFormat: 'dd/mm/yy'} ).focus();
+    			});
   			});
   		</script>
 
@@ -58,17 +62,20 @@
 								<option value ="3">2014A</option>
 								<option value ="4">2014B</option>
 							</select>
-							<label for="inicio_curso">Inicio de Ciclo</label>
-							<input type="text" id="inicio_curso" name="inicio_curso" class="datepicker" readonly/>
-							<label for="fin_curso">Fin de Ciclo</label>
-							<input type="text" id="fin_curso" name="fin_curso" class="datepicker" readonly/>
-							<div id="dia_inhabil" class="dia_inhabil_agregado">
-								<label for="fecha_dia_inhabil">Fecha</label>
-								<input type="text" id="fecha_dia_inhabil" name="fecha_dia_inhabil" class="datepicker"readonly/>
-								<label for="descripcion">Descripcion</label>
-								<textarea id="descripcion" name="descripcion" rows="5" cols="10" wrap"hard"></textarea>
+							<label for="inicio_ciclo">Inicio de Ciclo</label>
+							<input type="text" id="inicio_ciclo" name="inicio_ciclo" class="datepicker" readonly/>
+							<label for="fin_ciclo">Fin de Ciclo</label>
+							<input type="text" id="fin_ciclo" name="fin_ciclo" class="datepicker" readonly/>
+							<label><p onclick="agregarDiaInhabil()">+Agregar Día Inhábil</p></label>
+							<div id="dias_inhabiles" >
+								<div id="dia_inhabil_template" class="dia_inhabil" style="display: none;" >
+									<label for="fecha_dia_inhabil">Fecha</label>
+									<input type="text" name="fecha_dia_inhabil" class="datepicker fecha_dia_inhabil" readonly/>
+									<label for="descripcion">Descripcion</label>
+									<textarea name="descripcion" class="descripcion" rows="5" cols="10" wrap"hard"></textarea>
+									<label onclick="eliminarDiaInhabil(this)" ><p>-Quitar Día Inhábil</p></label>
+								</div>
 							</div>
-							<label class="agregar_dia_inhabil" id="aregar_dia"><a href="#">+Agregar Día Inhábil</a></label>
 							<button class="btn" type="button" onclick="validarFormCE()">Guardar</button>
 						</form>
 					</section>
