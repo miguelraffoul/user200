@@ -2,10 +2,14 @@ function validarFormRubro(){
 	var form = document.getElementById( 'rubro_evaluacion' );
 	var div_columnas_rubro = document.getElementById( 'div_columnas_rubro' );
 
+	var nombre_valido, valor_rubro_valido, columnas_rubro_valido; 
 
-	validarNombre( form );
-	validarValor( form );
-	validarColumnasRubro( div_columnas_rubro );
+	nombre_valido = validarNombre( form );
+	valor_rubro_valido = valor_rubro_valido = validarValor( form );
+	columnas_rubro_valido = validarColumnasRubro( div_columnas_rubro );
+
+	if( nombre_valido && valor_rubro_valido && columnas_rubro_valido )
+		form.submit();
 	
 }
 

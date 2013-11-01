@@ -4,9 +4,14 @@ function validarFormCE(){
 	var fecha_inicio = document.getElementById( 'inicio_ciclo' );
 	var fecha_fin = document.getElementById( 'fin_ciclo' );
 
-	validarCiclosSelect( form );
-	validarIntervaloCE( form, fecha_inicio, fecha_fin );
-	validarDiasInhabilesEnCE( fecha_inicio, fecha_fin );
+	var ciclo_seleccionado_valido, fecha_ciclo_valido, dias_inhabiles_validos;
+
+	ciclo_seleccionado_valido = validarCiclosSelect( form );
+	fecha_ciclo_valido = validarIntervaloCE( form, fecha_inicio, fecha_fin );
+	dias_inhabiles_validos = validarDiasInhabilesEnCE( fecha_inicio, fecha_fin );
+
+	if( ciclo_seleccionado_valido && fecha_ciclo_valido && dias_inhabiles_validos )
+		form.submit();
 
 	
 }
