@@ -245,7 +245,7 @@ function validarFormAltaAlumno() {
 	var nombre_valido, codigo_valido, carrera_valida, correo_valido;
 
 	nombre_valido = validarNombre();
-	codigo_valido =validarCodigo();
+	codigo_valido = validarCodigo();
 	carrera_valida = validarSelect( 'carrera' );
 	correo_valido = validarCorreo();
 
