@@ -12,10 +12,10 @@ Código: 123admin<br>
 Pass: prog_web<br>
 <br>
 Datos de profesores:<br>
--Leo Hendrik<br>
+-Leo Hendrik: leo@gmail.com<br>
 Código: 424242 <br>
 Pass: prolog<br>
--Luis Casillas<br>
+-Luis Casillas: luis@gmail.com<br>
 Código: 808080<br>
 Pass: ia_expertos<br>
 
