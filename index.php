@@ -5,8 +5,12 @@ switch($_GET["ctl"]){
 		require_once("Controlador/LogInCtl.php");
 		$ctl = new LogInCtl();
 		break;
-	case "":
+	
+	case "ciclo_nuevo":
+		require_once("Controlador/CicloNuevoCtl.php");
+		$ctl = new CicloNuevoCtl();
 		break;
+
 	case "":
 		break;
 }
