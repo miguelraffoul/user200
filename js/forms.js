@@ -18,6 +18,7 @@ function validarFormInicio () {
 	}
 	else {
 		pass.value = sha1( pass.value );
+		document.getElementById( 'formulario_inicio' ).submit();
 	}
 }
 
@@ -105,7 +106,6 @@ function validarSelect( id_select ) {
 }
 
 function validarCorreo() {
-
 	var mail = document.getElementById( 'mail' );
 	var mail_error = document.getElementById( 'mail_error' );
 	if( mail_error != null )
@@ -137,12 +137,10 @@ function validarCorreo() {
 }
 
 function validarEnvioRecupera(){
-
 	if( validarCorreo() ){
 		document.getElementById( 'formulario' ).submit();
 		window.location.href = "EnvioRecupera.html";
 	}
-
 }
 
 
@@ -342,11 +340,83 @@ function validarGenerico( id_elemento ) {
 	return true;
 }
 
+function validarDiaCurso( div_dia ) {
+	var inputs = div_dia.getElementsByTagName( 'input' );
+	var horas_dia = inputs[0].value;
+	var hora_inicio = inputs[1].value;
+	
+	if( horas_dia.trim() != "" ) {
+		var reg_exp = /^[0-9]+$/;
+		if( reg_exp.test( horas_dia ) ) {
+			if( horas_dia <= 0 || horas_dia > 24 )
+				return false;
+		}
+		else
+			return false;
+	}
+	else
+		return false;
+
+	if( hora_inicio.trim() != "" ) {
+		var reg_exp = /^[0-9]{1,2}\:[0-9]{1,2}$/;
+		if( reg_exp.test( hora_inicio ) ) {
+			var arreglo_hora = hora_inicio.split( ":" );
+			if( arreglo_hora[0] < 0 || arreglo_hora[0] >= 24 )
+				return false;
+			if( arreglo_hora[1] < 0 || arreglo_hora[1] >= 60 )
+				return false;
+		}
+		else
+			return false;
+	}
+	else
+		return false;
+
+
+	return true;
+}
+
+function validarHorario() {
+	var div_horario = document.getElementById( 'alta_curso_der' );
+
+	var error = document.getElementById( 'horario_error' );
+	if( error != null )
+		div_horario.removeChild( error );
+
+	var select_dias = document.getElementById( 'dias_curso' );
+	if( select_dias.selectedIndex == 0 ) {
+		var div = document.createElement( 'div' );
+		div.setAttribute( 'class', 'error' );
+		div.setAttribute( 'id', 'horario_error' );
+		div.appendChild( document.createTextNode( "Selecciona por lo menos un dia de clase" ) );
+		div_horario.appendChild( div );
+
+		return false;
+	}
+	
+	var dias = $( '.dia_curso' ).toArray();
+	dias.shift();
+	for( var i = 0; i < dias.length; ++i ) {
+		if( !validarDiaCurso( dias[i] ) ) {
+			var div = document.createElement( 'div' );
+			div.setAttribute( 'class', 'error' );
+			div.setAttribute( 'id', 'horario_error' );
+			div.appendChild( document.createTextNode( "Llenar todos los campos correctamente" ) );
+			div_horario.appendChild( div );
+			
+			return false;
+		}
+	}
+
+	return true;
+}
+
 function validarFormRegistroCurso() {
 	var nombre = validarGenerico( 'nombre' );
 	var seccion = validarGenerico( 'seccion' ); 
 	var academia = validarGenerico( 'academia' );
 	var ciclo = validarSelect( 'ciclo' ); 
+	var horario = validarHorario();
 
 	//validacion NRC
 	var nrc = document.getElementById( 'nrc' );
@@ -365,7 +435,7 @@ function validarFormRegistroCurso() {
 			padre.insertBefore( div, nrc.nextSibling );
 		}
 		else {
-			if( nombre && seccion && academia && ciclo ) {
+			if( nombre && seccion && academia && ciclo && horario ) {
 				document.getElementById( 'alta_curso' ).submit();
 			}
 		}

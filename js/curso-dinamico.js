@@ -43,4 +43,6 @@ function eliminarDiaCurso( dia ){
 		}
 	}
 	document.getElementById( 'alta_curso_der' ).removeChild( dia.parentNode );
+	if( document.getElementsByClassName( 'dia_curso' ).length  == 1 )
+		document.getElementById( 'dias_curso').selectedIndex = 0;
 }
