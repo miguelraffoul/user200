@@ -4,6 +4,20 @@
 Este repositorio contiene todas las paginas del proyecto de Programacion Web:
 SmartClass es un sistema de calificaciones en línea.
 
+
+Datos de administrador: 
+Código: 123admin
+Pass: 123admin
+
+Datos de profesores:
+-Nancy Michelle
+Código: 12345
+Pass: prog_web
+-Leo Hendrik
+Código: 424242 
+Pass: prolog
+
+
 Link de acceso a la pagina principal:
 
 http://alanturing.cucei.udg.mx/cc409/user200
