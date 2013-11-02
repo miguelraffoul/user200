@@ -37,6 +37,8 @@ function validarNombre() {
 			var padre = nombre.parentNode;
 			padre.insertBefore( div, nombre.nextSibling );
 		}
+		else
+			return true;
 	}
 	else {
 		var div = document.createElement( 'div' );
@@ -47,6 +49,8 @@ function validarNombre() {
 		var padre = nombre.parentNode;
 		padre.insertBefore( div, nombre.nextSibling );
 	}
+
+	return false;
 }
 
 function validarCodigo()  {
@@ -65,6 +69,8 @@ function validarCodigo()  {
 			var padre = codigo.parentNode;
 			padre.insertBefore( div, codigo.nextSibling );
 		}
+		else
+			return true;
 	}
 	else {
 		var div = document.createElement( 'div' );
@@ -75,6 +81,8 @@ function validarCodigo()  {
 		var padre = codigo.parentNode;
 		padre.insertBefore( div, codigo.nextSibling );
 	}
+
+	return false;
 }
 
 function validarSelect( id_select ) {
@@ -97,6 +105,7 @@ function validarSelect( id_select ) {
 }
 
 function validarCorreo() {
+
 	var mail = document.getElementById( 'mail' );
 	var mail_error = document.getElementById( 'mail_error' );
 	if( mail_error != null )
@@ -112,6 +121,8 @@ function validarCorreo() {
 			var padre = mail.parentNode;
 			padre.insertBefore( div, mail.nextSibling );
 		}
+		else
+			return true;
 	}
 	else {
 		var div = document.createElement( 'div' );
@@ -122,7 +133,18 @@ function validarCorreo() {
 		var padre = mail.parentNode;
 		padre.insertBefore( div, mail.nextSibling );
 	}
+	return false;
 }
+
+function validarEnvioRecupera(){
+
+	if( validarCorreo() ){
+		document.getElementById( 'formulario' ).submit();
+		window.location.href = "EnvioRecupera.html";
+	}
+
+}
+
 
 function validarCelular() {
 	var celular = document.getElementById( 'celular' );
@@ -140,6 +162,8 @@ function validarCelular() {
 			var padre = celular.parentNode;
 			padre.insertBefore( div, celular.nextSibling );
 		}
+		else
+			return true;
 	}
 	else {
 		var div = document.createElement( 'div' );
@@ -150,6 +174,8 @@ function validarCelular() {
 		var padre = celular.parentNode;
 		padre.insertBefore( div, celular.nextSibling );
 	}
+
+	return false;
 }
 
 function validarCampoOcional( campo_id ) {
@@ -165,7 +191,11 @@ function validarCampoOcional( campo_id ) {
 
 		var padre = campo.parentNode;
 		padre.insertBefore( div, campo.nextSibling );
+
+		return false;
 	}
+
+	return true;
 }
 
 function estaActivado( checkbox ) {
@@ -213,20 +243,38 @@ function estaActivado( checkbox ) {
 }
 
 function validarFormAltaAlumno() {
-	validarNombre();
-	validarCodigo();
-	validarSelect( 'carrera' );
-	validarCorreo();
+
+	var nombre_valido, codigo_valido, carrera_valida, correo_valido;
+
+	nombre_valido = validarNombre();
+	codigo_valido =validarCodigo();
+	carrera_valida = validarSelect( 'carrera' );
+	correo_valido = validarCorreo();
+
+	var celular_valido, cuenta_valida, pagina_valida;
+
 
 	var celular = document.getElementById( 'tiene_celular' );
 	if( celular.checked )
-		validarCelular();
+		celular_valido = validarCelular();
+	else
+		celular_valido = true;
+
 	var github = document.getElementById( 'tiene_github' );
 	if( github.checked )
-		validarCampoOcional( 'cuenta_git' );
+		cuenta_valida = validarCampoOcional( 'cuenta_git' );
+	else
+		cuenta_valida = true;
+
 	var pagina = document.getElementById( 'tiene_pagina' );
 	if( pagina.checked )
-		validarCampoOcional( 'pagina_web' );
+		pagina_valida = validarCampoOcional( 'pagina_web' );
+	else
+		pagina_valida = true;
+
+	if( nombre_valido && codigo_valido && carrera_valida && correo_valido &&
+		celular_valido && cuenta_valida && pagina_valida )
+		document.getElementById( 'formulario_registro' ).submit();
 }
 
 
@@ -243,13 +291,22 @@ function validarAltaArchivo() {
 
 		archivo.parentNode.insertBefore( div, archivo.nextSibling );
 	}
+	else{
+		document.getElementById( 'formulario_registro' ).submit();
+	}
 }
 
 function validarFormModifAlumno() {
-	validarNombre();
-	validarCodigo();
-	validarSelect( 'carrera' );
-	validarCorreo();
+
+	var nombre_valido, codigo_valido, carrera_valida, correo_valido;
+
+	nombre_valido = validarNombre();
+	codigo_valido = validarCodigo();
+	carrera_valida = validarSelect( 'carrera' );
+	correo_valido = validarCorreo();
+
+	if( nombre_valido && codigo_valido && carrera_valida && correo_valido )
+		document.getElementById( 'form_modificar_alumno' ).submit();
 }
 
 function validarGenerico( id_elemento ) {
@@ -325,6 +382,7 @@ function validarFormRegistroCurso() {
 }
 
 function validarFormCambioPass() {
+
 	var error = document.getElementById( 'cambio_error' );
 	if( error != null ) {
 		error.parentNode.removeChild( error );
@@ -351,6 +409,8 @@ function validarFormCambioPass() {
 			pass_actual.value = sha1( pass_actual.value );
 			nuevo_pass.value = sha1( nuevo_pass.value );
 			confirmacion.value = sha1( confirmacion.value );
+
+			document.getElementById( 'formulario' ).submit();
 		}
 	}
 	else {
