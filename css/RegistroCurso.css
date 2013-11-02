@@ -24,35 +24,40 @@ section{
 }
 
 #alta_curso_der{
-    width: 270px;
+    width: 220px;
     padding: 2em  0em 0em 0em;
     margin: auto;
 }
 
-#hr{
-    width: 30px;
+#registrar_curso{
+    margin-top: 10px;
 }
 
-#horasReg{
-    float: left;
-    width: 100px;
+option:disabled{
+    color: rgb(210, 210, 210);
 }
 
-#alta_curso_der p{
+.clear{
+    clear: both;
+}
+
+.dia_curso{
+    margin-top: 13px;
+    margin-bottom: 13px;
+}
+
+.dia_curso p{
     display: inline;
-    float: left;    
-    padding: 0em 1em 0em 1em;
 }
 
-#time{
-    display: inline;
+.dia_curso label{
     float: left;
-    width: 65px;
-    height: 23px;
+    margin-top: 10px;
 }
 
-#registrar{
-    margin: 2em 0em 0em 7em;
+.dia_curso input{
+    float: right;
+    width: 80px;
 }
 
 @media ( max-width: 605px ){
