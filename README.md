@@ -4,18 +4,20 @@
 Este repositorio contiene todas las paginas del proyecto de Programacion Web:
 SmartClass es un sistema de calificaciones en línea.
 
+=========
 
-Datos de administrador: 
-Código: 123admin
-Pass: 123admin
-
-Datos de profesores:
--Nancy Michelle
-Código: 12345
-Pass: prog_web
--Leo Hendrik
-Código: 424242 
-Pass: prolog
+Datos de administrador:<br> 
+-Nancy Michelle<br>
+Código: 123admin<br>
+Pass: prog_web<br>
+<br>
+Datos de profesores:<br>
+-Leo Hendrik<br>
+Código: 424242 <br>
+Pass: prolog<br>
+-Luis Casillas<br>
+Código: 808080<br>
+Pass: ia_expertos<br>
 
 
 Link de acceso a la pagina principal:
@@ -23,22 +25,6 @@ Link de acceso a la pagina principal:
 http://alanturing.cucei.udg.mx/cc409/user200
 
 
-Paginas:
-
-http://alanturing.cucei.udg.mx/cc409/user200/index.html<br>
-http://alanturing.cucei.udg.mx/cc409/user200/AltaAlumno.html<br>
-http://alanturing.cucei.udg.mx/cc409/user200/Alumno.html<br>
-http://alanturing.cucei.udg.mx/cc409/user200/ModificaA.html<br>
-http://alanturing.cucei.udg.mx/cc409/user200/Asistencias.html<br>
-http://alanturing.cucei.udg.mx/cc409/user200/CicloEscolar.html<br>
-http://alanturing.cucei.udg.mx/cc409/user200/CicloModificar.html<br>
-http://alanturing.cucei.udg.mx/cc409/user200/CicloNuevo.html<br>
-http://alanturing.cucei.udg.mx/cc409/user200/CursoProfesor.html<br>
-http://alanturing.cucei.udg.mx/cc409/user200/Recupera.html<br>
-http://alanturing.cucei.udg.mx/cc409/user200/EnvioRecupera.html<br>
-http://alanturing.cucei.udg.mx/cc409/user200/ModificarEliminar.html<br>
-http://alanturing.cucei.udg.mx/cc409/user200/RegistroCurso.html<br>
-http://alanturing.cucei.udg.mx/cc409/user200/RubroEvaluacion.html<br>
 
 =========
 
