@@ -11,7 +11,6 @@ class CambioContraMdl {
 	function esAlumno( $pass, $nuevo_pass ) {
 		$consulta = "UPDATE alumno SET password = \"$nuevo_pass\" WHERE password = \"$pass\"";
 		$result = $this -> bd -> insertar( $consulta );
-		var_dump( $result );
 		if( $result )
 			if( $this -> bd -> affectedRows() > 0 )
 				return true;
@@ -21,7 +20,6 @@ class CambioContraMdl {
 	function esProfesor( $pass, $nuevo_pass ) {
 		$consulta = "UPDATE profesor SET password = \"$nuevo_pass\" WHERE password = \"$pass\"";
 		$result = $this -> bd -> insertar( $consulta );
-		var_dump( $result );
 		if( $result )
 			if( $this -> bd -> affectedRows() )
 				return true;
@@ -31,11 +29,9 @@ class CambioContraMdl {
 	function esAdministrador( $pass, $nuevo_pass ) {
 		$consulta = "UPDATE administrador SET password = \"$nuevo_pass\" WHERE password = \"$pass\"";
 		$result = $this -> bd -> insertar( $consulta );
-		var_dump( $result );
 		if( $result )
 			if( $this -> bd -> affectedRows() )
 				return true;
 		return false;
 	}
-	
 }

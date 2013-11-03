@@ -21,7 +21,7 @@ class CambioContraCtl {
 				}
 			}
 
-			//header( "Location: index.php?ctl=login" );			
+			header( "Location: index.php?ctl=login" );			
 		}
 	}
 }
