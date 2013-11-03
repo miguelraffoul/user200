@@ -15,6 +15,14 @@
 		<![endif]-->
 		<script src="www/js/bootstrap.js"></script>
 		<script src="www/js/modernizr.js"></script>
+		<script src="www/js/jquery-1.10.2.js"></script>
+		<script src="www/js/ciclo-dinamico.js"></script>
+		<script>
+			$( document ).ready(function() {
+				mostrarListaCiclos();
+			});
+		</script>
+
 		<div id="wrapper">	
 			<header>
 				<div id="header_logo">
@@ -48,8 +56,8 @@
 						<h2>Ciclos Escolares</h2>
 						<nav class="menu_section">
 							<ul id="lista_ciclos">
-								<li><img title="Eliminar" src="www/img/delete.png" style="display: none;"></li>
-								<li><img title="Eliminar" src="www/img/delete.png"><a href="CicloModificar.html">&lt;Ciclo2&gt;</a></li>
+								<li id="template" style="display: none;"><img title="Eliminar" src="www/img/delete.png"></li>
+								<li style="display: none;" ><img title="Eliminar" src="www/img/delete.png"><a href="CicloModificar.html">&lt;Ciclo2&gt;</a></li>
 							</ul>
 						</nav>
 					</section>

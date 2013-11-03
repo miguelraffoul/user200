@@ -7,25 +7,26 @@ class CicloEscolarCtl{
 
 	public function ejecutar(){
 
-		require_once("Modelo/CicloNuevoMdl.php");
-		$this -> modelo = new CicloNuevoMdl();
-
+		require_once("Modelo/CicloEscolarMdl.php");
+		$this -> modelo = new CicloEscolarMdl();
+		
 		switch ($_GET['act']){
 
-			case "listar_ciclos":
+			case 'mostrar_pagina':
+				require_once("Vista/CicloEscolar.html");
+				break;
 
-				if(empty($_POST))
-					require_once("Vista/CicloEscolar.html");
-				else
-					$this -> listaCiclo();
+			case "listar_ciclos":
+				$ciclos_array = $this -> modelo -> obtenerCiclos();
+			
+				if( $ciclos_array !== FALSE )
+					echo json_encode( $ciclos_array );
 				break;
 
 			default:
 				require_once("Vista/Error.html");
 		}
 
-		function listaCiclo(){
-			
-		}
 	}
+
 }
