@@ -29,13 +29,13 @@ class AltaAlumnoCtl {
 
 			$resultado = $this -> modelo -> alta( trim( $codigo ), trim( $nombre ), $carrera, trim( $correo ), sha1( $pass ) );
 			if( $resultado !== FALSE ) {
-				if( $celular != "" ) {
+				if( $celular !== "" ) {
 					$this -> modelo -> agregarCelular( $codigo, $celular );
 				}
-				if( $git != "" ) { 
+				if( $git !== "" ) {
 					$this -> modelo -> agregarGit( $codigo, trim( $git ) );
 				}
-				if( $pagina != "" ) {
+				if( $pagina !== "" ) {
 					$this -> modelo -> agregarPagina( $codigo, trim( $pagina ) );
 				}
 				require_once( "Vista/AltaAlumno.html" );
