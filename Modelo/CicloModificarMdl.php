@@ -1,6 +1,6 @@
 <?php
 
-class CicloModificarMdl(){
+class CicloModificarMdl{
 	private $bd;
 
 	function __construct(){
@@ -9,7 +9,7 @@ class CicloModificarMdl(){
 	}
 
 	function obtenerCiclo( $id_ciclo ){
-		$consulta "SELECT *fROM cicloescolar WHERE idCicloEscolar = $id_ciclo";
+		$consulta = "SELECT *fROM cicloescolar WHERE idCicloEscolar = $id_ciclo";
 
 		$ciclo_datos = $this -> bd -> consultaEspecifica( $consulta );
 

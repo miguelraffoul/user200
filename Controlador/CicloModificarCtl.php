@@ -2,7 +2,7 @@
 
 class CicloModificarCtl{
 
-	private $modelo
+	private $modelo;
 
 	public function ejecutar(){
 		require_once( "Modelo/CicloModificarMdl.php" );
@@ -10,7 +10,7 @@ class CicloModificarCtl{
 
 		switch ($_GET['act']){
 
-			case "muestra_pagina":
+			case "mostrar_pagina":
 				require_once( "Vista/CicloModificar.html");
 				break;
 
@@ -29,6 +29,7 @@ class CicloModificarCtl{
 
 			default:
 				require_once( "Vista/Error.html" );
-	}
+		}
 
+	}
 }
