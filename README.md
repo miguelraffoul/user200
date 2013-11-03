@@ -18,6 +18,10 @@ Pass: prolog<br>
 -Luis Casillas: luis@gmail.com<br>
 Código: 808080<br>
 Pass: ia_expertos<br>
+<br>
+Datos de alumno de prueba (pues no hay forma de saber el pass de uno recien creado)<br>
+Código: 1234<br>
+Pass: 1234<br>
 
 
 Link de acceso a la pagina principal:
