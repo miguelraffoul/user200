@@ -15,13 +15,13 @@ class LogInCtl {
 			$pass = $_POST['pass'];
 
 			if( $this -> modelo -> esAdministrador( $codigo, $pass ) ) {
-				header( "index.php?ctl=ciclo_escolar" );
+				header( "Location: index.php?ctl=ciclo_escolar" );
 			}
 			else if( $this -> modelo -> esProfesor( $codigo, $pass ) ) {
-				header( "index.php?ctl=profesor" );
+				header( "Location: index.php?ctl=profesor" );
 			} 
 			else if( $this -> modelo -> esAlumno( $codigo, $pass ) ) {
-				header( "index.php?ctl=alumno" ); 
+				header( "Location: index.php?ctl=alumno" ); 
 			}
 			else {
 				require_once( "Vista/Error.html" );
