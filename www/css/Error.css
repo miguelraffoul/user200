@@ -1,0 +1,39 @@
+section{
+    width: 100%;
+}
+
+
+#error{
+    position: relative;
+    margin: 90px auto;
+    width: 300px;
+}
+
+#titulo_error{
+    display: inline;
+    margin: 20px 106px;
+}
+
+#imagen_error{
+    margin: 5px 50px;
+}
+
+@media ( max-width: 380px ){
+    header #header_logo img{
+        padding-left: 10px;
+    }
+    #envio{
+        position: relative;
+        margin: 70px auto;
+        width: 220px;
+    }
+    #envio h2, p{
+        position: relative;
+        text-align: center;
+    }
+    #enviar{    
+     left: 33%;    
+    }
+}
+
+

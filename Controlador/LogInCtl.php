@@ -15,16 +15,16 @@ class LogInCtl {
 			$pass = $_POST['pass'];
 
 			if( $this -> modelo -> esAdministrador( $codigo, $pass ) ) {
-				require_once( "Vista/CicloEscolar.html" );
+				header( "index.php?ctl=ciclo_escolar" );
 			}
 			else if( $this -> modelo -> esProfesor( $codigo, $pass ) ) {
-				require_once( "Vista/Profesor.html" );
+				header( "index.php?ctl=profesor" );
 			} 
 			else if( $this -> modelo -> esAlumno( $codigo, $pass ) ) {
-				require_once( "Vista/Alumno.html" );
+				header( "index.php?ctl=alumno" ); 
 			}
 			else {
-
+				require_once( "Vista/Error.html" );
 			}
 		}
 	}
