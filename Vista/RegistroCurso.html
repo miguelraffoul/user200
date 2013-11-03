@@ -25,8 +25,8 @@
 					<ul id="nav_cuenta">
 						<li><a href=""><img src="www/img/appbar.cog.png"></a>
 							<ul id="opciones_cuenta">
-								<li><a href="index.php?ctl=cambiar_contrasenia">Cambiar Constraseña</a></li>
-								<li><a href="index.php?ctl=login">Salir</a></li>
+								<li><a href="CambioContraseña.html">Cambiar Constraseña</a></li>
+								<li><a href="index.html">Salir</a></li>
 						    </ul>
 						</li>
 					</ul>
@@ -47,14 +47,12 @@
 								<label for="nrc">NRC</label>
 								<input type="text" id="nrc" name="nrc">
 								<label for="academia">Academia</label>
-								<input type="text" id="academia" name="academia" >
+								<select id="academia" name="academia">
+									<option value="0" disables selected>Selecciona academia</option>
+								</select>
 								<label for="ciclo">Ciclo </label>
 								<select id="ciclo" name="ingenierias" >
 									<option value="0" disabled selected >Selecciona ciclo</option>
-									<option value ="1">2013A</option>
-									<option value ="2">2013B</option>
-									<option value ="3">2014A</option>
-									<option value ="4">2014B</option>
 								</select>
 								<button id="registrar_curso" class="btn" type="button" onclick="validarFormRegistroCurso()">Registrar</button>	
 							</div>  
@@ -72,6 +70,7 @@
 									<option value="6">Sábado</option>
 								</select>
 								<div id="dia_curso_template" class="dia_curso" style="display: none">
+									<input type="text" name="dia[]" style="display: none"/>
 									<i class="icon-remove" onclick="eliminarDiaCurso(this)"></i>
 									<p></p>
 									<div>

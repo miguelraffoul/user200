@@ -11,8 +11,10 @@ function agregarDiaCurso( opcion ) {
 	var nuevo_dia = plantilla.cloneNode();
 	nuevo_dia.removeAttribute( 'style' );
 	nuevo_dia.setAttribute( 'id', opcion.value );
-	var label = nuevo_dia.getElementsByTagName( 'p' );
-	label[0].appendChild( document.createTextNode( diaValor( opcion.value ) ) );
+	var input_dia = nuevo_dia.getElementsByTagName( 'input' );
+	input_dia[0].value = diaValor( opcion.value );
+	var titulo = nuevo_dia.getElementsByTagName( 'p' );
+	titulo[0].appendChild( document.createTextNode( diaValor( opcion.value ) ) );
 
 	document.getElementById( 'alta_curso_der' ).appendChild( nuevo_dia );
 } 

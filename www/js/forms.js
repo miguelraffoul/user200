@@ -341,7 +341,7 @@ function validarGenerico( id_elemento ) {
 }
 
 function validarDiaCurso( div_dia ) {
-	var inputs = div_dia.getElementsByTagName( 'input' );
+	var inputs = div_dia.getElementsByClassName( 'input_horas' );
 	var horas_dia = inputs[0].value;
 	var hora_inicio = inputs[1].value;
 	
@@ -414,7 +414,6 @@ function validarHorario() {
 function validarFormRegistroCurso() {
 	var nombre = validarGenerico( 'nombre' );
 	var seccion = validarGenerico( 'seccion' ); 
-	var academia = validarGenerico( 'academia' );
 	var ciclo = validarSelect( 'ciclo' ); 
 	var horario = validarHorario();
 

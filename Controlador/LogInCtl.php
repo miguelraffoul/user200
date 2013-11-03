@@ -15,7 +15,7 @@ class LogInCtl {
 			$pass = $_POST['pass'];
 
 			if( $this -> modelo -> esAdministrador( $codigo, $pass ) ) {
-				header( "Location: index.php?ctl=ciclo_escolar" );
+				header( "Location: index.php?ctl=ciclo_escolar&act=mostrar_pagina" );
 			}
 			else if( $this -> modelo -> esProfesor( $codigo, $pass ) ) {
 				header( "Location: index.php?ctl=profesor" );
