@@ -48,3 +48,43 @@ function eliminarDiaCurso( dia ){
 	if( document.getElementsByClassName( 'dia_curso' ).length  == 1 )
 		document.getElementById( 'dias_curso').selectedIndex = 0;
 }
+
+function cargarAcademias() {
+	$.ajax({
+		url: 'index.php?ctl=registro_curso&act=carga_academias',
+		dataType: 'json',
+		success: function ( json ) {
+			var select = document.getElementById( 'academia' );
+			for( i in json ) {
+				var option = document.createElement( 'option' );
+				var texto = document.createTextNode( json[i].nombre );
+				option.setAttribute( 'value', json[i].idDepartamento );
+				option.appendChild( texto );
+				select.appendChild( option );
+			}
+		},
+		error: function () {
+        	console.log( "no funciono carga de academias" );
+      	}
+	});
+}
+
+function cargarCiclos() {
+	$.ajax({
+		url: 'index.php?ctl=registro_curso&act=carga_ciclos',
+		dataType: 'json',
+		success: function ( json ) {
+			var select = document.getElementById( 'ciclo' );
+			for( i in json ) {
+				var option = document.createElement( 'option' );
+				var texto = document.createTextNode( json[i].idCicloEscolar );
+				option.setAttribute( 'value', json[i].idCicloEscolar );
+				option.appendChild( texto );
+				select.appendChild( option );
+			}
+		},
+		error: function () {
+        	console.log( "no funciono carga de ciclos" );
+      	}
+	});
+}
