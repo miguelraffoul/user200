@@ -3,9 +3,9 @@
 class LogInCtl {
 	private $modelo;
 
-	public function ejecutar() {/*
+	public function ejecutar() {
 		require_once( "Modelo/LogInMdl.php" );
-		$this -> modelo = new LogInMdl();*/
+		$this -> modelo = new LogInMdl();
 
 		if( empty( $_POST ) ) {
 			require_once( "Vista/index.html" );
@@ -13,9 +13,19 @@ class LogInCtl {
 		else {
 			$codigo = $_POST['codigo'];
 			$pass = $_POST['pass'];
-			echo $codigo;
-			echo $pass;
-			require_once( "Vista/index.html" );
+
+			if( $this -> modelo -> esAdministrador( $codigo, $pass ) ) {
+				require_once( "Vista/CicloEscolar.html" );
+			}
+			else if( $this -> modelo -> esProfesor( $codigo, $pass ) ) {
+				require_once( "Vista/Profesor.html" );
+			} 
+			else if( $this -> modelo -> esAlumno( $codigo, $pass ) ) {
+				require_once( "Vista/Alumno.html" );
+			}
+			else {
+
+			}
 		}
 	}
 }
