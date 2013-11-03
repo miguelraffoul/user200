@@ -15,8 +15,6 @@ class CicloNuevoMdl{
 
 		$consulta_exitosa = $this -> bd -> insertar( $consulta );
 
-		var_dump( $consulta_exitosa );
-
 		if( $consulta_exitosa ){
 			$consulta_exitosa = $this -> agregarDiasInhabiles( $ciclo_select, $fd_inhabil, $descripcion );
 			return $consulta_exitosa;	
