@@ -14,11 +14,16 @@ switch( $_GET["ctl"] ){
 		$ctl = new CicloNuevoCtl();
 		break;
 	case "ciclo_modificar":
-		$ctl = new CicloModificar();
+		require_once( "Controlador/CicloModificar.php" );
+		$ctl = new CicloModificarCtl();
 		break;
 	case "profesor":
 		require_once( "Controlador/ProfesorCtl.php" );
 		$ctl = new ProfesorCtl();
+		break;
+	case "curso_profesor":
+		require_once( "Controlador/CursoProfesorCtl.php" );
+		$ctl = new CursoProfesorCtl();
 		break;
 	case "alta_alumno":
 		require_once( "Controlador/AltaAlumnoCtl.php" );
