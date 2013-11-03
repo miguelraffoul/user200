@@ -1,4 +1,4 @@
-<?php
+<?php 	
 
 switch( $_GET["ctl"] ){
 	case "login":
@@ -12,6 +12,9 @@ switch( $_GET["ctl"] ){
 	case "ciclo_nuevo":
 		require_once( "Controlador/CicloNuevoCtl.php" );
 		$ctl = new CicloNuevoCtl();
+		break;
+	case "ciclo_modificar":
+		$ctl = new CicloModificar();
 		break;
 	case "profesor":
 		require_once( "Controlador/ProfesorCtl.php" );
