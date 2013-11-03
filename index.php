@@ -5,6 +5,10 @@ switch( $_GET["ctl"] ){
 		require_once( "Controlador/LogInCtl.php" );
 		$ctl = new LogInCtl();
 		break;
+	case "cambiar_contrasenia":
+		require_once( "Controlador/CambioContraCtl.php" );
+		$ctl = new CambioContraCtl();
+		break;
 	case "ciclo_escolar":
 		require_once( "Controlador/CicloEscolarCtl.php" );
 		$ctl = new CicloEscolarCtl();
