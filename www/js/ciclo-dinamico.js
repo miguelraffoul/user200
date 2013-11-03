@@ -33,7 +33,7 @@ function mostrarListaCiclos(){
 				nuevo_elemento.removeAttribute( "style" );
 				
 				var enlace = document.createElement( "a" );
-				enlace.setAttribute( "value", json[i].idCicloEscolar );
+				enlace.setAttribute( "id", json[i].idCicloEscolar );
 				enlace.setAttribute( "href", "javascript:abrirCiclo(this)" ); //"index.php?ctl=ciclo_nuevo&act=agregar_ciclo"
 
 				enlace.appendChild( document.createTextNode( "Ciclo " + json[i].idCicloEscolar ) );
@@ -48,8 +48,8 @@ function mostrarListaCiclos(){
 }
 
 
-function abrirCiclo( ciclo_seleccionado ){
-	var id = ciclo_seleccionado.value;
+function abrirCiclo( hola ){
+	var id = hola.id ;
 
 	alert( id );
 
