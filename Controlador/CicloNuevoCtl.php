@@ -40,10 +40,9 @@ class CicloNuevoCtl{
 					$resultado = $this -> modelo -> agregarCiclo($ciclo_select, $fi_ciclo, $ff_ciclo, $fd_inhabil, $descripcion);
 
 					if($resultado!==FALSE)
-						require_once("Vista/CicloNuevo.html");
+						require_once("Vista/CicloEscolar.html");
 					else
-						echo "NO SE PUDO";
-						//require_once("Vista/Error.html");
+						require_once("Vista/Error.html");
 				}
 				break;
 
