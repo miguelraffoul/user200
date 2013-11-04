@@ -52,7 +52,8 @@ function abrirCiclo( ciclo ){
 	//alert(ciclo.id);
 	
 	$.ajax({
-		url: 'index.php?ctl=ciclo_modificar&act=mostrar_pagina',
+		data: {id_ciclo:id},
+		url: 'index.php?ctl=&act=mostrar_pagina',
 		success: function(){
 			alert("sii");
 		},
