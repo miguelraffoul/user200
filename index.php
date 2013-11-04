@@ -41,6 +41,10 @@ switch( $_GET["ctl"] ){
 		require_once( "Controlador/AlumnoCtl.php" );
 		$ctl = new AlumnoCtl();
 		break;
+	case "rubro":
+		require_once( "Controlador/RubroCtl.php" );
+		$ctl = new RubroCtl();
+		break;
 }
 
 $ctl -> ejecutar();

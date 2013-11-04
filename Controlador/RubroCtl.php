@@ -6,7 +6,7 @@ class RubroCtl{
 
 	public function ejecutar(){
 
-		require_once("Modelo/RubroCtl.php");
+		require_once("Modelo/RubroMdl.php");
 		$this -> modelo = new RubroMdl();
 
 		switch ($_GET['act']){
