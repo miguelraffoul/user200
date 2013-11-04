@@ -416,38 +416,10 @@ function validarFormRegistroCurso() {
 	var seccion = validarGenerico( 'seccion' ); 
 	var ciclo = validarSelect( 'ciclo' ); 
 	var horario = validarHorario();
-
-	//validacion NRC
-	var nrc = document.getElementById( 'nrc' );
-	var nrc_error = document.getElementById( 'nrc_error' );
-	if( nrc_error != null )
-		nrc_error.parentNode.removeChild( nrc_error );
-	if( nrc.value.trim() != "" ) {
-		var reg_exp = /^[0-9]+$/;
-		if( !reg_exp.test( nrc.value ) ) {
-			var div = document.createElement( 'div' );
-			div.setAttribute( 'class', 'error' );
-			div.setAttribute( 'id', 'nrc_error' );
-			div.appendChild( document.createTextNode( "Utiliza unicamente digitos" ) );
-
-			var padre = nrc.parentNode;
-			padre.insertBefore( div, nrc.nextSibling );
-		}
-		else {
-			if( nombre && seccion && academia && ciclo && horario ) {
-				document.getElementById( 'alta_curso' ).submit();
-			}
-		}
-	}
-	else {
-		var div = document.createElement( 'div' );
-		div.setAttribute( 'class', 'error' );
-		div.setAttribute( 'id', 'nrc_error' );
-		div.appendChild( document.createTextNode( "Rellena este campo" ) );
-
-		var padre = nrc.parentNode;
-		padre.insertBefore( div, nrc.nextSibling );
-	}
+	var nrc = validarGenerico( 'nrc' );
+	if( nombre && seccion && nrc && ciclo && horario ) {
+		document.getElementById( 'alta_curso' ).submit();
+	}	
 }
 
 function validarFormCambioPass() {
