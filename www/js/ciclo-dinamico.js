@@ -47,13 +47,14 @@ function mostrarListaCiclos(){
 }
 
 
-function abrirCiclo( ciclo ){
+function abrirFormCiclo( ciclo ){
 	var id = ciclo.id ;
 	//alert(ciclo.id);
 	
 	$.ajax({
+		type: 'POST',
 		data: {id_ciclo:id},
-		url: 'index.php?ctl=&act=mostrar_pagina',
+		url: 'index.php?ctl=ciclo_modificar&act=mostrar_pagina',
 		success: function(){
 			alert("sii");
 		},
@@ -61,4 +62,9 @@ function abrirCiclo( ciclo ){
 			alert("error");
 		}
 	});
+}
+
+
+function  mostrarCiclo(){
+
 }

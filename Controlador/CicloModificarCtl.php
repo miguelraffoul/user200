@@ -10,22 +10,24 @@ class CicloModificarCtl{
 
 		switch ($_GET['act']){
 
-			case "mostrar_pagina":
+			case 'mostrar_pagina':
+				echo "hello";
 				require_once( "Vista/CicloModificar.html");
 				break;
 
-			case "muestra_datos":
+			case 'mostrar_datos':
+				/*echo "hello";
 				$id_ciclo = $_POST["id_ciclo"];
 				$consulta_exitosa = $this -> modelo -> objeterCiclo( $id_ciclo );
 
 				if( $consulta_exitosa === TRUE )
 					echo json_encode( $consulta_exitosa );
 				else
-					require_once( "Vista/Error.html" );
+					require_once( "Vista/Error.html" );*/
 				break;
 
 			case "modifica_ciclo":
-			break;
+				break;
 
 			default:
 				require_once( "Vista/Error.html" );
