@@ -25,7 +25,9 @@ switch( $_GET["ctl"] ){
 		require_once( "Controlador/ProfesorCtl.php" );
 		$ctl = new ProfesorCtl();
 		break;
-	case "curso_profesor":	//No lo quiten D;
+	case "curso_profesor":	
+		require_once( "Controlador/CursoProfesorCtl.php" );
+		$ctl = new CursoProfesorCtl();
 		break;
 	case "registro_curso":
 		require_once( "Controlador/RegistroCursoCtl.php" );

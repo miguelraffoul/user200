@@ -15,6 +15,13 @@
 		<![endif]-->
 		<script src="www/js/bootstrap.js"></script>
 		<script src="www/js/modernizr.js"></script>
+		<script src="www/js/jquery-1.10.2.js"></script>
+		<script src="www/js/curso-dinamico.js"></script>
+		<script>
+			$( document ).ready( function() {
+				mostrarListaCursos();
+			} );
+		</script>
 		<div id="wrapper">		
 			<header>
 				<div id="header_logo">
@@ -45,44 +52,14 @@
 						</nav>
 					</aside>
 					<section class="span9 min_width_section">
-						<h2>&lt;Nombre de curso&gt;</h2>
+						<h2>Cursos</h2>
 						<nav class="menu_section">
-							<ul>
-								<li>
+							<ul id="lista_cursos">
+								<li id="template" style="display: none;">
 									<img title="Eliminar" src="www/img/delete.png">
 									<img title="Clonar" src="www/img/clone.png">
-									<a href="CursoProfesor.html">&lt;Curso1&gt;</a>
-								</li>
-								<li>
-									<img title="Eliminar" src="www/img/delete.png">
-									<img title="Clonar" src="www/img/clone.png">
-									<a href="CursoProfesor.html">&lt;Curso2&gt;</a>
-								</li>
-								<li>
-									<img title="Eliminar" src="www/img/delete.png">
-									<img title="Clonar" src="www/img/clone.png">
-									<a href="CursoProfesor.html">&lt;Curso3&gt;</a>
-								</li>
-								<li>
-									<img title="Eliminar" src="www/img/delete.png">
-									<img title="Clonar" src="www/img/clone.png">
-									<a href="CursoProfesor.html">&lt;Curso4&gt;</a>
-								</li>
-								<li>
-									<img title="Eliminar" src="www/img/delete.png">
-									<img title="Clonar" src="www/img/clone.png">
-									<a href="CursoProfesor.html">&lt;Curso5&gt;</a>
-								</li>
-								<li>
-									<img title="Eliminar" src="www/img/delete.png">
-									<img title="Clonar" src="www/img/clone.png">
-									<a href="CursoProfesor.html">&lt;Curso6&gt;</a>
-								</li>
-								<li>
-									<img title="Eliminar" src="www/img/delete.png">
-									<img title="Clonar" src="www/img/clone.png">
-									<a href="CursoProfesor.html">&lt;Curso7&gt;</a>
-								</li>								
+									<a href="CursoProfesor.html"></a>
+								</li>				
 							</ul>
 						</nav>
 					</section>
