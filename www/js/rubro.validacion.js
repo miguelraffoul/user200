@@ -5,7 +5,7 @@ function validarFormRubro(){
 	var nombre_valido, valor_rubro_valido, columnas_rubro_valido; 
 
 	nombre_valido = validarNombre( form );
-	valor_rubro_valido = valor_rubro_valido = validarValor( form );
+	valor_rubro_valido = validarValor( form );
 	columnas_rubro_valido = validarColumnasRubro( div_columnas_rubro );
 
 	if( nombre_valido && valor_rubro_valido && columnas_rubro_valido )

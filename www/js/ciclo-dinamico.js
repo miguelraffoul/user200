@@ -41,7 +41,7 @@ function mostrarListaCiclos(){
 			}
 		},
 		error: function () {
-        	alert("no funciono");
+        	alert("no hay ciclos");
       	}
 	});
 }
