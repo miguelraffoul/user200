@@ -38,7 +38,7 @@ class AltaAlumnoCtl {
 				if( $pagina !== "" ) {
 					$this -> modelo -> agregarPagina( $codigo, trim( $pagina ) );
 				}
-				header( "Location: index.php?ctl=curso_profesor" );
+				header( "Location: index.php?ctl=lista_alumnos&act=lista" );
 			}
 			else {
 				require_once( "Vista/Error.html" );
