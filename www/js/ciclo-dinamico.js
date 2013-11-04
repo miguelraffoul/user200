@@ -65,6 +65,4 @@ function abrirFormCiclo( ciclo ){
 }
 
 
-function  mostrarCiclo(){
-
-}
+function  mostrarCiclo(){}
