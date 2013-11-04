@@ -11,6 +11,10 @@ class RubroCtl{
 
 		switch ($_GET['act']){
 
+			case "mostrar_pagina":
+				require_once("Vista/RubroEvaluacion.html");
+				break;
+
 			case "agregar_rubro":
 
 				if(empty($_POST))

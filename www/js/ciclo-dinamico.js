@@ -26,22 +26,24 @@ function mostrarListaCiclos(){
 		url: 'index.php?ctl=ciclo_escolar&act=listar_ciclos',
 		dataType: 'json',
 		success: function( json ){
-			var elemento_lista_temp = document.getElementById( 'template' );
-			for( i in json ){
+			if( json.length > 0 ){
+				var elemento_lista_temp = document.getElementById( 'template' );
+				for( i in json ){
 
-				var nuevo_elemento = elemento_lista_temp.cloneNode();
-				nuevo_elemento.removeAttribute( "style" );
-				nuevo_elemento.removeAttribute( "id" );
+					var nuevo_elemento = elemento_lista_temp.cloneNode();
+					nuevo_elemento.removeAttribute( "style" );
+					nuevo_elemento.removeAttribute( "id" );
+					
+					var enlace = nuevo_elemento.lastChild;
+					enlace.setAttribute( "id", json[i].idCicloEscolar );
+					enlace.appendChild( document.createTextNode( "Ciclo " + json[i].idCicloEscolar ) );
+					document.getElementById( "lista_ciclos" ).appendChild( nuevo_elemento );
 				
-				var enlace = nuevo_elemento.lastChild;
-				enlace.setAttribute( "id", json[i].idCicloEscolar );
-				enlace.appendChild( document.createTextNode( "Ciclo " + json[i].idCicloEscolar ) );
-				document.getElementById( "lista_ciclos" ).appendChild( nuevo_elemento );
-			
+				}
 			}
 		},
 		error: function () {
-        	alert("no hay ciclos");
+        	alert("No funcionó la carga de ciclos");
       	}
 	});
 }
