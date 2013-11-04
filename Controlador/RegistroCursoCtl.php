@@ -26,7 +26,7 @@ class RegistroCursoCtl {
 				$hora_fin = implode( ":", $array );
 				$this -> modelo -> agregarDiaClase( $nrc, $dia[$i], $hora_inicio[$i], $hora_fin );
 			}
-			header( "Location: index.php?ctl=profesor" );
+			header( "Location: index.php?ctl=profesor&act=cursos" );
 		}
 		else {
 			require_once( "Vista/Error.html" );

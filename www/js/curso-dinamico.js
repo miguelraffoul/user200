@@ -88,3 +88,28 @@ function cargarCiclos() {
       	}
 	});
 }
+
+function mostrarListaCursos() {
+	$.ajax({
+		url: 'index.php?ctl=profesor&act=carga_cursos',
+		dataType: 'json',
+		success: function( json ) {
+			if( json.length < 1 )
+				alert( "No hay cursos disponibles" );
+			else {
+				var plantilla = document.getElementById( 'template' );
+				for( i in json ) {
+					var curso = plantilla.cloneNode();
+					curso.removeAttribute( 'style' );
+					curso.setAttribute( 'id', json[i].clave_curso );
+					var curso_enlace = curso.getElementsByTagName( 'a' );
+					curso_enlace[0].appendChild( document.createTextNode( json[i].nombre ) );
+					document.getElementById( 'lista_cursos' ).appendChild( curso );
+				}
+			}
+		},
+		error: function() {
+			console.log( "No funciono la carga de cursos" );
+		}
+	});
+}
