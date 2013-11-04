@@ -18,7 +18,7 @@ class LogInCtl {
 				header( "Location: index.php?ctl=ciclo_escolar&act=mostrar_pagina" );
 			}
 			else if( $this -> modelo -> esProfesor( $codigo, $pass ) ) {
-				header( "Location: index.php?ctl=profesor" );
+				header( "Location: index.php?ctl=profesor&act=cursos" );
 			} 
 			else if( $this -> modelo -> esAlumno( $codigo, $pass ) ) {
 				header( "Location: index.php?ctl=alumno" ); 

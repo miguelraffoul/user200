@@ -26,7 +26,7 @@ Pass: 1234<br>
 
 Link de acceso a la pagina principal:
 
-http://alanturing.cucei.udg.mx/cc409/user200
+http://alanturing.cucei.udg.mx/cc409/user200/index.php?ctl=login<br>
 
 
 
