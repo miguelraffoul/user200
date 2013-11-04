@@ -27,19 +27,17 @@ class RubroCtl{
 
 	function nuevoRubro(){
 
-		var_dump($_POST);
-
 		$nombre_rubro = $_POST["nombre_rubro"];
 		$valor_rubro = $_POST["valor_rubro"];
-		$tiene_hoja = $POST["tiene_hoja"];
 
 		$resultado = 0;
-		if( $tiene_hoja === "tiene_hoja" ){
-			$columnas = $_POST['columnas_rubro'];
-			$resultado = $this -> modelo -> agregarRubro( $nombre_rubro, $valor_rubro, $tiene_hoja, $columnas );
+		if( array_key_exists( "tiene_hoja", $_POST ) ){
+			$tiene_hoja = $_POST["tiene_hoja"];
+			$columnas = $_POST["columnas_rubro"];
+			$resultado = $this -> modelo -> agregarRubro( $nombre_rubro, $valor_rubro, 1, $columnas );
 		}
 		else
-			$resultado = $this -> modelo -> agregarRubro( $nombre_rubro, $valor_rubro, 0, $columnas );
+			$resultado = $this -> modelo -> agregarRubro( $nombre_rubro, $valor_rubro, 0, 0 );
 
 		
 

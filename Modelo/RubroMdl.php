@@ -16,14 +16,22 @@ class RubroMdl{
 		$consulta_exitosa = $this -> bd -> insertar( $consulta );
 
 		if( $consulta_exitosa ){
-			$consulta_exitosa = $this -> agregarHojaEval( $);
+			if( $tiene_hoja === 1 )
+				$this -> agregarHojaEval( $this -> bd -> idInsertado(), $columnas );
 			return $consulta_exitosa;	
 		}
 		else
 			return FALSE;
-	}
+	}	
 
-	function agregarHojaEval(){
+	function agregarHojaEval( $id_rubro, $columnas ){
+		$consulta = "INSERT INTO hojaevaluacion ( cantidad_columnas, Rubro_idRubro ) 
+					 VALUES ( \"$columnas\", \"$id_rubro\" )";
+		$consulta_exitosa = $this -> bd -> insertar( $consulta );
 
+		if( $consulta_exitosa )
+			return TRUE;
+		else
+			return FALSE;
 	}
 }
