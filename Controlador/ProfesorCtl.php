@@ -7,11 +7,11 @@ class ProfesorCtl {
 		require_once( "Modelo/ProfesorMdl.php" );
 		$this -> modelo = new ProfesorMdl();
 		switch( $_GET['act'] ) {
-			case "ciclos":
+			case "cursos":
 				require_once( "Vista/Profesor.html" );
 				break;
-			case "cargar_ciclos":
-				$cursos = $this -> modelo -> cargarCiclos();
+			case "carga_cursos":
+				$cursos = $this -> modelo -> obtenerCursos();
 				if( $cursos )
 					echo json_encode( $cursos ); 
 				break;
