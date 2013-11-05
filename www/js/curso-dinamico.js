@@ -94,9 +94,7 @@ function mostrarListaCursos() {
 		url: 'index.php?ctl=profesor&act=carga_cursos',
 		dataType: 'json',
 		success: function( json ) {
-			if( json.length < 1 )
-				alert( "No hay cursos disponibles" );
-			else {
+			if( json !== false ) {
 				var plantilla = document.getElementById( 'template' );
 				for( i in json ) {
 					var curso = plantilla.cloneNode();
@@ -109,7 +107,7 @@ function mostrarListaCursos() {
 			}
 		},
 		error: function() {
-			console.log( "No funciono la carga de cursos" );
+			alert( "No hay cursos disponibles" );
 		}
 	});
 }
