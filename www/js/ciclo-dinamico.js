@@ -26,7 +26,7 @@ function mostrarListaCiclos(){
 		url: 'index.php?ctl=ciclo_escolar&act=listar_ciclos',
 		dataType: 'json',
 		success: function( json ){
-			if( json.length > 0 ){
+			if( json !== false ){
 				var elemento_lista_temp = document.getElementById( 'template' );
 				for( i in json ){
 
