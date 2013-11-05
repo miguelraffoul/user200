@@ -46,7 +46,7 @@ class RubroCtl{
 		
 
 		if($resultado!==FALSE)
-			require_once("Vista/RubroEvaluacion.html");
+			require_once("Vista/CursoProfesor.html");
 		else
 			require_once("Vista/Error.html");
 	}

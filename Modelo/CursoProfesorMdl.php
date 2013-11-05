@@ -9,7 +9,6 @@ class CursoProfesorMdl{
 	}
 
 	function obtenerRubros(){
-
 		$curso = "cc200";
 		$consulta = "SELECT *FROM rubro WHERE Curso_clave_curso = \"$curso\"";
 		$rubros_array = $this -> bd -> consultaGeneral( $consulta );

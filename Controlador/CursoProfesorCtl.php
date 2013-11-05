@@ -16,9 +16,7 @@ class CursoProfesorCtl{
 
 			case "listar_rubros":
 				$rubros_array = $this -> modelo -> obtenerRubros();
-				if( $rubros_array ){
-					echo json_encode( $rubros_array );
-				}
+				echo json_encode( $rubros_array );
 				break;
 
 			default:

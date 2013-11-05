@@ -121,21 +121,23 @@ function mostrarListaRubros(){
 		url: 'index.php?ctl=curso_profesor&act=listar_rubros',
 		dataType: 'json',
 		success: function( json ){
-			var elemento_lista_temp = document.getElementById( 'template' );
-			for( i in json ){
+			if( json !== false ){
+				var elemento_lista_temp = document.getElementById( 'template' );
+				for( i in json ){
 
-				var nuevo_elemento = elemento_lista_temp.cloneNode();
-				nuevo_elemento.removeAttribute( "style" );
-				nuevo_elemento.removeAttribute( "id" );
+					var nuevo_elemento = elemento_lista_temp.cloneNode();
+					nuevo_elemento.removeAttribute( "style" );
+					nuevo_elemento.removeAttribute( "id" );
+					
+					var td = nuevo_elemento.getElementsByTagName( 'td' );
+					enlace_rubro = td[1].firstChild;
+					enlace_rubro.setAttribute( "id", json[i].idRubro );
+					enlace_rubro.appendChild( document.createTextNode(  json[i].nombre ) );
+					enlace_valor = td[3];
+					enlace_valor.appendChild( document.createTextNode( json[i].valor ) );
+					document.getElementById( "lista_rubros" ).appendChild( nuevo_elemento );
 				
-				var td = nuevo_elemento.getElementsByTagName( 'td' );
-				enlace_rubro = td[1].firstChild;
-				enlace_rubro.setAttribute( "id", json[i].idRubro );
-				enlace_rubro.appendChild( document.createTextNode(  json[i].nombre ) );
-				enlace_valor = td[3];
-				enlace_valor.appendChild( document.createTextNode( json[i].valor ) );
-				document.getElementById( "lista_rubros" ).appendChild( nuevo_elemento );
-			
+				}
 			}
 		},
 		error: function () {

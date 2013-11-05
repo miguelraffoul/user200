@@ -18,9 +18,8 @@ class CicloEscolarCtl{
 
 			case "listar_ciclos":
 				$ciclos_array = $this -> modelo -> obtenerCiclos();
-			
-				if( $ciclos_array )
-					echo json_encode( $ciclos_array );
+
+				echo json_encode( $ciclos_array );
 				break;
 
 			default:

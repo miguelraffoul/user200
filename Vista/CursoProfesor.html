@@ -59,10 +59,10 @@
 						<nav id="menu_aside" class="well">
 							<ul class="nav nav-list">								
 								<li class="nav-header">MENU PROFESOR</li>
-								<li><a href="AltaAlumno.html">Agregar Alumno</a></li>
-								<li><a href="ModificarEliminar.html">Modificar/Eliminar Alumno</a></li>
-								<li><a href="Asistencias.html">Lista de asistencias</a></li>
-								<li><a href="Calificaciones.html">Lista de calificaciones</a></li>
+								<li><a href="index.php?ctl=alta_alumno">Agregar Alumno</a></li>
+								<li><a href="index.php?ctl=lista_alumnos&act=lista">Modificar/Eliminar Alumno</a></li>
+								<li><a href="#">Lista de asistencias</a></li>
+								<li><a href="#">Lista de calificaciones</a></li>
 							</ul>
 						</nav>
 					</aside>
@@ -86,28 +86,10 @@
 										<td><a href="#">&lt;Hoja&gt;</a></td>
 										<td></td>
 									</tr>
-									<!--<tr>
-										<td ><input type="checkbox"></td>
-										<td><a href="RubroEvaluacion.html">&lt;Rubro2&gt;</a></td>
-										<td><a href="#">&lt;Hoja&gt;</a></td>
-										<td>---</td>
-									</tr>
-									<tr>
-										<td ><input type="checkbox"></td>
-										<td><a href="RubroEvaluacion.html">&lt;Rubro3&gt;</a></td>
-										<td><a href="#">&lt;Hoja&gt;</a></td>
-										<td>---</td>
-									</tr>
-									<tr>
-										<td ><input type="checkbox"></td>
-										<td><a href="RubroEvaluacion.html">&lt;Rubro4&gt;</a></td>
-										<td><a href="#">&lt;Hoja&gt;</a></td>
-										<td>---</td>
-									</tr>-->
 								</tbody>
 							</table>
 							<button class="btn" type="button" id="eliminar_rubro" onclick="validarCheckBox()">Eliminar Rubro</button>
-							<button class="btn" type="button" id="agregar_rubro" onclick="location.href='RubroEvaluacion.html'">Agregar Rubro
+							<button class="btn" type="button" id="agregar_rubro" onclick="location.href='index.php?ctl=rubro&act=agregar_rubro'">Agregar Rubro
 							</button>
 						</div>
 					</section>
