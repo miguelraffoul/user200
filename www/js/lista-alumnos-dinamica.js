@@ -20,3 +20,32 @@ function cargarListaAlumnos() {
 		}
 	});
 }
+
+function eliminarAlumnos( boton ) {
+	var checkboxes = document.getElementById( 'cuerpo_tabla' ).getElementsByTagName( 'input' );
+	var alumnos_seleccionados = false;
+	for( var i = 1; i < checkboxes.length; ++i ) {
+		if ( checkboxes[i].checked ) {
+			alumnos_seleccionados = true;
+		}
+	}
+	var error = document.getElementById( 'error_no_seleccion' );
+	if( error != null )
+		error.parentNode.removeChild( error );	
+
+	if( alumnos_seleccionados ) {
+		var confirmacion = confirm( "Corfirme borrado de alumn@(s)" );
+		/*
+		if( confirmacion ) {
+	
+		}
+		*/
+	}
+	else {
+		error = document.createElement( 'div' );
+		error.setAttribute( 'id', 'error_no_seleccion' );
+		error.setAttribute( 'class', 'error' );
+		error.appendChild( document.createTextNode( 'Seleccione por lo menos un(a) alumno(a)' ) );
+		boton.parentNode.insertBefore( error, boton );
+	}
+}
