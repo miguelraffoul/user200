@@ -38,6 +38,11 @@ class AltaAlumnoCtl {
 				if( $pagina !== "" ) {
 					$this -> modelo -> agregarPagina( $codigo, trim( $pagina ) );
 				}
+
+				require_once( "SmartMail.php" );
+				$mail = new SmartMail();
+				$mail -> enviarPassword( $nombre, $pass, $correo );
+
 				header( "Location: index.php?ctl=lista_alumnos&act=lista" );
 			}
 			else {

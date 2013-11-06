@@ -9,35 +9,26 @@ class LogInMdl {
 	}
 
 	function esAlumno( $codigo, $pass ) {
-		$query = "SELECT * FROM alumno";
-		if( $resultado = $this -> bd -> consultaGeneral( $query ) ) {
-			foreach ( $resultado as $fila ) {
-				if( $fila['codigo'] == $codigo && $fila['password'] == $pass )
-					return true;
-			}
-		}
+		$consulta = "SELECT * FROM alumno WHERE codigo = \"$codigo\" AND password = \"$pass\"";
+		if( $resultado = $this -> bd -> consultaEspecifica( $consulta ) )
+			if( $resultado -> num_rows > 0 )
+				return true;
 		return false;
 	}
 
 	function esProfesor( $codigo, $pass ) {
-		$query = "SELECT * FROM profesor";
-		if( $resultado = $this -> bd -> consultaGeneral( $query ) ) {
-			foreach ( $resultado as $fila ) {
-				if( $fila['codigo'] == $codigo && $fila['password'] == $pass )
-					return true;
-			}
-		}
+		$consulta = "SELECT * FROM profesor WHERE codigo = \"$codigo\" AND password = \"$pass\"";
+		if( $resultado = $this -> bd -> consultaEspecifica( $consulta ) )
+			if( $resultado -> num_rows > 0 )
+				return true;
 		return false;
 	}
 
 	function esAdministrador( $codigo, $pass ) {
-		$query = "SELECT * FROM administrador";
-		if( $resultado = $this -> bd -> consultaGeneral( $query ) ) {
-			foreach ( $resultado as $fila ) {
-				if( $fila['codigo'] == $codigo && $fila['password'] == $pass )
-					return true;
-			}
-		}
+		$consulta = "SELECT * FROM administrador WHERE codigo = \"$codigo\" AND password = \"$pass\"";
+		if( $resultado = $this -> bd -> consultaEspecifica( $consulta ) )
+			if( $resultado -> num_rows > 0 )
+				return true;
 		return false;
 	}
 }
