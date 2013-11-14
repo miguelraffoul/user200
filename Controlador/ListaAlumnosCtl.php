@@ -16,6 +16,10 @@ class ListaAlumnosCtl {
 				if( $lista_alumnos )
 					echo json_encode( $lista_alumnos );
 				break;
+			case "eliminar_alumno":
+				$codigo = $_POST['codigo'];
+				$this -> modelo -> eliminarAlumno( $codigo );
+				break;
 		}
 	}
 }

@@ -9,9 +9,14 @@ class ListaAlumnosMdl {
 	}	
 
 	public function obtenerAlumnos() {
-		$consulta ="SELECT * FROM alumno";
+		$consulta = "SELECT * FROM alumno";
 		$alumnos_array = $this -> bd -> consultaGeneral( $consulta );
 
 		return $alumnos_array;
+	}
+
+	public function eliminarAlumno( $codigo ) {
+		$consulta = "UPDATE alumno SET activo = FALSE WHERE codigo = $codigo";
+		return $this -> bd -> consultaEspecifica( $consulta );
 	}
 }
