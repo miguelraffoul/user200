@@ -56,8 +56,13 @@
 						<h2>Ciclos Escolares</h2>
 						<nav class="menu_section">
 							<ul id="lista_ciclos">
-								<li id="template" style="display: none;"><img title="Eliminar" src="www/img/delete.png"><a href="index.php?ctl=ciclo_modificar&act=mostrar_pagina"></a></li>
-								<!--<li id="template" style="display: none;"><img title="Eliminar" src="www/img/delete.png"><a href="#" onclick="javascript:abrirFormCiclo(this); return false;"></a></li>-->
+								<li id="template" style="display: none;">
+									<form action="index.php?ctl=ciclo_modificar&act=mostrar_pagina" method="POST">
+										<input style="display: none;" name="id_ciclo" type="text" value="{nombre}"/>
+										<img title="Eliminar" src="www/img/delete.png">
+										<a href="#" onclick="javascript:enviar(this); return false;"></a>
+									</form>
+								</li>
 							</ul>
 						</nav>
 					</section>

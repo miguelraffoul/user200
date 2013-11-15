@@ -1,5 +1,7 @@
 <?php 	
 
+session_start();
+
 switch( $_GET["ctl"] ){
 	case "login":
 		require_once( "Controlador/LogInCtl.php" );

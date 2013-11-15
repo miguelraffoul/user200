@@ -9,9 +9,9 @@ class CicloModificarMdl{
 	}
 
 	function obtenerCiclo( $id_ciclo ){
-		$consulta = "SELECT *fROM cicloescolar WHERE idCicloEscolar = $id_ciclo";
+		$consulta = "SELECT *FROM cicloescolar WHERE idCicloEscolar = \"$id_ciclo\"";
 
-		$ciclo_datos = $this -> bd -> consultaEspecifica( $consulta );
+		$ciclo_datos = $this -> bd -> consultaGeneral( $consulta );
 
 		return $ciclo_datos;
 	}

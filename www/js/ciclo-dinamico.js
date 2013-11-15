@@ -34,9 +34,11 @@ function mostrarListaCiclos(){
 					nuevo_elemento.removeAttribute( "style" );
 					nuevo_elemento.removeAttribute( "id" );
 					
-					var enlace = nuevo_elemento.lastChild;
-					enlace.setAttribute( "id", json[i].idCicloEscolar );
-					enlace.appendChild( document.createTextNode( "Ciclo " + json[i].idCicloEscolar ) );
+					var input_ciclo = nuevo_elemento.getElementsByTagName( "input" );
+					input_ciclo[0].setAttribute( "value", json[i].idCicloEscolar );
+
+					var enlace = nuevo_elemento.getElementsByTagName( "a" );
+					enlace[0].appendChild( document.createTextNode( "Ciclo " + json[i].idCicloEscolar ) );
 					document.getElementById( "lista_ciclos" ).appendChild( nuevo_elemento );
 				
 				}
@@ -49,22 +51,25 @@ function mostrarListaCiclos(){
 }
 
 
-function abrirFormCiclo( ciclo ){
-	var id = ciclo.id ;
-	//alert(ciclo.id);
-	
-	$.ajax({
-		type: 'POST',
-		data: {id_ciclo:id},
-		url: 'index.php?ctl=ciclo_modificar&act=mostrar_pagina',
-		success: function(){
-			alert("sii");
-		},
-		error: function(){
-			alert("error");
-		}
-	});
+function enviar( ciclo ){
+	ciclo.parentNode.submit();
 }
 
 
-function  mostrarCiclo(){}
+function  mostrarCiclo(){
+	$.ajax({
+		url: 'index.php?ctl=ciclo_modificar&act=mostrar_datos',
+		dataType: 'json',
+		success: function( json ){
+			if( json !== false ){
+				document.getElementById( "ciclo_select" ).value = json[0].idCicloEscolar ;
+				document.getElementById( "inicio_ciclo" ).value = json[0].inicio;
+				document.getElementById( "fin_ciclo" ).value = json[0].fin;
+			}
+			console.log( json );
+		},
+		error: function(){
+			alert( "No funciono mostrar Ciclo en modificar" );
+		}
+	});
+}
