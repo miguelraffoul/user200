@@ -5,14 +5,16 @@ function cargarListaAlumnos() {
 		success: function( json ) {
 			var plantilla = document.getElementById( 'template' );
 			for( i in json ) {
-				var alumno = plantilla.cloneNode();
-				alumno.removeAttribute( 'id' );
-				alumno.removeAttribute( 'style' );
-				var alumno_nombre = alumno.getElementsByTagName( 'a' );
-				alumno_nombre[0].appendChild( document.createTextNode( json[i].nombre ) );
-				var alumno_codigo = alumno.getElementsByTagName( 'td' );
-				alumno_codigo[2].appendChild( document.createTextNode( json[i].codigo ) );
-				document.getElementById( 'cuerpo_tabla' ).appendChild( alumno );
+				if( json[i].activo == 1 ) {
+					var alumno = plantilla.cloneNode();
+					alumno.removeAttribute( 'id' );
+					alumno.removeAttribute( 'style' );
+					var alumno_nombre = alumno.getElementsByTagName( 'a' );
+					alumno_nombre[0].appendChild( document.createTextNode( json[i].nombre ) );
+					var alumno_codigo = alumno.getElementsByTagName( 'td' );
+					alumno_codigo[2].appendChild( document.createTextNode( json[i].codigo ) );
+					document.getElementById( 'cuerpo_tabla' ).appendChild( alumno );
+				}
 			}
 		},
 		error: function() {
@@ -35,11 +37,15 @@ function eliminarAlumnos( boton ) {
 
 	if( alumnos_seleccionados ) {
 		var confirmacion = confirm( "Corfirme borrado de alumn@(s)" );
-		/*
 		if( confirmacion ) {
-	
+			for( var i = 0; i < checkboxes.length; ++i ){
+				if ( checkboxes[i].checked ) {
+					var tds = checkboxes[i].parentNode.parentNode.getElementsByTagName( 'td' );
+					var codigo = tds[2].innerHTML;
+					eliminarAlumno( codigo );
+				}
+			}
 		}
-		*/
 	}
 	else {
 		error = document.createElement( 'div' );
@@ -48,4 +54,15 @@ function eliminarAlumnos( boton ) {
 		error.appendChild( document.createTextNode( 'Seleccione por lo menos un(a) alumno(a)' ) );
 		boton.parentNode.insertBefore( error, boton );
 	}
+}
+
+function eliminarAlumno( id ) {
+	$.ajax({
+		type: 'POST',
+		data: {codigo:id},
+		url: 'index.php?ctl=lista_alumnos&act=eliminar_alumno',
+		success: function() {
+			window.location.replace( "index.php?ctl=lista_alumnos&act=lista" );
+		}
+	});
 }
