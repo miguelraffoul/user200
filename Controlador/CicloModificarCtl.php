@@ -17,8 +17,14 @@ class CicloModificarCtl{
 
 			case 'mostrar_datos':
 				$id_ciclo = $_SESSION['id_ciclo'];
-				$consulta_exitosa = $this -> modelo -> obtenerCiclo( $id_ciclo );
-				echo json_encode( $consulta_exitosa );		
+				$array_ciclo = $this -> modelo -> obtenerCiclo( $id_ciclo );
+				$array_dias = $this -> modelo -> obtenerDiasInhabiles( $id_ciclo );
+
+				
+				if( $array_dias === false )
+					echo json_encode( $array_ciclo );		
+				else
+					echo json_encode( array_merge( $array_ciclo, $array_dias ) );
 				break;
 
 			case "modifica_ciclo":
