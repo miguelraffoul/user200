@@ -17,6 +17,8 @@ function agregarDiaInhabil(){
 	nuevo_dia_inhabil.removeAttribute( "style" );
 
 	div_dias_inhabiles.insertBefore( nuevo_dia_inhabil, div_dias_inhabiles.firstChild );
+
+	return nuevo_dia_inhabil;
 }
 
 
@@ -62,11 +64,22 @@ function  mostrarCiclo(){
 		dataType: 'json',
 		success: function( json ){
 			if( json !== false ){
-				document.getElementById( "ciclo_select" ).value = json[0].idCicloEscolar ;
+				var option = document.createElement( "option" );
+				option.appendChild( document.createTextNode( json[0].idCicloEscolar ) );
+				document.getElementById( "ciclo_select" ).appendChild( option );
+
 				document.getElementById( "inicio_ciclo" ).value = json[0].inicio;
 				document.getElementById( "fin_ciclo" ).value = json[0].fin;
+
+				for( var i = 1 ; i < json.length ; ++i ){
+					nuevo_dia_inhabil = agregarDiaInhabil();
+					var temp = nuevo_dia_inhabil.getElementsByTagName( "input" );
+					temp[0].setAttribute( "value", json[i].fecha );
+
+					temp = nuevo_dia_inhabil.getElementsByTagName( "textarea" );
+					temp[0].appendChild( document.createTextNode( json[i].motivo ) );
+				}
 			}
-			console.log( json );
 		},
 		error: function(){
 			alert( "No funciono mostrar Ciclo en modificar" );

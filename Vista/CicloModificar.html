@@ -60,11 +60,11 @@
 							<h2>Ciclo &lt;Ciclo&gt;</h2>
 							<label for="ciclo">Ciclo</label>
 							<select id="ciclo_select" name="ciclo_select">
-								<option value="0" disable="disable" selected >Selecciona ciclo</option>
+								<!--<option value="0" disable="disable" selected >Selecciona ciclo</option>
 								<option value ="1">2013A</option>
 								<option value ="2">2013B</option>
 								<option value ="3">2014A</option>
-								<option value ="4">2014B</option>
+								<option value ="4">2014B</option>-->
 							</select>
 							<label for="inicio_ciclo">Inicio de Ciclo</label>
 							<input type="text" id="inicio_ciclo" name="inicio_ciclo" class="datepicker" readonly/>
@@ -74,13 +74,13 @@
 							<div id="dias_inhabiles" >
 								<div id="dia_inhabil_template" class="dia_inhabil" style="display: none;" >
 									<label for="fecha_dia_inhabil">Fecha</label>
-									<input type="text" name="fecha_dia_inhabil" class="datepicker fecha_dia_inhabil" readonly/>
+									<input type="text" name="fecha_dia_inhabil" class="datepicker fecha_dia_inhabil" value="{fecha}" readonly/>
 									<label for="descripcion">Descripcion</label>
 									<textarea name="descripcion" class="descripcion" rows="5" cols="10" wrap"hard"></textarea>
 									<label onclick="eliminarDiaInhabil(this)" ><p>-Quitar Día Inhábil</p></label>
 								</div>
 							</div>
-							<button class="btn" type="button" onclick="validarFormCE()">Guardar</button>
+							<button class="btn" type="button" >Guardar</button>
 						</form>
 					</section>
 				</div>
