@@ -43,6 +43,10 @@ switch( $_GET["ctl"] ){
 		require_once( "Controlador/ListaAlumnosCtl.php" );
 		$ctl = new ListaAlumnosCtl();
 		break;
+	case "modificar_alumno":
+		require_once( "Controlador/ModificarAlumnoCtl.php" );
+		$ctl = new ModificarAlumnoCtl();
+		break;
 	case "alumno":
 		require_once( "Controlador/AlumnoCtl.php" );
 		$ctl = new AlumnoCtl();

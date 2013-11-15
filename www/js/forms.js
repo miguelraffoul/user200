@@ -303,7 +303,29 @@ function validarFormModifAlumno() {
 	carrera_valida = validarSelect( 'carrera' );
 	correo_valido = validarCorreo();
 
-	if( nombre_valido && codigo_valido && carrera_valida && correo_valido )
+	var celular_valido, cuenta_valida, pagina_valida;
+
+
+	var celular = document.getElementById( 'tiene_celular' );
+	if( celular.checked )
+		celular_valido = validarCelular();
+	else
+		celular_valido = true;
+
+	var github = document.getElementById( 'tiene_github' );
+	if( github.checked )
+		cuenta_valida = validarCampoOcional( 'cuenta_git' );
+	else
+		cuenta_valida = true;
+
+	var pagina = document.getElementById( 'tiene_pagina' );
+	if( pagina.checked )
+		pagina_valida = validarCampoOcional( 'pagina_web' );
+	else
+		pagina_valida = true;
+
+	if( nombre_valido && codigo_valido && carrera_valida && correo_valido &&
+		celular_valido && cuenta_valida && pagina_valida )
 		document.getElementById( 'form_modificar_alumno' ).submit();
 }
 

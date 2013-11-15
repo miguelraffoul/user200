@@ -19,9 +19,18 @@
 		<!--[if lt IE 9]>
 			<script src="css3-mediaqueries.js"></script>
 		<![endif]-->
+		<script src="www/js/jquery-1.10.2.js"></script>
 		<script src="www/js/bootstrap.js"></script>
 		<script src="www/js/modernizr.js"></script>
 		<script src="www/js/forms.js"></script>
+		<script src="www/js/modificar-alumno.js"></script>
+
+		<script>
+			$( document ).ready( function() {
+				cargarDatosAlumno();
+			} );
+		</script>
+
 		<div id="wrapper">
 			<header>
 				<div id="header_logo">
@@ -57,7 +66,7 @@
 					<section class="span9">
 						<h2>&lt;Nombre Curso&gt; - Alumnos</h2>
 						<div id="area_alumnos">
-							<form id="form_modificar_alumno">
+							<form id="form_modificar_alumno" method="POST">
 								<label for="nombre">Nombre*</label>
 								<input type="text" id="nombre" name="nombre" required/>
 								<label for="codigo">Código*</label>
@@ -72,17 +81,35 @@
 								</select>
 								<label for="mail">Correo*</label> 
 								<input type="email" id="mail" name="mail" placeholder="tucorreo@dominio.com" required/>
-								<label for="estatus">Estatus</label>
-								<input id="estatus_ac" type="radio" name="estatus" value="Activo" checked>Activo
-								<input id="estatus_in" type="radio" name="estatus" value="Inactivo">Inactivo
-								<label for="celular">Celular</label>
-								<input type="text" id="celular" name="celular"/>
-								<label for="cuenta_git">Cuenta de Github</label>
-								<input type="text" id="cuenta_git" name="cuenta_git"/>
-								<label for="pagina_web">Pagina Web</label>
-								<input type="text" id="pagina_web" name="pagina_web"/>
+								<div class="checkbox">
+									<label for="tiene_celular">
+										<input type="checkbox" id="tiene_celular" name="tiene_celular" onclick="estaActivado( this )">Agregar celular
+									</label>
+								</div>
+								<div id="campo_celular" style="display: none;">
+									<label for="celular">Celular</label>
+									<input type="text" id="celular" name="celular"/>
+								</div>
+								<div class="checkbox">
+									<label for="tiene_github">
+										<input type="checkbox" id="tiene_github" name="tiene_github" onclick="estaActivado( this )">Agregar cuenta de github
+									</label>
+								</div>
+								<div id="campo_github" style="display: none;">
+									<label for="cuenta_git">Cuenta de Github</label>
+									<input type="text" id="cuenta_git" name="cuenta_git"/>
+								</div>
+								<div class="checkbox">
+									<label for="tiene_pagina">
+										<input type="checkbox" id="tiene_pagina" name="tiene_pagina" onclick="estaActivado( this )">Agregar página web
+									</label>
+								</div>
+								<div id="campo_pagina" style="display: none;">
+									<label for="pagina_web">Pagina Web</label>
+									<input type="text" id="pagina_web" name="pagina_web"/>
+								</div>
 								<button class="btn" type="button" onclick="validarFormModifAlumno()"/>Guardar</button>
-							</form>						
+							</form>										
 						</div>
 					</section>
 				</div>

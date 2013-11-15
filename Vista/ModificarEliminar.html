@@ -84,7 +84,12 @@
 								<tbody id="cuerpo_tabla">
 									<tr id="template" style="display: none;">
 										<td><input type="checkbox" class="chbx"></td>
-										<td><a href="ModificarA.html"></a></td>
+										<td>
+											<form action="index.php?ctl=modificar_alumno&act=mostar_datos" method="POST">
+												<input type="text" name="codigo" style="display: none;" value="" >
+												<a href="#" onclick="enviarForm(this)"></a>
+											</form>
+										</td>
 										<td></td>
 									</tr>
 								</tbody>

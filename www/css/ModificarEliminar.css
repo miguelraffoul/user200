@@ -1,3 +1,7 @@
+form {
+    margin: 0;
+}
+
 header #header_opciones{
     float: right;
     width: 240px;

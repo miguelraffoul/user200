@@ -11,6 +11,8 @@ function cargarListaAlumnos() {
 					alumno.removeAttribute( 'style' );
 					var alumno_nombre = alumno.getElementsByTagName( 'a' );
 					alumno_nombre[0].appendChild( document.createTextNode( json[i].nombre ) );
+					var codigo_input = alumno.getElementsByTagName( 'input' );
+					codigo_input[1].value = json[i].codigo;
 					var alumno_codigo = alumno.getElementsByTagName( 'td' );
 					alumno_codigo[2].appendChild( document.createTextNode( json[i].codigo ) );
 					document.getElementById( 'cuerpo_tabla' ).appendChild( alumno );
@@ -21,6 +23,10 @@ function cargarListaAlumnos() {
 			console.log( "Falla al cargar alumnos" );
 		}
 	});
+}
+
+function enviarForm( enlace ) {
+	enlace.parentNode.submit()
 }
 
 function eliminarAlumnos( boton ) {
