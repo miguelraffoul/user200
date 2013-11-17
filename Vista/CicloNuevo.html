@@ -25,7 +25,8 @@
 		<script>
   			$(function() {
     			$( 'body' ).on( 'click', '.datepicker', function() {
-    				$( this ).datepicker( 'destroy' ).datepicker( {showOn: 'focus', dateFormat: 'dd/mm/yy'} ).focus();
+    				$( this ).not('.hasDatePicker').datepicker( {showOn: 'focus', dateFormat: 'dd/mm/yy'} ).focus();
+    				//$( this ).datepicker( 'destroy' ).datepicker( {showOn: 'focus', dateFormat: 'dd/mm/yy'} ).focus();
     			});
   			});
   		</script>

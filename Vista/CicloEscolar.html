@@ -59,7 +59,9 @@
 								<li id="template" style="display: none;">
 									<form action="index.php?ctl=ciclo_modificar&act=mostrar_pagina" method="POST">
 										<input style="display: none;" name="id_ciclo" type="text" value="{nombre}"/>
-										<img title="Eliminar" src="www/img/delete.png">
+										<a href="#" onclick="javascript:eliminarCiclo(this); return false;">
+											<img title="Eliminar" src="www/img/delete.png">
+										</a>
 										<a href="#" onclick="javascript:enviar(this); return false;"></a>
 									</form>
 								</li>

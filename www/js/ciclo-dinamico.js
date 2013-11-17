@@ -30,17 +30,18 @@ function mostrarListaCiclos(){
 		success: function( json ){
 			if( json !== false ){
 				var elemento_lista_temp = document.getElementById( 'template' );
+
 				for( i in json ){
 
 					var nuevo_elemento = elemento_lista_temp.cloneNode();
 					nuevo_elemento.removeAttribute( "style" );
-					nuevo_elemento.removeAttribute( "id" );
+					nuevo_elemento.setAttribute( "id", json[i].idCicloEscolar );
 					
 					var input_ciclo = nuevo_elemento.getElementsByTagName( "input" );
 					input_ciclo[0].setAttribute( "value", json[i].idCicloEscolar );
 
 					var enlace = nuevo_elemento.getElementsByTagName( "a" );
-					enlace[0].appendChild( document.createTextNode( "Ciclo " + json[i].idCicloEscolar ) );
+					enlace[1].appendChild( document.createTextNode( "Ciclo " + json[i].idCicloEscolar ) );
 					document.getElementById( "lista_ciclos" ).appendChild( nuevo_elemento );
 				
 				}
@@ -86,6 +87,22 @@ function  mostrarCiclo(){
 		},
 		error: function(){
 			alert( "No funciono mostrar Ciclo en modificar" );
+		}
+	});
+}
+
+function eliminarCiclo( ciclo ){
+	var id = ciclo.parentNode.parentNode.id;
+	
+	$.ajax({
+		type: 'POST',
+		data: {id_ciclo:id},
+		url: 'index.php?ctl=ciclo_escolar&act=modificar',
+		success: function (){
+			window.location.replace( 'index.php?ctl=ciclo_escolar&act=mostrar_pagina' );
+		},
+		error: function (){
+			alert( "no funciona" );
 		}
 	});
 }
