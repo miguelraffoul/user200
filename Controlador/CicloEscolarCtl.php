@@ -22,6 +22,11 @@ class CicloEscolarCtl{
 				echo json_encode( $ciclos_array );
 				break;
 
+			case "modificar":
+				$ciclo = $_POST['id_ciclo'];
+				$this -> modelo -> eliminarCiclo( $ciclo );
+				break;
+
 			default:
 				require_once("Vista/Error.html");
 		}

@@ -10,10 +10,16 @@ class CicloEscolarMdl{
 
 	function obtenerCiclos(){
 
-		$consulta = "SELECT *FROM cicloescolar";
+		$consulta = "SELECT *FROM cicloescolar WHERE activo = TRUE";
 		$ciclos_array = $this -> bd -> consultaGeneral( $consulta );
 
 		return $ciclos_array;
+	}
+
+	function eliminarCiclo( $ciclo ){
+		$consulta = "UPDATE cicloescolar SET activo = FALSE WHERE idCicloEscolar = \"$ciclo\"";
+
+		return $this -> bd -> insertar( $consulta ); 
 	}
 
 }
