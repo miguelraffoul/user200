@@ -19,7 +19,6 @@ class CicloModificarCtl{
 				$id_ciclo = $_SESSION['id_ciclo'];
 				$array_ciclo = $this -> modelo -> obtenerCiclo( $id_ciclo );
 				$array_dias = $this -> modelo -> obtenerDiasInhabiles( $id_ciclo );
-
 				
 				if( $array_dias === false )
 					echo json_encode( $array_ciclo );		
