@@ -64,17 +64,20 @@ function  mostrarCiclo(){
 		dataType: 'json',
 		success: function( json ){
 			if( json !== false ){
+				var titulo = document.createTextNode( "Ciclo " + json[0].idCicloEscolar );
+				document.getElementById( "titulo" ).appendChild( titulo );
+
 				var option = document.createElement( "option" );
 				option.appendChild( document.createTextNode( json[0].idCicloEscolar ) );
 				document.getElementById( "ciclo_select" ).appendChild( option );
 
-				document.getElementById( "inicio_ciclo" ).value = json[0].inicio;
-				document.getElementById( "fin_ciclo" ).value = json[0].fin;
+				document.getElementById( "inicio_ciclo" ).value = formatoFecha( json[0].inicio );
+				document.getElementById( "fin_ciclo" ).value = formatoFecha( json[0].fin );
 
 				for( var i = 1 ; i < json.length ; ++i ){
 					nuevo_dia_inhabil = agregarDiaInhabil();
 					var temp = nuevo_dia_inhabil.getElementsByTagName( "input" );
-					temp[0].setAttribute( "value", json[i].fecha );
+					temp[0].setAttribute( "value", formatoFecha( json[i].fecha ) );
 
 					temp = nuevo_dia_inhabil.getElementsByTagName( "textarea" );
 					temp[0].appendChild( document.createTextNode( json[i].motivo ) );
@@ -85,4 +88,11 @@ function  mostrarCiclo(){
 			alert( "No funciono mostrar Ciclo en modificar" );
 		}
 	});
+}
+
+
+function formatoFecha( fecha ){
+	var fecha_formato = fecha.split( "-" );
+	var temp = fecha_formato[2] + "/" + fecha_formato[1] + "/" + fecha_formato[0]; 
+	return temp;
 }

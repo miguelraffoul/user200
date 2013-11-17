@@ -10,8 +10,10 @@ class CicloNuevoMdl{
 
 	function agregarCiclo( $ciclo_select, $fi_ciclo, $ff_ciclo, $fd_inhabil, $descripcion ){
 
-		$consulta = "INSERT INTO cicloescolar ( idCicloEscolar, inicio, fin, Administrador_codigo ) 
-					 VALUES ( \"$ciclo_select\", \"$fi_ciclo\", \"$ff_ciclo\", '123admin')";
+		$bool = 1;
+
+		$consulta = "INSERT INTO cicloescolar ( idCicloEscolar, inicio, fin, Administrador_codigo, activo ) 
+					 VALUES ( \"$ciclo_select\", \"$fi_ciclo\", \"$ff_ciclo\", '123admin', \"$bool\" )";
 
 		$consulta_exitosa = $this -> bd -> insertar( $consulta );
 
