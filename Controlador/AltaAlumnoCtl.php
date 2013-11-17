@@ -3,7 +3,7 @@
 class AltaAlumnoCtl {
 	private $modelo;
 
-	private function generarPass(){
+	private function generarPass() {
 		$fecha = getdate();
 		$fecha_string = implode( "", $fecha );
 		$nuevo_pass = substr( str_shuffle( $fecha_string ), 0, 8 );

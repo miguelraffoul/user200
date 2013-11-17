@@ -66,11 +66,11 @@
 					<section class="span9">
 						<h2>&lt;Nombre Curso&gt; - Alumnos</h2>
 						<div id="area_alumnos">
-							<form id="form_modificar_alumno" method="POST">
+							<form id="form_modificar_alumno" action="index.php?ctl=modificar_alumno&act=guardar_cambios" method="POST">
 								<label for="nombre">Nombre*</label>
 								<input type="text" id="nombre" name="nombre" required/>
 								<label for="codigo">Código*</label>
-								<input type="text" id="codigo" name="codigo" required/>
+								<input type="text" id="codigo" name="codigo" required disabled/>
 								<label for="ingenierias">Carrera*</label>
 								<select id="carrera" name="ingenierias" required>
 									<option value="0" disabled selected>Selecciona Carrera</option>
