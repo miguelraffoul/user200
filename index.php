@@ -7,6 +7,10 @@ switch( $_GET["ctl"] ){
 		require_once( "Controlador/LogInCtl.php" );
 		$ctl = new LogInCtl();
 		break;
+	case "recuperar_contrasenia":
+		require_once( "Controlador/RecuperarPassCtl.php" );
+		$ctl = new RecuperarPassCtl();
+		break;
 	case "cambiar_contrasenia":
 		require_once( "Controlador/CambioContraCtl.php" );
 		$ctl = new CambioContraCtl();
