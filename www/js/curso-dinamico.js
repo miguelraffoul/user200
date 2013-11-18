@@ -94,7 +94,7 @@ function mostrarListaCursos() {
 		url: 'index.php?ctl=profesor&act=carga_cursos',
 		dataType: 'json',
 		success: function( json ) {
-			if( json !== false ) {
+			if( Array.isArray( json ) ) {
 				var plantilla = document.getElementById( 'template' );
 				for( i in json ) {
 					var curso = plantilla.cloneNode();
