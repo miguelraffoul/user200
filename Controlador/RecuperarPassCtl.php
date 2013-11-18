@@ -27,15 +27,15 @@ class RecuperarPassCtl {
 			require_once( "SmartMail.php" );
 			$mail = new SmartMail();
 
-			if( $this -> modelo -> cambiarPasswordAlumno( $correo, $pass ) ) {
+			if( $this -> modelo -> cambiarPasswordAlumno( $correo, sha1( $pass ) ) ) {
 				$mail -> enviarNuevoPassword( $pass, $correo );
 				echo $vista;
 			}
-			else if( $this -> modelo -> cambiarPasswordProfesor( $correo, $pass ) ) {
+			else if( $this -> modelo -> cambiarPasswordProfesor( $correo, sha1( $pass ) ) ) {
 				$mail -> enviarNuevoPassword( $pass, $correo );
 				echo $vista;			
 			}
-			else if( $this -> modelo -> cambiarPasswordAdministrador( $correo, $pass ) ) {
+			else if( $this -> modelo -> cambiarPasswordAdministrador( $correo, sha1( $pass ) ) ) {
 				$mail -> enviarNuevoPassword( $pass, $correo );
 				echo $vista;			
 			}

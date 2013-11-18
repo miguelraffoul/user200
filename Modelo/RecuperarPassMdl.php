@@ -9,7 +9,7 @@ class RecuperarPassMdl {
 	}
 
 	public function cambiarPasswordAlumno( $correo, $new_pass ) {
-		$consulta = "UPDATE alumno SET password = \"$new_pass\" WHERE email = $correo";
+		$consulta = "UPDATE alumno SET password = \"$new_pass\" WHERE email = \"$correo\"";
 		if( $this -> bd -> insertar( $consulta ) )
 			if( $this -> bd -> affectedRows() > 0 )
 				return true;
@@ -17,7 +17,7 @@ class RecuperarPassMdl {
 	}
 
 	public function cambiarPasswordProfesor( $correo, $new_pass ) {
-		$consulta = "UPDATE profesor SET password = \"$new_pass\" WHERE email = $correo";
+		$consulta = "UPDATE profesor SET password = \"$new_pass\" WHERE email = \"$correo\"";
 		if( $this -> bd -> insertar( $consulta ) )
 			if( $this -> bd -> affectedRows() > 0 )
 				return true;
@@ -25,7 +25,7 @@ class RecuperarPassMdl {
 	}
 
 	public function cambiarPasswordAdministrador( $correo, $new_pass ) {
-		$consulta = "UPDATE administrador SET password = \"$new_pass\" WHERE email = $correo";
+		$consulta = "UPDATE administrador SET password = \"$new_pass\" WHERE email = \"$correo\"";
 		if( $this -> bd -> insertar( $consulta ) )
 			if( $this -> bd -> affectedRows() > 0 )
 				return true;
