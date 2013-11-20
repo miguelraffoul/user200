@@ -8,38 +8,51 @@ class CicloNuevoMdl{
 		$this -> bd = BaseDeDatos::obtenerInstancia();
 	}
 
-	function agregarCiclo( $ciclo_select, $fi_ciclo, $ff_ciclo, $fd_inhabil, $descripcion ){
+	function existe( $id_ciclo ){
+		$consulta = "SELECT id_ciclo FROM cicloescolar WHERE idCicloEscolar = \"$id_ciclo\"";
+		return $this -> bd -> consultaGeneral( $consulta );
+	}
 
-		$consulta = "INSERT INTO cicloescolar ( idCicloEscolar, inicio, fin, Administrador_codigo, activo ) 
-					 VALUES ( \"$ciclo_select\", \"$fi_ciclo\", \"$ff_ciclo\", '123admin', TRUE )";
+	function estaActivo( $id_ciclo ){
+		$consulta = "SELECT id_ciclo FROM cicloescolar WHERE idCicloEscolar = \"$id_ciclo\" AND activo = TRUE";
+		return $this -> bd -> consultaGeneral( $consulta );
+	}
 
-		$consulta_exitosa = $this -> bd -> insertar( $consulta );
-
-		if( $consulta_exitosa ){
-			$consulta_exitosa = $this -> agregarDiasInhabiles( $ciclo_select, $fd_inhabil, $descripcion );
-			return $consulta_exitosa;	
-		}
-		else
-			return FALSE;
+	function activarCiclo( $id_ciclo ){
+		$consulta = "UPDATE cicloescolar SET activo = TRUE WHERE idCicloEscolar = \"$id_ciclo\"";
+		return $this -> bd -> insertar( $consulta );
 	}
 
 
-	function agregarDiasInhabiles( $ciclo_select, $fd_inhabil, $descripcion ){
+	function agregarFechaCiclo( $ciclo_select, $fi_ciclo, $ff_ciclo ){
+		$consulta = "INSERT INTO cicloescolar ( idCicloEscolar, inicio, fin, Administrador_codigo, activo ) 
+					 VALUES ( \"$ciclo_select\", \"$fi_ciclo\", \"$ff_ciclo\", '123admin', TRUE )";
+		return $this -> bd -> insertar( $consulta );
+	}
 
-		$longitud = count( $fd_inhabil );
 
-		for( $i = 0 ; $i < $longitud ; $i = $i + 1 ){
-			$temp_dia = $fd_inhabil[$i];
-			$temp_desc = $descripcion[$i];
-			$consulta = "INSERT INTO diainhabil (fecha, motivo, CicloEscolar_idCicloEscolar )
-					 	 VALUES ( \"$temp_dia\", \"$temp_desc\", \"$ciclo_select\" )";
+	function actualizarFechaCiclo( $id_ciclo, $inicio_ciclo, $fin_ciclo ){
+		$consulta1 = "UPDATE cicloescolar SET inicio = \"$inicio_ciclo\" WHERE idCicloEscolar = \"$id_ciclo\"";
+		$this -> bd -> insertar( $consulta1 );
 
-			$consulta_exitosa = $this -> bd -> insertar( $consulta );
+		$consulta2 = "UPDATE cicloescolar SET fin = \"$fin_ciclo\" WHERE idCicloEscolar = \"$id_ciclo\"";
+		$this -> bd -> insertar( $consulta2 );
 
-			if( $consulta_exitosa === FALSE )
-				return FALSE;
-		}
+		if( $consulta1 && $consulta2 )
+			return TRUE;
+		return FALSE;
+	}
 
-		return TRUE;
+
+	function eliminarDiasInhabiles( $id_ciclo ){
+		$consulta = "DELETE FROM diainhabil WHERE CicloEscolar_idCicloEscolar = \"$id_ciclo\"";
+		return $this -> bd -> insertar( $consulta );
+	}
+
+
+	function agregarDiaInhabil( $id_ciclo, $fd_inhabil, $descripcion ){
+		$consulta = "INSERT INTO diainhabil ( fecha, motivo, CicloEscolar_idCicloEscolar )
+					 VALUES ( \"$fd_inhabil\", \"$descripcion\", \"$id_ciclo\" )";
+		return $this -> bd -> insertar( $consulta );
 	}
 }

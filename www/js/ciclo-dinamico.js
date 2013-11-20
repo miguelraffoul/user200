@@ -21,18 +21,6 @@ function agregarDiaInhabil(){
 	return nuevo_dia_inhabil;
 }
 
-function agregarDiaInhabilMod( fecha ){
-	
-	var div_dias_inhabiles = document.getElementById( "dias_inhabiles" );
-	var div_dia = document.getElementById( "dia_inhabil_template" )
-
-	var nuevo_dia_inhabil = div_dia.cloneNode();
-	nuevo_dia_inhabil.setAttribute( "id", fecha );
-	nuevo_dia_inhabil.removeAttribute( "style" );
-
-	div_dias_inhabiles.insertBefore( nuevo_dia_inhabil, div_dias_inhabiles.firstChild );
-}
-
 
 function mostrarListaCiclos(){
 
