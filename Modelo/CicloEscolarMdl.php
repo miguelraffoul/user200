@@ -18,8 +18,14 @@ class CicloEscolarMdl{
 
 	function eliminarCiclo( $ciclo ){
 		$consulta = "UPDATE cicloescolar SET activo = FALSE WHERE idCicloEscolar = \"$ciclo\"";
+		$resultado1 = $this -> bd -> insertar( $consulta ); 
 
-		return $this -> bd -> insertar( $consulta ); 
+		$consulta = "UPDATE curso SET activo = FALSE WHERE CicloEscolar_idCicloEscolar = \"$ciclo\"";
+		$resultado2 = $this -> bd -> insertar( $consulta );
+
+		if( $resultado1 && $resultado2 )
+			return TRUE;
+		return FALSE;
 	}
 
 }

@@ -32,13 +32,13 @@ class CicloNuevoMdl{
 
 
 	function actualizarFechaCiclo( $id_ciclo, $inicio_ciclo, $fin_ciclo ){
-		$consulta1 = "UPDATE cicloescolar SET inicio = \"$inicio_ciclo\" WHERE idCicloEscolar = \"$id_ciclo\"";
-		$this -> bd -> insertar( $consulta1 );
+		$consulta = "UPDATE cicloescolar SET inicio = \"$inicio_ciclo\" WHERE idCicloEscolar = \"$id_ciclo\"";
+		$resultado1 = $this -> bd -> insertar( $consulta );
 
-		$consulta2 = "UPDATE cicloescolar SET fin = \"$fin_ciclo\" WHERE idCicloEscolar = \"$id_ciclo\"";
-		$this -> bd -> insertar( $consulta2 );
+		$consulta = "UPDATE cicloescolar SET fin = \"$fin_ciclo\" WHERE idCicloEscolar = \"$id_ciclo\"";
+		$resultado2 = $this -> bd -> insertar( $consulta );
 
-		if( $consulta1 && $consulta2 )
+		if( $resultado1 && $resultado2 )
 			return TRUE;
 		return FALSE;
 	}
