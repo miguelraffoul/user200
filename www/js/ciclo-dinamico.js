@@ -21,6 +21,18 @@ function agregarDiaInhabil(){
 	return nuevo_dia_inhabil;
 }
 
+function agregarDiaInhabilMod( fecha ){
+	
+	var div_dias_inhabiles = document.getElementById( "dias_inhabiles" );
+	var div_dia = document.getElementById( "dia_inhabil_template" )
+
+	var nuevo_dia_inhabil = div_dia.cloneNode();
+	nuevo_dia_inhabil.setAttribute( "id", fecha );
+	nuevo_dia_inhabil.removeAttribute( "style" );
+
+	div_dias_inhabiles.insertBefore( nuevo_dia_inhabil, div_dias_inhabiles.firstChild );
+}
+
 
 function mostrarListaCiclos(){
 
@@ -28,7 +40,7 @@ function mostrarListaCiclos(){
 		url: 'index.php?ctl=ciclo_escolar&act=listar_ciclos',
 		dataType: 'json',
 		success: function( json ){
-			if( json !== false ){
+			if( Array.isArray( json ) ){
 				var elemento_lista_temp = document.getElementById( 'template' );
 
 				for( i in json ){
@@ -64,7 +76,7 @@ function  mostrarCiclo(){
 		url: 'index.php?ctl=ciclo_modificar&act=mostrar_datos',
 		dataType: 'json',
 		success: function( json ){
-			if( json !== false ){
+			if( Array.isArray( json ) ){
 				var titulo = document.createTextNode( "Ciclo " + json[0].idCicloEscolar );
 				document.getElementById( "titulo" ).appendChild( titulo );
 
@@ -76,7 +88,7 @@ function  mostrarCiclo(){
 				document.getElementById( "fin_ciclo" ).value = formatoFecha( json[0].fin );
 
 				for( var i = 1 ; i < json.length ; ++i ){
-					nuevo_dia_inhabil = agregarDiaInhabil();
+					var nuevo_dia_inhabil = agregarDiaInhabil();
 					var temp = nuevo_dia_inhabil.getElementsByTagName( "input" );
 					temp[0].setAttribute( "value", formatoFecha( json[i].fecha ) );
 

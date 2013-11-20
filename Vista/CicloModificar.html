@@ -57,7 +57,7 @@
 			<div class="container-fluid">
 				<div class="row-fluid">
 					<section class="min_width_section">
-						<form id="form_ciclo">
+						<form id="form_ciclo" action="index.php?ctl=ciclo_modificar&act=modificar" method="POST">
 							<h2 id ="titulo" ></h2>
 							<label for="ciclo">Ciclo</label>
 							<select id="ciclo_select" name="ciclo_select">
@@ -70,13 +70,13 @@
 							<div id="dias_inhabiles" >
 								<div id="dia_inhabil_template" class="dia_inhabil" style="display: none;" >
 									<label for="fecha_dia_inhabil">Fecha</label>
-									<input type="text" name="fecha_dia_inhabil" class="datepicker fecha_dia_inhabil" readonly/>
+									<input type="text" name="fecha_dia_inhabil[]" class="datepicker fecha_dia_inhabil"  readonly/>
 									<label for="descripcion">Descripcion</label>
-									<textarea name="descripcion" class="descripcion" rows="5" cols="10" wrap"hard"></textarea>
+									<textarea name="descripcion[]" class="descripcion" rows="5" cols="10" wrap"hard"></textarea>
 									<label onclick="eliminarDiaInhabil(this)" ><p>-Quitar Día Inhábil</p></label>
 								</div>
 							</div>
-							<button class="btn" type="button" >Guardar</button>
+							<button class="btn" type="button" onclick="validarFormCEModificado()">Guardar</button>
 						</form>
 					</section>
 				</div>

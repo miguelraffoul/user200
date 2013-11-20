@@ -16,6 +16,19 @@ function validarFormCE(){
 	
 }
 
+function validarFormCEModificado(){
+	var form = document.getElementById( 'form_ciclo' );
+	var fecha_inicio = document.getElementById( 'inicio_ciclo' );
+	var fecha_fin = document.getElementById( 'fin_ciclo' );
+
+	var fecha_ciclo_valido, dias_inhabiles_validos;
+	fecha_ciclo_valido = validarIntervaloCE( form, fecha_inicio, fecha_fin );
+	dias_inhabiles_validos = validarDiasInhabilesEnCE( fecha_inicio, fecha_fin );
+
+	if(  fecha_ciclo_valido && dias_inhabiles_validos )
+		form.submit();
+}
+
 
 function validarCiclosSelect( form ){
 
@@ -207,7 +220,6 @@ function validarDiasInhabilesEnCE( fecha_inicio, fecha_fin ){
 
 
 	//DIAS INHABILES REPETIDOS
-	console.log("hola");
 	for( var i = 0 ; i < dia_inhabil.length ; ++i ){
 		for( var j = i + 1 ; j < dia_inhabil.length ; ++j ){
 			 error_dia_repetido = document.getElementById( "error_dia_repetido" );
