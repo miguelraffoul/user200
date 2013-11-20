@@ -139,7 +139,6 @@ function validarCorreo() {
 function validarEnvioRecupera(){
 	if( validarCorreo() ){
 		document.getElementById( 'formulario' ).submit();
-		window.location.href = "EnvioRecupera.html";
 	}
 }
 
