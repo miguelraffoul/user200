@@ -9,12 +9,12 @@ class CicloNuevoMdl{
 	}
 
 	function existe( $id_ciclo ){
-		$consulta = "SELECT id_ciclo FROM cicloescolar WHERE idCicloEscolar = \"$id_ciclo\"";
+		$consulta = "SELECT idcicloEscolar FROM cicloescolar WHERE idCicloEscolar = \"$id_ciclo\"";
 		return $this -> bd -> consultaGeneral( $consulta );
 	}
 
 	function estaActivo( $id_ciclo ){
-		$consulta = "SELECT id_ciclo FROM cicloescolar WHERE idCicloEscolar = \"$id_ciclo\" AND activo = TRUE";
+		$consulta = "SELECT idcicloEscolar FROM cicloescolar WHERE idCicloEscolar = \"$id_ciclo\" AND activo = TRUE";
 		return $this -> bd -> consultaGeneral( $consulta );
 	}
 

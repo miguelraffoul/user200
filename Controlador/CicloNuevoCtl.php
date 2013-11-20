@@ -19,7 +19,8 @@ class CicloNuevoCtl{
 				break;
 
 			default:
-				require_once("Vista/Error.html");
+				echo "default"; 
+				//require_once("Vista/Error.html");
 		}
 	}
 
@@ -51,7 +52,8 @@ class CicloNuevoCtl{
 		$fi_ciclo = $this -> darFormatoFecha( $inicio_ciclo ); 
 		$ff_ciclo = $this -> darFormatoFecha( $fin_ciclo );
 		 
-		if( $this -> modelo -> actualizarFechaCiclo( $id_ciclo, $fi_ciclo, $ff_ciclo ) &&
+		if( $this -> modelo -> activarCiclo( $id_ciclo ) &&
+			$this -> modelo -> actualizarFechaCiclo( $id_ciclo, $fi_ciclo, $ff_ciclo ) &&
 			$this -> modelo -> eliminarDiasInhabiles( $id_ciclo ) ){
 			$longitud = count( $fd_inhabil );
 			for( $i = 0 ; $i < $longitud ; $i = $i + 1 ){
@@ -59,11 +61,13 @@ class CicloNuevoCtl{
 				$descripcion[$i] = trim( $descripcion[$i] );
 				if( !$this -> modelo -> agregarDiaInhabil( $id_ciclo, $fd_inhabil[$i], $descripcion[$i] ) ){
 					require_once( 'Vista/Error.html' );
+					echo "dia inhabil error";
 					return FALSE;
 				}
 			}
 		}
 		else{
+			echo "error en actualizar ciclo fechas";
 			require_once( 'Vista/Error.html' );
 			return FALSE;
 		}
