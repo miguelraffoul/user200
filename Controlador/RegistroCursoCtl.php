@@ -4,19 +4,15 @@ class RegistroCursoCtl {
 	private $modelo;
 
 	private function altaCurso() {
-		$nombre = trim( $_POST['nombre'] );
+		$curso = explode( "#", $_POST['curso'] );
 		$seccion = trim( $_POST['seccion'] );
 		$nrc = trim( $_POST['nrc'] );
-		$academia = $_POST['academia'];
 		$ciclo = $_POST['ciclo'];
 		$dia = $_POST['dia'];
 		$horas_dia = $_POST['horas_dia'];
 		$hora_inicio = $_POST['hora_inicio'];
 
-		if( $this -> modelo -> agregarCurso( $nrc, $nombre, $seccion, $ciclo, "424242" ) ) {
-			if( $academia != "0" ){
-				$this -> modelo -> agregarAcademia( $nrc, $academia );
-			}
+		if( $this -> modelo -> agregarCurso( $nrc, $curso[0], $seccion, $ciclo, "424242", $curso[1] ) ) {
 			array_shift( $dia );
 			array_shift( $horas_dia );
 			array_shift( $hora_inicio );
@@ -50,6 +46,12 @@ class RegistroCursoCtl {
 				$deptos_array = $this -> modelo -> obtenerAcademias();
 				if( $deptos_array )
 					echo json_encode( $deptos_array );
+				break;
+			case 'carga_cursos':
+				$depto = $_POST['departamento'];
+				$cursos_array = $this -> modelo -> obtenerCursos( $depto );
+				if( $cursos_array )
+					echo json_encode( $cursos_array );
 				break;
 			case 'carga_ciclos':
 				$ciclos_array = $this -> modelo -> obtenerCiclos();

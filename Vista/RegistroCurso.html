@@ -46,16 +46,18 @@
 					<form id="alta_curso" method='POST'>	
 						<section id="izquierdo">
 							<div id="alta_curso_izq">
-								<label for="nombre">Nombre</label>
-								<input type="text" id="nombre" name="nombre">
+								<label for="academia">Academia</label>
+								<select id="academia" name="academia" onChange="cargarCursos( this.value )">
+									<option value="0" disabled selected>Selecciona academia</option>
+								</select>
+								<label for="curso">Curso</label>
+								<select id="curso" name="curso">
+									<option value="0" disabled selected>Selecciona curso</option>
+								</select>
 								<label for="seccion">Sección</label>
 								<input type="text" id="seccion" name="seccion">
 								<label for="nrc">NRC</label>
 								<input type="text" id="nrc" name="nrc">
-								<label for="academia">Academia</label>
-								<select id="academia" name="academia">
-									<option value="0" disables selected>Selecciona academia</option>
-								</select>
 								<label for="ciclo">Ciclo </label>
 								<select id="ciclo" name="ciclo" >
 									<option value="0" disabled selected >Selecciona ciclo</option>
@@ -66,7 +68,7 @@
 						<section id="derecho">
 							<div id="alta_curso_der">
 								<h4>Horario</h4>
-								<select id="dias_curso" onChange="agregarDiaCurso(this)">
+								<select id="dias_curso" onChange="agregarDiaCurso( this )">
 									<option value="0" selected disabled>Días de clase</option>
 									<option value="1">Lunes</option>
 									<option value="2">Martes</option>

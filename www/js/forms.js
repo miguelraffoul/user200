@@ -433,12 +433,13 @@ function validarHorario() {
 }
 
 function validarFormRegistroCurso() {
-	var nombre = validarGenerico( 'nombre' );
+	var academia = validarSelect( 'academia' );
+	var nombre = validarSelect( 'curso' );
 	var seccion = validarGenerico( 'seccion' ); 
 	var ciclo = validarSelect( 'ciclo' ); 
 	var horario = validarHorario();
 	var nrc = validarGenerico( 'nrc' );
-	if( nombre && seccion && nrc && ciclo && horario ) {
+	if( academia && nombre && seccion && nrc && ciclo && horario ) {
 		document.getElementById( 'alta_curso' ).submit();
 	}	
 }
