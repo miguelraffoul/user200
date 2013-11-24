@@ -12,20 +12,44 @@ class RegistroCursoCtl {
 		$horas_dia = $_POST['horas_dia'];
 		$hora_inicio = $_POST['hora_inicio'];
 
-		if( $this -> modelo -> agregarCurso( $nrc, $curso[0], $seccion, $ciclo, "424242", $curso[1] ) ) {
-			array_shift( $dia );
-			array_shift( $horas_dia );
-			array_shift( $hora_inicio );
-			for( $i = 0; $i < count( $dia ); ++$i ){
-				$array = explode( ":", $hora_inicio[$i] );
-				$array[0] = $array[0] + $horas_dia[$i];
-				$hora_fin = implode( ":", $array );
-				$this -> modelo -> agregarDiaClase( $nrc, $dia[$i], $hora_inicio[$i], $hora_fin );
+		$existente = $this -> modelo -> buscarCurso( $nrc );
+		var_dump( $existente );
+
+		if( $existente === false ) {
+			if( $this -> modelo -> agregarCurso( $nrc, $curso[0], $seccion, $ciclo, "424242", $curso[1] ) ) {
+				array_shift( $dia );
+				array_shift( $horas_dia );
+				array_shift( $hora_inicio );
+				for( $i = 0; $i < count( $dia ); ++$i ){
+					$array = explode( ":", $hora_inicio[$i] );
+					$array[0] = $array[0] + $horas_dia[$i];
+					$hora_fin = implode( ":", $array );
+					$this -> modelo -> agregarDiaClase( $nrc, $dia[$i], $hora_inicio[$i], $hora_fin );
+				}
+				header( "Location: index.php?ctl=profesor&act=cursos" );
 			}
-			header( "Location: index.php?ctl=profesor&act=cursos" );
+			else {
+				require_once( "Vista/Error.html" );
+			}
 		}
 		else {
-			require_once( "Vista/Error.html" );
+			if( $existente['activo'] ) {
+				require_once( "Vista/Error.html" );
+			}
+			else {
+				$this -> modelo -> eliminarDiasClase( $nrc );
+				$this -> modelo -> actualizarCurso( $nrc, $curso[0], $seccion, $ciclo, "424242", $curso[1] );
+				array_shift( $dia );
+				array_shift( $horas_dia );
+				array_shift( $hora_inicio );
+				for( $i = 0; $i < count( $dia ); ++$i ){
+					$array = explode( ":", $hora_inicio[$i] );
+					$array[0] = $array[0] + $horas_dia[$i];
+					$hora_fin = implode( ":", $array );
+					$this -> modelo -> agregarDiaClase( $nrc, $dia[$i], $hora_inicio[$i], $hora_fin );
+				}
+				header( "Location: index.php?ctl=profesor&act=cursos" );
+			}
 		}
 	}
 

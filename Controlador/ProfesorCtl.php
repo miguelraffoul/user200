@@ -15,6 +15,10 @@ class ProfesorCtl {
 				if( $cursos )
 					echo json_encode( $cursos ); 
 				break;
+			case "eliminar_curso":
+				$id_curso = $_POST['curso'];
+				$this -> modelo -> eliminarCurso( $id_curso );
+				break;
 		}
 	}
 }

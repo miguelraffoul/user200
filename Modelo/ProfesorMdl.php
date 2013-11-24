@@ -3,7 +3,7 @@
 class ProfesorMdl {
 	private $bd;
 
-	function __construct() {
+	public function __construct() {
 		require_once( "BaseDeDatos.php" );
 		$this -> bd = BaseDeDatos::obtenerInstancia();
 	}
@@ -14,4 +14,9 @@ class ProfesorMdl {
 
 		return $cursos_array;
 	}
+
+	public function eliminarCurso( $id_curso ) {
+		$consulta = "UPDATE curso SET activo = FALSE WHERE clave_curso = \"$id_curso\"";
+		$this -> bd -> consultaEspecifica( $consulta );
+	} 
 }

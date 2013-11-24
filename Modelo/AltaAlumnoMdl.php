@@ -9,7 +9,7 @@ class AltaAlumnoMdl {
 	}
 
 	function buscarAlmuno( $codigo ) {
-		$consulta = "SELECT * FROM alumno WHERE codigo = $codigo";
+		$consulta = "SELECT * FROM alumno WHERE codigo = \"$codigo\"";
 		$resultado = $this -> bd -> consultaEspecifica( $consulta );
 		if( $resultado )
 			if( $resultado -> num_rows > 0 )
@@ -32,17 +32,17 @@ class AltaAlumnoMdl {
 	}
 
 	function agregarCelular( $codigo, $celular ) {
-		$consulta = "UPDATE alumno SET celular = \"$celular\" WHERE codigo = $codigo";
+		$consulta = "UPDATE alumno SET celular = \"$celular\" WHERE codigo = \"$codigo\"";
 		$this -> bd -> insertar( $consulta );
 	}
 
 	function agregarGit( $codigo, $git ) {
-		$consulta = "UPDATE alumno SET cuenta_github = \"$git\" WHERE codigo = $codigo";
+		$consulta = "UPDATE alumno SET cuenta_github = \"$git\" WHERE codigo = \"$codigo\"";
 		$this -> bd -> insertar( $consulta );
 	}
 
 	function agregarPagina( $codigo, $pagina ) {
-		$consulta = "UPDATE alumno SET pagina_web = \"$pagina\" WHERE codigo = $codigo";
+		$consulta = "UPDATE alumno SET pagina_web = \"$pagina\" WHERE codigo = \"$codigo\"";
 		$this -> bd -> insertar( $consulta );
 	}
 
@@ -56,7 +56,7 @@ class AltaAlumnoMdl {
 					celular = \"$celular\",
 					cuenta_github = \"$git\",
 					pagina_web = \"$pagina\"
-					WHERE  codigo = $codigo";
+					WHERE  codigo = \"$codigo\"";
 		$this -> bd -> insertar( $consulta );			
 	}
 }

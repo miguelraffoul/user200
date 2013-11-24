@@ -8,6 +8,15 @@ class RegistroCursoMdl {
 		$this -> bd = BaseDeDatos::obtenerInstancia();
 	}
 
+	public function buscarCurso( $clave ) {
+		$consulta = "SELECT * FROM curso WHERE clave_curso = \"$clave\"";
+		$resultado = $this -> bd -> consultaEspecifica( $consulta );
+		if( $resultado )
+			if( $resultado -> num_rows > 0 )
+				return $resultado -> fetch_assoc();
+		return false;
+	}
+
 	public function agregarCurso( $clave, $nombre, $seccion, $ciclo, $profesor, $asignatura ) {
 		$consulta = "INSERT INTO curso
 				(clave_curso, nombre, seccion, CicloEscolar_idCicloEscolar, Profesor_codigo, activo, Asignatura_idAsignatura)
@@ -25,7 +34,7 @@ class RegistroCursoMdl {
 
 	public function agregarDiaClase( $clave, $dia, $hora_inicio, $hora_fin ) {
 		$consulta = "INSERT INTO diaclase
-				(hora_inicio, hora_fin, dia, curso_clave_curso)
+				(hora_inicio, hora_fin, dia, Curso_clave_curso )
 				VALUES(
 					\"$hora_inicio\",
 					\"$hora_fin\",
@@ -33,6 +42,23 @@ class RegistroCursoMdl {
 					\"$clave\"
 				)";
 		$this -> bd -> insertar( $consulta );
+	}
+
+	public function actualizarCurso( $clave, $nombre, $seccion, $ciclo, $profesor, $asignatura ) {
+		$consulta = "UPDATE curso SET
+					nombre = \"$nombre\",
+					seccion = \"$seccion\",
+					CicloEscolar_idCicloEscolar = \"$ciclo\",
+					Profesor_codigo = \"$profesor\",
+					activo = TRUE,
+					Asignatura_idAsignatura = \"$asignatura\"
+					WHERE clave_curso = \"$clave\"";
+		$this -> bd -> insertar( $consulta );
+	}
+
+	public function eliminarDiasClase( $clave ) {
+		$consulta = "DELETE FROM diaclase WHERE Curso_clave_curso = \"$clave\"";
+		$this -> bd -> consultaEspecifica( $consulta );
 	}
 
 	public function obtenerAcademias() {

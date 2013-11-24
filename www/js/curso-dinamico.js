@@ -123,12 +123,14 @@ function mostrarListaCursos() {
 			if( Array.isArray( json ) ) {
 				var plantilla = document.getElementById( 'template' );
 				for( i in json ) {
-					var curso = plantilla.cloneNode();
-					curso.removeAttribute( 'style' );
-					curso.setAttribute( 'id', json[i].clave_curso );
-					var curso_enlace = curso.getElementsByTagName( 'a' );
-					curso_enlace[0].appendChild( document.createTextNode( json[i].nombre ) );
-					document.getElementById( 'lista_cursos' ).appendChild( curso );
+					if( json[i].activo == 1 ) {
+						var curso = plantilla.cloneNode();
+						curso.removeAttribute( 'style' );
+						curso.setAttribute( 'id', json[i].clave_curso );
+						var curso_enlace = curso.getElementsByTagName( 'a' );
+						curso_enlace[0].appendChild( document.createTextNode( json[i].nombre ) );
+						document.getElementById( 'lista_cursos' ).appendChild( curso );
+					}
 				}
 			}
 		},
@@ -138,6 +140,17 @@ function mostrarListaCursos() {
 	});
 }
 
+function eliminarCurso( boton ) {
+	var id_curso = boton.parentNode.id;
+	$.ajax({
+		type: 'POST',
+		data: {curso:id_curso},
+		url: 'index.php?ctl=profesor&act=eliminar_curso',
+		success: function() {
+			window.location.replace( "index.php?ctl=profesor&act=cursos" );
+		}
+	});
+}
 
 function mostrarListaRubros(){
 
