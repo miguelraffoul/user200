@@ -69,6 +69,32 @@ function cargarAcademias() {
 	});
 }
 
+function cargarCursos( id_academia ) {
+		var select = document.getElementById( 'curso' );
+		var opciones = select.getElementsByTagName( 'option' );
+		for( var it = opciones.length - 1; it > 0; --it )
+			select.removeChild( opciones[it] );
+
+		$.ajax({
+		type: 'POST',
+		data: {departamento:id_academia},
+		url: 'index.php?ctl=registro_curso&act=carga_cursos',
+		dataType: 'json',
+		success: function( json ) {
+			for( i in json ) {
+				var option = document.createElement( 'option' );
+				var texto = document.createTextNode( json[i].nombre );
+				option.setAttribute( 'value', json[i].nombre + "#" + json[i].idAsignatura );
+				option.appendChild( texto );
+				select.appendChild( option );
+			}
+		},
+		error: function() {
+			console.log( "error ajax" );
+		} 
+	});
+}
+
 function cargarCiclos() {
 	$.ajax({
 		url: 'index.php?ctl=registro_curso&act=carga_ciclos',
