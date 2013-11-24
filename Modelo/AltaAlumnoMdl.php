@@ -8,6 +8,15 @@ class AltaAlumnoMdl {
 		$this -> bd = BaseDeDatos::obtenerInstancia();
 	}
 
+	function buscarAlmuno( $codigo ) {
+		$consulta = "SELECT * FROM alumno WHERE codigo = $codigo";
+		$resultado = $this -> bd -> consultaEspecifica( $consulta );
+		if( $resultado )
+			if( $resultado -> num_rows > 0 )
+				return $resultado -> fetch_assoc();
+		return false;
+	}
+
 	function alta( $codigo, $nombre, $carrera, $correo, $pass ) {
 		$consulta = "INSERT INTO alumno
 				(codigo, nombre, carrera, email, activo, password)
@@ -35,5 +44,19 @@ class AltaAlumnoMdl {
 	function agregarPagina( $codigo, $pagina ) {
 		$consulta = "UPDATE alumno SET pagina_web = \"$pagina\" WHERE codigo = $codigo";
 		$this -> bd -> insertar( $consulta );
+	}
+
+	function actualizarDatos( $codigo, $nombre, $carrera, $correo, $pass, $celular, $git, $pagina ) {
+		$consulta = "UPDATE alumno SET
+					nombre = \"$nombre\",
+					carrera = \"$carrera\",
+					email = \"$correo\",
+					activo = TRUE,
+					password = \"$pass\",
+					celular = \"$celular\",
+					cuenta_github = \"$git\",
+					pagina_web = \"$pagina\"
+					WHERE  codigo = $codigo";
+		$this -> bd -> insertar( $consulta );			
 	}
 }
