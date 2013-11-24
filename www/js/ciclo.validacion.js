@@ -4,14 +4,18 @@ function validarFormCE(){
 	var fecha_inicio = document.getElementById( 'inicio_ciclo' );
 	var fecha_fin = document.getElementById( 'fin_ciclo' );
 
-	var ciclo_seleccionado_valido, fecha_ciclo_valido, dias_inhabiles_validos;
-
+	var ciclo_seleccionado_valido;
 	ciclo_seleccionado_valido = validarCiclosSelect( form );
-	fecha_ciclo_valido = validarIntervaloCE( form, fecha_inicio, fecha_fin );
-	dias_inhabiles_validos = validarDiasInhabilesEnCE( fecha_inicio, fecha_fin );
 
-	if( ciclo_seleccionado_valido && fecha_ciclo_valido && dias_inhabiles_validos )
-		form.submit();
+	if( ciclo_seleccionado_valido ){
+		var fecha_ciclo_valido, dias_inhabiles_validos;
+	
+		fecha_ciclo_valido = validarIntervaloCE( form, fecha_inicio, fecha_fin );
+		dias_inhabiles_validos = validarDiasInhabilesEnCE( fecha_inicio, fecha_fin );
+
+		if( fecha_ciclo_valido && dias_inhabiles_validos )
+			form.submit();
+	}
 
 	
 }
@@ -57,8 +61,8 @@ function validarCiclosSelect( form ){
 
 function validarIntervaloCE( form, fecha_inicio, fecha_fin ){
 
-	var es_fi_valido = validarInicioCiclo( form, fecha_inicio);
-	var es_ff_valido = validarFinCiclo( form, fecha_fin);
+	var es_fi_valido = esValidoInicioCiclo( form, fecha_inicio);
+	var es_ff_valido = esValidoFinCiclo( form, fecha_fin);
 
 	if(  es_fi_valido && es_ff_valido ){
 		var fi = ( fecha_inicio.value ). split("/").reverse().join("/");
@@ -88,7 +92,7 @@ function validarIntervaloCE( form, fecha_inicio, fecha_fin ){
 
 
 
-function validarInicioCiclo( form, fecha_inicio ){
+function esValidoInicioCiclo( form, fecha_inicio ){
 
 	var error_vacio = document.getElementById( 'error_fechai_vacia');
 
@@ -108,11 +112,16 @@ function validarInicioCiclo( form, fecha_inicio ){
 			form.removeChild( error_vacio );
 	}
 
+
+	if( !esFechaDeCiclo( form, fecha_inicio, "error_fechai_intervalo" ) ){
+		return false;
+	}
+
 	return true;
 }
 
 
-function validarFinCiclo( form, fecha_fin ){
+function esValidoFinCiclo( form, fecha_fin ){
 
 	var error_vacio = document.getElementById( 'error_fechaf_vacia');
 
@@ -131,6 +140,44 @@ function validarFinCiclo( form, fecha_fin ){
 		if( error_vacio != null )
 			form.removeChild( error_vacio );
 	} 
+
+	if( !esFechaDeCiclo( form, fecha_fin, "error_fechaf_intervalo" ) )
+		return false;
+
+	return true;
+}
+
+function esFechaDeCiclo( form, fecha, error ){
+	var ciclo_select = document.getElementById( "ciclo_select" );
+	var error_fecha_ciclo = document.getElementById( error ); 
+
+	var fecha_array = fecha.value.split( "/" );
+	var year = ciclo_select.value.substring( 0, 4 );
+	var ciclo = ciclo_select.value.charAt( 4 );
+
+	if( year != fecha_array[2] || ( ciclo == "A" && parseInt( fecha_array[1] ) > 6 ) || 
+		( ciclo == "B" && parseInt( fecha_array[1] ) <= 6 ) ){
+		
+		if( error_fecha_ciclo == null ){
+
+			var error_fecha = document.getElementById( "error_fecha_intervalo" );
+			if( error_fecha != null )
+				form.removeChild( error_fecha );
+
+			error_fecha_ciclo = document.createElement( 'div' );
+			error_fecha_ciclo.setAttribute( 'class', 'error' );
+			error_fecha_ciclo.setAttribute( 'id', error );
+			error_fecha_ciclo.appendChild( document.createTextNode( "La fecha no coincide con el ciclo " + year + " (A: Enero-Junio, B: Julio-Diciembre)." ) );
+
+			form.insertBefore( error_fecha_ciclo, fecha.nextSibling );
+		}
+		return false;
+
+	}
+	else{
+		if( error_fecha_ciclo != null )
+			form.removeChild( error_fecha_ciclo );
+	}
 
 	return true;
 }
