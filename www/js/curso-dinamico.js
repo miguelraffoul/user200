@@ -208,7 +208,12 @@ function cargarDatosCursoModificar() {
 			});			
 			document.getElementById( 'asignatura' ).value = json[0].nombre;
 			var curso = document.getElementById( 'curso' );//que pedo!!!!!!!!
-			curso.value = json[0].Asignatura_idAsignatura;//que pedo!!!!!!!!
+			var algo = json[0].Asignatura_idAsignatura;
+			
+			var opciones = curso.options;
+			console.log( opciones.length );
+			console.log( opciones );
+			console.log( curso );
 
 			document.getElementById( 'seccion' ).value = json[0].seccion;
 			document.getElementById( 'ciclo' ).value = json[0].CicloEscolar_idCicloEscolar;
@@ -222,7 +227,6 @@ function cargarDiasClase() {
 		url: 'index.php?ctl=modificar_curso&act=cargar_dias_clase',
 		dataType: 'json',
 		success: function( json ) {
-			console.log( json );
 			var opciones_select = document.getElementById( 'dias_curso' ).options;
 			for( i in json ) {
 				var plantilla = document.getElementById( 'dia_curso_template' );
@@ -231,17 +235,13 @@ function cargarDiasClase() {
 				nuevo_dia.setAttribute( 'id', valorDia( json[i].dia ) );
 				var input_dia = nuevo_dia.getElementsByTagName( 'input' );
 				input_dia[0].value = json[i].dia;
-
 				var inicio = json[i].hora_inicio.split( ":" );
 				var fin = json[i].hora_fin.split( ":" );
 				input_dia[1].value = fin[0] - inicio[0];
-
 				input_dia[2].value = json[i].hora_inicio;
 				var titulo = nuevo_dia.getElementsByTagName( 'p' );
 				titulo[0].appendChild( document.createTextNode( json[i].dia ) );
-
 				document.getElementById( 'alta_curso_der' ).appendChild( nuevo_dia );
-
 				for( var x = 1; x < opciones_select.length; ++x ){
 					if( opciones_select[x].text == json[i].dia ) {
 						opciones_select[x].setAttribute( 'disabled', 'disabled' );
