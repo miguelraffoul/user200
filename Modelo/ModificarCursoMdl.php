@@ -17,4 +17,9 @@ class ModificarCursoMdl {
 		$consulta = "SELECT * FROM asignatura WHERE idAsignatura = $id";
 		return $this -> bd -> consultaGeneral( $consulta );
 	}
+
+	public function obtenerDiasClase( $clave ) {
+		$consulta = "SELECT * FROM diaclase WHERE Curso_clave_curso = \"$clave\"";
+		return $this -> bd -> consultaGeneral( $consulta );
+	}
 }

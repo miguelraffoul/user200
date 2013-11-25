@@ -21,6 +21,12 @@ class ModificarCursoCtl {
 				$idAsignatura = $_POST['asignatura'];
 				$resultado = $this -> modelo -> obtenerDatosAsignatura( $idAsignatura );
 				echo json_encode( $resultado );
+				break;
+			case 'cargar_dias_clase':
+				$clave = $_SESSION['clave_curso'];
+				$resultado = $this -> modelo -> obtenerDiasClase( $clave );
+				echo json_encode( $resultado );
+				break;
 			case 'guardar_cambios':
 				break;
 		}

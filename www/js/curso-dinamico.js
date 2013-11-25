@@ -1,5 +1,5 @@
 function agregarDiaCurso( opcion ) {
-	var opciones_select = document.getElementById( 'dias_curso' ).getElementsByTagName( 'option' );
+	var opciones_select = document.getElementById( 'dias_curso' ).options;
 	for( var i = 0; i < opciones_select.length; ++i ){
 		if( opciones_select[i].value == opcion.value ) {
 			opciones_select[i].setAttribute( 'disabled', 'disabled' );
@@ -19,7 +19,7 @@ function agregarDiaCurso( opcion ) {
 	document.getElementById( 'alta_curso_der' ).appendChild( nuevo_dia );
 } 
 
-function diaValor( valor ){
+function diaValor( valor ) {
 	switch( valor ) {
 		case '1':
 			return 'Lunes';
@@ -36,8 +36,25 @@ function diaValor( valor ){
 	}
 }
 
-function eliminarDiaCurso( dia ){
-	var opciones_select = document.getElementById( 'dias_curso' ).getElementsByTagName( 'option' );
+function valorDia( dia ) {
+	switch( dia ) {
+		case 'Lunes':
+			return 1;
+		case 'Martes':
+			return 2;
+		case 'Miércoles':
+			return 3;
+		case 'Jueves':
+			return 4;
+		case 'Viernes':
+			return 5;
+		case 'Sábado':
+			return 6;
+	}
+}
+
+function eliminarDiaCurso( dia ) {
+	var opciones_select = document.getElementById( 'dias_curso' ).options;
 	for( var i = 0; i < opciones_select.length; ++i ){
 		if( opciones_select[i].value == dia.parentNode.id ) {
 			opciones_select[i].removeAttribute( 'disabled' );
@@ -190,7 +207,9 @@ function cargarDatosCursoModificar() {
 				}
 			});			
 			document.getElementById( 'asignatura' ).value = json[0].nombre;
-			document.getElementById( 'curso' ).value = json[0].Asignatura_idAsignatura;
+			var curso = document.getElementById( 'curso' );//que pedo!!!!!!!!
+			curso.value = json[0].Asignatura_idAsignatura;//que pedo!!!!!!!!
+
 			document.getElementById( 'seccion' ).value = json[0].seccion;
 			document.getElementById( 'ciclo' ).value = json[0].CicloEscolar_idCicloEscolar;
 			document.getElementById( 'nrc' ).value = json[0].clave_curso;
@@ -199,7 +218,39 @@ function cargarDatosCursoModificar() {
 }
 
 function cargarDiasClase() {
+	$.ajax({
+		url: 'index.php?ctl=modificar_curso&act=cargar_dias_clase',
+		dataType: 'json',
+		success: function( json ) {
+			console.log( json );
+			var opciones_select = document.getElementById( 'dias_curso' ).options;
+			for( i in json ) {
+				var plantilla = document.getElementById( 'dia_curso_template' );
+				var nuevo_dia = plantilla.cloneNode();
+				nuevo_dia.removeAttribute( 'style' );
+				nuevo_dia.setAttribute( 'id', valorDia( json[i].dia ) );
+				var input_dia = nuevo_dia.getElementsByTagName( 'input' );
+				input_dia[0].value = json[i].dia;
 
+				var inicio = json[i].hora_inicio.split( ":" );
+				var fin = json[i].hora_fin.split( ":" );
+				input_dia[1].value = fin[0] - inicio[0];
+
+				input_dia[2].value = json[i].hora_inicio;
+				var titulo = nuevo_dia.getElementsByTagName( 'p' );
+				titulo[0].appendChild( document.createTextNode( json[i].dia ) );
+
+				document.getElementById( 'alta_curso_der' ).appendChild( nuevo_dia );
+
+				for( var x = 1; x < opciones_select.length; ++x ){
+					if( opciones_select[x].text == json[i].dia ) {
+						opciones_select[x].setAttribute( 'disabled', 'disabled' );
+						break;
+					}
+				}
+			}
+		}
+	});
 }
 
 function mostrarListaRubros(){
