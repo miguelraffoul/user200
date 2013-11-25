@@ -87,12 +87,12 @@ function cargarAcademias() {
 }
 
 function cargarCursos( id_academia ) {
-		var select = document.getElementById( 'curso' );
-		var opciones = select.getElementsByTagName( 'option' );
-		for( var it = opciones.length - 1; it > 0; --it )
-			select.removeChild( opciones[it] );
+	var select = document.getElementById( 'curso' );
+	var opciones = select.getElementsByTagName( 'option' );
+	for( var it = opciones.length - 1; it > 0; --it )
+		select.removeChild( opciones[it] );
 
-		$.ajax({
+	$.ajax({
 		type: 'POST',
 		data: {departamento:id_academia},
 		url: 'index.php?ctl=registro_curso&act=carga_cursos',
@@ -194,31 +194,33 @@ function cargarDatosCursoModificar() {
 				data: {asignatura:json[0].Asignatura_idAsignatura},
 				url: 'index.php?ctl=modificar_curso&act=cargar_asignatura',
 				dataType: 'json',
-				success: function( json ) {
+				success: function( json2 ) {
 					var academia = document.getElementById( 'academia' );
-					academia.value =  json[0].Departamento_idDepartamento;
+					academia.value =  json2[0].Departamento_idDepartamento;
 					console.log( "hola" );// <<--------
 					console.log( academia.options );// <<------------
-					if( "createEvent" in document ) {
-					    var evt = document.createEvent( "HTMLEvents" );
-					    evt.initEvent( "change", false, true );
-					    academia.dispatchEvent( evt );
-					}
-					else
-					    academia.fireEvent( "onchange" );
+					$.ajax({
+						type: 'POST',
+						data: {departamento:json2[0].Departamento_idDepartamento},
+						url: 'index.php?ctl=registro_curso&act=carga_cursos',
+						dataType: 'json',
+						success: function( json3 ) {
+							var curso = document.getElementById( 'curso' );
+							for( i in json3 ) {
+								var option = document.createElement( 'option' );
+								var texto = document.createTextNode( json3[i].nombre );
+								option.setAttribute( 'value', json3[i].idAsignatura );
+								option.appendChild( texto );
+								curso.appendChild( option );
+							}
+							curso.value = json[0].Asignatura_idAsignatura;		
+						}
+					});
 				}
-			});			
+			});	
 			document.getElementById( 'asignatura' ).value = json[0].nombre;
-			var curso = document.getElementById( 'curso' );//que pedo!!!!!!!!
-			var algo = json[0].Asignatura_idAsignatura;
-			
-			var opciones = curso.options;
-			console.log( opciones );
-			console.log( curso );
-
 			document.getElementById( 'seccion' ).value = json[0].seccion;
 			document.getElementById( 'ciclo' ).value = json[0].CicloEscolar_idCicloEscolar;
-			console.log( document.getElementById( 'ciclo' ).options ); //<<--------
 			document.getElementById( 'nrc' ).value = json[0].clave_curso;
 		}
 	});
@@ -247,6 +249,7 @@ function cargarDiasClase() {
 				for( var x = 1; x < opciones_select.length; ++x ){
 					if( opciones_select[x].text == json[i].dia ) {
 						opciones_select[x].setAttribute( 'disabled', 'disabled' );
+						opciones_select[x].setAttribute( 'selected', 'selected' );
 						break;
 					}
 				}

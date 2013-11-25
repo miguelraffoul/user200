@@ -14,7 +14,6 @@ class RegistroCursoCtl {
 		$asignatura = $_POST['asignatura'];
 
 		$existente = $this -> modelo -> buscarCurso( $nrc );
-		var_dump( $existente );
 
 		if( $existente === false ) {
 			if( $this -> modelo -> agregarCurso( $nrc, $asignatura, $seccion, $ciclo, "424242", $curso ) ) {
@@ -39,7 +38,7 @@ class RegistroCursoCtl {
 			}
 			else {
 				$this -> modelo -> eliminarDiasClase( $nrc );
-				$this -> modelo -> actualizarCurso( $nrc, $curso[0], $seccion, $ciclo, "424242", $curso[1] );
+				$this -> modelo -> actualizarCurso( $nrc, $asignatura, $seccion, $ciclo, "424242", $curso );
 				array_shift( $dia );
 				array_shift( $horas_dia );
 				array_shift( $hora_inicio );
