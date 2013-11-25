@@ -19,6 +19,8 @@
 			$(document).ready( function() {
 				cargarAcademias();
 				cargarCiclos();
+				cargarDatosCursoClonar();
+				cargarDiasClase();
 			} );
 		</script>
 		<div id="wrapper">		
@@ -41,9 +43,9 @@
 				<div class="clear"></div>				
 			</header>
 			<div class="container-fluid">
-				<h2>Captura Curso</h2>
+				<h2>Clonar Curso</h2>
 				<div class="row-fluid">
-					<form id="alta_curso" method='POST'>	
+					<form id="alta_curso" action="index.php?ctl=clonar_curso&act=guardar_cambios" method='POST'>	
 						<section id="izquierdo">
 							<div id="alta_curso_izq">
 								<label for="academia">Academia</label>
@@ -51,9 +53,10 @@
 									<option value="0" disabled selected>Selecciona academia</option>
 								</select>
 								<label for="curso">Curso</label>
-								<select id="curso" name="curso">
+								<select id="curso" name="curso" onchange="establecerAsignatura( this )">
 									<option value="0" disabled selected>Selecciona curso</option>
 								</select>
+								<input type="text" id="asignatura"name="asignatura" style="display: none;" value="" >
 								<label for="seccion">Sección</label>
 								<input type="text" id="seccion" name="seccion">
 								<label for="nrc">NRC</label>

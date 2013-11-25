@@ -39,6 +39,14 @@ switch( $_GET["ctl"] ){
 		require_once( "Controlador/RegistroCursoCtl.php" );
 		$ctl = new RegistroCursoCtl();
 		break;
+	case "clonar_curso":
+		require_once( "Controlador/ClonarCursoCtl.php" );
+		$ctl = new ClonarCursoCtl();
+		break;
+	case "modificar_curso":
+		require_once( "Controlador/ModificarCursoCtl.php" );
+		$ctl = new ModificarCursoCtl();
+		break;
 	case "alta_alumno":
 		require_once( "Controlador/AltaAlumnoCtl.php" );
 		$ctl = new AltaAlumnoCtl();

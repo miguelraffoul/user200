@@ -84,7 +84,7 @@ function cargarCursos( id_academia ) {
 			for( i in json ) {
 				var option = document.createElement( 'option' );
 				var texto = document.createTextNode( json[i].nombre );
-				option.setAttribute( 'value', json[i].nombre + "#" + json[i].idAsignatura );
+				option.setAttribute( 'value', json[i].idAsignatura );
 				option.appendChild( texto );
 				select.appendChild( option );
 			}
@@ -93,6 +93,11 @@ function cargarCursos( id_academia ) {
 			console.log( "error ajax" );
 		} 
 	});
+}
+
+function establecerAsignatura( asignatura ) {
+	var opciones = asignatura.getElementsByTagName( 'option' );
+	document.getElementById( 'asignatura' ).value = opciones[asignatura.selectedIndex].text;
 }
 
 function cargarCiclos() {
@@ -158,8 +163,46 @@ function enviarForm( boton ) {
 	boton.parentNode.submit();
 }
 
-function mostrarListaRubros(){
+function cargarDatosCursoClonar() {
 
+}
+
+function cargarDatosCursoModificar() {
+	$.ajax({
+		url: 'index.php?ctl=modificar_curso&act=cargar_datos',
+		dataType: 'json',
+		success: function( json ) {
+			$.ajax({
+				type: 'POST',
+				data: {asignatura:json[0].Asignatura_idAsignatura},
+				url: 'index.php?ctl=modificar_curso&act=cargar_asignatura',
+				dataType: 'json',
+				success: function( json ) {
+					var academia = document.getElementById( 'academia' );
+					academia.value =  json[0].Departamento_idDepartamento;
+					if( "createEvent" in document ) {
+					    var evt = document.createEvent( "HTMLEvents" );
+					    evt.initEvent( "change", false, true );
+					    academia.dispatchEvent( evt );
+					}
+					else
+					    academia.fireEvent( "onchange" );
+				}
+			});			
+			document.getElementById( 'asignatura' ).value = json[0].nombre;
+			document.getElementById( 'curso' ).value = json[0].Asignatura_idAsignatura;
+			document.getElementById( 'seccion' ).value = json[0].seccion;
+			document.getElementById( 'ciclo' ).value = json[0].CicloEscolar_idCicloEscolar;
+			document.getElementById( 'nrc' ).value = json[0].clave_curso;
+		}
+	});
+}
+
+function cargarDiasClase() {
+
+}
+
+function mostrarListaRubros(){
 	$.ajax({
 		url: 'index.php?ctl=curso_profesor&act=listar_rubros',
 		dataType: 'json',

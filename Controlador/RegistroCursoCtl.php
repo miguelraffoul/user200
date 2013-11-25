@@ -4,19 +4,20 @@ class RegistroCursoCtl {
 	private $modelo;
 
 	private function altaCurso() {
-		$curso = explode( "#", $_POST['curso'] );
+		$curso = $_POST['curso'];
 		$seccion = trim( $_POST['seccion'] );
 		$nrc = trim( $_POST['nrc'] );
 		$ciclo = $_POST['ciclo'];
 		$dia = $_POST['dia'];
 		$horas_dia = $_POST['horas_dia'];
 		$hora_inicio = $_POST['hora_inicio'];
+		$asignatura = $_POST['asignatura'];
 
 		$existente = $this -> modelo -> buscarCurso( $nrc );
 		var_dump( $existente );
 
 		if( $existente === false ) {
-			if( $this -> modelo -> agregarCurso( $nrc, $curso[0], $seccion, $ciclo, "424242", $curso[1] ) ) {
+			if( $this -> modelo -> agregarCurso( $nrc, $asignatura, $seccion, $ciclo, "424242", $curso ) ) {
 				array_shift( $dia );
 				array_shift( $horas_dia );
 				array_shift( $hora_inicio );
