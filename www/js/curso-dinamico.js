@@ -197,6 +197,8 @@ function cargarDatosCursoModificar() {
 				success: function( json ) {
 					var academia = document.getElementById( 'academia' );
 					academia.value =  json[0].Departamento_idDepartamento;
+					console.log( "hola" );// <<--------
+					console.log( academia.options );// <<------------
 					if( "createEvent" in document ) {
 					    var evt = document.createEvent( "HTMLEvents" );
 					    evt.initEvent( "change", false, true );
@@ -211,12 +213,12 @@ function cargarDatosCursoModificar() {
 			var algo = json[0].Asignatura_idAsignatura;
 			
 			var opciones = curso.options;
-			console.log( opciones.length );
 			console.log( opciones );
 			console.log( curso );
 
 			document.getElementById( 'seccion' ).value = json[0].seccion;
 			document.getElementById( 'ciclo' ).value = json[0].CicloEscolar_idCicloEscolar;
+			console.log( document.getElementById( 'ciclo' ).options ); //<<--------
 			document.getElementById( 'nrc' ).value = json[0].clave_curso;
 		}
 	});
