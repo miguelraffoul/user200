@@ -75,7 +75,10 @@ section li:hover img{
     margin-right: 10px;
 }
 
-
+.template_form {
+    margin: 0;
+    display: inline;
+}
 
 /*========================== MEDIAS PARA TODO CURSO PROFESOR ====================================*/
 /*@media ( max-width: 1308px ){
