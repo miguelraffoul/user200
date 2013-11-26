@@ -10,6 +10,7 @@ class HojaEvaluacionCtl{
 
 		switch( $_GET['act'] ){
 			case 'mostrar_pagina':
+				require_once( "Vista/HojaEvaluacion.html" );
 				break;
 
 			case 'guardar_hoja':
