@@ -87,12 +87,12 @@ function cargarAcademias() {
 }
 
 function cargarCursos( id_academia ) {
-		var select = document.getElementById( 'curso' );
-		var opciones = select.getElementsByTagName( 'option' );
-		for( var it = opciones.length - 1; it > 0; --it )
-			select.removeChild( opciones[it] );
+	var select = document.getElementById( 'curso' );
+	var opciones = select.getElementsByTagName( 'option' );
+	for( var it = opciones.length - 1; it > 0; --it )
+		select.removeChild( opciones[it] );
 
-		$.ajax({
+	$.ajax({
 		type: 'POST',
 		data: {departamento:id_academia},
 		url: 'index.php?ctl=registro_curso&act=carga_cursos',
@@ -194,22 +194,31 @@ function cargarDatosCursoModificar() {
 				data: {asignatura:json[0].Asignatura_idAsignatura},
 				url: 'index.php?ctl=modificar_curso&act=cargar_asignatura',
 				dataType: 'json',
-				success: function( json ) {
+				success: function( json2 ) {
 					var academia = document.getElementById( 'academia' );
-					academia.value =  json[0].Departamento_idDepartamento;
-					if( "createEvent" in document ) {
-					    var evt = document.createEvent( "HTMLEvents" );
-					    evt.initEvent( "change", false, true );
-					    academia.dispatchEvent( evt );
-					}
-					else
-					    academia.fireEvent( "onchange" );
+					academia.value =  json2[0].Departamento_idDepartamento;
+					console.log( "hola" );// <<--------
+					console.log( academia.options );// <<------------
+					$.ajax({
+						type: 'POST',
+						data: {departamento:json2[0].Departamento_idDepartamento},
+						url: 'index.php?ctl=registro_curso&act=carga_cursos',
+						dataType: 'json',
+						success: function( json3 ) {
+							var curso = document.getElementById( 'curso' );
+							for( i in json3 ) {
+								var option = document.createElement( 'option' );
+								var texto = document.createTextNode( json3[i].nombre );
+								option.setAttribute( 'value', json3[i].idAsignatura );
+								option.appendChild( texto );
+								curso.appendChild( option );
+							}
+							curso.value = json[0].Asignatura_idAsignatura;		
+						}
+					});
 				}
-			});			
+			});	
 			document.getElementById( 'asignatura' ).value = json[0].nombre;
-			var curso = document.getElementById( 'curso' );//que pedo!!!!!!!!
-			curso.value = json[0].Asignatura_idAsignatura;//que pedo!!!!!!!!
-
 			document.getElementById( 'seccion' ).value = json[0].seccion;
 			document.getElementById( 'ciclo' ).value = json[0].CicloEscolar_idCicloEscolar;
 			document.getElementById( 'nrc' ).value = json[0].clave_curso;
@@ -222,7 +231,6 @@ function cargarDiasClase() {
 		url: 'index.php?ctl=modificar_curso&act=cargar_dias_clase',
 		dataType: 'json',
 		success: function( json ) {
-			console.log( json );
 			var opciones_select = document.getElementById( 'dias_curso' ).options;
 			for( i in json ) {
 				var plantilla = document.getElementById( 'dia_curso_template' );
@@ -231,20 +239,17 @@ function cargarDiasClase() {
 				nuevo_dia.setAttribute( 'id', valorDia( json[i].dia ) );
 				var input_dia = nuevo_dia.getElementsByTagName( 'input' );
 				input_dia[0].value = json[i].dia;
-
 				var inicio = json[i].hora_inicio.split( ":" );
 				var fin = json[i].hora_fin.split( ":" );
 				input_dia[1].value = fin[0] - inicio[0];
-
 				input_dia[2].value = json[i].hora_inicio;
 				var titulo = nuevo_dia.getElementsByTagName( 'p' );
 				titulo[0].appendChild( document.createTextNode( json[i].dia ) );
-
 				document.getElementById( 'alta_curso_der' ).appendChild( nuevo_dia );
-
 				for( var x = 1; x < opciones_select.length; ++x ){
 					if( opciones_select[x].text == json[i].dia ) {
 						opciones_select[x].setAttribute( 'disabled', 'disabled' );
+						opciones_select[x].setAttribute( 'selected', 'selected' );
 						break;
 					}
 				}
