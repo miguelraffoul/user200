@@ -40,6 +40,12 @@
   			});
   		</script>
 
+  		<script>
+  			$( document ).ready( function() {
+  				cargarAlumnos();
+  			});
+  		</script>
+
 		<div id="wrapper">
 			<header>
 				<div id="header_logo">
@@ -80,68 +86,15 @@
 						<div style="overflow: scroll;" id="contenedor_asistencias">
 							<table id="lista_asistencias" class="table table-bordered table-hover">
 								<thead>
-									<tr>
+									<tr id="encabezado_tabla">
 										<th><input type="checkbox" id="check_uncheck" class="chbx"></th>
 										<th>Nombre</th>
 										<th><input type="checkbox" class="chbx">fecha</th>
-										<th><input type="checkbox" class="chbx">fecha</th>
-										<th><input type="checkbox" class="chbx">fecha</th>
-										<th><input type="checkbox" class="chbx">fecha</th>
-										<th><input type="checkbox" class="chbx">fecha</th>
+									</tr>
 								</thead>
-								<tbody>
-									<tr>
+								<tbody id="cuerpo_tabla">
+									<tr id="template_tr" style="display: none;">
 										<td><input type="checkbox" class="chbx"></td>
-										<td>&lt;nombre&gt;</td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
-									<tr>
-										<td><input type="checkbox" class="chbx"></td>
-										<td>&lt;nombre&gt;</td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
-									<tr>
-										<td><input type="checkbox" class="chbx"></td>
-										<td>&lt;nombre&gt;</td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
-									<tr>
-										<td><input type="checkbox" class="chbx"></td>
-										<td>&lt;nombre&gt;</td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
-									<tr>
-										<td><input type="checkbox" class="chbx"></td>
-										<td>&lt;nombre&gt;</td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
-									<tr>
-										<td><input type="checkbox" class="chbx"></td>
-										<td>&lt;nombre&gt;</td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
 										<td></td>
 									</tr>
 								</tbody>

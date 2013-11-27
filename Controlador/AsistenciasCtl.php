@@ -8,10 +8,13 @@ class AsistenciasCtl {
 		$this -> modelo = new AsistenciasMdl();
 
 		switch ( $_GET['act'] ) {
-			case 'mostrar_datos':
+			case "mostrar_datos":
 				require_once( "Vista/Asistencias.html" );
 				break;
-			
+			case "carga_alumnos":
+				$lista_alumnos = $this -> modelo -> obtenerAlumnos( $_SESSION['clave_curso'] );
+				echo json_encode( $lista_alumnos );
+				break;
 			default:
 				$msj_error = "Acción invalida";
 				$vista = file_get_contents( "Vista/Error.html" );
