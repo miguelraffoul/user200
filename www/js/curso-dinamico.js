@@ -150,7 +150,8 @@ function mostrarListaCursos() {
 						curso.removeAttribute( 'style' );
 						curso.setAttribute( 'id', json[i].clave_curso );
 						var curso_inputs = curso.getElementsByTagName( 'input' );
-						curso_inputs[0].value = curso_inputs[1].value = json[i].clave_curso;
+						curso_inputs[0].value = curso_inputs[1].value = curso_inputs[2].value =json[i].clave_curso;
+						curso_inputs[3].value = json[i].nombre;
 						var curso_enlace = curso.getElementsByTagName( 'a' );
 						curso_enlace[0].appendChild( document.createTextNode( json[i].nombre ) );
 						document.getElementById( 'lista_cursos' ).appendChild( curso );

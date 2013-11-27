@@ -65,7 +65,11 @@
 										<input type="text" name="clave_curso" style="display: none;" value="" >
 										<img title="Modificar" src="www/img/edit.png" onclick="enviarForm( this )">
 									</form>
-									<a href="index.php?ctl=curso_profesor&act=mostrar_pagina"></a>
+									<form class="template_form" action="index.php?ctl=curso_profesor&act=mostrar_pagina" method="POST">
+										<input type="text" name="clave_curso" style="display: none;" value="" >
+										<input type="text" name="nombre_curso" style="display: none;" value="" >
+										<a href="#" onclick="enviarForm( this )"></a>
+									</from>
 								</li>				
 							</ul>
 						</nav>

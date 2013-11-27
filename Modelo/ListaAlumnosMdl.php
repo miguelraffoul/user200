@@ -15,8 +15,8 @@ class ListaAlumnosMdl {
 		return $alumnos_array;
 	}
 
-	public function eliminarAlumno( $codigo ) {
-		$consulta = "UPDATE alumno SET activo = FALSE WHERE codigo = $codigo";
+	public function eliminarAlumno( $codigo, $curso ) {
+		$consulta = "UPDATE alumno_has_curso SET activo = FALSE WHERE Alumno_codigo = \"$codigo\" AND Curso_clave_curso= \"$curso\"";
 		return $this -> bd -> consultaEspecifica( $consulta );
 	}
 }
