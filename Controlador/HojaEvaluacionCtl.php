@@ -6,7 +6,7 @@ class HojaEvaluacionCtl{
 	public function ejecutar(){
 
 		require_once( 'Modelo/HojaEvaluacionMdl.php' );
-		$this -> modelo = new ModeloEvaluacionMdl();
+		$this -> modelo = new HojaEvaluacionMdl();
 
 		switch( $_GET['act'] ){
 			case 'mostrar_pagina':
