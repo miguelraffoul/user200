@@ -18,6 +18,7 @@
 		<script src="www/js/modernizr.js"></script>
 		<script src="www/js/jquery-1.10.2.js"></script>
 		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<script src="www/js/asistencias.js"></script>
 
 		<script type="text/javascript">
 			$( document ).ready( function() {
@@ -64,10 +65,10 @@
 						<nav id="menu_aside" class="well">
 							<ul class="nav nav-list">
 								<li class="nav-header">MENU PROFESOR</li>
-								<li><a href="AltaAlumno.html">Agregar Alumno</a></li>
-								<li><a href="ModificarEliminar.html">Modificar/Eliminar Alumno</a></li>
-								<li><a href="Asistencias.html">Lista de asistencias</a></li>
-								<li><a href="Calificaciones.html">Lista de calificaciones</a></li>
+								<li><a href="index.php?ctl=alta_alumno">Agregar Alumno</a></li>
+								<li><a href="index.php?ctl=lista_alumnos&act=lista">Modificar/Eliminar Alumno</a></li>
+								<li><a href="index.php?ctl=asistencias&act=mostrar_datos">Lista de asistencias</a></li>
+								<li><a href="#">Lista de calificaciones</a></li>
 							</ul>
 						</nav>
 					</aside>
@@ -76,74 +77,76 @@
 							<label for="asistencias_desde">Asistencias desde:</label>
 							<input type="text" id="asistencias_desde" name="asistencias_desde" class="datepicker" readonly="">
 						</div>
-						<table id="lista_asistencias" class="table table-bordered table-hover">
-							<thead>
-								<tr>
-									<th><input type="checkbox" id="check_uncheck" class="chbx"></th>
-									<th>Nombre</th>
-									<th><input type="checkbox" class="chbx">fecha</th>
-									<th><input type="checkbox" class="chbx">fecha</th>
-									<th><input type="checkbox" class="chbx">fecha</th>
-									<th><input type="checkbox" class="chbx">fecha</th>
-									<th><input type="checkbox" class="chbx">fecha</th>
-							</thead>
-							<tbody>
-								<tr>
-									<td><input type="checkbox" class="chbx"></td>
-									<td>&lt;nombre&gt;</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" class="chbx"></td>
-									<td>&lt;nombre&gt;</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" class="chbx"></td>
-									<td>&lt;nombre&gt;</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" class="chbx"></td>
-									<td>&lt;nombre&gt;</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" class="chbx"></td>
-									<td>&lt;nombre&gt;</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" class="chbx"></td>
-									<td>&lt;nombre&gt;</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-							</tbody>
-						</table>
+						<div style="overflow: scroll;" id="contenedor_asistencias">
+							<table id="lista_asistencias" class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th><input type="checkbox" id="check_uncheck" class="chbx"></th>
+										<th>Nombre</th>
+										<th><input type="checkbox" class="chbx">fecha</th>
+										<th><input type="checkbox" class="chbx">fecha</th>
+										<th><input type="checkbox" class="chbx">fecha</th>
+										<th><input type="checkbox" class="chbx">fecha</th>
+										<th><input type="checkbox" class="chbx">fecha</th>
+								</thead>
+								<tbody>
+									<tr>
+										<td><input type="checkbox" class="chbx"></td>
+										<td>&lt;nombre&gt;</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><input type="checkbox" class="chbx"></td>
+										<td>&lt;nombre&gt;</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><input type="checkbox" class="chbx"></td>
+										<td>&lt;nombre&gt;</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><input type="checkbox" class="chbx"></td>
+										<td>&lt;nombre&gt;</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><input type="checkbox" class="chbx"></td>
+										<td>&lt;nombre&gt;</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><input type="checkbox" class="chbx"></td>
+										<td>&lt;nombre&gt;</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 						<div id="asistencia_falta">
 							<button class="btn" type="button" onClick="">Asistencia</button>
 							<button class="btn" type="button" onClick="">Falta</button>
