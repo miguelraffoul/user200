@@ -9,7 +9,7 @@ div#tabla{
     width: 1000px;
     overflow: scroll;
     overflow-y: hidden;
-    border: 3px solid #cccccc;
+    border: 1px solid #cccccc;
 }
 
 div#wrapper2{
@@ -47,7 +47,8 @@ input.notes-input{
 }
 
 #hoja_evaluacion{
-    margin-top: 0.5em;
+    padding: 0;
+    margin: 0;
 }
 
 #hoja_evaluacion .chbx{
