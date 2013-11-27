@@ -23,6 +23,11 @@ class ListaAlumnosCtl {
 				$curso = $_SESSION['clave_curso'];
 				$this -> modelo -> eliminarAlumno( $codigo, $curso );
 				break;
+			default:
+				$msj_error = "Acción invalida";
+				$vista = file_get_contents( "Vista/Error.html" );
+				$vista = str_replace( "{ERROR}", $msj_error, $vista );
+				echo $vista;
 		}
 	}
 }

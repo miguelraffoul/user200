@@ -23,8 +23,10 @@ class CursoProfesorCtl{
 				break;
 
 			default:
-				require_once("Vista/Error.html");
+				$msj_error = "Acción invalida";
+				$vista = file_get_contents( "Vista/Error.html" );
+				$vista = str_replace( "{ERROR}", $msj_error, $vista );
+				echo $vista;
 		}
-
 	}
 }

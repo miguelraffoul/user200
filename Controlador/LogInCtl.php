@@ -24,7 +24,10 @@ class LogInCtl {
 				header( "Location: index.php?ctl=alumno" ); 
 			}
 			else {
-				require_once( "Vista/Error.html" );
+				$msj_error = "No se encontro ningun usuario con los datos especificados";
+				$vista = file_get_contents( "Vista/Error.html" );
+				$vista = str_replace( "{ERROR}", $msj_error, $vista );
+				echo $vista;
 			}
 		}
 	}
