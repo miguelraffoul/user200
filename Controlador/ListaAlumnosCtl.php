@@ -14,14 +14,14 @@ class ListaAlumnosCtl {
 				echo $vista;
 				break;
 			case "carga_alumnos":
-				$lista_alumnos = $this -> modelo -> obtenerAlumnos();
+				$lista_alumnos = $this -> modelo -> obtenerAlumnos( $_SESSION['clave_curso'] );
 				if( $lista_alumnos )
 					echo json_encode( $lista_alumnos );
 				break;
 			case "eliminar_alumno":
 				$codigo = $_POST['codigo'];
 				$curso = $_SESSION['clave_curso'];
-				$this -> modelo -> eliminarAlumno( $codigo );
+				$this -> modelo -> eliminarAlumno( $codigo, $curso );
 				break;
 		}
 	}
