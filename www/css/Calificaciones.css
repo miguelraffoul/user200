@@ -6,14 +6,15 @@ header #header_opciones{
 }
 
 div#tabla{
-    width: 1000px;
+    min-width: 340px;
     overflow: scroll;
     overflow-y: hidden;
     border: 1px solid #cccccc;
 }
 
 div#wrapper2{
-    width: 1000px;
+    min-width: 340px;
+    max-width: 1000px;
     margin: auto;
 }
 
