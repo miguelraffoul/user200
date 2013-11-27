@@ -1,21 +1,21 @@
-section{
-    width: 100%;
-}
-
-
 #error{
+    width: 300px;
     position: relative;
     margin: 90px auto;
-    width: 300px;
 }
 
 #titulo_error{
     display: inline;
-    margin: 20px 106px;
+    margin: 20px 108px;
 }
 
 #imagen_error{
-    margin: 5px 50px;
+    display: block;
+    margin: 30px auto;
+}
+
+.lead {
+    text-align: center;
 }
 
 @media ( max-width: 380px ){

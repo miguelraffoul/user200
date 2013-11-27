@@ -41,6 +41,8 @@ class AltaAlumnoCtl {
 						$this -> modelo -> agregarPagina( $codigo, $pagina );
 					}
 
+					$this -> modelo -> ligarCurso( $codigo, $_SESSION['clave_curso'] );
+
 					require_once( "SmartMail.php" );
 					$mail = new SmartMail();
 					$mail -> enviarPassword( $nombre, $pass, $correo );
@@ -52,17 +54,34 @@ class AltaAlumnoCtl {
 				}
 			}
 			else {
-				if( $alumno['activo'] )
-					require_once( "Vista/Error.html" );
-				else {
+				$ligas_curso = $this -> modelo -> buscarCursoLigado( $codigo );
+				$contador = 0;
+				$encontrado = false;
+				foreach( $ligas_curso as $fila ) {
+                    if( $fila['activo'] ) 
+                    	$contador++; 
+                    if( $fila['Curso_clave_curso'] == $_SESSION['clave_curso'] )
+                    	$encontrado = true;  
+                }
+				if( $contador == 0 ) {
 					$this -> modelo -> actualizarDatos( $codigo, $nombre, $carrera, $correo, sha1( $pass ), $celular, $git, $pagina );
 					
 					require_once( "SmartMail.php" );
 					$mail = new SmartMail();
 					$mail -> enviarPassword( $nombre, $pass, $correo );
-
-					header( "Location: index.php?ctl=lista_alumnos&act=lista" );
+					if( $encontrado )
+						$this -> modelo -> activarLigaCurso( $codigo, $_SESSION['clave_curso'] );
+					else 
+						$this -> modelo -> ligarCurso( $codigo, $_SESSION['clave_curso'] );
+					
 				}
+				else {
+					if( $encontrado )
+						$this -> modelo -> activarLigaCurso( $codigo, $_SESSION['clave_curso'] );
+					else 
+						$this -> modelo -> ligarCurso( $codigo, $_SESSION['clave_curso'] );
+				}
+				header( "Location: index.php?ctl=lista_alumnos&act=lista" );
 			}
 		}
 	}

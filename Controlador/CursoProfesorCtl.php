@@ -9,9 +9,12 @@ class CursoProfesorCtl{
 		$this -> modelo = new CursoProfesorMdl();
 		
 		switch ($_GET['act']){
-
 			case 'mostrar_pagina':
-				require_once("Vista/CursoProfesor.html");
+				$_SESSION['clave_curso'] = $_POST['clave_curso'];
+				$_SESSION['nombre_curso'] = $_POST['nombre_curso'];
+				$vista = file_get_contents("Vista/CursoProfesor.html");
+				$vista = str_replace( "&lt;Nombre de curso&gt;", $_SESSION['nombre_curso'], $vista );
+				echo $vista;
 				break;
 
 			case "listar_rubros":
@@ -20,8 +23,10 @@ class CursoProfesorCtl{
 				break;
 
 			default:
-				require_once("Vista/Error.html");
+				$msj_error = "Acción invalida";
+				$vista = file_get_contents( "Vista/Error.html" );
+				$vista = str_replace( "{ERROR}", $msj_error, $vista );
+				echo $vista;
 		}
-
 	}
 }

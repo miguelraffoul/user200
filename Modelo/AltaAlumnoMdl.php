@@ -19,13 +19,12 @@ class AltaAlumnoMdl {
 
 	function alta( $codigo, $nombre, $carrera, $correo, $pass ) {
 		$consulta = "INSERT INTO alumno
-				(codigo, nombre, carrera, email, activo, password)
+				(codigo, nombre, carrera, email, password)
 				VALUES (
 					\"$codigo\",
 					\"$nombre\",
 					\"$carrera\",
 					\"$correo\",
-					TRUE,
 					\"$pass\"
 				)";
 		return $this -> bd -> insertar( $consulta );
@@ -51,12 +50,27 @@ class AltaAlumnoMdl {
 					nombre = \"$nombre\",
 					carrera = \"$carrera\",
 					email = \"$correo\",
-					activo = TRUE,
 					password = \"$pass\",
 					celular = \"$celular\",
 					cuenta_github = \"$git\",
 					pagina_web = \"$pagina\"
 					WHERE  codigo = \"$codigo\"";
 		$this -> bd -> insertar( $consulta );			
+	}
+
+	function buscarCursoLigado( $codigo ){
+		$consulta = "SELECT * FROM alumno_has_curso WHERE Alumno_codigo = \"$codigo\"";;
+		return $this -> bd -> consultaGeneral( $consulta );
+	}
+
+	function ligarCurso( $codigo, $curso ) {
+		$consulta = "INSERT INTO alumno_has_curso (Alumno_codigo, Curso_clave_curso, activo, promedio)
+					 VALUES( \"$codigo\", \"$curso\",TRUE ,0.0)";
+		return $this -> bd -> insertar( $consulta );
+	}
+
+	public function activarLigaCurso( $codigo, $curso ) {
+		$consulta = "UPDATE alumno_has_curso SET activo = TRUE WHERE Alumno_codigo = \"$codigo\" AND Curso_clave_curso= \"$curso\"";
+		return $this -> bd -> consultaEspecifica( $consulta );
 	}
 }
