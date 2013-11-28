@@ -8,8 +8,8 @@ class ProfesorMdl {
 		$this -> bd = BaseDeDatos::obtenerInstancia();
 	}
 	
-	public function obtenerCursos() {
-		$consulta = "SELECT * FROM curso";
+	public function obtenerCursos( $profesor ) {
+		$consulta = "SELECT * FROM curso WHERE Profesor_codigo = \"$profesor\"";
 		$cursos_array = $this -> bd -> consultaGeneral( $consulta );
 
 		return $cursos_array;

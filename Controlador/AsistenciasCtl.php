@@ -15,6 +15,9 @@ class AsistenciasCtl {
 				$lista_alumnos = $this -> modelo -> obtenerAlumnos( $_SESSION['clave_curso'] );
 				echo json_encode( $lista_alumnos );
 				break;
+			case "obtener_ciclo":
+				break;
+				 
 			default:
 				$msj_error = "Acción invalida";
 				$vista = file_get_contents( "Vista/Error.html" );

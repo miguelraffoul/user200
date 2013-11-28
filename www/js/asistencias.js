@@ -7,8 +7,8 @@ function cargarAlumnos() {
 			var plantilla = document.getElementById( 'template_tr' );
 			for( i in json ) {
 				var fila = plantilla.cloneNode();
-				fila.removeAttribute( 'id' );
 				fila.removeAttribute( 'style' );
+				fila.setAttribute( 'id', json[i].codigo );
 				var tds = fila.getElementsByTagName( 'td' );
 				tds[1].appendChild( document.createTextNode( json[i].nombre ) );
 				cuerpo.appendChild( fila );
@@ -19,6 +19,19 @@ function cargarAlumnos() {
       	}
 	});
 }
+
+function marcarAsistencia() {
+
+}
+
+function marcarFalta() {
+
+}
+
+function validarFecha() {
+	
+}
+
 /*Nomas pa' tener el ejemplo
 function cargarAcademias() {
 	$.ajax({
@@ -37,6 +50,17 @@ function cargarAcademias() {
 		error: function () {
         	console.log( "no funciono carga de academias" );
       	}
+	});
+}
+
+function eliminarAlumno( id ) {
+	$.ajax({
+		type: 'POST',
+		data: {codigo:id},
+		url: 'index.php?ctl=lista_alumnos&act=eliminar_alumno',
+		success: function() {
+			window.location.replace( "index.php?ctl=lista_alumnos&act=lista" );
+		}
 	});
 }
 */

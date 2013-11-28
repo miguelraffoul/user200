@@ -11,7 +11,7 @@ class ProfesorCtl {
 				require_once( "Vista/Profesor.html" );
 				break;
 			case "carga_cursos":
-				$cursos = $this -> modelo -> obtenerCursos();
+				$cursos = $this -> modelo -> obtenerCursos( "424242" ); //Implementar sesiones con id profesor
 				if( $cursos )
 					echo json_encode( $cursos ); 
 				break;
