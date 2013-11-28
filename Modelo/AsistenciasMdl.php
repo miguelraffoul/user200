@@ -14,7 +14,17 @@ class AsistenciasMdl {
 	}
 
 	public function obtenerCicloCurso( $curso ) {
-		$consulta = "SELECT CicloEscolar_idCicloEscolar AS ciclo FROM curso WHERE clave_curso = \"$curso\"";
+		$consulta = "SELECT c_e.idCicloEscolar, c_e.inicio, c_e.fin FROM cicloescolar AS c_e, curso AS c WHERE c.clave_curso = \"$curso\" AND c_e.idCicloEscolar = c.CicloEscolar_idCicloEscolar";
+		return $this -> bd -> consultaGeneral( $consulta );
+	}
+
+	public function obtenerDiasInhabiles( $ciclo ) {
+		$consulta = "SELECT * FROM diainhabil WHERE CicloEscolar_idCicloEscolar = \"$ciclo\"";
+		return $this -> bd -> consultaGeneral( $consulta );
+	}
+
+	public function obtenerDiasClase( $curso ) {
+		$consulta = "SELECT * FROM diaclase WHERE Curso_clave_curso = \"$curso\"";
 		return $this -> bd -> consultaGeneral( $consulta );
 	}
 }
