@@ -12,4 +12,9 @@ class AsistenciasMdl {
 		$consulta = "SELECT a.nombre, a.codigo FROM alumno As a, alumno_has_curso AS b WHERE a.codigo = b.Alumno_codigo AND b.activo = TRUE AND b.Curso_clave_curso = \"$curso\"";
 		return  $this -> bd -> consultaGeneral( $consulta );
 	}
+
+	public function obtenerCicloCurso( $curso ) {
+		$consulta = "SELECT CicloEscolar_idCicloEscolar AS ciclo FROM curso WHERE clave_curso = \"$curso\"";
+		return $this -> bd -> consultaGeneral( $consulta );
+	}
 }

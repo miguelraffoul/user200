@@ -20,16 +20,43 @@ function cargarAlumnos() {
 	});
 }
 
-function marcarAsistencia() {
+function desplegarFechas( fecha_input ) {
+	console.log( fecha_input.value );
+	var fecha = fecha_input.value.split( "/" );
+	$.ajax({
+		url: 'index.php?ctl=asistencias&act=obtener_ciclo',
+		dataType: 'json',
+		success: function ( json ) {
+			var anio = json[0].ciclo.substring( 0, 4 );
+			var ciclo = json[0].ciclo.substring( 4, 5 );
+			console.log( anio );
+			console.log( ciclo );
+		}
+	});
+}
 
+function marcarAsistencia() {
+	validarFecha()
 }
 
 function marcarFalta() {
-
+	validarFecha()
 }
 
 function validarFecha() {
+	var fecha_input = document.getElementById( 'asistencias_desde' );
 	
+	var error = document.getElementById( 'fecha_error' );
+	if( error != null ) 
+		error.parentNode.removeChild( error );
+	
+	if( fecha_input.value == "" ) {
+		var div = document.createElement( 'div' );
+		div.setAttribute( 'class', 'error' );
+		div.setAttribute( 'id', 'fecha_error' );
+		div.appendChild( document.createTextNode( "Introduce una fecha" ) );
+		fecha_input.parentNode.appendChild( div );
+	}
 }
 
 /*Nomas pa' tener el ejemplo

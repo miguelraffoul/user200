@@ -76,8 +76,7 @@ class RegistroCursoMdl {
 	}
 	
 	public function obtenerCiclos() {
-
-		$consulta = "SELECT * FROM cicloescolar";
+		$consulta = "SELECT * FROM cicloescolar WHERE activo = TRUE";
 		$ciclos_array = $this -> bd -> consultaGeneral( $consulta );
 
 		return $ciclos_array;
