@@ -41,7 +41,7 @@ class AsistenciasCtl {
 
 	private function proximaFecha( $fecha, $buscada ) {
 		$fechatime = strtotime( $fecha );
-		while( date( N, $fechatime ) != $this -> valorDia( $buscada ) ) {
+		while( date( "N", $fechatime ) != $this -> valorDia( $buscada ) ) {
 			$fechatime += 86400;//24hrs
 		}
 		return $fechatime;
@@ -51,6 +51,7 @@ class AsistenciasCtl {
 		$time_array = array();
 		for( $it = 0; $it < count( $dias_clase ); ++$it )
 			$time_array[] = $this -> proximaFecha( $fecha, $dias_clase[$it]['dia'] );
+		sort( $time_array );
 		return $time_array;
 	}
 
@@ -76,7 +77,7 @@ class AsistenciasCtl {
 			if( ++$contador >= count( $dias_clase_t ) )
 				$contador = 0;
 		}
-		return $intervalo_clasess;
+		return $intervalo_clases;
 	}
 
 	function ejecutar() {
