@@ -21,16 +21,20 @@ function cargarAlumnos() {
 }
 
 function desplegarFechas( fecha_input ) {
-	console.log( fecha_input.value );
-	var fecha = fecha_input.value.split( "/" );
+	var fecha_array = fecha_input.value.split( "/" );
+	fecha_array.reverse();
+	var fecha_sql = fecha_array.join( "-" );
+	//console.log( fecha_sql );
 	$.ajax({
-		url: 'index.php?ctl=asistencias&act=obtener_ciclo',
+		type: 'POST',
+		data: {fecha:fecha_sql},
+		url: 'index.php?ctl=asistencias&act=obtener_fechas',
 		dataType: 'json',
 		success: function ( json ) {
-			var anio = json[0].ciclo.substring( 0, 4 );
-			var ciclo = json[0].ciclo.substring( 4, 5 );
-			console.log( anio );
-			console.log( ciclo );
+			console.log( json );
+		},
+		error: function() {
+			console.log( "chin D:" );
 		}
 	});
 }
