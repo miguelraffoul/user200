@@ -3,15 +3,6 @@
 class AsistenciasCtl {
 	private $modelo;
 
-	/*
-	$string = "2013-11-24";
-	$time = strtotime( $string );
-	echo date( N, $time );
-
-	$time += 86400;
-	echo date( N, $time );
-	*/
-
 	private function esFechaValida( $inicio, $fin, $fecha ) {
 		$inicio_time = strtotime( $inicio );
 		$fin_time = strtotime( $fin );
