@@ -81,15 +81,17 @@
 					<section class="span9">
 						<div id="periodo_asistencias">
 							<label for="asistencias_desde">Asistencias desde:</label>
-							<input type="text" id="asistencias_desde" name="asistencias_desde" class="datepicker" readonly="">
+							<input type="text" id="asistencias_desde" name="asistencias_desde" class="datepicker" readonly="" onChange="desplegarFechas( this )">
 						</div>
 						<div style="overflow: scroll;" id="contenedor_asistencias">
+							<input id="template_chbx" type="checkbox" class="chbx" style="display: none">
+							<i id="template_asistencia" class="icon-ok" style="display: none"></i>
+							<i id="template_falta" class="icon-remove" style="display: none"></i>
 							<table id="lista_asistencias" class="table table-bordered table-hover">
 								<thead>
 									<tr id="encabezado_tabla">
 										<th><input type="checkbox" id="check_uncheck" class="chbx"></th>
 										<th>Nombre</th>
-										<th><input type="checkbox" class="chbx">fecha</th>
 									</tr>
 								</thead>
 								<tbody id="cuerpo_tabla">
@@ -101,8 +103,8 @@
 							</table>
 						</div>
 						<div id="asistencia_falta">
-							<button class="btn" type="button" onClick="">Asistencia</button>
-							<button class="btn" type="button" onClick="">Falta</button>
+							<button class="btn" type="button" onClick="marcarAsistencia()">Asistencia</button>
+							<button class="btn" type="button" onClick="marcarFalta()">Falta</button>
 						</div>
 					</section>
 				</div>

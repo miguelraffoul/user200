@@ -7,8 +7,8 @@ function cargarAlumnos() {
 			var plantilla = document.getElementById( 'template_tr' );
 			for( i in json ) {
 				var fila = plantilla.cloneNode();
-				fila.removeAttribute( 'id' );
 				fila.removeAttribute( 'style' );
+				fila.setAttribute( 'id', json[i].codigo );
 				var tds = fila.getElementsByTagName( 'td' );
 				tds[1].appendChild( document.createTextNode( json[i].nombre ) );
 				cuerpo.appendChild( fila );
@@ -19,6 +19,46 @@ function cargarAlumnos() {
       	}
 	});
 }
+
+function desplegarFechas( fecha_input ) {
+	console.log( fecha_input.value );
+	var fecha = fecha_input.value.split( "/" );
+	$.ajax({
+		url: 'index.php?ctl=asistencias&act=obtener_ciclo',
+		dataType: 'json',
+		success: function ( json ) {
+			var anio = json[0].ciclo.substring( 0, 4 );
+			var ciclo = json[0].ciclo.substring( 4, 5 );
+			console.log( anio );
+			console.log( ciclo );
+		}
+	});
+}
+
+function marcarAsistencia() {
+	validarFecha()
+}
+
+function marcarFalta() {
+	validarFecha()
+}
+
+function validarFecha() {
+	var fecha_input = document.getElementById( 'asistencias_desde' );
+	
+	var error = document.getElementById( 'fecha_error' );
+	if( error != null ) 
+		error.parentNode.removeChild( error );
+	
+	if( fecha_input.value == "" ) {
+		var div = document.createElement( 'div' );
+		div.setAttribute( 'class', 'error' );
+		div.setAttribute( 'id', 'fecha_error' );
+		div.appendChild( document.createTextNode( "Introduce una fecha" ) );
+		fecha_input.parentNode.appendChild( div );
+	}
+}
+
 /*Nomas pa' tener el ejemplo
 function cargarAcademias() {
 	$.ajax({
@@ -37,6 +77,17 @@ function cargarAcademias() {
 		error: function () {
         	console.log( "no funciono carga de academias" );
       	}
+	});
+}
+
+function eliminarAlumno( id ) {
+	$.ajax({
+		type: 'POST',
+		data: {codigo:id},
+		url: 'index.php?ctl=lista_alumnos&act=eliminar_alumno',
+		success: function() {
+			window.location.replace( "index.php?ctl=lista_alumnos&act=lista" );
+		}
 	});
 }
 */
