@@ -73,7 +73,7 @@ class AsistenciasCtl {
 			if( !$bandera )
 				$intervalo_clases[] = date( 'Y-m-d', $dias_clase_t[$contador] );
 			$bandera = false;
-			$dias_clase_t[$contador] += 604800; //week
+			$dias_clase_t[$contador] += 604800; //7 días
 			if( ++$contador >= count( $dias_clase_t ) )
 				$contador = 0;
 		}
