@@ -16,6 +16,8 @@
 		<![endif]-->
 		<script src="www/js/bootstrap.js"></script>
 		<script src="www/js/modernizr.js"></script>
+		<script src="www/js/jquery-1.10.2.js"></script>
+		<script src="www/js/hoja-dinamico.js"></script>
 		<script>
 			$( document ).ready(function() {
 				mostrarHojaEvaluacion();
@@ -46,37 +48,46 @@
 						<h2>&lt;Rubro&gt;</h2>
 							<div id="wrapper2" >
 								<div id="tabla">
+
+									<table id="template_table">
+
+									</table>
+
 									<form>
 										<table id="hoja_evaluacion" class="table table-bordered table-hover">
 											<thead>
-												<tr class="tr_columnas">
+												<tr id="tr_columnas">
 													<th class="cell-columna-alumno">Nombre</th>
-													<th class="cell-columna">
-														<input type="text" name="id_columnas[]" style="display: none;">
+
+													<th id="template_columna" class="cell-columna" style="display: none;">
+														<!--<input type="text" name="id_columnas[]" style="display: none;">-->
 														<input type="text" name="nombre_columnas[]" class="name-input">
 													</th>
-													<th class="cell-columna">
-														<input type="text" name="id_columnas[]" style="display: none;">
-														<input type="text" name="nombre_columnas[]" value="Promedio" class="name-input" disabled>
-													</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td class="cell-columna-alumno">
+
+													<td id="template_alumno"class="cell-columna-alumno" style="display: none;">
 														<input type="text" name="id_alumno[]" style="display: none;">
-														<p>&lt;Alumno&gt;</p>
+														<p></p>
 													</td>
-													<td class="cell-columna">
+
+													<td id="template_calificacion" class="cell-columna" style="display: none;">
 														<input type="text" name="calificaciones[]" class="notes-input">
 													</td>
-													<td class="cell-columna">
+													<!--<td class="cell-columna">
 														<input type="text" name="calificaciones[]" class="notes-input" disabled>
-													</td>
+													</td>-->
+													<!--<th class="cell-columna">
+														<input type="text" name="id_columnas[]" style="display: none;">
+														<input type="text" name="nombre_columnas[]" value="Promedio" class="name-input" disabled>
+													</th>-->
+												</tr>
+											</thead>
+											<tbody id="filas_body">
+												<tr id="template_tr">
+												</tr>
 											</tbody>
 											<tfoot>
-												<td class="cell-columna" colspan="2"></td>
-												<td class="cell-columna">0</td>
+												<td id="pt_nombre" class="cell-columna" colspan="{}"></td>
+												<td id="total_promedio" class="cell-columna">0</td>
 											</tfoot>
 										</table>
 									</form>

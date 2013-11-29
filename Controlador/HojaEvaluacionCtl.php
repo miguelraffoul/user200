@@ -30,7 +30,7 @@ class HojaEvaluacionCtl{
 	}
 
 	function agregarHoja( $num_columnas ){
-		$id_alumnos = $this -> modelo -> obtenerAlumnosId( '12345' );
+		$id_alumnos = $this -> modelo -> obtenerAlumnosNombreId( '12345' );
 		$id_alumnos_length = count( $id_alumnos );
 		
 		for( $i = 1 ; $i <= $num_columnas ; $i++ ){
@@ -45,11 +45,13 @@ class HojaEvaluacionCtl{
 	}
 
 	function cargarHoja(){
-		$alumnos = $this -> modelo -> obtenerAlumnosNombreId( '12345' );
-		var_dump( $alumnos );
-		
 		$columnas = $this -> modelo -> obtenerColumnasNombreId( 2 ); 
-		var_dump( $columnas );
+		$alumnos = $this -> modelo -> obtenerAlumnosNombreId( '12345' );
+		$celdas = $this -> modelo -> obtenerCeldas( 2 );
+		
+		$hoja_evaluacion = [ $columnas, $alumnos, $celdas ];
+		//var_dump( $hoja_evaluacion );
+		echo json_encode( $hoja_evaluacion );
 	}
 
 

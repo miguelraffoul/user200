@@ -28,9 +28,8 @@ class HojaEvaluacionMdl{
 	}
 
 	function obtenerAlumnosNombreId( $id_curso ){
-		$consulta = "SELECT nombre, codigo FROM alumno 
-					 INNER JOIN alumno_has_curso ON codigo = Alumno_codigo 
-					 WHERE Curso_clave_curso = \"$id_curso\"";
+		$consulta = "SELECT nombre, codigo FROM alumno INNER JOIN alumno_has_curso ON codigo = Alumno_codigo 
+					 WHERE Curso_clave_curso = \"$id_curso\" AND activo = TRUE ORDER BY nombre ASC";
 		return $this -> bd -> consultaGeneral( $consulta );
 	}
 
@@ -49,8 +48,14 @@ class HojaEvaluacionMdl{
 												   Alumno_has_Curso_Alumno_codigo = \"$id_alumno\"";
 	}
 
-	function obtenerCeldas( $id_columna ){
+	/*function obtenerCeldas( $id_columna ){
 		$consulta = "SELECT *FROM rubrocelda WHERE Columna_idColumna = \"$id_columna\"";
+		return $this -> bd -> consultaGeneral( $consulta );
+	}*/
+
+	function obtenerCeldas( $id_rubro ){
+		$consulta = "SELECT calificacion, idCelda FROM rubrocelda INNER JOIN rubrocolumna 
+					 ON Columna_idColumna = idColumna WHERE Rubro_idRubro = \"$id_rubro\"";
 		return $this -> bd -> consultaGeneral( $consulta );
 	}
 
