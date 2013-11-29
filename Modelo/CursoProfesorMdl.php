@@ -14,4 +14,9 @@ class CursoProfesorMdl{
 		$rubros_array = $this -> bd -> consultaGeneral( $consulta );
 		return $rubros_array;
 	}
+
+	function eliminarRubro( $nombre ) {
+		$consulta = "UPDATE rubro SET activo = FALSE WHERE nombre = \"$nombre\"";
+		return $this -> bd -> consultaEspecifica( $consulta );
+	}
 }

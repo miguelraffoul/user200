@@ -22,6 +22,11 @@ class CursoProfesorCtl{
 				echo json_encode( $rubros_array );
 				break;
 
+			case "eliminar_rubro":
+				$codigo = $_POST['nombre'];
+				$this -> modelo -> eliminarRubro( $nombre );
+				break;
+
 			default:
 				$msj_error = "Acción invalida";
 				$vista = file_get_contents( "Vista/Error.html" );

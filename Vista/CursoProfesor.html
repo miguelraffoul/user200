@@ -74,7 +74,7 @@
 								<thead>
 									<tr>
 										<th class="checkbox_columna"><input type="checkbox" id="check_uncheck"></th>
-										<th>Rubro de Evacualión</th>
+										<th>Rubro de Evaluación</th>
 										<th>Hoja de Evaluación</th>
 										<th>Valor (%)</th>
 									</tr>
@@ -83,12 +83,12 @@
 									<tr id="template" style="display: none;">
 										<td><input type="checkbox"></td>
 										<td><a href="index.php?ctl=rubro&act=mostrar_pagina" ></a></td>
-										<td><a href="#">&lt;Hoja&gt;</a></td>
+										<td><a href="index.php?ctl=rubro&act=mostrar_pagina">&lt;Hoja&gt;</a></td>
 										<td></td>
 									</tr>
 								</tbody>
 							</table>
-							<button class="btn" type="button" id="eliminar_rubro" onclick="validarCheckBox()">Eliminar Rubro</button>
+							<button class="btn btn-danger" type="submit" onclick="eliminarRubro(this)">Eliminar Rubro</button>		
 							<button class="btn" type="button" id="agregar_rubro" onclick="location.href='index.php?ctl=rubro&act=agregar_rubro'">Agregar Rubro
 							</button>
 						</div>

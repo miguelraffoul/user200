@@ -286,3 +286,47 @@ function mostrarListaRubros(){
       	}
 	});
 }
+
+function eliminarRubro( boton ) {
+	var checkboxes = document.getElementById( 'cuerpo_tabla' ).getElementsByTagName( 'input' );
+	var rubros_seleccionados = false;
+	for( var i = 1; i < checkboxes.length; ++i ) {
+		if ( checkboxes[i].checked ) {
+			rubros_seleccionados = true;
+		}
+	}
+	var error = document.getElementById( 'error_no_seleccion' );
+	if( error != null )
+		error.parentNode.removeChild( error );	
+
+	if( rubros_seleccionados ) {
+		var confirmacion = confirm( "Corfirme borrado de rubros" );
+		if( confirmacion ) {
+			for( var i = 0; i < checkboxes.length; ++i ){
+				if ( checkboxes[i].checked ) {
+					var tds = checkboxes[i].parentNode.parentNode.getElementsByTagName( 'td' );
+					var nombre = tds[2].innerHTML;
+					eliminaRubro( nombre );
+				}
+			}
+		}
+	}
+	else {
+		error = document.createElement( 'div' );
+		error.setAttribute( 'id', 'error_no_seleccion' );
+		error.setAttribute( 'class', 'error' );
+		error.appendChild( document.createTextNode( 'Seleccione por lo menos un rubro' ) );
+		boton.parentNode.insertBefore( error, boton );
+	}
+}
+
+function eliminaRubro( nombre ) {
+	$.ajax({
+		type: 'POST',
+		data: {nombre:id},
+		url: 'index.php?ctl=&act=eliminar_rubro',
+		success: function() {
+			window.location.replace( "index.php?ctl=curso_profesor&act=mostrar_pagina" );
+		}
+	});
+}
