@@ -28,6 +28,14 @@ class AsistenciasMdl {
 		return $this -> bd -> consultaGeneral( $consulta );
 	}
 
+	public function obtenerAsistencias( $alumno, $curso, $inicio, $fin ) {
+		$consulta = "SELECT fecha, asistencia, Alumno_has_Curso_Alumno_codigo AS alumno FROM asistencia WHERE
+					 Alumno_has_Curso_Alumno_codigo = \"$alumno\" AND
+					 Alumno_has_Curso_Curso_clave_curso = \"$curso\" AND
+					 (fecha BETWEEN \"$inicio\" AND \"$fin\" )";
+		return $this -> bd -> consultaGeneral( $consulta );
+	}
+
 	public function obtenerAsistencia( $alumno, $curso, $fecha ) {
 		$consulta = "SELECT * FROM asistencia WHERE fecha = \"$fecha\" 
 					 AND Alumno_has_Curso_Alumno_codigo = \"$alumno\"

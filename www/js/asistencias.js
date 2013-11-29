@@ -58,46 +58,57 @@ function desplegarFechas( fecha_input ) {
 			var filas = document.getElementById( 'cuerpo_tabla' ).getElementsByTagName( 'tr' );
 			limpiarTabla( encabezado, filas );
 
+			var alumnos_arr = new Array();
+			for( var it = 1; it < filas.length; ++it )
+				alumnos_arr.push( filas[it].id );
+
 			var plantilla_fecha = document.getElementById( 'template_chbx' );
 			var plantilla_asis = document.getElementById( 'template_asistencia' );
 			var plantilla_falta = document.getElementById( 'template_falta' );
-			for( i in json ) {
-				var th = document.createElement( 'th' );
-				th.setAttribute( 'id', json[i] );
-				var temp_chbx = plantilla_fecha.cloneNode();
-				temp_chbx.removeAttribute( 'id' );
-				temp_chbx.removeAttribute( 'style' );
-				th.appendChild( temp_chbx );
-				th.appendChild( document.createTextNode( sqlToDatePickerFormat( json[i] ) ) );
-				encabezado_tabla.appendChild( th );
-				for( var j = 1; j < filas.length; ++j ){
-					$.ajax({
-						async: false,
-						type: 'POST',
-						data: {fecha: json[i], alumno: filas[j].id},
-						url: 'index.php?ctl=asistencias&act=obtener_asistencia',
-						dataType: 'json',
-						success: function( json2 ) {
+
+			$.ajax({
+				type: 'POST',
+				data: {fechas: json, alumnos: alumnos_arr},
+				url: 'index.php?ctl=asistencias&act=obtener_asistencias',
+				dataType: 'json',
+				success: function( json2 ) {
+					for( i in json ) {
+						var th = document.createElement( 'th' );
+						th.setAttribute( 'id', json[i] );
+						var temp_chbx = plantilla_fecha.cloneNode();
+						temp_chbx.removeAttribute( 'id' );
+						temp_chbx.removeAttribute( 'style' );
+						th.appendChild( temp_chbx );
+						th.appendChild( document.createTextNode( sqlToDatePickerFormat( json[i] ) ) );
+						encabezado_tabla.appendChild( th );
+						for( var it = 1; it < filas.length; ++it ) {
 							var td = document.createElement( 'td' );
-							if( Array.isArray( json2 ) ) {
-								if( json2[0].asistencia != 0 ) {
-									var asist = plantilla_asis.cloneNode();
-									asist.removeAttribute( 'id' );
-									asist.removeAttribute( 'style' );
-									td.appendChild( asist );
-								}
-								else {
-									var falta = plantilla_falta.cloneNode();
-									falta.removeAttribute( 'id' );
-									falta.removeAttribute( 'style' );
-									td.appendChild( falta );
+							for( j in json2 ) {
+								if( Array.isArray( json2[j] ) ) {
+									for( k  in json2[j] ) {
+										if( json2[j][k].alumno == filas[it].id &&
+											json2[j][k].fecha == json[i] ){
+											if( json2[j][k].asistencia != 0 ) {
+												var asist = plantilla_asis.cloneNode();
+												asist.removeAttribute( 'id' );
+												asist.removeAttribute( 'style' );
+												td.appendChild( asist );
+											}
+											else {
+												var falta = plantilla_falta.cloneNode();
+												falta.removeAttribute( 'id' );
+												falta.removeAttribute( 'style' );
+												td.appendChild( falta );
+											}
+										}
+									}
 								}
 							}
-							filas[j].appendChild( td );
+							filas[it].appendChild( td );
 						}
-					});
+					}
 				}
-			}
+			});
 		},
 		error: function() {			
 			var div = document.createElement( 'div' );
