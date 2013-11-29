@@ -34,4 +34,15 @@ class RubroMdl{
 		else
 			return FALSE;
 	}
+
+	function obtenerNombreRubro( $id_rubro ){
+		$consulta = "SELECT *FROM nombre WHERE idRubro = \"$id_rubro\"";
+		$nombre_rubro = $this -> bd -> consultaGeneral( $consulta );
+		return $nombre_rubro;
+	}
+
+	function eliminarRubro( $nombre ) {
+		$consulta = "UPDATE rubro SET activo = FALSE WHERE nombre = \"$nombre\"";
+		return $this -> bd -> consultaEspecifica( $consulta );
+	}
 }
