@@ -22,14 +22,31 @@ class HojaEvaluacionMdl{
 		return $this -> bd -> insertar( $consulta );
 	}
 
-	function obtenerAlumnos( $id_curso ){
+	function obtenerAlumnosId( $id_curso ){
 		$consulta = "SELECT Alumno_codigo FROM alumno_has_curso WHERE Curso_clave_curso = \"$id_curso\" AND activo = TRUE";
 		return $this -> bd -> consultaGeneral( $consulta );
 	}
 
-	function obtenerColumnas( $id_rubro ){
+	function obtenerAlumnosNombreId( $id_curso ){
+		$consulta = "SELECT nombre, codigo FROM alumno 
+					 INNER JOIN alumno_has_curso ON codigo = Alumno_codigo 
+					 WHERE Curso_clave_curso = \"$id_curso\"";
+		return $this -> bd -> consultaGeneral( $consulta );
+	}
+
+	function obtenerColumnasId( $id_rubro ){
 		$consulta = "SELECT *FROM rubrocolumna WHERE Rubro_idRubro = \"$id_rubro\" ";
 		return $this -> bd -> consultaGeneral( $consulta );
+	}
+
+	function obtenerColumnasNombreId( $id_rubro ){
+		$consulta = "SELECT nombre, idColumna FROM rubrocolumna WHERE Rubro_idRubro = \"$id_rubro\" ";
+		return $this -> bd -> consultaGeneral( $consulta );
+	}
+
+	function obtenerCeldaEspecifica( $id_alumno, $id_columna ){
+		$consulta = "SELECT calificacion FROM rubrocelda WHERE Columna_idColumna = \"$id_columna\" AND 
+												   Alumno_has_Curso_Alumno_codigo = \"$id_alumno\"";
 	}
 
 	function obtenerCeldas( $id_columna ){
