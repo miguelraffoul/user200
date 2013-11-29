@@ -49,17 +49,30 @@
 									<form>
 										<table id="hoja_evaluacion" class="table table-bordered table-hover">
 											<thead>
-												<tr>
+												<tr class="tr_columnas">
 													<th class="cell-columna-alumno">Nombre</th>
-													<th class="cell-columna"><input type="text" class="name-input"></th>
-													<th class="cell-columna">Promedio</th>
+													<th class="cell-columna">
+														<input type="text" name="id_columnas[]" style="display: none;">
+														<input type="text" name="nombre_columnas[]" class="name-input">
+													</th>
+													<th class="cell-columna">
+														<input type="text" name="id_columnas[]" style="display: none;">
+														<input type="text" name="nombre_columnas[]" value="Promedio" class="name-input" disabled>
+													</th>
 												</tr>
 											</thead>
 											<tbody>
 												<tr>
-													<td class="cell-columna-alumno">&lt;nombre&gt;</td>
-													<td class="cell-columna"><input type="text" class="notes-input"></td>
-													<td class="cell-columna">0</td>
+													<td class="cell-columna-alumno">
+														<input type="text" name="id_alumno[]" style="display: none;">
+														<p>&lt;Alumno&gt;</p>
+													</td>
+													<td class="cell-columna">
+														<input type="text" name="calificaciones[]" class="notes-input">
+													</td>
+													<td class="cell-columna">
+														<input type="text" name="calificaciones[]" class="notes-input" disabled>
+													</td>
 											</tbody>
 											<tfoot>
 												<td class="cell-columna" colspan="2"></td>

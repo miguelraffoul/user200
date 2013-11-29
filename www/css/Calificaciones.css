@@ -40,6 +40,10 @@ input.name-input{
     border: 0;
 }
 
+input[disabled]{
+    background-color: #FFFFFF;
+}
+
 input.notes-input{
     width: 40px;
     margin-bottom: 0;

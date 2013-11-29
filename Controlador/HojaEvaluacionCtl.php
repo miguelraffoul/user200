@@ -30,7 +30,7 @@ class HojaEvaluacionCtl{
 	}
 
 	function agregarHoja( $num_columnas ){
-		$id_alumnos = $this -> modelo -> obtenerAlumnos( '12345' );
+		$id_alumnos = $this -> modelo -> obtenerAlumnosId( '12345' );
 		$id_alumnos_length = count( $id_alumnos );
 		
 		for( $i = 1 ; $i <= $num_columnas ; $i++ ){
@@ -45,14 +45,11 @@ class HojaEvaluacionCtl{
 	}
 
 	function cargarHoja(){
-		$id_alumnos = $this -> modelo -> obtenerAlumnos( '12345' );
-		$id_columnas = $this -> modelo -> obtenerColumnas( 2 );
-
-		$id_celdas_totales = array();
-		for( $i = 0 ; $i < count( $id_columnas ) ; $i++ ){
-			$id_celdas = $this -> modelo -> obtenerCeldas( $id_columnas[$i]['idColumna'] );
-			$id_celdas_totales = array_merge( $id_celdas_totales, $id_celdas );
-		}
+		$alumnos = $this -> modelo -> obtenerAlumnosNombreId( '12345' );
+		var_dump( $alumnos );
+		
+		$columnas = $this -> modelo -> obtenerColumnasNombreId( 2 ); 
+		var_dump( $columnas );
 	}
 
 
