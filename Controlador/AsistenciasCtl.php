@@ -3,15 +3,6 @@
 class AsistenciasCtl {
 	private $modelo;
 
-	/*
-	$string = "2013-11-24";
-	$time = strtotime( $string );
-	echo date( N, $time );
-
-	$time += 86400;
-	echo date( N, $time );
-	*/
-
 	private function esFechaValida( $inicio, $fin, $fecha ) {
 		$inicio_time = strtotime( $inicio );
 		$fin_time = strtotime( $fin );
@@ -41,7 +32,7 @@ class AsistenciasCtl {
 
 	private function proximaFecha( $fecha, $buscada ) {
 		$fechatime = strtotime( $fecha );
-		while( date( N, $fechatime ) != $this -> valorDia( $buscada ) ) {
+		while( date( "N", $fechatime ) != $this -> valorDia( $buscada ) ) {
 			$fechatime += 86400;//24hrs
 		}
 		return $fechatime;
@@ -51,6 +42,7 @@ class AsistenciasCtl {
 		$time_array = array();
 		for( $it = 0; $it < count( $dias_clase ); ++$it )
 			$time_array[] = $this -> proximaFecha( $fecha, $dias_clase[$it]['dia'] );
+		sort( $time_array );
 		return $time_array;
 	}
 
@@ -72,11 +64,11 @@ class AsistenciasCtl {
 			if( !$bandera )
 				$intervalo_clases[] = date( 'Y-m-d', $dias_clase_t[$contador] );
 			$bandera = false;
-			$dias_clase_t[$contador] += 604800; //week
+			$dias_clase_t[$contador] += 604800; //7 días
 			if( ++$contador >= count( $dias_clase_t ) )
 				$contador = 0;
 		}
-		return $intervalo_clasess;
+		return $intervalo_clases;
 	}
 
 	function ejecutar() {
