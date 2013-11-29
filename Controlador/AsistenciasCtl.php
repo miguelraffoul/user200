@@ -95,6 +95,33 @@ class AsistenciasCtl {
 				else
 					echo false;				
 				break;
+			case "obtener_asistencias":
+				$fechas = $_POST['fechas'];
+				$alumnos = $_POST['alumnos'];
+				$asistencias_alumnos = array();
+				for( $it = 0; $it < count( $alumnos ); ++$it ) {
+					$asistencias_alumnos[] = $this -> modelo -> obtenerAsistencias( $alumnos[$it], $_SESSION['clave_curso'], $fechas[0], end( $fechas ) );
+				}
+				echo json_encode( $asistencias_alumnos );
+				break;
+			case "marcar_asistencia":
+				$fecha = $_POST['fecha'];
+				$alumno = $_POST['alumno'];
+				$asistencia = $this -> modelo -> obtenerAsistencia( $alumno, $_SESSION['clave_curso'], $fecha );
+				if( is_array( $asistencia ) )
+					echo json_encode($this -> modelo -> actualizarAsistencia( $alumno, $_SESSION['clave_curso'], $fecha ));
+				else 
+					echo json_encode($this -> modelo -> marcarAsistencia( $alumno, $_SESSION['clave_curso'], $fecha ));
+				break;
+			case "marcar_falta":
+				$fecha = $_POST['fecha'];
+				$alumno = $_POST['alumno'];
+				$asistencia = $this -> modelo -> obtenerAsistencia( $alumno, $_SESSION['clave_curso'], $fecha );
+				if( is_array( $asistencia ) )
+					echo json_encode($this -> modelo -> actualizarFalta( $alumno, $_SESSION['clave_curso'], $fecha ));
+				else 
+					echo json_encode($this -> modelo -> marcarFalta( $alumno, $_SESSION['clave_curso'], $fecha ));
+				break;
 			default:
 				$msj_error = "Acción invalida";
 				$vista = file_get_contents( "Vista/Error.html" );

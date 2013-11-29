@@ -27,4 +27,59 @@ class AsistenciasMdl {
 		$consulta = "SELECT * FROM diaclase WHERE Curso_clave_curso = \"$curso\"";
 		return $this -> bd -> consultaGeneral( $consulta );
 	}
+
+	public function obtenerAsistencias( $alumno, $curso, $inicio, $fin ) {
+		$consulta = "SELECT fecha, asistencia, Alumno_has_Curso_Alumno_codigo AS alumno FROM asistencia WHERE
+					 Alumno_has_Curso_Alumno_codigo = \"$alumno\" AND
+					 Alumno_has_Curso_Curso_clave_curso = \"$curso\" AND
+					 (fecha BETWEEN \"$inicio\" AND \"$fin\" )";
+		return $this -> bd -> consultaGeneral( $consulta );
+	}
+
+	public function obtenerAsistencia( $alumno, $curso, $fecha ) {
+		$consulta = "SELECT * FROM asistencia WHERE fecha = \"$fecha\" 
+					 AND Alumno_has_Curso_Alumno_codigo = \"$alumno\"
+					 AND Alumno_has_Curso_Curso_clave_curso	= \"$curso\"";
+		return $this -> bd -> consultaGeneral( $consulta );
+	}
+
+	public function actualizarAsistencia( $alumno, $curso, $fecha ) {
+		$consulta = "UPDATE  asistencia SET  asistencia = TRUE WHERE
+					 fecha = \"$fecha\" AND 
+					 Alumno_has_Curso_Alumno_codigo =  \"$alumno\" AND 
+					 Alumno_has_Curso_Curso_clave_curso = \"$curso\"";
+		return $this -> bd -> insertar( $consulta );
+	}
+
+	public function marcarAsistencia( $alumno, $curso, $fecha ) {
+		$consulta = "INSERT INTO asistencia
+				(fecha, asistencia, Alumno_has_Curso_Alumno_codigo, Alumno_has_Curso_Curso_clave_curso)
+				VALUES (
+					\"$fecha\",
+					TRUE,
+					\"$alumno\",
+					\"$curso\"
+				)";
+		return $this -> bd -> insertar( $consulta );
+	}
+
+	public function actualizarFalta( $alumno, $curso, $fecha ) {
+		$consulta = "UPDATE  asistencia SET  asistencia = FALSE WHERE
+					 fecha = \"$fecha\" AND 
+					 Alumno_has_Curso_Alumno_codigo =  \"$alumno\" AND 
+					 Alumno_has_Curso_Curso_clave_curso = \"$curso\"";
+		return $this -> bd -> insertar( $consulta );
+	}
+
+	public function marcarFalta( $alumno, $curso, $fecha ) {
+		$consulta = "INSERT INTO asistencia
+				(fecha, asistencia, Alumno_has_Curso_Alumno_codigo, Alumno_has_Curso_Curso_clave_curso)
+				VALUES (
+					\"$fecha\",
+					FALSE,
+					\"$alumno\",
+					\"$curso\"
+				)";
+		return $this -> bd -> insertar( $consulta );
+	}
 }
