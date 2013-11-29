@@ -95,6 +95,30 @@ class AsistenciasCtl {
 				else
 					echo false;				
 				break;
+			case "obtener_asistencia":
+				$fecha = $_POST['fecha'];
+				$alumno = $_POST['alumno'];
+				$asistencia = $this -> modelo -> obtenerAsistencia( $alumno, $_SESSION['clave_curso'], $fecha );
+				echo json_encode( $asistencia );
+				break;
+			case "marcar_asistencia":
+				$fecha = $_POST['fecha'];
+				$alumno = $_POST['alumno'];
+				$asistencia = $this -> modelo -> obtenerAsistencia( $alumno, $_SESSION['clave_curso'], $fecha );
+				if( is_array( $asistencia ) )
+					$this -> modelo -> actualizarAsistencia( $alumno, $_SESSION['clave_curso'], $fecha );
+				else 
+					$this -> modelo -> marcarAsistencia( $alumno, $_SESSION['clave_curso'], $fecha );
+				break;
+			case "marcar_falta":
+				$fecha = $_POST['fecha'];
+				$alumno = $_POST['alumno'];
+				$asistencia = $this -> modelo -> obtenerAsistencia( $alumno, $_SESSION['clave_curso'], $fecha );
+				if( is_array( $asistencia ) )
+					$this -> modelo -> actualizarFalta( $alumno, $_SESSION['clave_curso'], $fecha );
+				else 
+					$this -> modelo -> marcarFalta( $alumno, $_SESSION['clave_curso'], $fecha );
+				break;
 			default:
 				$msj_error = "Acción invalida";
 				$vista = file_get_contents( "Vista/Error.html" );

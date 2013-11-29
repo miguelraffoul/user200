@@ -20,31 +20,93 @@ function cargarAlumnos() {
 	});
 }
 
-function desplegarFechas( fecha_input ) {
-	var fecha_array = fecha_input.value.split( "/" );
+function sqlToDatePickerFormat( fecha ) {
+	var fecha_array = fecha.split( "-" );
 	fecha_array.reverse();
-	var fecha_sql = fecha_array.join( "-" );
-	//console.log( fecha_sql );
+	return fecha_array.join( "/" );
+}
+
+function datePickerToSqlFormat( fecha ) {
+	var fecha_array = fecha.split( "/" );
+	fecha_array.reverse();
+	return fecha_array.join( "-" );
+}
+
+function limpiarTabla( encabezado, filas ) {
+	var columnas = encabezado.getElementsByTagName( 'th' );
+	for( var it = columnas.length - 1; it > 1; --it ) {
+		encabezado.removeChild( columnas[it] );
+		for( var j = 1; j < filas.length; ++j ){
+			filas[j].removeChild( filas[j].lastChild );
+		}
+	}
+}
+
+function desplegarFechas( fecha_input ) {
+	var error = document.getElementById( 'fecha_error' );
+	if( error != null ) 
+		error.parentNode.removeChild( error );
+
+	var fecha_sql = datePickerToSqlFormat( fecha_input.value );
 	$.ajax({
 		type: 'POST',
 		data: {fecha:fecha_sql},
 		url: 'index.php?ctl=asistencias&act=obtener_fechas',
 		dataType: 'json',
 		success: function ( json ) {
-			console.log( json );
+			var encabezado = document.getElementById( 'encabezado_tabla' );
+			var filas = document.getElementById( 'cuerpo_tabla' ).getElementsByTagName( 'tr' );
+			limpiarTabla( encabezado, filas );
+
+			var plantilla_fecha = document.getElementById( 'template_chbx' );
+			var plantilla_asis = document.getElementById( 'template_asistencia' );
+			var plantilla_falta = document.getElementById( 'template_falta' );
+			for( i in json ) {
+				var th = document.createElement( 'th' );
+				th.setAttribute( 'id', json[i] );
+				var temp_chbx = plantilla_fecha.cloneNode();
+				temp_chbx.removeAttribute( 'id' );
+				temp_chbx.removeAttribute( 'style' );
+				th.appendChild( temp_chbx );
+				th.appendChild( document.createTextNode( sqlToDatePickerFormat( json[i] ) ) );
+				encabezado_tabla.appendChild( th );
+				for( var j = 1; j < filas.length; ++j ){
+					$.ajax({
+						async: false,
+						type: 'POST',
+						data: {fecha: json[i], alumno: filas[j].id},
+						url: 'index.php?ctl=asistencias&act=obtener_asistencia',
+						dataType: 'json',
+						success: function( json2 ) {
+							var td = document.createElement( 'td' );
+							if( Array.isArray( json2 ) ) {
+								if( json2[0].asistencia != 0 ) {
+									var asist = plantilla_asis.cloneNode();
+									asist.removeAttribute( 'id' );
+									asist.removeAttribute( 'style' );
+									td.appendChild( asist );
+								}
+								else {
+									var falta = plantilla_falta.cloneNode();
+									falta.removeAttribute( 'id' );
+									falta.removeAttribute( 'style' );
+									td.appendChild( falta );
+								}
+							}
+							filas[j].appendChild( td );
+						}
+					});
+				}
+			}
 		},
-		error: function() {
-			console.log( "chin D:" );
+		error: function() {			
+			var div = document.createElement( 'div' );
+			div.setAttribute( 'class', 'error' );
+			div.setAttribute( 'id', 'fecha_error' );
+			div.appendChild( document.createTextNode( "Fecha invalida" ) );
+			fecha_input.parentNode.appendChild( div );
 		}
 	});
-}
-
-function marcarAsistencia() {
-	validarFecha()
-}
-
-function marcarFalta() {
-	validarFecha()
 }
 
 function validarFecha() {
@@ -60,38 +122,70 @@ function validarFecha() {
 		div.setAttribute( 'id', 'fecha_error' );
 		div.appendChild( document.createTextNode( "Introduce una fecha" ) );
 		fecha_input.parentNode.appendChild( div );
+		return false;
+	}
+	return true;
+}
+
+function marcarAsistencia() {
+	if( validarFecha() ) {
+		var encabezado = document.getElementById( 'encabezado_tabla' ).getElementsByTagName( 'th' );
+		var filas = document.getElementById( 'cuerpo_tabla' ).getElementsByTagName( 'tr' );
+		var plantilla_asis = document.getElementById( 'template_asistencia' );
+		
+		for( var i = 2; i < encabezado.length; ++i ){
+			if( encabezado[i].firstChild.checked ) {
+				for( var j = 1; j < filas.length; ++j ){
+					var tds = filas[j].getElementsByTagName( 'td' );
+					if( tds[0].firstChild.checked ) {
+						$.ajax({
+							type: 'POST',
+							data: {fecha: encabezado[i].id, alumno: filas[j].id},
+							url: 'index.php?ctl=asistencias&act=marcar_asistencia',
+							success: function() {
+								console.log( "si se pudo ^.^" );
+							}
+						});
+						if( tds[i].firstChild )
+							tds[i].removeChild( tds[i].firstChild );
+						var asist = plantilla_asis.cloneNode();
+						asist.removeAttribute( 'id' );
+						asist.removeAttribute( 'style' );
+						tds[i].appendChild( asist );
+					}
+				} 
+			}
+		}
 	}
 }
 
-/*Nomas pa' tener el ejemplo
-function cargarAcademias() {
-	$.ajax({
-		url: 'index.php?ctl=registro_curso&act=carga_academias',
-		dataType: 'json',
-		success: function ( json ) {
-			var select = document.getElementById( 'academia' );
-			for( i in json ) {
-				var option = document.createElement( 'option' );
-				var texto = document.createTextNode( json[i].nombre );
-				option.setAttribute( 'value', json[i].idDepartamento );
-				option.appendChild( texto );
-				select.appendChild( option );
+function marcarFalta() {
+	if( validarFecha() ) {
+		var encabezado = document.getElementById( 'encabezado_tabla' ).getElementsByTagName( 'th' );
+		var filas = document.getElementById( 'cuerpo_tabla' ).getElementsByTagName( 'tr' );
+		var plantilla_falta = document.getElementById( 'template_falta' );
+		
+		for( var i = 2; i < encabezado.length; ++i ){
+			if( encabezado[i].firstChild.checked ) {
+				for( var j = 1; j < filas.length; ++j ){
+					var tds = filas[j].getElementsByTagName( 'td' );
+					if( tds[0].firstChild.checked ) {
+						$.ajax({
+							type: 'POST',
+							data: {fecha: encabezado[i].id, alumno: filas[j].id},
+							url: 'index.php?ctl=asistencias&act=marcar_falta',
+							success: function() {
+								console.log( "si se pudo ^.^" );
+							}
+						});
+						if( tds[i].firstChild )
+							tds[i].removeChild( tds[i].firstChild );
+						var falta = plantilla_falta.cloneNode();
+						falta.removeAttribute( 'id' );
+						falta.removeAttribute( 'style' );
+						tds[i].appendChild( falta );
+					}
+				} 
 			}
-		},
-		error: function () {
-        	console.log( "no funciono carga de academias" );
-      	}
-	});
-}
-
-function eliminarAlumno( id ) {
-	$.ajax({
-		type: 'POST',
-		data: {codigo:id},
-		url: 'index.php?ctl=lista_alumnos&act=eliminar_alumno',
-		success: function() {
-			window.location.replace( "index.php?ctl=lista_alumnos&act=lista" );
 		}
-	});
-}
-*/
+	}}

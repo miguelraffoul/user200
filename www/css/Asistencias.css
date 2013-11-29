@@ -32,6 +32,10 @@ header #header_opciones{
     margin: 0.3em;
 }
 
+td i {
+    margin: 1px 40%;
+}
+
 @media ( max-width: 605px ){
     header{
         height: 120px;
