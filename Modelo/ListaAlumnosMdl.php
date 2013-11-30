@@ -9,7 +9,7 @@ class ListaAlumnosMdl {
 	}	
 
 	public function obtenerAlumnos( $curso ) {
-		$consulta = "SELECT a.nombre, a.codigo FROM alumno As a, alumno_has_curso AS b WHERE a.codigo = b.Alumno_codigo AND b.activo = TRUE AND b.Curso_clave_curso = \"$curso\"";
+		$consulta = "SELECT a.nombre, a.codigo FROM alumno As a, alumno_has_curso AS b WHERE a.codigo = b.Alumno_codigo AND b.activo = TRUE AND b.Curso_clave_curso = \"$curso\" ORDER BY a.nombre";
 		return  $this -> bd -> consultaGeneral( $consulta );
 	}
 

@@ -49,16 +49,16 @@
 						<section id="izquierdo">
 							<div id="alta_curso_izq">
 								<label for="academia">Academia</label>
-								<select id="academia" name="academia" onChange="cargarCursos( this.value )">
+								<select id="academia" name="academia">
 									<option value="0" disabled selected>Selecciona academia</option>
 								</select>
 								<label for="curso">Curso</label>
-								<select id="curso" name="curso" onchange="establecerAsignatura( this )">
+								<select id="curso" name="curso">
 									<option value="0" disabled selected>Selecciona curso</option>
 								</select>
 								<input type="text" id="asignatura"name="asignatura" style="display: none;" value="" >
 								<label for="seccion">Sección</label>
-								<input type="text" id="seccion" name="seccion">
+								<input type="text" id="seccion" name="seccion" disabled>
 								<label for="nrc">NRC</label>
 								<input type="text" id="nrc" name="nrc">
 								<label for="ciclo">Ciclo </label>
@@ -71,7 +71,7 @@
 						<section id="derecho">
 							<div id="alta_curso_der">
 								<h4>Horario</h4>
-								<select id="dias_curso" onChange="agregarDiaCurso( this )">
+								<select id="dias_curso" disabled>
 									<option value="0" selected disabled>Días de clase</option>
 									<option value="1">Lunes</option>
 									<option value="2">Martes</option>
@@ -82,16 +82,16 @@
 								</select>
 								<div id="dia_curso_template" class="dia_curso" style="display: none">
 									<input type="text" name="dia[]" style="display: none"/>
-									<i class="icon-remove" onclick="eliminarDiaCurso(this)"></i>
+									<i class="icon-remove" ></i>
 									<p></p>
 									<div>
 										<label for="horas_dia">Horas por dia:</label>
-										<input type="text" name="horas_dia[]" class="input_horas"/>
+										<input type="text" name="horas_dia[]" class="input_horas" disabled/>
 										<div class="clear"></div>
 									</div>
 									<div>
 										<label for="hora_inicio">Hora inicio (24hrs):</label>
-										<input type="text" name="hora_inicio[]" class="input_horas" placeholder="hh:mm"/>
+										<input type="text" name="hora_inicio[]" class="input_horas" placeholder="hh:mm" disabled/>
 										<div class="clear"></div>
 									</div>
 									<div class="clear"></div>
