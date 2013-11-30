@@ -58,6 +58,7 @@ class HojaEvaluacionCtl{
 				for( $j = 0 ; $j < $columnas_length ; ++$j )
 					$celdas_temp = $this -> modelo -> agregarCelda( 0, $columnas[$j]['idColumna'], $alumnos[$i]['codigo'], '12345' );
 			}
+			var_dump( $celdas_temp );
 			$celdas_totales = array_merge( $celdas, $celdas_temp );
 		}
 
