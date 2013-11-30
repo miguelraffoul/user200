@@ -152,7 +152,7 @@ function mostrarListaCursos() {
 					curso_inputs[0].value = curso_inputs[1].value = curso_inputs[2].value =json[i].clave_curso;
 					curso_inputs[3].value = json[i].nombre;
 					var curso_enlace = curso.getElementsByTagName( 'a' );
-					curso_enlace[0].appendChild( document.createTextNode( json[i].nombre ) );
+					curso_enlace[0].appendChild( document.createTextNode( json[i].nombre + " - " + json[i].CicloEscolar_idCicloEscolar ) );
 					document.getElementById( 'lista_cursos' ).appendChild( curso );
 				}
 			}
@@ -247,7 +247,8 @@ function cargarDatosCursoClonar() {
 								curso.appendChild( option );
 							}
 							curso.value = json[0].asignatura_idAsignatura;
-							curso.setAttribute( 'disabled', 'disabled' );		
+							curso.setAttribute( 'disabled', 'disabled' );
+							document.getElementById( 'curso_oculto' ).value = json[0].asignatura_idAsignatura;		
 						}
 					});
 					academia.setAttribute( 'disabled', 'disabled' );
