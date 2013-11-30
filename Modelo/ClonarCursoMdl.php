@@ -60,13 +60,23 @@ class ClonarCursoMdl {
 		return $this -> bd -> consultaGeneral( $consulta );
 	}
 
-	public function agergarRubro( $cuso, ) {
-		$consulta = "INSERT INTO rubro () VALUES ()";
+	public function agergarRubro( $curso, $nombre, $valor, $tiene_hoja, $columnas ) {
+		$consulta = "INSERT INTO rubro 
+					(nombre, valor, tieneHojaEval, cantidad_columnas, Curso_clave_curso)
+					 VALUES (
+					 	\"$nombre\",
+					 	\"$valor\",
+					 	\"$tiene_hoja\",
+					 	\"$columnas\",
+					 	\"$curso\"
+					 )";
 		$this -> bd -> insertar( $consulta );
+		return $this -> bd -> idInsertado();
 	} 
 
-	public function agregarColumna( $rubro, ) {
-		$consulta = "INSERT INTO rubrocolumna () VALUES ()";
+	public function agregarColumna( $rubro, $nombre ) {
+		$consulta = "INSERT INTO rubrocolumna 
+					(nombre, Rubro_idRubro) VALUES ( \"$nombre\", \"$rubro\" )";
 		$this -> bd -> insertar( $consulta );
 	}
 }
