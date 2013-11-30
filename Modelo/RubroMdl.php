@@ -34,4 +34,10 @@ class RubroMdl{
 		else
 			return FALSE;
 	}
+
+	function obtenerNombreRubro( $id_rubro ){
+		$consulta = "SELECT *FROM nombre WHERE idRubro = \"$id_rubro\"";
+		$nombre_rubro = $this -> bd -> consultaGeneral( $consulta );
+		return $nombre_rubro;
+	}	
 }

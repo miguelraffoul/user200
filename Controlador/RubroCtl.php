@@ -12,11 +12,20 @@ class RubroCtl{
 		switch ($_GET['act']){
 
 			case "mostrar_pagina":
+				$_SESSION['id_rubro'] = $_POST['nombre_rubro'];							
 				require_once("Vista/RubroEvaluacion.html");
 				break;
 
-			case "agregar_rubro":
+			case "datos_rubro":
+				$this -> mostrarRubro();
+				break;
 
+			case "eliminar_rubro":
+				$nombre = $_POST['nombre'];
+				$this -> modelo -> eliminarAlumno( $nombre );
+				break;
+
+			case "agregar_rubro":
 				if(empty($_POST))
 					require_once("Vista/RubroEvaluacion.html");
 				else
@@ -28,6 +37,17 @@ class RubroCtl{
 		}
 	}
 
+	function mostrarRubro(){		
+		$id_rubro = $_SESSION['id_rubro'];
+		$nombre_rubro = $this -> modelo -> obtenerNombreRubro( $id_rubro );
+		
+	/*	$array_dias = $this -> modelo -> obtenerDiasInhabiles( $id_ciclo );
+				
+		if( is_array( $array_dias ) )
+			echo json_encode( array_merge( $array_ciclo, $array_dias ) );		
+		else
+			echo json_encode( $array_ciclo );	*/
+	}
 
 	function nuevoRubro(){
 
