@@ -41,7 +41,11 @@ input.name-input{
 }
 
 input[disabled]{
-    background-color: #FFFFFF;
+    background-color: #A4A4A4;
+}
+
+#hoja_evaluacion .td-disabled{
+    background-color: #A4A4A4;
 }
 
 input.notes-input{
