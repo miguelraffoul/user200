@@ -50,7 +50,12 @@ class ModificarCursoCtl {
 					$this -> modelo -> agregarDiaClase( $clave, $dia[$i], $hora_inicio[$i], $hora_fin );
 				}
 				header( "Location: index.php?ctl=profesor&act=cursos" );
-
+				break;
+			default:
+				$msj_error = "Acción invalida";
+				$vista = file_get_contents( "Vista/Error.html" );
+				$vista = str_replace( "{ERROR}", $msj_error, $vista );
+				echo $vista;
 				break;
 		}
 	}

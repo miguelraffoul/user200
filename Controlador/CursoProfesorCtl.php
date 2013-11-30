@@ -32,6 +32,7 @@ class CursoProfesorCtl{
 				$vista = file_get_contents( "Vista/Error.html" );
 				$vista = str_replace( "{ERROR}", $msj_error, $vista );
 				echo $vista;
+				break;
 		}
 	}
 }
