@@ -10,7 +10,7 @@ class HojaEvaluacionCtl{
 
 		switch( $_GET['act'] ){
 			case 'agregar_hoja':
-				$this -> agregarHoja( 5 );
+				$this -> agregarHoja( 1 );
 				break;
 
 			case 'mostrar_pagina':
@@ -54,16 +54,21 @@ class HojaEvaluacionCtl{
 		for( $i = 0 ; $i < $alumnos_length ; ++$i ){
 			$celdas = $celdas_totales;
 			$celdas_temp = $this -> modelo -> obtenerCeldasPorAlumno( 2, $alumnos[$i]['codigo'] );
-			if( !is_array( $celdas ) && $celdas === TRUE ){
-				/*for( $j = 0 ; $j < $columnas_length ; ++$j )
-					$celdas_temp = $this -> modelo -> agregarCelda( 0, $columnas[$j]['idColumna'], $alumnos[$i]['codigo'], '12345' );*/
+			if( !is_array( $celdas_temp ) && $celdas_temp === TRUE ){
+				for( $j = 0 ; $j < $columnas_length ; ++$j )
+					$this -> modelo -> agregarCelda( 0, $columnas[$j]['idColumna'], $alumnos[$i]['codigo'], '12345' );
+				$celdas_temp =  $this -> modelo -> obtenerCeldasPorAlumno( 2, $alumnos[$i]['codigo'] );
 			}
-			//var_dump( $celdas_temp );
 			$celdas_totales = array_merge( $celdas, $celdas_temp );
 		}
 
 		$hoja_evaluacion = [ $columnas, $alumnos, $celdas_totales ];
+		//var_dump( $hoja_evaluacion );
 		echo json_encode( $hoja_evaluacion );
+	}
+
+	function guardarHoja(){
+		
 	}
 
 
