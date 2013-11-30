@@ -59,4 +59,11 @@ class HojaEvaluacionMdl{
 		return $this -> bd -> consultaGeneral( $consulta );
 	}
 
+	function obtenerCeldasPorAlumno( $id_rubro, $id_alumno ){
+		$consulta = "SELECT calificacion, idCelda FROM rubrocelda INNER JOIN rubrocolumna 
+					 ON Columna_idColumna = idColumna WHERE Rubro_idRubro = \"$id_rubro\" AND
+					 Alumno_has_Curso_Alumno_codigo = \"$id_alumno\"";
+		return $this -> bd -> consultaGeneral( $consulta );
+	}
+
 }
