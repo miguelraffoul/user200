@@ -53,12 +53,13 @@
 									<option value="0" disabled selected>Selecciona academia</option>
 								</select>
 								<label for="curso">Curso</label>
-								<select id="curso" name="curso">
+								<select id="curso">
 									<option value="0" disabled selected>Selecciona curso</option>
 								</select>
-								<input type="text" id="asignatura"name="asignatura" style="display: none;" value="" >
+								<input type="text" id="curso_oculto" name="curso" style="display: none;" value="" >
+								<input type="text" id="asignatura" name="asignatura" style="display: none;" value="" >
 								<label for="seccion">Sección</label>
-								<input type="text" id="seccion" name="seccion" disabled>
+								<input type="text" id="seccion" name="seccion" readonly>
 								<label for="nrc">NRC</label>
 								<input type="text" id="nrc" name="nrc">
 								<label for="ciclo">Ciclo </label>
@@ -86,12 +87,12 @@
 									<p></p>
 									<div>
 										<label for="horas_dia">Horas por dia:</label>
-										<input type="text" name="horas_dia[]" class="input_horas" disabled/>
+										<input type="text" name="horas_dia[]" class="input_horas" readonly/>
 										<div class="clear"></div>
 									</div>
 									<div>
 										<label for="hora_inicio">Hora inicio (24hrs):</label>
-										<input type="text" name="hora_inicio[]" class="input_horas" placeholder="hh:mm" disabled/>
+										<input type="text" name="hora_inicio[]" class="input_horas" placeholder="hh:mm" readonly/>
 										<div class="clear"></div>
 									</div>
 									<div class="clear"></div>

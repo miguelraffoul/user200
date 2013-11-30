@@ -247,7 +247,8 @@ function cargarDatosCursoClonar() {
 								curso.appendChild( option );
 							}
 							curso.value = json[0].asignatura_idAsignatura;
-							curso.setAttribute( 'disabled', 'disabled' );		
+							curso.setAttribute( 'disabled', 'disabled' );
+							document.getElementById( 'curso_oculto' ).value = json[0].asignatura_idAsignatura;		
 						}
 					});
 					academia.setAttribute( 'disabled', 'disabled' );

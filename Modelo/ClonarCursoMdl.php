@@ -23,9 +23,19 @@ class ClonarCursoMdl {
 		return $this -> bd -> consultaGeneral( $consulta );
 	}
 
-	public function eliminarDiasClase( $clave ) {
-		$consulta = "DELETE FROM diaclase WHERE Curso_clave_curso = \"$clave\"";
-		$this -> bd -> consultaEspecifica( $consulta );
+	public function agregarCurso( $clave, $nombre, $seccion, $ciclo, $profesor, $asignatura ) {
+		$consulta = "INSERT INTO curso
+				(clave_curso, nombre, seccion, CicloEscolar_idCicloEscolar, Profesor_codigo, activo, Asignatura_idAsignatura)
+				VALUES (
+					\"$clave\",
+					\"$nombre\",
+					\"$seccion\",
+					\"$ciclo\",
+					\"$profesor\",
+					TRUE,
+					\"$asignatura\"
+				)";
+		return $this -> bd -> insertar( $consulta );
 	}
 
 	public function agregarDiaClase( $clave, $dia, $hora_inicio, $hora_fin ) {
@@ -37,6 +47,26 @@ class ClonarCursoMdl {
 					\"$dia\",
 					\"$clave\"
 				)";
+		$this -> bd -> insertar( $consulta );
+	}
+
+	public function obtenerRubros( $curso ) {
+		$consulta = "SELECT * FROM rubro WHERE Curso_clave_curso = \"$curso\"";
+		return $this -> bd -> consultaGeneral( $consulta );
+ 	}
+
+	public function obtenerColumnas( $rubro ) {
+		$consulta = "SELECT * FROM rubrocolumna WHERE Rubro_idRubro = \"$rubro\"";
+		return $this -> bd -> consultaGeneral( $consulta );
+	}
+
+	public function agergarRubro( $cuso, ) {
+		$consulta = "INSERT INTO rubro () VALUES ()";
+		$this -> bd -> insertar( $consulta );
+	} 
+
+	public function agregarColumna( $rubro, ) {
+		$consulta = "INSERT INTO rubrocolumna () VALUES ()";
 		$this -> bd -> insertar( $consulta );
 	}
 }
