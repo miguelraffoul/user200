@@ -43,19 +43,10 @@ class HojaEvaluacionMdl{
 		return $this -> bd -> consultaGeneral( $consulta );
 	}
 
-	function obtenerCeldaEspecifica( $id_alumno, $id_columna ){
-		$consulta = "SELECT calificacion FROM rubrocelda WHERE Columna_idColumna = \"$id_columna\" AND 
-												   Alumno_has_Curso_Alumno_codigo = \"$id_alumno\"";
-	}
-
-	/*function obtenerCeldas( $id_columna ){
-		$consulta = "SELECT *FROM rubrocelda WHERE Columna_idColumna = \"$id_columna\"";
-		return $this -> bd -> consultaGeneral( $consulta );
-	}*/
-
 	function obtenerCeldas( $id_rubro ){
 		$consulta = "SELECT calificacion, idCelda FROM rubrocelda INNER JOIN rubrocolumna 
 					 ON Columna_idColumna = idColumna WHERE Rubro_idRubro = \"$id_rubro\"";
+		
 		return $this -> bd -> consultaGeneral( $consulta );
 	}
 
@@ -64,6 +55,12 @@ class HojaEvaluacionMdl{
 					 ON Columna_idColumna = idColumna WHERE Rubro_idRubro = \"$id_rubro\" AND
 					 Alumno_has_Curso_Alumno_codigo = \"$id_alumno\"";
 		return $this -> bd -> consultaGeneral( $consulta );
+	}
+
+	function eliminarHoja( $id_rubro ){
+		$consulta = "DELETE FROM rubrocolumna WHERE Rubro_idRubro = \"$id_rubro\"";
+		$resultado = $this -> bd -> insertar( $consulta );
+		var_dump( $resultado );
 	}
 
 }

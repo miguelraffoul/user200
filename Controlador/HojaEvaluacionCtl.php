@@ -22,6 +22,7 @@ class HojaEvaluacionCtl{
 				break;
 
 			case 'guardar_hoja':
+				$this -> guardarHoja();
 				break;
 
 			case 'modificar_hoja':
@@ -29,19 +30,19 @@ class HojaEvaluacionCtl{
 		}
 	}
 
-	function agregarHoja( $num_columnas ){
-		$id_alumnos = $this -> modelo -> obtenerAlumnosNombreId( '12345' );
-		$id_alumnos_length = count( $id_alumnos );
+	function agregarHoja( $columnas_length ){
+		$alumnos = $this -> modelo -> obtenerAlumnosNombreId( '12345' );
+		$alumnos_length = count( $alumnos );
 		
-		for( $i = 1 ; $i <= $num_columnas ; $i++ ){
+		for( $i = 1 ; $i <= $columnas_length ; $i++ ){
 			$id_columna = $this -> modelo -> agregarColumna( "Columna"."$i", 2 );
-			for( $j = 0 ; $j < $id_alumnos_length ; $j++ )
-				$this -> modelo -> agregarCelda( 0, $id_columna, $id_alumnos[$j]['codigo'], '12345' );
+			for( $j = 0 ; $j < $alumnos_length ; $j++ )
+				$this -> modelo -> agregarCelda( 0, $id_columna, $alumnos[$j]['codigo'], '12345' );
 		}
 
 		$id_columna = $this -> modelo -> agregarColumna( "Promedio", 2 );
-		for( $j = 0 ; $j < $id_alumnos_length ; $j++ )
-			$this -> modelo -> agregarCelda( 0, $id_columna, $id_alumnos[$j]['codigo'], '12345' );
+		for( $j = 0 ; $j < $alumnos_length ; $j++ )
+			$this -> modelo -> agregarCelda( 0, $id_columna, $alumnos[$j]['codigo'], '12345' );
 	}
 
 	function cargarHoja(){
@@ -68,7 +69,30 @@ class HojaEvaluacionCtl{
 	}
 
 	function guardarHoja(){
+		$this -> modelo -> eliminarHoja( 2 );
+		$alumnos = $this -> modelo -> obtenerAlumnosNombreId( '12345' );
+		$columnas = $_POST['nombre_columnas'];
+		$calificaciones = $_POST['calificaciones'];
+
+		array_shift( $columnas );
+		array_shift( $calificaciones );
+		$columnas_length = count( $columnas );
+		$alumnos_length = count( $alumnos );
 		
+		$id_columna = array();
+		for( $i = 0 ; $i < $columnas_length ; ++$i ){
+			$id_temp = $this -> modelo -> agregarColumna( $columnas[$i], 2 );
+			array_push( $id_columna, $id_temp );
+		}
+
+		var_dump( $id_columna );
+		$count = 0;
+		for( $j = 0 ; $j < $alumnos_length ; $j++ ){
+			for( $i = 0 ; $i < $columnas_length ; $i++ ){
+				$this -> modelo -> agregarCelda( $calificaciones[$count], $id_columna[$i], $alumnos[$j]['codigo'], '12345' );
+				$count = $count + 1;
+			}
+		}
 	}
 
 

@@ -14,7 +14,7 @@ function mostrarHojaEvaluacion(){
 				var tabla_body = document.getElementById( "filas_body" );
 				var template_alumno = document.getElementById( "template_alumno" );
 				var template_calificacion = document.getElementById( "template_calificacion" );
-				var z = 0;
+				var count = 0;
 				var nuevo_tr;
 
 				for( var i = 0 ; i < json[1].length ; ++i ){
@@ -30,10 +30,11 @@ function mostrarHojaEvaluacion(){
 					
 
 					for( var j = 0 ; j < json[0].length - 1 ; ++j ){
-						agregarCalificacion( nuevo_tr, template_calificacion.cloneNode(), json[2][z].calificacion );
-						z = z + 1;
+						agregarCalificacion( nuevo_tr, template_calificacion.cloneNode(), json[2][count].calificacion );
+						count = count + 1;
 					}
-					agregarPromedio( nuevo_tr, template_calificacion.cloneNode(), json[2][z].calificacion );
+					agregarPromedio( nuevo_tr, template_calificacion.cloneNode(), json[2][count].calificacion );
+					count = count + 1;
 					tabla_body.appendChild( nuevo_tr );
 					document.getElementById( "pt_nombre" ).setAttribute( "colspan", json[0].length );
 				}
@@ -60,7 +61,7 @@ function agregarPromedio( tr_padre, td_calificacion, valor_calificacion ){
 	td_calificacion.setAttribute( "class", "td-disabled" );
 
 	var input = td_calificacion.getElementsByTagName( "input" );
-	input[0].disabled = true;
+	input[0].readOnly = true;
 	input[0].setAttribute( "value", valor_calificacion );
 	tr_padre.appendChild( td_calificacion );
 }
@@ -80,7 +81,7 @@ function agregarColumnaPromedio( tr_padre, th_columna, nombre ){
 	th_columna.setAttribute( "class", "td-disabled" );
 
 	var nombre_columna = th_columna.getElementsByTagName( "input" );
-	nombre_columna[0].disabled = true;
+	nombre_columna[0].readOnly = true;
 	nombre_columna[0].setAttribute( "value", nombre );
 	tr_padre.appendChild( th_columna );
 }
