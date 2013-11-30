@@ -9,7 +9,7 @@ class ProfesorMdl {
 	}
 	
 	public function obtenerCursos( $profesor ) {
-		$consulta = "SELECT c.clave_curso, c.nombre FROM curso AS c, cicloescolar AS c_e 
+		$consulta = "SELECT c.clave_curso, c.nombre, c.CicloEscolar_idCicloEscolar FROM curso AS c, cicloescolar AS c_e 
 					WHERE c.activo = TRUE 
 					AND c.Profesor_codigo = \"$profesor\"
 					AND c.CicloEscolar_idCicloEscolar = c_e.idCicloEscolar
