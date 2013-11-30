@@ -19,6 +19,12 @@ class ProfesorCtl {
 				$id_curso = $_POST['curso'];
 				$this -> modelo -> eliminarCurso( $id_curso );
 				break;
+			default:
+				$msj_error = "Acción invalida";
+				$vista = file_get_contents( "Vista/Error.html" );
+				$vista = str_replace( "{ERROR}", $msj_error, $vista );
+				echo $vista;
+				break;
 		}
 	}
 }

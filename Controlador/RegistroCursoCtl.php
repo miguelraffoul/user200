@@ -29,12 +29,18 @@ class RegistroCursoCtl {
 				header( "Location: index.php?ctl=profesor&act=cursos" );
 			}
 			else {
-				require_once( "Vista/Error.html" );
+				$msj_error = "Error al registrar curso, vuelve a intentar";
+				$vista = file_get_contents( "Vista/Error.html" );
+				$vista = str_replace( "{ERROR}", $msj_error, $vista );
+				echo $vista;
 			}
 		}
 		else {
 			if( $existente['activo'] ) {
-				require_once( "Vista/Error.html" );
+				$msj_error = "Ya existe un curso activo con la misma clave.";
+				$vista = file_get_contents( "Vista/Error.html" );
+				$vista = str_replace( "{ERROR}", $msj_error, $vista );
+				echo $vista;
 			}
 			else {
 				$this -> modelo -> eliminarDiasClase( $nrc );
@@ -81,6 +87,12 @@ class RegistroCursoCtl {
 				$ciclos_array = $this -> modelo -> obtenerCiclos();
 				if( $ciclos_array )
 					echo json_encode( $ciclos_array );
+				break;
+			default:
+				$msj_error = "Acción invalida";
+				$vista = file_get_contents( "Vista/Error.html" );
+				$vista = str_replace( "{ERROR}", $msj_error, $vista );
+				echo $vista;
 				break;
 		}
 	}
