@@ -8,13 +8,13 @@ class CursoProfesorMdl{
 		$this -> bd = BaseDeDatos::obtenerInstancia();
 	}
 
-	function obtenerRubros( $curso ){
-		$consulta = "SELECT *FROM rubro WHERE Curso_clave_curso = \"$curso\"";
+	function obtenerRubros( $id_curso ){
+		$consulta = "SELECT *FROM rubro WHERE Curso_clave_curso = \"$id_curso\"";
 		return $this -> bd -> consultaGeneral( $consulta );
 	}
 
-	function eliminarRubro( $nombre ) {
-		$consulta = "UPDATE rubro SET activo = FALSE WHERE nombre = \"$nombre\"";
+	function eliminarRubro( $id_rubro ) {
+		$consulta = "DELETE FROM rubro WHERE idRubro = \"$id_rubro\"";
 		return $this -> bd -> consultaEspecifica( $consulta );
 	}
 }

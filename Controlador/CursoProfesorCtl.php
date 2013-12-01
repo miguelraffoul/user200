@@ -22,9 +22,10 @@ class CursoProfesorCtl{
 				echo json_encode( $rubros_array );
 				break;
 
-			case "eliminar_rubro":
-				$codigo = $_POST['nombre'];
-				$this -> modelo -> eliminarRubro( $nombre );
+			case "eliminar_rubros":
+				$id_rubros = $_POST['id_rubros'];
+				$this -> eliminarRubros( $id_rubros );
+				//$this -> modelo -> eliminarRubro( $nombre );
 				break;
 
 			default:
@@ -34,5 +35,9 @@ class CursoProfesorCtl{
 				echo $vista;
 				break;
 		}
+	}
+
+	function eliminarRubros( $id_rubros ){
+		
 	}
 }
