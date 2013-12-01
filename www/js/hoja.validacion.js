@@ -127,20 +127,26 @@ function calcularPromedio(){
 		var filas = document.getElementsByTagName( "tr" );
 		console.log( filas ); 
 
-		var promedio_total = 0;
-		for( var i = 2 ; i < filas.length - 1 ; ++i ){
-			var calificaciones = filas[i].getElementsByTagName( "input" );
-			var suma = 0;
-			for( var j = 0 ; j < calificaciones.length - 1 ; ++j ){
-				if( calificaciones[j].value.toUpperCase() != "NP" && 
-					calificaciones[j].value.toUpperCase() != "SD" )
-					suma = suma + parseFloat( calificaciones[j].value );
+		var total_filas = filas.length - 3;
+		if( total_filas > 0 ){
+			var promedio_total = 0;
+			var promedio;
+			for( var i = 2 ; i < filas.length - 1 ; ++i ){
+				var calificaciones = filas[i].getElementsByTagName( "input" );
+				var suma = 0;
+				for( var j = 0 ; j < calificaciones.length - 1 ; ++j ){
+					if( calificaciones[j].value.toUpperCase() != "NP" && 
+						calificaciones[j].value.toUpperCase() != "SD" )
+						suma = suma + parseFloat( calificaciones[j].value );
+				}
+				promedio = suma / ( calificaciones.length - 1 )
+				calificaciones[j].value = promedio.toFixed(1);
+				promedio_total = promedio_total + parseFloat( promedio.toFixed( 1 ) );
 			}
-			var promedio = suma / ( calificaciones.length - 1 )
-			calificaciones[j].value = promedio.toFixed(1);
-			promedio_total = promedio.toFixed( 1 );
+			promedio_total = promedio_total / total_filas;
+			document.getElementById( "total_promedio" ).textContent = promedio_total.toFixed( 1 ) ;
+			document.getElementById( "boton_guardar" ).disabled = false;
 		}
-		document.getElementById( "boton_guardar" ).disabled = false;
 	}
 }
 
