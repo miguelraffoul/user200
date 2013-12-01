@@ -64,8 +64,8 @@ class AltaAlumnoMdl {
 	}
 
 	function ligarCurso( $codigo, $curso ) {
-		$consulta = "INSERT INTO alumno_has_curso (Alumno_codigo, Curso_clave_curso, activo, promedio)
-					 VALUES( \"$codigo\", \"$curso\",TRUE ,0.0)";
+		$consulta = "INSERT INTO alumno_has_curso (Alumno_codigo, Curso_clave_curso, activo, promedio, promedio_asist)
+					 VALUES( \"$codigo\", \"$curso\", TRUE, 0.0, 0.0)";
 		return $this -> bd -> insertar( $consulta );
 	}
 

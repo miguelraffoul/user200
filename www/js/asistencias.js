@@ -5,13 +5,22 @@ function cargarAlumnos() {
 		success: function ( json ) {
 			var cuerpo = document.getElementById( 'cuerpo_tabla' );
 			var plantilla = document.getElementById( 'template_tr' );
+			var acumulador = 0;
+			var contador = 0;
 			for( i in json ) {
 				var fila = plantilla.cloneNode();
 				fila.removeAttribute( 'style' );
 				fila.setAttribute( 'id', json[i].codigo );
 				var tds = fila.getElementsByTagName( 'td' );
 				tds[1].appendChild( document.createTextNode( json[i].nombre ) );
+				tds[2].appendChild( document.createTextNode( Number( json[i].promedio_asist ).toFixed( 2 ) + "%" ) );
 				cuerpo.appendChild( fila );
+				acumulador += Number( json[i].promedio_asist );
+				++contador;
+			}
+			if( contador > 0 ) {
+				acumulador /= Number( contador );
+				document.getElementById( 'promedio_gen' ).appendChild( document.createTextNode( acumulador.toFixed( 2 ) + "%" ) );
 			}
 		},
 		error: function () {
@@ -34,12 +43,13 @@ function datePickerToSqlFormat( fecha ) {
 
 function limpiarTabla( encabezado, filas ) {
 	var columnas = encabezado.getElementsByTagName( 'th' );
-	for( var it = columnas.length - 1; it > 1; --it ) {
+	for( var it = columnas.length - 2; it > 1; --it ) {
 		encabezado.removeChild( columnas[it] );
 		for( var j = 1; j < filas.length; ++j ){
-			filas[j].removeChild( filas[j].lastChild );
+			filas[j].removeChild( filas[j].lastChild.previousSibling.previousSibling );
 		}
 	}
+	document.getElementById( 'tabulador').setAttribute( 'colspan', 2 );
 }
 
 function desplegarFechas( fecha_input ) {
@@ -65,6 +75,7 @@ function desplegarFechas( fecha_input ) {
 			var plantilla_fecha = document.getElementById( 'template_chbx' );
 			var plantilla_asis = document.getElementById( 'template_asistencia' );
 			var plantilla_falta = document.getElementById( 'template_falta' );
+			var tab_footer = document.getElementById( 'tabulador' );
 
 			$.ajax({
 				type: 'POST',
@@ -80,7 +91,9 @@ function desplegarFechas( fecha_input ) {
 						temp_chbx.removeAttribute( 'style' );
 						th.appendChild( temp_chbx );
 						th.appendChild( document.createTextNode( sqlToDatePickerFormat( json[i] ) ) );
-						encabezado_tabla.appendChild( th );
+						encabezado_tabla.insertBefore( th, encabezado_tabla.lastChild.previousSibling );
+						var numero = Number( 3 ) + Number( i );
+						tab_footer.setAttribute( 'colspan', numero  ); 
 						for( var it = 1; it < filas.length; ++it ) {
 							var td = document.createElement( 'td' );
 							for( j in json2 ) {
@@ -104,7 +117,7 @@ function desplegarFechas( fecha_input ) {
 									}
 								}
 							}
-							filas[it].appendChild( td );
+							filas[it].insertBefore( td, filas[it].lastChild.previousSibling );
 						}
 					}
 				}
@@ -143,26 +156,50 @@ function marcarAsistencia() {
 		var encabezado = document.getElementById( 'encabezado_tabla' ).getElementsByTagName( 'th' );
 		var filas = document.getElementById( 'cuerpo_tabla' ).getElementsByTagName( 'tr' );
 		var plantilla_asis = document.getElementById( 'template_asistencia' );
-		
-		for( var i = 2; i < encabezado.length; ++i ){
+		var aux = 0;
+
+		for( var i = 2; i < encabezado.length - 1; ++i ){
 			if( encabezado[i].firstChild.checked ) {
 				for( var j = 1; j < filas.length; ++j ){
 					var tds = filas[j].getElementsByTagName( 'td' );
-					if( tds[0].firstChild.checked ) {
-						$.ajax({
-							type: 'POST',
-							data: {fecha: encabezado[i].id, alumno: filas[j].id},
-							url: 'index.php?ctl=asistencias&act=marcar_asistencia',
-							success: function() {
-								console.log( "si se pudo ^.^" );
+					if( tds[0].firstChild.checked  ) {
+						if( tds[i].firstChild == null  ) {
+							$.ajax({
+								type: 'POST',
+								data: {fecha: encabezado[i].id, alumno: filas[j].id, fila: j},
+								url: 'index.php?ctl=asistencias&act=marcar_asistencia',
+								dataType: 'json',
+								success: function( json ) {
+									var temp_tds = filas[json[0]].getElementsByTagName( 'td' );
+									temp_tds[temp_tds.length - 1].innerText = json[1].toFixed(2) + "%"; 
+									actualizarPromedioGeneral();
+								}
+							});
+							var asist = plantilla_asis.cloneNode();
+							asist.removeAttribute( 'id' );
+							asist.removeAttribute( 'style' );
+							tds[i].appendChild( asist );
+						}
+						else {
+							if( tds[i].firstChild.getAttribute( 'class' ) == 'icon-remove' ) {
+								$.ajax({
+									type: 'POST',
+									data: {fecha: encabezado[i].id, alumno: filas[j].id, fila: j},
+									url: 'index.php?ctl=asistencias&act=marcar_asistencia',
+									dataType: 'json',
+									success: function( json ) {
+										var temp_tds = filas[json[0]].getElementsByTagName( 'td' );
+										temp_tds[temp_tds.length - 1].innerText = json[1].toFixed(2) + "%"; 
+										actualizarPromedioGeneral();
+									}
+								});
+								tds[i].removeChild( tds[i].firstChild );
+								var asist = plantilla_asis.cloneNode();
+								asist.removeAttribute( 'id' );
+								asist.removeAttribute( 'style' );
+								tds[i].appendChild( asist );
 							}
-						});
-						if( tds[i].firstChild )
-							tds[i].removeChild( tds[i].firstChild );
-						var asist = plantilla_asis.cloneNode();
-						asist.removeAttribute( 'id' );
-						asist.removeAttribute( 'style' );
-						tds[i].appendChild( asist );
+						}
 					}
 				} 
 			}
@@ -176,27 +213,61 @@ function marcarFalta() {
 		var filas = document.getElementById( 'cuerpo_tabla' ).getElementsByTagName( 'tr' );
 		var plantilla_falta = document.getElementById( 'template_falta' );
 		
-		for( var i = 2; i < encabezado.length; ++i ){
+		for( var i = 2; i < encabezado.length - 1; ++i ){
 			if( encabezado[i].firstChild.checked ) {
 				for( var j = 1; j < filas.length; ++j ){
 					var tds = filas[j].getElementsByTagName( 'td' );
 					if( tds[0].firstChild.checked ) {
-						$.ajax({
-							type: 'POST',
-							data: {fecha: encabezado[i].id, alumno: filas[j].id},
-							url: 'index.php?ctl=asistencias&act=marcar_falta',
-							success: function() {
-								console.log( "si se pudo ^.^" );
+						if( tds[i].firstChild == null  ) {
+							$.ajax({
+								type: 'POST',
+								data: {fecha: encabezado[i].id, alumno: filas[j].id, fila: j},
+								url: 'index.php?ctl=asistencias&act=marcar_falta',
+								dataType: 'json',
+								success: function( json ) {
+									var temp_tds = filas[json[0]].getElementsByTagName( 'td' );
+									temp_tds[temp_tds.length - 1].innerText = json[1].toFixed(2) + "%";
+									actualizarPromedioGeneral(); 
+								}
+							});
+							var falta = plantilla_falta.cloneNode();
+							falta.removeAttribute( 'id' );
+							falta.removeAttribute( 'style' );
+							tds[i].appendChild( falta );
+						}
+						else {
+							if( tds[i].firstChild.getAttribute( 'class' ) == 'icon-ok' ) {
+								$.ajax({
+									type: 'POST',
+									data: {fecha: encabezado[i].id, alumno: filas[j].id, fila: j},
+									url: 'index.php?ctl=asistencias&act=marcar_falta',
+									dataType: 'json',
+									success: function( json ) {
+										var temp_tds = filas[json[0]].getElementsByTagName( 'td' );
+										temp_tds[temp_tds.length - 1].innerText = json[1].toFixed(2) + "%"; 
+										actualizarPromedioGeneral();
+									}
+								});
+								tds[i].removeChild( tds[i].firstChild );
+								var falta = plantilla_falta.cloneNode();
+								falta.removeAttribute( 'id' );
+								falta.removeAttribute( 'style' );
+								tds[i].appendChild( falta );
 							}
-						});
-						if( tds[i].firstChild )
-							tds[i].removeChild( tds[i].firstChild );
-						var falta = plantilla_falta.cloneNode();
-						falta.removeAttribute( 'id' );
-						falta.removeAttribute( 'style' );
-						tds[i].appendChild( falta );
+						}
 					}
 				} 
 			}
 		}
-	}}
+	}
+}
+
+function actualizarPromedioGeneral() {
+	var filas = document.getElementById( 'cuerpo_tabla' ).getElementsByTagName( 'tr' );
+	var acumulador = 0;
+	for( var i = 1; i < filas.length; ++i ) {
+		var tds = filas[i].getElementsByTagName( 'td' );
+		acumulador += Number( tds[tds.length - 1].innerText.replace( "%", "" ) );
+	}
+	document.getElementById( 'promedio_gen' ).innerText = (acumulador / (filas.length - 1)).toFixed( 2 ) + "%";
+}
