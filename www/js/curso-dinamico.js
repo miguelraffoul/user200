@@ -372,14 +372,19 @@ function eliminarRubrosSeleccionados() {
 	}
 }
 
-function eliminarRubros( id_rubros ) {
-	//console.log( id_rubros );
-	/*$.ajax({
+function eliminarRubros( ids ) {
+	console.log( ids );
+
+	$.ajax({
 		type: 'POST',
-		data: {nombre:id},
-		url: 'index.php?ctl=&act=eliminar_rubro',
+		data: {id_rubros:ids},
+		url: 'index.php?ctl=rubro&act=eliminar_rubros',
 		success: function() {
-			window.location.replace( "index.php?ctl=curso_profesor&act=mostrar_pagina" );
+			alert( "si los elimino" );
+			//window.location.replace( "index.php?ctl=curso_profesor&act=mostrar_pagina" );
+		},
+		error: function(){
+			alert( "Problema al intentar borrar rubros." );
 		}
-	});*/
+	});
 }
