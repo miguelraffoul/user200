@@ -13,6 +13,7 @@
 		<!--[if lt IE 9]>
 			<script src="css3-mediaqueries.js"></script>
 		<![endif]-->
+		<script src="www/js/jquery-1.10.2.js"></script>
 		<script src="www/js/bootstrap.js"></script>
 		<script src="www/js/modernizr.js"></script>
 		<script src="www/js/forms.js"></script>
@@ -87,10 +88,31 @@
 						</div>
 						<div id="alta_archivo">
 							<div id="contenedor_archivo">
+								<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-header">
+									    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+									    <h3 id="myModalLabel">Alta de alumnos mendiate archivo</h3>
+								  	</div>
+								  	<div class="modal-body">
+								    	<p>
+								    		Incluir todos los campos que aparecen en el alta simple separados por comas y sin dejar espacio entre éstas
+								    	 	(incluyendo campos opcionales). 
+								    		<br><br>También, al igual que en el alta simple, se deben incluir primero los campos obligatorios (*) 
+								    		y después los opcionales que pueden ser dejados en blanco (pero respetando su acomodo).
+								    		<br><br>Ejemplo:
+								    		<br><code>nombre,codigo,carrera,correo,celular,github,pagina</code>
+								    		<code>nombre,codigo,carrera,correo,,,</code>
+								    	</p>
+								  	</div>
+									<div class="modal-footer">
+									    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+									</div>
+								</div>
 								<form id="formulario_archivo" action="index.php?ctl=alta_alumno&act=alta_archivo" method="POST" enctype="multipart/form-data">
 									<h2>Registro Archivo</h2>
 									<input id="archivo" name="archivo" type="file" accept="text/plain"/>
 									<button class="btn" type="button" onclick="validarAltaArchivo()">Enviar</button>
+									<a href="#myModal" data-toggle="modal">Formato</a>
 								</form>
 							</div>
 						</div>
