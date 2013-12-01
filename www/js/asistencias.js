@@ -13,14 +13,14 @@ function cargarAlumnos() {
 				fila.setAttribute( 'id', json[i].codigo );
 				var tds = fila.getElementsByTagName( 'td' );
 				tds[1].appendChild( document.createTextNode( json[i].nombre ) );
-				tds[2].appendChild( document.createTextNode( json[i].promedio_asist + "%" ) );
+				tds[2].appendChild( document.createTextNode( Number( json[i].promedio_asist ).toFixed( 2 ) + "%" ) );
 				cuerpo.appendChild( fila );
 				acumulador += Number( json[i].promedio_asist );
 				++contador;
 			}
 			if( contador > 0 ) {
 				acumulador /= Number( contador );
-				document.getElementById( 'promedio_gen' ).appendChild( document.createTextNode( acumulador + "%" ) );
+				document.getElementById( 'promedio_gen' ).appendChild( document.createTextNode( acumulador.toFixed( 2 ) + "%" ) );
 			}
 		},
 		error: function () {
@@ -156,7 +156,8 @@ function marcarAsistencia() {
 		var encabezado = document.getElementById( 'encabezado_tabla' ).getElementsByTagName( 'th' );
 		var filas = document.getElementById( 'cuerpo_tabla' ).getElementsByTagName( 'tr' );
 		var plantilla_asis = document.getElementById( 'template_asistencia' );
-		
+		var aux = 0;
+
 		for( var i = 2; i < encabezado.length - 1; ++i ){
 			if( encabezado[i].firstChild.checked ) {
 				for( var j = 1; j < filas.length; ++j ){
@@ -170,12 +171,8 @@ function marcarAsistencia() {
 								dataType: 'json',
 								success: function( json ) {
 									var temp_tds = filas[json[0]].getElementsByTagName( 'td' );
-									temp_tds[temp_tds.length - 1].innerText = json[1] + "%"; 
-									console.log( filas[json[0]] );
-									console.log( json[1] );
-								},
-								error: function() {
-									console.log( "que pedo D: " );
+									temp_tds[temp_tds.length - 1].innerText = json[1].toFixed(2) + "%"; 
+									actualizarPromedioGeneral();
 								}
 							});
 							var asist = plantilla_asis.cloneNode();
@@ -192,7 +189,8 @@ function marcarAsistencia() {
 									dataType: 'json',
 									success: function( json ) {
 										var temp_tds = filas[json[0]].getElementsByTagName( 'td' );
-										temp_tds[temp_tds.length - 1].innerText = json[1] + "%";
+										temp_tds[temp_tds.length - 1].innerText = json[1].toFixed(2) + "%"; 
+										actualizarPromedioGeneral();
 									}
 								});
 								tds[i].removeChild( tds[i].firstChild );
@@ -220,22 +218,56 @@ function marcarFalta() {
 				for( var j = 1; j < filas.length; ++j ){
 					var tds = filas[j].getElementsByTagName( 'td' );
 					if( tds[0].firstChild.checked ) {
-						$.ajax({
-							type: 'POST',
-							data: {fecha: encabezado[i].id, alumno: filas[j].id},
-							url: 'index.php?ctl=asistencias&act=marcar_falta',
-							success: function() {
-								console.log( "si se pudo ^.^" );
+						if( tds[i].firstChild == null  ) {
+							$.ajax({
+								type: 'POST',
+								data: {fecha: encabezado[i].id, alumno: filas[j].id, fila: j},
+								url: 'index.php?ctl=asistencias&act=marcar_falta',
+								dataType: 'json',
+								success: function( json ) {
+									var temp_tds = filas[json[0]].getElementsByTagName( 'td' );
+									temp_tds[temp_tds.length - 1].innerText = json[1].toFixed(2) + "%";
+									actualizarPromedioGeneral(); 
+								}
+							});
+							var falta = plantilla_falta.cloneNode();
+							falta.removeAttribute( 'id' );
+							falta.removeAttribute( 'style' );
+							tds[i].appendChild( falta );
+						}
+						else {
+							if( tds[i].firstChild.getAttribute( 'class' ) == 'icon-ok' ) {
+								$.ajax({
+									type: 'POST',
+									data: {fecha: encabezado[i].id, alumno: filas[j].id, fila: j},
+									url: 'index.php?ctl=asistencias&act=marcar_falta',
+									dataType: 'json',
+									success: function( json ) {
+										var temp_tds = filas[json[0]].getElementsByTagName( 'td' );
+										temp_tds[temp_tds.length - 1].innerText = json[1].toFixed(2) + "%"; 
+										actualizarPromedioGeneral();
+									}
+								});
+								tds[i].removeChild( tds[i].firstChild );
+								var falta = plantilla_falta.cloneNode();
+								falta.removeAttribute( 'id' );
+								falta.removeAttribute( 'style' );
+								tds[i].appendChild( falta );
 							}
-						});
-						if( tds[i].firstChild )
-							tds[i].removeChild( tds[i].firstChild );
-						var falta = plantilla_falta.cloneNode();
-						falta.removeAttribute( 'id' );
-						falta.removeAttribute( 'style' );
-						tds[i].appendChild( falta );
+						}
 					}
 				} 
 			}
 		}
-	}}
+	}
+}
+
+function actualizarPromedioGeneral() {
+	var filas = document.getElementById( 'cuerpo_tabla' ).getElementsByTagName( 'tr' );
+	var acumulador = 0;
+	for( var i = 1; i < filas.length; ++i ) {
+		var tds = filas[i].getElementsByTagName( 'td' );
+		acumulador += Number( tds[tds.length - 1].innerText.replace( "%", "" ) );
+	}
+	document.getElementById( 'promedio_gen' ).innerText = (acumulador / (filas.length - 1)).toFixed( 2 ) + "%";
+}

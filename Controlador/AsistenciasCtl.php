@@ -140,25 +140,22 @@ class AsistenciasCtl {
 				else 
 					$this -> modelo -> marcarAsistencia( $alumno, $_SESSION['clave_curso'], $fecha );
 				$asistencias = $this -> modelo -> obtenerCantidadAsistencias( $alumno, $_SESSION['clave_curso'] );
-				$promedio_asistencias = (100 / $_SESSION['dias_habiles']) * $asistencias; 
+				$promedio_asistencias = (100 / $_SESSION['dias_habiles']) * $asistencias[0]['COUNT(*)']; 
 				$this -> modelo -> actualizarPromedioAsistencias( $alumno, $_SESSION['clave_curso'], $promedio_asistencias );
-				echo json_encode( array( $_POST['fila'],  $promedio_asistencias ) );
+				echo json_encode( array( $_POST['fila'], $promedio_asistencias ) );
 				break;
 			case "marcar_falta":
-				$resultado = array();
 				$fecha = $_POST['fecha'];
 				$alumno = $_POST['alumno'];
-				$resultado[] = $_POST['fila'];
 				$asistencia = $this -> modelo -> obtenerAsistencia( $alumno, $_SESSION['clave_curso'], $fecha );
 				if( is_array( $asistencia ) )
 					$this -> modelo -> actualizarFalta( $alumno, $_SESSION['clave_curso'], $fecha );
 				else 
 					$this -> modelo -> marcarFalta( $alumno, $_SESSION['clave_curso'], $fecha );
 				$asistencias = $this -> modelo -> obtenerCantidadAsistencias( $alumno, $_SESSION['clave_curso'] );
-				$promedio_asistencias = (100 / $_SESSION['dias_habiles']) * $asistencias; 
+				$promedio_asistencias = (100 / $_SESSION['dias_habiles']) * $asistencias[0]['COUNT(*)']; 
 				$this -> modelo -> actualizarPromedioAsistencias( $alumno, $_SESSION['clave_curso'], $promedio_asistencias );
-				$resultado[] = $promedio_asistencias;
-				echo json_encode( $resultado );
+				echo json_encode( array( $_POST['fila'], $promedio_asistencias ) );
 				break;
 			default:
 				$msj_error = "Acción invalida";

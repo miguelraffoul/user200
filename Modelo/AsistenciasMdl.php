@@ -40,7 +40,7 @@ class AsistenciasMdl {
 		$consulta = "SELECT COUNT(*) FROM asistencia WHERE asistencia = TRUE AND 
 					 Alumno_has_Curso_Alumno_codigo =  \"$alumno\" AND 
 					 Alumno_has_Curso_Curso_clave_curso = \"$curso\"";
-		return $this -> bd -> consultaEspecifica( $consulta );
+		return $this -> bd -> consultaGeneral( $consulta );
 	}
 
 	public function obtenerAsistencia( $alumno, $curso, $fecha ) {
