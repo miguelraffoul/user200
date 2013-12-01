@@ -50,6 +50,7 @@
 							<div id="wrapper2" >
 								<div id="tabla">
 									<form id="hoja_form" action="index.php?ctl=hoja_evaluacion&act=guardar_hoja" method="POST">
+										<!--<input id="numero_columnas" name="numero_columnas" type="text" style"display: none;">-->
 										<table id="hoja_evaluacion" class="table table-bordered table-hover">
 											<thead>
 												<tr id="tr_columnas">
@@ -73,15 +74,19 @@
 												</tr>
 											</tbody>
 											<tfoot>
-												<td id="pt_nombre" class="cell-columna" colspan="{}"></td>
-												<td id="total_promedio" class="cell-columna td-disabled">0</td>
+												<tr>
+													<td id="pt_nombre" class="cell-columna" colspan="{}">Promedio Total de Rubro</td>
+													<td id="total_promedio" class="cell-columna td-disabled">0</td>
+												</tr>
 											</tfoot>
 										</table>
 									</form>
 								</div>
 								<div>
-									<button class="btn" type="button">Calcular Promedio</button>
-									<button class="btn" type="button" onclick="validarHoja()">Guardar</button>
+									<button class="btn" type="button">Eliminar Columnas</button>
+									<button class="btn" type="button">Añadir Columna</button>
+									<button class="btn" type="button" onclick="calcularPromedio()">Calcular Promedio</button>
+									<button id="boton_guardar" class="btn" type="button" onclick="validarHoja()" disabled>Guardar</button>
 								</div>
 							</div>
 					</section>

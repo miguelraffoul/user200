@@ -18,7 +18,7 @@ class CursoProfesorCtl{
 				break;
 
 			case "listar_rubros":
-				$rubros_array = $this -> modelo -> obtenerRubros();
+				$rubros_array = $this -> modelo -> obtenerRubros( $_SESSION['clave_curso'] );
 				echo json_encode( $rubros_array );
 				break;
 
