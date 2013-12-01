@@ -289,7 +289,7 @@ function validarAltaArchivo() {
 		archivo.parentNode.insertBefore( div, archivo.nextSibling );
 	}
 	else{
-		document.getElementById( 'formulario_registro' ).submit();
+		document.getElementById( 'formulario_archivo' ).submit();
 	}
 }
 

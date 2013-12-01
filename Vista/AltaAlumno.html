@@ -39,7 +39,7 @@
 				<div class="row-fluid">
 					<section>
 						<div id="alta_simple">
-							<form id="formulario_registro" method="POST">
+							<form id="formulario_registro" action="index.php?ctl=alta_alumno&act=alta_simple" method="POST">
 								<h2>Registro Alumno</h2>
 								<label for="nombre">Nombre*</label>
 								<input type="text" id="nombre" name="nombre" required/>
@@ -87,9 +87,11 @@
 						</div>
 						<div id="alta_archivo">
 							<div id="contenedor_archivo">
-								<h2>Registro Archivo</h2>
-								<input id="archivo" name="archivo" type="file" accept=".txt"/>
-								<button class="btn" type="button" onclick="validarAltaArchivo()">Enviar</button>
+								<form id="formulario_archivo" action="index.php?ctl=alta_alumno&act=alta_archivo" method="POST" enctype="multipart/form-data">
+									<h2>Registro Archivo</h2>
+									<input id="archivo" name="archivo" type="file" accept="text/plain"/>
+									<button class="btn" type="button" onclick="validarAltaArchivo()">Enviar</button>
+								</form>
 							</div>
 						</div>
 					</section>
