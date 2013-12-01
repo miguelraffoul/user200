@@ -127,6 +127,7 @@ function calcularPromedio(){
 		var filas = document.getElementsByTagName( "tr" );
 		console.log( filas ); 
 
+		var promedio_total = 0;
 		for( var i = 2 ; i < filas.length - 1 ; ++i ){
 			var calificaciones = filas[i].getElementsByTagName( "input" );
 			var suma = 0;
@@ -137,6 +138,7 @@ function calcularPromedio(){
 			}
 			var promedio = suma / ( calificaciones.length - 1 )
 			calificaciones[j].value = promedio.toFixed(1);
+			promedio_total = promedio.toFixed( 1 );
 		}
 		document.getElementById( "boton_guardar" ).disabled = false;
 	}
