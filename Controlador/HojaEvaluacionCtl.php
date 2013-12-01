@@ -10,7 +10,7 @@ class HojaEvaluacionCtl{
 
 		switch( $_GET['act'] ){
 			case 'agregar_hoja':
-				$this -> agregarHoja( 1 );
+				$this -> agregarHoja( 3 );
 				break;
 
 			case 'mostrar_pagina':
@@ -89,7 +89,7 @@ class HojaEvaluacionCtl{
 		$count = 0;
 		for( $j = 0 ; $j < $alumnos_length ; $j++ ){
 			for( $i = 0 ; $i < $columnas_length ; $i++ ){
-				$this -> modelo -> agregarCelda( $calificaciones[$count], $id_columna[$i], $alumnos[$j]['codigo'], '12345' );
+				$this -> modelo -> agregarCelda( strtoupper( $calificaciones[$count] ), $id_columna[$i], $alumnos[$j]['codigo'], '12345' );
 				$count = $count + 1;
 			}
 		}
