@@ -9,7 +9,7 @@ class AsistenciasMdl {
 	}
 
 	public function obtenerAlumnos( $curso ) {
-		$consulta = "SELECT a.nombre, a.codigo FROM alumno As a, alumno_has_curso AS b WHERE a.codigo = b.Alumno_codigo AND b.activo = TRUE AND b.Curso_clave_curso = \"$curso\" ORDER BY a.nombre";
+		$consulta = "SELECT a.nombre, a.codigo, b.promedio_asist FROM alumno As a, alumno_has_curso AS b WHERE a.codigo = b.Alumno_codigo AND b.activo = TRUE AND b.Curso_clave_curso = \"$curso\" ORDER BY a.nombre";
 		return  $this -> bd -> consultaGeneral( $consulta );
 	}
 
@@ -28,12 +28,19 @@ class AsistenciasMdl {
 		return $this -> bd -> consultaGeneral( $consulta );
 	}
 
-	public function obtenerAsistencias( $alumno, $curso, $inicio, $fin ) {
+	public function obtenerAsistenciasIntervalo( $alumno, $curso, $inicio, $fin ) {
 		$consulta = "SELECT fecha, asistencia, Alumno_has_Curso_Alumno_codigo AS alumno FROM asistencia WHERE
 					 Alumno_has_Curso_Alumno_codigo = \"$alumno\" AND
 					 Alumno_has_Curso_Curso_clave_curso = \"$curso\" AND
 					 (fecha BETWEEN \"$inicio\" AND \"$fin\" )";
 		return $this -> bd -> consultaGeneral( $consulta );
+	}
+
+	public function obtenerCantidadAsistencias( $alumno, $curso ) {
+		$consulta = "SELECT COUNT(*) FROM asistencia WHERE asistencia = TRUE AND 
+					 Alumno_has_Curso_Alumno_codigo =  \"$alumno\" AND 
+					 Alumno_has_Curso_Curso_clave_curso = \"$curso\"";
+		return $this -> bd -> consultaEspecifica( $consulta );
 	}
 
 	public function obtenerAsistencia( $alumno, $curso, $fecha ) {
@@ -80,6 +87,11 @@ class AsistenciasMdl {
 					\"$alumno\",
 					\"$curso\"
 				)";
+		return $this -> bd -> insertar( $consulta );
+	}
+
+	public function actualizarPromedioAsistencias( $alumno, $curso, $promedio ) {
+		$consulta = "UPDATE alumno_has_curso SET promedio_asist = $promedio WHERE Alumno_codigo = \"$alumno\" AND Curso_clave_curso= \"$curso\"";
 		return $this -> bd -> insertar( $consulta );
 	}
 }

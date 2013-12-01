@@ -46,6 +46,28 @@ class AsistenciasCtl {
 		return $time_array;
 	}
 
+	private function calcularDiasHabiles( $fin_ciclo, $dias_inhabiles, $dias_clase, $fecha ) {
+		$dias_clase_t = $this -> diasClaseToTime( $fecha, $dias_clase );
+		$dias_habiles = 0;
+		$contador = 0;
+		$bandera = false;
+		while( $dias_clase_t[$contador] < strtotime( $fin_ciclo ) ) {
+			if( is_array( $dias_inhabiles ) ) {
+				for( $it = 0; $it < count( $dias_inhabiles ); ++$it ) {
+					if( date( 'Y-m-d', $dias_clase_t[$contador] ) == $dias_inhabiles[$it]['fecha'] )
+						$bandera = true;
+				}
+			}
+			if( !$bandera )
+				++$dias_habiles;
+			$bandera = false;
+			$dias_clase_t[$contador] += 604800; //7 días
+			if( ++$contador >= count( $dias_clase_t ) )
+				$contador = 0;
+		}
+		return $dias_habiles;
+	}
+
 	private function generarIntervaloClases( $fin_ciclo, $dias_inhabiles, $dias_clase, $fecha ) {
 		$intervalo_clases = array();
 		$dias_clase_t = $this -> diasClaseToTime( $fecha, $dias_clase );
@@ -77,6 +99,11 @@ class AsistenciasCtl {
 
 		switch ( $_GET['act'] ) {
 			case "mostrar_datos":
+				$ciclo = $this -> modelo -> obtenerCicloCurso( $_SESSION['clave_curso'] );
+				$dias_inhabiles = $this -> modelo -> obtenerDiasInhabiles( $ciclo[0]['idCicloEscolar'] );
+				$dias_clase = $this -> modelo -> obtenerDiasClase( $_SESSION['clave_curso'] );
+				$dias_habiles = $this -> calcularDiasHabiles( $ciclo[0]['fin'], $dias_inhabiles, $dias_clase, $ciclo[0]['inicio'] );
+				$_SESSION['dias_habiles'] = $dias_habiles;
 				require_once( "Vista/Asistencias.html" );
 				break;
 			case "carga_alumnos":
@@ -100,7 +127,7 @@ class AsistenciasCtl {
 				$alumnos = $_POST['alumnos'];
 				$asistencias_alumnos = array();
 				for( $it = 0; $it < count( $alumnos ); ++$it ) {
-					$asistencias_alumnos[] = $this -> modelo -> obtenerAsistencias( $alumnos[$it], $_SESSION['clave_curso'], $fechas[0], end( $fechas ) );
+					$asistencias_alumnos[] = $this -> modelo -> obtenerAsistenciasIntervalo( $alumnos[$it], $_SESSION['clave_curso'], $fechas[0], end( $fechas ) );
 				}
 				echo json_encode( $asistencias_alumnos );
 				break;
@@ -109,18 +136,29 @@ class AsistenciasCtl {
 				$alumno = $_POST['alumno'];
 				$asistencia = $this -> modelo -> obtenerAsistencia( $alumno, $_SESSION['clave_curso'], $fecha );
 				if( is_array( $asistencia ) )
-					echo json_encode($this -> modelo -> actualizarAsistencia( $alumno, $_SESSION['clave_curso'], $fecha ));
+					$this -> modelo -> actualizarAsistencia( $alumno, $_SESSION['clave_curso'], $fecha );
 				else 
-					echo json_encode($this -> modelo -> marcarAsistencia( $alumno, $_SESSION['clave_curso'], $fecha ));
+					$this -> modelo -> marcarAsistencia( $alumno, $_SESSION['clave_curso'], $fecha );
+				$asistencias = $this -> modelo -> obtenerCantidadAsistencias( $alumno, $_SESSION['clave_curso'] );
+				$promedio_asistencias = (100 / $_SESSION['dias_habiles']) * $asistencias; 
+				$this -> modelo -> actualizarPromedioAsistencias( $alumno, $_SESSION['clave_curso'], $promedio_asistencias );
+				echo json_encode( array( $_POST['fila'],  $promedio_asistencias ) );
 				break;
 			case "marcar_falta":
+				$resultado = array();
 				$fecha = $_POST['fecha'];
 				$alumno = $_POST['alumno'];
+				$resultado[] = $_POST['fila'];
 				$asistencia = $this -> modelo -> obtenerAsistencia( $alumno, $_SESSION['clave_curso'], $fecha );
 				if( is_array( $asistencia ) )
-					echo json_encode($this -> modelo -> actualizarFalta( $alumno, $_SESSION['clave_curso'], $fecha ));
+					$this -> modelo -> actualizarFalta( $alumno, $_SESSION['clave_curso'], $fecha );
 				else 
-					echo json_encode($this -> modelo -> marcarFalta( $alumno, $_SESSION['clave_curso'], $fecha ));
+					$this -> modelo -> marcarFalta( $alumno, $_SESSION['clave_curso'], $fecha );
+				$asistencias = $this -> modelo -> obtenerCantidadAsistencias( $alumno, $_SESSION['clave_curso'] );
+				$promedio_asistencias = (100 / $_SESSION['dias_habiles']) * $asistencias; 
+				$this -> modelo -> actualizarPromedioAsistencias( $alumno, $_SESSION['clave_curso'], $promedio_asistencias );
+				$resultado[] = $promedio_asistencias;
+				echo json_encode( $resultado );
 				break;
 			default:
 				$msj_error = "Acción invalida";
