@@ -337,12 +337,10 @@ function eliminarRubrosSeleccionados() {
 	var tabla_evaluacion = document.getElementById( 'tabla_evaluacion' );
 	var checkboxes = tabla_evaluacion.getElementsByTagName( 'input' );
 	
-	var hay_rubros_seleccionados = false;
 	var rubros_seleccionados = new Array();
 	var tr_a_eliminar = new Array();
 	for( var i = 2; i < checkboxes.length; ++i ) {
 		if ( checkboxes[i].checked ) {
-			hay_rubros_seleccionados = true;
 			var tds = checkboxes[i].parentNode.parentNode.getElementsByTagName( 'td' )
 			rubros_seleccionados.push( tds[1].firstChild.id );
 			tr_a_eliminar.push( checkboxes[i].parentNode.parentNode );
@@ -354,7 +352,7 @@ function eliminarRubrosSeleccionados() {
 	if( error != null )
 		div.removeChild( error );	
 
-	if( hay_rubros_seleccionados ) {
+	if( rubros_seleccionados.length > 0 ) {
 		var confirmacion = confirm( "Corfirme borrado de rubros" );
 		if( confirmacion ){
 			var tbody = tabla_evaluacion.getElementsByTagName( "tbody" ); 
@@ -378,10 +376,25 @@ function eliminarRubros( ids ) {
 	$.ajax({
 		type: 'POST',
 		data: {id_rubros:ids},
-		url: 'index.php?ctl=rubro&act=eliminar_rubros',
+		url: 'index.php?ctl=curso_profesor&act=eliminar_rubros',
 		success: function() {
-			alert( "si los elimino" );
-			//window.location.replace( "index.php?ctl=curso_profesor&act=mostrar_pagina" );
+			window.location.replace( "index.php?ctl=curso_profesor&act=mostrar_pagina" );
+		},
+		error: function(){
+			alert( "Problema al intentar borrar rubros." );
+		}
+	});
+}
+
+function cargarRubro( enlace ){
+	var id = enlace.id;
+
+	$.ajax({
+		type: 'POST',
+		data: {id_rubro:id},
+		url: 'index.php?ctl=rubro_modificar&act=cargar_rubro',
+		success: function() {
+			window.location.replace( "index.php?ctl=curso_profesor&act=mostrar_pagina" );
 		},
 		error: function(){
 			alert( "Problema al intentar borrar rubros." );

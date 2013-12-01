@@ -25,7 +25,6 @@ class CursoProfesorCtl{
 			case "eliminar_rubros":
 				$id_rubros = $_POST['id_rubros'];
 				$this -> eliminarRubros( $id_rubros );
-				//$this -> modelo -> eliminarRubro( $nombre );
 				break;
 
 			default:
@@ -38,6 +37,8 @@ class CursoProfesorCtl{
 	}
 
 	function eliminarRubros( $id_rubros ){
-		
+		$rubros_length = count( $id_rubros );
+		for( $i = 0 ; $i < $rubros_length ; ++$i )
+			$this -> modelo -> eliminarRubro( $id_rubros[$i] );
 	}
 }
