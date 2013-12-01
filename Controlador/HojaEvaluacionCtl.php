@@ -9,9 +9,9 @@ class HojaEvaluacionCtl{
 		$this -> modelo = new HojaEvaluacionMdl();
 
 		switch( $_GET['act'] ){
-			case 'agregar_hoja':
+			/*case 'agregar_hoja':
 				$this -> agregarHoja( 3 );
-				break;
+				break;*/
 
 			case 'mostrar_pagina':
 				require_once( "Vista/HojaEvaluacion.html" );
@@ -30,7 +30,7 @@ class HojaEvaluacionCtl{
 		}
 	}
 
-	function agregarHoja( $columnas_length ){
+	/*function agregarHoja( $columnas_length ){
 		$alumnos = $this -> modelo -> obtenerAlumnosNombreId( '12345' );
 		$alumnos_length = count( $alumnos );
 		
@@ -43,7 +43,7 @@ class HojaEvaluacionCtl{
 		$id_columna = $this -> modelo -> agregarColumna( "Promedio", 2 );
 		for( $j = 0 ; $j < $alumnos_length ; $j++ )
 			$this -> modelo -> agregarCelda( 0, $id_columna, $alumnos[$j]['codigo'], '12345' );
-	}
+	}*/
 
 	function cargarHoja(){
 		$columnas = $this -> modelo -> obtenerColumnasNombreId( 2 ); 

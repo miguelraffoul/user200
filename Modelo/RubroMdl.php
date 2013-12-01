@@ -27,6 +27,8 @@ class RubroMdl{
 		return $nombre_rubro;
 	}	
 
+
+	//METODOS PARA CREAR HOJA DE EVALUACION 
 	function obtenerAlumnosNombreId( $id_curso ){
 		$consulta = "SELECT nombre, codigo FROM alumno INNER JOIN alumno_has_curso ON codigo = Alumno_codigo 
 					 WHERE Curso_clave_curso = \"$id_curso\" AND activo = TRUE ORDER BY nombre ASC";

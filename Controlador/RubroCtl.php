@@ -20,11 +20,6 @@ class RubroCtl{
 				$this -> mostrarRubro();
 				break;
 
-			case "eliminar_rubro":
-				$nombre = $_POST['nombre'];
-				$this -> modelo -> eliminarAlumno( $nombre );
-				break;
-
 			case "agregar_rubro":
 				if(empty($_POST))
 					require_once("Vista/RubroEvaluacion.html");
@@ -51,7 +46,6 @@ class RubroCtl{
 	}
 
 	function nuevoRubro( $id_curso ){
-		var_dump( $_POST );
 		$nombre_rubro = $_POST['nombre_rubro'];
 		$valor_rubro = $_POST['valor_rubro'];
 

@@ -15,6 +15,6 @@ class CursoProfesorMdl{
 
 	function eliminarRubro( $id_rubro ) {
 		$consulta = "DELETE FROM rubro WHERE idRubro = \"$id_rubro\"";
-		return $this -> bd -> consultaEspecifica( $consulta );
+		return $this -> bd -> insertar( $consulta );
 	}
 }
