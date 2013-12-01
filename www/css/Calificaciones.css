@@ -43,7 +43,7 @@ input.name-input{
     border: 0;
 }
 
-input[disabled]{
+input[readOnly]{
     background-color: #A4A4A4;
 }
 

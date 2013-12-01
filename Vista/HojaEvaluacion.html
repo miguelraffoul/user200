@@ -17,6 +17,7 @@
 		<script src="www/js/bootstrap.js"></script>
 		<script src="www/js/modernizr.js"></script>
 		<script src="www/js/jquery-1.10.2.js"></script>
+		<script src="www/js/hoja.validacion.js"></script>
 		<script src="www/js/hoja-dinamico.js"></script>
 		<script>
 			$( document ).ready(function() {
@@ -48,24 +49,17 @@
 						<h2>&lt;Rubro&gt;</h2>
 							<div id="wrapper2" >
 								<div id="tabla">
-
-									<table id="template_table">
-
-									</table>
-
-									<form>
+									<form id="hoja_form" action="index.php?ctl=hoja_evaluacion&act=guardar_hoja" method="POST">
 										<table id="hoja_evaluacion" class="table table-bordered table-hover">
 											<thead>
 												<tr id="tr_columnas">
 													<th class="cell-columna-alumno">Nombre</th>
 
 													<th id="template_columna" class="cell-columna" style="display: none;">
-														<!--<input type="text" name="id_columnas[]" style="display: none;">-->
 														<input type="text" name="nombre_columnas[]" class="name-input">
 													</th>
 
 													<td id="template_alumno" class="cell-columna-alumno" style="display: none;">
-														<input type="text" name="id_alumno[]" style="display: none;">
 														<p></p>
 													</td>
 
@@ -85,8 +79,10 @@
 										</table>
 									</form>
 								</div>
-								<button class="btn" type="button">Calcular Promedio</button>
-								<button class="btn" type="button">Guardar</button>
+								<div>
+									<button class="btn" type="button">Calcular Promedio</button>
+									<button class="btn" type="button" onclick="validarHoja()">Guardar</button>
+								</div>
 							</div>
 					</section>
 				</div>
