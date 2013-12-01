@@ -156,7 +156,8 @@ function marcarAsistencia() {
 		var encabezado = document.getElementById( 'encabezado_tabla' ).getElementsByTagName( 'th' );
 		var filas = document.getElementById( 'cuerpo_tabla' ).getElementsByTagName( 'tr' );
 		var plantilla_asis = document.getElementById( 'template_asistencia' );
-		var aux = 0;
+		var alumnos = [];
+		var indices = [];
 
 		for( var i = 2; i < encabezado.length - 1; ++i ){
 			if( encabezado[i].firstChild.checked ) {
@@ -164,17 +165,8 @@ function marcarAsistencia() {
 					var tds = filas[j].getElementsByTagName( 'td' );
 					if( tds[0].firstChild.checked  ) {
 						if( tds[i].firstChild == null  ) {
-							$.ajax({
-								type: 'POST',
-								data: {fecha: encabezado[i].id, alumno: filas[j].id, fila: j},
-								url: 'index.php?ctl=asistencias&act=marcar_asistencia',
-								dataType: 'json',
-								success: function( json ) {
-									var temp_tds = filas[json[0]].getElementsByTagName( 'td' );
-									temp_tds[temp_tds.length - 1].innerText = json[1].toFixed(2) + "%"; 
-									actualizarPromedioGeneral();
-								}
-							});
+							alumnos.push( filas[j].id );
+							indices.push( j );
 							var asist = plantilla_asis.cloneNode();
 							asist.removeAttribute( 'id' );
 							asist.removeAttribute( 'style' );
@@ -182,17 +174,8 @@ function marcarAsistencia() {
 						}
 						else {
 							if( tds[i].firstChild.getAttribute( 'class' ) == 'icon-remove' ) {
-								$.ajax({
-									type: 'POST',
-									data: {fecha: encabezado[i].id, alumno: filas[j].id, fila: j},
-									url: 'index.php?ctl=asistencias&act=marcar_asistencia',
-									dataType: 'json',
-									success: function( json ) {
-										var temp_tds = filas[json[0]].getElementsByTagName( 'td' );
-										temp_tds[temp_tds.length - 1].innerText = json[1].toFixed(2) + "%"; 
-										actualizarPromedioGeneral();
-									}
-								});
+								alumnos.push( filas[j].id );
+								indices.push( j );
 								tds[i].removeChild( tds[i].firstChild );
 								var asist = plantilla_asis.cloneNode();
 								asist.removeAttribute( 'id' );
@@ -201,6 +184,21 @@ function marcarAsistencia() {
 							}
 						}
 					}
+				}
+				if( alumnos.length > 0 ) {
+					$.ajax({
+						type: 'POST',
+						data: {fecha: encabezado[i].id, alumnos_ids: alumnos, alumnos_indices: indices},
+						url: 'index.php?ctl=asistencias&act=marcar_asistencia',
+						dataType: 'json',
+						success: function( json ) {
+							for( it in json[0] ) {
+								var temp_tds = filas[json[0][it]].getElementsByTagName( 'td' );
+								temp_tds[temp_tds.length - 1].innerText = json[1][it].toFixed(2) + "%"; 
+							}
+							actualizarPromedioGeneral();
+						}
+					});
 				} 
 			}
 		}
@@ -212,6 +210,8 @@ function marcarFalta() {
 		var encabezado = document.getElementById( 'encabezado_tabla' ).getElementsByTagName( 'th' );
 		var filas = document.getElementById( 'cuerpo_tabla' ).getElementsByTagName( 'tr' );
 		var plantilla_falta = document.getElementById( 'template_falta' );
+		var alumnos = [];
+		var indices = [];
 		
 		for( var i = 2; i < encabezado.length - 1; ++i ){
 			if( encabezado[i].firstChild.checked ) {
@@ -219,17 +219,8 @@ function marcarFalta() {
 					var tds = filas[j].getElementsByTagName( 'td' );
 					if( tds[0].firstChild.checked ) {
 						if( tds[i].firstChild == null  ) {
-							$.ajax({
-								type: 'POST',
-								data: {fecha: encabezado[i].id, alumno: filas[j].id, fila: j},
-								url: 'index.php?ctl=asistencias&act=marcar_falta',
-								dataType: 'json',
-								success: function( json ) {
-									var temp_tds = filas[json[0]].getElementsByTagName( 'td' );
-									temp_tds[temp_tds.length - 1].innerText = json[1].toFixed(2) + "%";
-									actualizarPromedioGeneral(); 
-								}
-							});
+							alumnos.push( filas[j].id );
+							indices.push( j );
 							var falta = plantilla_falta.cloneNode();
 							falta.removeAttribute( 'id' );
 							falta.removeAttribute( 'style' );
@@ -237,17 +228,8 @@ function marcarFalta() {
 						}
 						else {
 							if( tds[i].firstChild.getAttribute( 'class' ) == 'icon-ok' ) {
-								$.ajax({
-									type: 'POST',
-									data: {fecha: encabezado[i].id, alumno: filas[j].id, fila: j},
-									url: 'index.php?ctl=asistencias&act=marcar_falta',
-									dataType: 'json',
-									success: function( json ) {
-										var temp_tds = filas[json[0]].getElementsByTagName( 'td' );
-										temp_tds[temp_tds.length - 1].innerText = json[1].toFixed(2) + "%"; 
-										actualizarPromedioGeneral();
-									}
-								});
+								alumnos.push( filas[j].id );
+								indices.push( j );
 								tds[i].removeChild( tds[i].firstChild );
 								var falta = plantilla_falta.cloneNode();
 								falta.removeAttribute( 'id' );
@@ -256,6 +238,21 @@ function marcarFalta() {
 							}
 						}
 					}
+				}
+				if( alumnos.length > 0 ) {
+					$.ajax({
+						type: 'POST',
+						data: {fecha: encabezado[i].id, alumnos_ids: alumnos, alumnos_indices: indices},
+						url: 'index.php?ctl=asistencias&act=marcar_falta',
+						dataType: 'json',
+						success: function( json ) {
+							for( it in json[0] ) {
+								var temp_tds = filas[json[0][it]].getElementsByTagName( 'td' );
+								temp_tds[temp_tds.length - 1].innerText = json[1][it].toFixed(2) + "%"; 
+							}
+							actualizarPromedioGeneral();
+						}
+					});
 				} 
 			}
 		}
