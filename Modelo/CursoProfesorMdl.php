@@ -8,11 +8,9 @@ class CursoProfesorMdl{
 		$this -> bd = BaseDeDatos::obtenerInstancia();
 	}
 
-	function obtenerRubros(){
-		$curso = "cc200";
+	function obtenerRubros( $curso ){
 		$consulta = "SELECT *FROM rubro WHERE Curso_clave_curso = \"$curso\"";
-		$rubros_array = $this -> bd -> consultaGeneral( $consulta );
-		return $rubros_array;
+		return $this -> bd -> consultaGeneral( $consulta );
 	}
 
 	function eliminarRubro( $nombre ) {

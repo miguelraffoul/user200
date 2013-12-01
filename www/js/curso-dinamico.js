@@ -315,7 +315,7 @@ function mostrarListaRubros(){
 					var nuevo_elemento = elemento_lista_temp.cloneNode();
 					nuevo_elemento.removeAttribute( "style" );
 					nuevo_elemento.removeAttribute( "id" );
-					
+
 					var td = nuevo_elemento.getElementsByTagName( 'td' );
 					enlace_rubro = td[1].firstChild;
 					enlace_rubro.setAttribute( "id", json[i].idRubro );
@@ -333,46 +333,48 @@ function mostrarListaRubros(){
 	});
 }
 
-function eliminarRubro( boton ) {
-	var checkboxes = document.getElementById( 'cuerpo_tabla' ).getElementsByTagName( 'input' );
-	var rubros_seleccionados = false;
-	for( var i = 1; i < checkboxes.length; ++i ) {
+function eliminarRubrosSeleccionados() {
+	var tabla_evaluacion = document.getElementById( 'tabla_evaluacion' );
+	var checkboxes = tabla_evaluacion.getElementsByTagName( 'input' );
+	
+	var hay_rubros_seleccionados = false;
+	var rubros_seleccionados = new Array();
+	for( var i = 2; i < checkboxes.length; ++i ) {
 		if ( checkboxes[i].checked ) {
-			rubros_seleccionados = true;
+			hay_rubros_seleccionados = true;
+			var tds = checkboxes[i].parentNode.parentNode.getElementsByTagName( 'td' )
+			rubros_seleccionados.push( tds[1].firstChild.id );
+			
 		}
 	}
+	
+	var div = document.getElementById( "evaluacion" );
 	var error = document.getElementById( 'error_no_seleccion' );
 	if( error != null )
-		error.parentNode.removeChild( error );	
+		div.removeChild( error );	
 
-	if( rubros_seleccionados ) {
+	if( hay_rubros_seleccionados ) {
 		var confirmacion = confirm( "Corfirme borrado de rubros" );
-		if( confirmacion ) {
-			for( var i = 0; i < checkboxes.length; ++i ){
-				if ( checkboxes[i].checked ) {
-					var tds = checkboxes[i].parentNode.parentNode.getElementsByTagName( 'td' );
-					var nombre = tds[2].innerHTML;
-					eliminaRubro( nombre );
-				}
-			}
-		}
+		if( confirmacion )
+			eliminarRubros( rubros_seleccionados );
 	}
 	else {
 		error = document.createElement( 'div' );
 		error.setAttribute( 'id', 'error_no_seleccion' );
 		error.setAttribute( 'class', 'error' );
 		error.appendChild( document.createTextNode( 'Seleccione por lo menos un rubro' ) );
-		boton.parentNode.insertBefore( error, boton );
+		div.insertBefore( error, tabla_evaluacion.nextSibling );
 	}
 }
 
-function eliminaRubro( nombre ) {
-	$.ajax({
+function eliminarRubros( id_rubros ) {
+	//console.log( id_rubros );
+	/*$.ajax({
 		type: 'POST',
 		data: {nombre:id},
 		url: 'index.php?ctl=&act=eliminar_rubro',
 		success: function() {
 			window.location.replace( "index.php?ctl=curso_profesor&act=mostrar_pagina" );
 		}
-	});
+	});*/
 }
