@@ -46,11 +46,11 @@
 							<label for="valor_rubro">Valor (%)*</label>
 							<input type="text" id="valor_rubro" name="valor_rubro">
 							<div id="div_checkbox_hoja" class="checkbox">
-								<label for="tiene_hoja"><input type="checkbox" id="tiene_hoja" name="tiene_hoja" value="tiene_hoja" onchange="mostrarColumnasRubro(this)">Tiene Hoja de Evaluación</label>
+								<label for="tiene_columnas_extra"><input type="checkbox" id="tiene_columnas_extra" name="tiene_columnas_extra" value="tiene_hoja" onchange="mostrarColumnasRubro(this)">Hoja con columnas extra</label>
 							</div>
 							<div id="div_columnas_rubro" style="display: none;">
-								<label for="columnas_rubro">Número de columnas de la hoja</label>
-								<input type="text" id="columnas_rubro" name="columnas_rubro">
+								<label for="columnas_extra">Número de columnas extra</label>
+								<input type="text" id="columnas_extra" name="columnas_rubro">
 							</div>
 							<button class="btn" type="button" id="guardar_rubro" onclick="validarFormRubro()">Guardar</button>
 						</form>

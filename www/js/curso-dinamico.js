@@ -339,12 +339,13 @@ function eliminarRubrosSeleccionados() {
 	
 	var hay_rubros_seleccionados = false;
 	var rubros_seleccionados = new Array();
+	var tr_a_eliminar = new Array();
 	for( var i = 2; i < checkboxes.length; ++i ) {
 		if ( checkboxes[i].checked ) {
 			hay_rubros_seleccionados = true;
 			var tds = checkboxes[i].parentNode.parentNode.getElementsByTagName( 'td' )
 			rubros_seleccionados.push( tds[1].firstChild.id );
-			
+			tr_a_eliminar.push( checkboxes[i].parentNode.parentNode );
 		}
 	}
 	
@@ -355,8 +356,12 @@ function eliminarRubrosSeleccionados() {
 
 	if( hay_rubros_seleccionados ) {
 		var confirmacion = confirm( "Corfirme borrado de rubros" );
-		if( confirmacion )
+		if( confirmacion ){
+			var tbody = tabla_evaluacion.getElementsByTagName( "tbody" ); 
+			for( var i = 0 ; i < tr_a_eliminar.length ; ++i )
+				tbody[0].removeChild( tr_a_eliminar[i] );
 			eliminarRubros( rubros_seleccionados );
+		}
 	}
 	else {
 		error = document.createElement( 'div' );
