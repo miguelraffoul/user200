@@ -1,6 +1,6 @@
 function mostrarHojaEvaluacion(){
 	$.ajax({
-		url: 'index.php?ctl=hoja_evaluacion&act=cargar_hoja',
+		url: 'index.php?ctl=hoja_evaluacion&act=mostrar_datos',
 		dataType: 'json',
 		success: function( json ){
 			if( Array.isArray( json ) ){

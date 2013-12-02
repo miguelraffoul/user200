@@ -386,8 +386,8 @@ function eliminarRubros( ids ) {
 	});
 }
 
-function cargarRubro( enlace ){
-	var id = enlace.id;
+function cargarRubro( enlace_rubro ){
+	var id = enlace_rubro.id;
 
 	$.ajax({
 		type: 'POST',
@@ -395,6 +395,24 @@ function cargarRubro( enlace ){
 		url: 'index.php?ctl=rubro_modificar&act=cargar_rubro',
 		success: function() {
 			window.location.replace( "index.php?ctl=rubro_modificar&act=mostrar_pagina" );
+		},
+		error: function(){
+			alert( "Problema al intentar borrar rubros." );
+		}
+	});
+}
+
+function cargarHoja( enlace_hoja ){
+	console.log( enlace_hoja );
+	var tds = enlace_hoja.parentNode.parentNode.getElementsByTagName( 'td' );
+	var id = tds[1].firstChild.id;
+
+	$.ajax({
+		type: 'POST',
+		data: {id_rubro:id},
+		url: 'index.php?ctl=hoja_evaluacion&act=cargar_hoja',
+		success: function() {
+			window.location.replace( "index.php?ctl=hoja_evaluacion&act=mostrar_pagina" );
 		},
 		error: function(){
 			alert( "Problema al intentar borrar rubros." );

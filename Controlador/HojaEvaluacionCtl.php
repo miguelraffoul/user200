@@ -18,11 +18,15 @@ class HojaEvaluacionCtl{
 				break;
 
 			case 'cargar_hoja':
-				$this -> cargarHoja();
+				$_SESSION['id_rubro'] = $_POST['id_rubro'];
+				break;
+
+			case 'mostrar_datos':
+				$this -> mostrarDatos( $_SESSION['clave_curso'], $_SESSION['id_rubro'] );
 				break;
 
 			case 'guardar_hoja':
-				$this -> guardarHoja();
+				$this -> guardarHoja( $_SESSION['clave_curso'], $_SESSION['id_rubro'] );
 				break;
 
 			case 'modificar_hoja':
@@ -31,34 +35,34 @@ class HojaEvaluacionCtl{
 	}
 
 	/*function agregarHoja( $columnas_length ){
-		$alumnos = $this -> modelo -> obtenerAlumnosNombreId( '12345' );
+		$alumnos = $this -> modelo -> obtenerAlumnosNombreId( $id_curso );
 		$alumnos_length = count( $alumnos );
 		
 		for( $i = 1 ; $i <= $columnas_length ; $i++ ){
-			$id_columna = $this -> modelo -> agregarColumna( "Columna"."$i", 2 );
+			$id_columna = $this -> modelo -> agregarColumna( "Columna"."$i", $id_rubro );
 			for( $j = 0 ; $j < $alumnos_length ; $j++ )
-				$this -> modelo -> agregarCelda( 0, $id_columna, $alumnos[$j]['codigo'], '12345' );
+				$this -> modelo -> agregarCelda( 0, $id_columna, $alumnos[$j]['codigo'], $id_curso );
 		}
 
-		$id_columna = $this -> modelo -> agregarColumna( "Promedio", 2 );
+		$id_columna = $this -> modelo -> agregarColumna( "Promedio", $id_rubro );
 		for( $j = 0 ; $j < $alumnos_length ; $j++ )
-			$this -> modelo -> agregarCelda( 0, $id_columna, $alumnos[$j]['codigo'], '12345' );
+			$this -> modelo -> agregarCelda( 0, $id_columna, $alumnos[$j]['codigo'], $id_curso );
 	}*/
 
-	function cargarHoja(){
-		$columnas = $this -> modelo -> obtenerColumnasNombreId( 2 ); 
-		$alumnos = $this -> modelo -> obtenerAlumnosNombreId( '12345' );
+	function mostrarDatos( $id_curso, $id_rubro ){
+		$columnas = $this -> modelo -> obtenerColumnasNombreId( $id_rubro ); 
+		$alumnos = $this -> modelo -> obtenerAlumnosNombreId( $id_curso );
 		
 		$alumnos_length = count( $alumnos );
 		$columnas_length = count( $columnas ); 
 		$celdas_totales = array(); 
 		for( $i = 0 ; $i < $alumnos_length ; ++$i ){
 			$celdas = $celdas_totales;
-			$celdas_temp = $this -> modelo -> obtenerCeldasPorAlumno( 2, $alumnos[$i]['codigo'] );
+			$celdas_temp = $this -> modelo -> obtenerCeldasPorAlumno( $id_rubro, $alumnos[$i]['codigo'] );
 			if( !is_array( $celdas_temp ) && $celdas_temp === TRUE ){
 				for( $j = 0 ; $j < $columnas_length ; ++$j )
-					$this -> modelo -> agregarCelda( 0, $columnas[$j]['idColumna'], $alumnos[$i]['codigo'], '12345' );
-				$celdas_temp =  $this -> modelo -> obtenerCeldasPorAlumno( 2, $alumnos[$i]['codigo'] );
+					$this -> modelo -> agregarCelda( 0, $columnas[$j]['idColumna'], $alumnos[$i]['codigo'], $id_curso );
+				$celdas_temp =  $this -> modelo -> obtenerCeldasPorAlumno( $id_rubro, $alumnos[$i]['codigo'] );
 			}
 			$celdas_totales = array_merge( $celdas, $celdas_temp );
 		}
@@ -68,9 +72,9 @@ class HojaEvaluacionCtl{
 		echo json_encode( $hoja_evaluacion );
 	}
 
-	function guardarHoja(){
-		$this -> modelo -> eliminarHoja( 2 );
-		$alumnos = $this -> modelo -> obtenerAlumnosNombreId( '12345' );
+	function guardarHoja( $id_curso, $id_rubro ){
+		$this -> modelo -> eliminarHoja( $id_rubro );
+		$alumnos = $this -> modelo -> obtenerAlumnosNombreId( $id_curso );
 		$columnas = $_POST['nombre_columnas'];
 		$calificaciones = $_POST['calificaciones'];
 
@@ -81,7 +85,7 @@ class HojaEvaluacionCtl{
 		
 		$id_columna = array();
 		for( $i = 0 ; $i < $columnas_length ; ++$i ){
-			$id_temp = $this -> modelo -> agregarColumna( $columnas[$i], 2 );
+			$id_temp = $this -> modelo -> agregarColumna( $columnas[$i], $id_rubro );
 			array_push( $id_columna, $id_temp );
 		}
 
@@ -89,7 +93,7 @@ class HojaEvaluacionCtl{
 		$count = 0;
 		for( $j = 0 ; $j < $alumnos_length ; $j++ ){
 			for( $i = 0 ; $i < $columnas_length ; $i++ ){
-				$this -> modelo -> agregarCelda( strtoupper( $calificaciones[$count] ), $id_columna[$i], $alumnos[$j]['codigo'], '12345' );
+				$this -> modelo -> agregarCelda( strtoupper( $calificaciones[$count] ), $id_columna[$i], $alumnos[$j]['codigo'], $id_curso );
 				$count = $count + 1;
 			}
 		}
