@@ -24,7 +24,11 @@ class RubroModificarCtl{
 				echo json_encode( $rubro );
 				break;
 
-			case 'modificar_rubro':
+			case 'modificar_datos':
+				$nombre = $_POST['nombre_rubro'];
+				$valor = $_POST['valor_rubro'];
+				$this -> modelo -> actualizarDatos( $_SESSION['id_rubro'], $nombre, $valor );
+				require_once( 'Vista/CursoProfesor.html');
 				break;
 
 			default:

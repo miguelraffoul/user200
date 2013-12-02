@@ -47,20 +47,14 @@
 			<div class="container-fluid">
 				<div class="row-fluid">
 					<section class="min_width_section">
-						<form id="rubro_evaluacion" action="index.php?ctl=rubro&act=agregar_rubro" method="POST">
-							<h2>&lt;Rubro&gt;</h2>
+						<form id="rubro_evaluacion" action="index.php?ctl=rubro_modificar&act=modificar_datos" method="POST">
+							<h2 id="titulo_rubro">&lt;Rubro&gt;</h2>
 							<label for="nombre_rubro">Nombre*</label>
 							<input type="text" id="nombre_rubro" name="nombre_rubro">
 							<label for="valor_rubro">Valor (%)*</label>
 							<input type="text" id="valor_rubro" name="valor_rubro">
-							<div id="div_checkbox_hoja" class="checkbox">
-								<label for="tiene_columnas_extra"><input type="checkbox" id="tiene_columnas_extra" name="tiene_columnas_extra" value="tiene_columnas_extra" onchange="mostrarColumnasRubro(this)">Hoja con columnas extra</label>
-							</div>
-							<div id="div_columnas_rubro" style="display: none;">
-								<label for="columnas_extra">Número de columnas extra</label>
-								<input type="text" id="columnas_extra" name="columnas_extra">
-							</div>
-							<button class="btn" type="button" id="guardar_rubro" onclick="validarFormRubro()">Guardar</button>
+							<div>*Modifica columnas desde la tabla de evaluación.</div>
+							<button class="btn" type="button" id="guardar_rubro" onclick="validarFormRubroModificar()">Guardar</button>
 						</form>
 					</section>
 				</div>

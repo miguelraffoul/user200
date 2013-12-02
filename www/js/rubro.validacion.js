@@ -13,6 +13,19 @@ function validarFormRubro(){
 	
 }
 
+function validarFormRubroModificar(){
+	var form = document.getElementById( 'rubro_evaluacion' );
+
+	var nombre_valido, valor_rubro_valido; 
+
+	nombre_valido = validarNombre( form );
+	valor_rubro_valido = validarValor( form );
+
+	if( nombre_valido && valor_rubro_valido )
+		form.submit();
+	
+}
+
 
 
 function validarNombre( form ){
