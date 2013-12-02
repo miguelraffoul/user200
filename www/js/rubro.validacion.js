@@ -15,18 +15,6 @@ function validarFormRubro(){
 
 
 
-function mostrarColumnasRubro( tiene_columnas_extra_checkbox ){
-	var div_columnas_rubro = document.getElementById( "div_columnas_rubro" ); 
-
-	if( tiene_columnas_extra_checkbox.checked )
-		div_columnas_rubro.setAttribute( "style", "display: block;" );
-	else
-		div_columnas_rubro.setAttribute( "style", "display: none;" );
-
-}
-
-
-
 function validarNombre( form ){
 
 	var alfabeto_regexp = /^[a-z ]+$/i;
