@@ -4,13 +4,9 @@ function mostrarRubro(){
 		dataType: 'json',
 		success: function( json ){
 			if( Array.isArray( json) ){
+				document.getElementById( "titulo_rubro" ).textContent = json[0].nombre;
 				document.getElementById( "nombre_rubro" ).value = json[0].nombre;
 				document.getElementById( "valor_rubro" ).value = json[0].valor;
-				if( json[0].tieneColumnasEx ){
-					document.getElementById( "tiene_columnas_extra" ).checked = true;
-				}
-
-
 			}
 		},
 		error: function(){

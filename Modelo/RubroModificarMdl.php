@@ -12,4 +12,9 @@ class RubroModificarMdl{
 		$consulta = "SELECT *FROM rubro WHERE idRubro = \"$id_rubro\"";
 		return $this -> bd -> consultaGeneral( $consulta );
 	}
+
+	function actualizarDatos( $id_rubro, $nombre, $valor ){
+		$consulta = "UPDATE rubro SET nombre = \"$nombre\", valor = \"$valor\" WHERE idRubro = \"$id_rubro\"";
+		return $this -> bd -> insertar( $consulta );
+	}
 }
