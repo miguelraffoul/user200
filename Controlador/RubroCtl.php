@@ -46,7 +46,6 @@ class RubroCtl{
 	}*/
 
 	function nuevoRubro( $id_curso ){
-		var_dump( $_POST );
 		$nombre_rubro = $_POST['nombre_rubro'];
 		$valor_rubro = $_POST['valor_rubro'];
 

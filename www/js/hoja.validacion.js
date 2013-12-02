@@ -23,9 +23,8 @@ function validarHoja(){
 			return false;
 	}
 
-	
+	document.getElementById( "hoja_form" ).submit();
 	return true;
-	
 }
 
 function validarCalificaciones(){

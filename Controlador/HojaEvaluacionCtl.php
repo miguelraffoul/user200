@@ -31,6 +31,10 @@ class HojaEvaluacionCtl{
 
 			case 'modificar_hoja':
 				break;
+
+			default:
+				require_once("Vista/Error.html");
+				break;
 		}
 	}
 
@@ -52,6 +56,7 @@ class HojaEvaluacionCtl{
 	function mostrarDatos( $id_curso, $id_rubro ){
 		$columnas = $this -> modelo -> obtenerColumnasNombreId( $id_rubro ); 
 		$alumnos = $this -> modelo -> obtenerAlumnosNombreId( $id_curso );
+		$nombre_rubro = $this -> modelo -> obtenerNombreRubro( $id_rubro );
 		
 		$alumnos_length = count( $alumnos );
 		$columnas_length = count( $columnas ); 
@@ -67,7 +72,7 @@ class HojaEvaluacionCtl{
 			$celdas_totales = array_merge( $celdas, $celdas_temp );
 		}
 
-		$hoja_evaluacion = [ $columnas, $alumnos, $celdas_totales ];
+		$hoja_evaluacion = [ $columnas, $alumnos, $celdas_totales, $nombre_rubro[0] ];
 		//var_dump( $hoja_evaluacion );
 		echo json_encode( $hoja_evaluacion );
 	}
@@ -89,7 +94,7 @@ class HojaEvaluacionCtl{
 			array_push( $id_columna, $id_temp );
 		}
 
-		var_dump( $id_columna );
+		//var_dump( $id_columna );
 		$count = 0;
 		for( $j = 0 ; $j < $alumnos_length ; $j++ ){
 			for( $i = 0 ; $i < $columnas_length ; $i++ ){
@@ -97,6 +102,7 @@ class HojaEvaluacionCtl{
 				$count = $count + 1;
 			}
 		}
+		require_once( 'Vista/CursoProfesor.html' );
 	}
 
 

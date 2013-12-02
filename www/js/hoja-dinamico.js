@@ -4,6 +4,7 @@ function mostrarHojaEvaluacion(){
 		dataType: 'json',
 		success: function( json ){
 			if( Array.isArray( json ) ){
+				document.getElementById( "titulo_hoja" ).textContent = json[3].nombre;
 				var tr_columnas = document.getElementById( "tr_columnas" );
 				var template_columna = document.getElementById( "template_columna" );
 
