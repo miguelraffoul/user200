@@ -39,7 +39,7 @@ class ModificarCursoCtl {
 				$hora_inicio = $_POST['hora_inicio'];
 				$asignatura = $_POST['asignatura'];
 
-				$this -> modelo -> actualizarCurso( $clave, $asignatura, $seccion, $ciclo, "424242", $curso );
+				$this -> modelo -> actualizarCurso( $clave, $asignatura, $seccion, $ciclo, $_SESSION['codigo_usuario'], $curso );
 				array_shift( $dia );
 				array_shift( $horas_dia );
 				array_shift( $hora_inicio );
