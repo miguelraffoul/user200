@@ -22,6 +22,11 @@ class HojaEvaluacionMdl{
 		return $this -> bd -> insertar( $consulta );
 	}
 
+	function obtenerNombreRubro( $id_rubro ){
+		$consulta = "SELECT nombre FROM rubro WHERE idRubro = \"$id_rubro\"";
+		return $this -> bd -> consultaGeneral( $consulta );
+	}
+
 	function obtenerAlumnosId( $id_curso ){
 		$consulta = "SELECT Alumno_codigo FROM alumno_has_curso WHERE Curso_clave_curso = \"$id_curso\" AND activo = TRUE";
 		return $this -> bd -> consultaGeneral( $consulta );

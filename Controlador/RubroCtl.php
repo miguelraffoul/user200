@@ -11,14 +11,14 @@ class RubroCtl{
 
 		switch ($_GET['act']){
 
-			case "mostrar_pagina":
+			/*case "mostrar_pagina":
 				$_SESSION['id_rubro'] = $_POST['nombre_rubro'];							
 				require_once("Vista/RubroEvaluacion.html");
 				break;
 
 			case "datos_rubro":
 				$this -> mostrarRubro();
-				break;
+				break;*/
 
 			case "agregar_rubro":
 				if(empty($_POST))
@@ -33,25 +33,26 @@ class RubroCtl{
 		}
 	}
 
-	function mostrarRubro(){		
+	/*function mostrarRubro(){		
 		$id_rubro = $_SESSION['id_rubro'];
 		$nombre_rubro = $this -> modelo -> obtenerNombreRubro( $id_rubro );
 		
-	/*	$array_dias = $this -> modelo -> obtenerDiasInhabiles( $id_ciclo );
+		$array_dias = $this -> modelo -> obtenerDiasInhabiles( $id_ciclo );
 				
 		if( is_array( $array_dias ) )
 			echo json_encode( array_merge( $array_ciclo, $array_dias ) );		
 		else
-			echo json_encode( $array_ciclo );	*/
-	}
+			echo json_encode( $array_ciclo );	
+	}*/
 
 	function nuevoRubro( $id_curso ){
+		var_dump( $_POST );
 		$nombre_rubro = $_POST['nombre_rubro'];
 		$valor_rubro = $_POST['valor_rubro'];
 
 		$tiene_columnas_extra;
 		$num_columnas_extra;
-		if( array_key_exists( "tiene_hoja_extra", $_POST ) ){
+		if( array_key_exists( "tiene_columnas_extra", $_POST ) ){
 			$tiene_columnas_extra = true;
 			$num_columnas_extra = $_POST["columnas_extra"];
 		}

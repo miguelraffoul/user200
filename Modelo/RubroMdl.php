@@ -21,11 +21,10 @@ class RubroMdl{
 	}	
 
 
-	function obtenerNombreRubro( $id_rubro ){
-		$consulta = "SELECT *FROM nombre WHERE idRubro = \"$id_rubro\"";
-		$nombre_rubro = $this -> bd -> consultaGeneral( $consulta );
-		return $nombre_rubro;
-	}	
+	/*function obtenerNombreRubro( $id_rubro ){
+		$consulta = "SELECT nombre FROM rubro WHERE idRubro = \"$id_rubro\"";
+		return $this -> bd -> consultaGeneral( $consulta );
+	}	*/
 
 
 	//METODOS PARA CREAR HOJA DE EVALUACION 
