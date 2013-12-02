@@ -20,7 +20,11 @@ class RubroModificarCtl{
 				break;
 
 			case 'mostrar_datos':
-			
+				$rubro = $this -> modelo -> obtenerRubro( $_SESSION['id_rubro'] );
+				echo json_encode( $rubro );
+				break;
+
+			case 'modificar_rubro':
 				break;
 
 			default:
