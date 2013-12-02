@@ -9,9 +9,15 @@ class AlumnoCtl {
 
 		switch ( $_GET['act'] ) {
 			case 'mostrar_datos':
-				require_once( "Vista/Alumno.html" );
+				$nombre = explode( " ", $_SESSION['nombre_usuario'] );
+				$vista = file_get_contents( "Vista/Alumno.html" );
+				$vista = str_replace( "&lt;Nombre&gt;", $nombre[0], $vista );
+				echo $vista;
 				break;
-			
+			case 'cargar_datos':
+				$datos_cursos = $this -> modelo -> obtenerDatosCursos( $_SESSION['codigo_usuario'] );
+				echo json_encode( $datos_cursos );
+				break;			
 			default:
 				$msj_error = "Acción invalida";
 				$vista = file_get_contents( "Vista/Error.html" );

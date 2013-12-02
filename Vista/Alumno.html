@@ -14,8 +14,17 @@
 		<!--[if lt IE 9]>
 			<script src="css3-mediaqueries.js"></script>
 		<![endif]-->
+		<script src="www/js/jquery-1.10.2.js"></script>
 		<script src="www/js/bootstrap.js"></script>
 		<script src="www/js/modernizr.js"></script>
+		<script src="www/js/datos-alumno.js"></script>
+
+		<script>
+  			$( document ).ready( function() {
+  				cargarDatos();
+  			});
+  		</script>
+
 		<div id="wrapper">	
 			<header>
 				<div id="header_logo">
@@ -46,50 +55,17 @@
 									<th>Calificación</th>
 								</tr>	
 							</thead>
-							<tr>
-								<td>&lt;Nombre_Curso1&gt;</td>
-								<td>&lt;AS&gt;</td>
-								<td>&lt;CAL&gt;</td>
-							</tr>
-							<tr>
-								<td>&lt;Nombre_Curso2&gt;</td>
-								<td>&lt;AS&gt;</td>
-								<td>&lt;CAL&gt;</td>
-							</tr>
-							<tr>
-								<td>&lt;Nombre_Curso3&gt;</td>
-								<td>&lt;AS&gt;</td>
-								<td>&lt;CAL&gt;</td>
-							</tr>
-							<tr>
-								<td>&lt;Nombre_Curso4&gt;</td>
-								<td>&lt;AS&gt;</td>
-								<td>&lt;CAL&gt;</td>
-							</tr>
-							<tr>
-								<td>&lt;Nombre_Curso5&gt;</td>
-								<td>&lt;AS&gt;</td>
-								<td>&lt;CAL&gt;</td>
-							</tr>
-							<tr>
-								<td>&lt;Nombre_Curso6&gt;</td>
-								<td>&lt;AS&gt;</td>
-								<td>&lt;CAL&gt;</td>
-							</tr>
-							<tr>
-								<td>&lt;Nombre_Curso7&gt;</td>
-								<td>&lt;AS&gt;</td>
-								<td>&lt;CAL&gt;</td>
-							</tr>
-							<tr>
-								<td>&lt;Nombre_Curso8&gt;</td>
-								<td>&lt;AS&gt;</td>
-								<td>&lt;CAL&gt;</td>
-							</tr>
+							<tbody id="cuerpo_tabla">
+								<tr id="template_tr" style="display: none" >
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody>
 							<tfoot>
 								<tr>
-									<td colspan="2">&lt;Promedio&gt;</td>
-									<td>&lt;PROM&gt;</td>
+									<td colspan="2">Promedio</td>
+									<td id="promedio"></td>
 								</tr>
 							</tfoot>
 						</table>
