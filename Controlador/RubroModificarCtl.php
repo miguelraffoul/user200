@@ -32,7 +32,14 @@ class RubroModificarCtl{
 				break;
 
 			default:
-				require_once("Vista/Error.html");
+				$this -> mostrarPagina( "Vista/Error.html", "Acción inválida",
+							   		    "{ERROR}" );
 		}
+	}
+
+	function mostrarPagina( $vista, $msj_nuevo, $msj_reemplazar ){
+		$vista_desplegar = file_get_contents(  $vista );
+		$vista_desplegar = str_replace( $msj_reemplazar, $msj_nuevo, $vista_desplegar );
+		echo $vista_desplegar;
 	}
 }
