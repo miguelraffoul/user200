@@ -15,21 +15,37 @@ class LogInCtl {
 				$codigo = $_POST['codigo'];
 				$pass = $_POST['pass'];
 
-				if( $this -> modelo -> esAdministrador( $codigo, $pass ) ) {
+				$usuario = $this -> modelo -> esAdministrador( $codigo, $pass );
+				if( is_array( $usuario ) ) {
+					$_SESSION['usuario'] = 'administrador';
+					$_SESSION['codigo_usuario'] = $usuario[0]['codigo'];
+					$_SESSION['nombre_usuario'] = $usuario[0]['nombre'];
 					header( "Location: index.php?ctl=ciclo_escolar&act=mostrar_pagina" );
 				}
-				else if( $this -> modelo -> esProfesor( $codigo, $pass ) ) {
-					header( "Location: index.php?ctl=profesor&act=cursos" );
-				} 
-				else if( $this -> modelo -> esAlumno( $codigo, $pass ) ) {
-					header( "Location: index.php?ctl=alumno" ); 
-				}
 				else {
-					$msj_error = "No se encontro ningun usuario con los datos especificados";
-					$vista = file_get_contents( "Vista/Error.html" );
-					$vista = str_replace( "{ERROR}", $msj_error, $vista );
-					echo $vista;
-				}
+					$usuario = $this -> modelo -> esProfesor( $codigo, $pass );
+					if( is_array( $usuario ) ) {
+						$_SESSION['usuario'] = 'profesor';
+						$_SESSION['codigo_usuario'] = $usuario[0]['codigo'];
+						$_SESSION['nombre_usuario'] = $usuario[0]['nombre'];
+						header( "Location: index.php?ctl=profesor&act=cursos" );
+					}
+					else {
+						$usuario = $this -> modelo -> esAlumno( $codigo, $pass );
+						if( is_array( $usuario ) ) {
+							$_SESSION['usuario'] = 'alumno';
+							$_SESSION['codigo_usuario'] = $usuario[0]['codigo'];
+							$_SESSION['nombre_usuario'] = $usuario[0]['nombre'];
+							header( "Location: index.php?ctl=alumno" );
+						}
+						else {
+							$msj_error = "No se encontro ningun usuario con los datos especificados";
+							$vista = file_get_contents( "Vista/Error.html" );
+							$vista = str_replace( "{ERROR}", $msj_error, $vista );
+							echo $vista;
+						}
+					}
+				} 
 			}
 		}
 		else {
