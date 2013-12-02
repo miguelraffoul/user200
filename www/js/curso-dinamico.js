@@ -394,7 +394,7 @@ function cargarRubro( enlace ){
 		data: {id_rubro:id},
 		url: 'index.php?ctl=rubro_modificar&act=cargar_rubro',
 		success: function() {
-			window.location.replace( "index.php?ctl=curso_profesor&act=mostrar_pagina" );
+			window.location.replace( "index.php?ctl=rubro_modificar&act=mostrar_pagina" );
 		},
 		error: function(){
 			alert( "Problema al intentar borrar rubros." );

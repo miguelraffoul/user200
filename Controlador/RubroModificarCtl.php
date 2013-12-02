@@ -20,7 +20,7 @@ class RubroModificarCtl{
 				break;
 
 			case 'mostrar_datos':
-
+			
 				break;
 
 			default:
