@@ -36,7 +36,7 @@ class LogInCtl {
 							$_SESSION['usuario'] = 'alumno';
 							$_SESSION['codigo_usuario'] = $usuario[0]['codigo'];
 							$_SESSION['nombre_usuario'] = $usuario[0]['nombre'];
-							header( "Location: index.php?ctl=alumno" );
+							header( "Location: index.php?ctl=alumno&act=mostrar_datos" );
 						}
 						else {
 							$msj_error = "No se encontro ningun usuario con los datos especificados";
@@ -57,7 +57,7 @@ class LogInCtl {
 					header( "Location: index.php?ctl=profesor&act=cursos" );
 					break;
 				case 'alumno':
-					header( "Location: index.php?ctl=alumno" );
+					header( "Location: index.php?ctl=alumno&act=mostrar_datos" );
 					break;
 			}
 		}
