@@ -39,11 +39,15 @@ function mostrarHojaEvaluacion(){
 					agregarPromedio( nuevo_tr, template_calificacion.cloneNode(), json[2][count].calificacion );
 					count = count + 1;
 					tabla_body.appendChild( nuevo_tr );
-					document.getElementById( "pt_nombre" ).setAttribute( "colspan", json[0].length );
 				}
-
-				promedio_total = promedio_total / json[1].length;
+				document.getElementById( "pt_nombre" ).setAttribute( "colspan", json[0].length );
+				if( json[1].length > 0 )
+					promedio_total = promedio_total / json[1].length;
 				document.getElementById( "total_promedio" ).textContent = promedio_total.toFixed(1);
+				//Remuevo el checkbox del th promedio
+				var promedios = document.getElementsByClassName( "td-disabled" );
+				var inputs = promedios[0].getElementsByTagName( "input" );
+				promedios[0].removeChild( inputs[1] );
 			}
 		},
 		error: function(){
@@ -92,3 +96,63 @@ function agregarColumnaPromedio( tr_padre, th_columna, nombre ){
 	tr_padre.appendChild( th_columna );
 }
 
+function eliminarColumnas() {
+	var error = document.getElementById( "error_eliminar" );
+	if( error != null )
+		error.parentNode.removeChild( error );
+
+	var columnas = document.getElementsByTagName( "th" );
+	var alumnos = document.getElementById( "filas_body" ).getElementsByTagName( "tr" );
+	var bandera = true;
+	for( var it = columnas.length - 2; it > 1; --it ) {
+		if( !columnas[it].lastChild.previousSibling.checked )
+			bandera = false;
+	}
+	if( !bandera ){
+		var contador = 0;
+		for( var it = columnas.length - 2; it > 1; --it ) {
+			if( columnas[it].lastChild.previousSibling.checked ) {
+				for( var it2 = 1; it2 < alumnos.length; ++it2 ) {
+					var tds = alumnos[it2].getElementsByTagName( "td" );
+					alumnos[it2].removeChild( tds[it - 1] );
+				}
+				++contador;
+				columnas[it].parentNode.removeChild( columnas[it] );
+			}
+		}
+		console.log( contador );
+		var tab = document.getElementById( "pt_nombre" );
+		tab.setAttribute( "colspan", Number( tab.getAttribute( "colspan" ) ) - contador );
+	}
+	else {
+		var div = document.getElementById( "wrapper2" ); 
+		error_eliminar = document.createElement( "div" );
+		error_eliminar.setAttribute( "class", "error" );
+		error_eliminar.setAttribute( "id", "error_eliminar" );
+		error_eliminar.appendChild( document.createTextNode( "No es posible eliminar todas las columas." ) );
+		div.insertBefore( error_eliminar, div.lastChild );
+	}
+}
+
+function agregarColuma() {
+	var columnas = document.getElementsByTagName( "th" );
+	var nueva_columna = document.getElementById( "template_columna" ).cloneNode();
+	nueva_columna.removeAttribute( "id" );
+	nueva_columna.removeAttribute( "style" );
+	nueva_columna.firstChild.nextSibling.value = "Columna " + (columnas.length - 2) ;
+	var thead = document.getElementById( "tr_columnas" );
+	thead.insertBefore( nueva_columna, thead.lastChild );
+
+	var template_calificacion = document.getElementById( "template_calificacion" );
+	var alumnos = document.getElementById( "filas_body" ).getElementsByTagName( "tr" );	
+	for( var it = 1; it < alumnos.length; ++it ) {
+		var nueva_celda = template_calificacion.cloneNode();
+		nueva_celda.removeAttribute( "id" );
+		nueva_celda.removeAttribute( "style" );
+		nueva_celda.firstChild.nextSibling.value = 0;
+		alumnos[it].insertBefore( nueva_celda, alumnos[it].lastChild );
+	}
+
+	var tab = document.getElementById( "pt_nombre" );
+	tab.setAttribute( "colspan", Number( tab.getAttribute( "colspan" ) ) + 1 );
+}
