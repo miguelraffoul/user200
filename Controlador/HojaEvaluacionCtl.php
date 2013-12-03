@@ -47,7 +47,10 @@ class HojaEvaluacionCtl{
 		$alumnos = $this -> modelo -> obtenerAlumnosNombreId( $id_curso );
 		$nombre_rubro = $this -> modelo -> obtenerNombreRubro( $id_rubro );
 		
-		$alumnos_length = count( $alumnos );
+		if( is_array( $alumnos ) )
+			$alumnos_length = count( $alumnos );
+		else
+			$alumnos_length = 0;
 		$columnas_length = count( $columnas ); 
 		$celdas_totales = array(); 
 		for( $i = 0 ; $i < $alumnos_length ; ++$i ){
@@ -63,6 +66,7 @@ class HojaEvaluacionCtl{
 
 		$hoja_evaluacion = [ $columnas, $alumnos, $celdas_totales, $nombre_rubro[0] ];
 		//var_dump( $hoja_evaluacion );
+		//echo json_encode( $alumnos_length );
 		echo json_encode( $hoja_evaluacion );
 	}
 

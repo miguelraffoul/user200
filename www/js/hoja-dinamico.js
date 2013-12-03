@@ -39,10 +39,10 @@ function mostrarHojaEvaluacion(){
 					agregarPromedio( nuevo_tr, template_calificacion.cloneNode(), json[2][count].calificacion );
 					count = count + 1;
 					tabla_body.appendChild( nuevo_tr );
-					document.getElementById( "pt_nombre" ).setAttribute( "colspan", json[0].length );
 				}
-
-				promedio_total = promedio_total / json[1].length;
+				document.getElementById( "pt_nombre" ).setAttribute( "colspan", json[0].length );
+				if( json[1].length > 0 )
+					promedio_total = promedio_total / json[1].length;
 				document.getElementById( "total_promedio" ).textContent = promedio_total.toFixed(1);
 				//Remuevo el checkbox del th promedio
 				var promedios = document.getElementsByClassName( "td-disabled" );
