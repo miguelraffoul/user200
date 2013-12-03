@@ -103,13 +103,29 @@ class HojaEvaluacionCtl{
 				$count = $count + 1;
 			}
 		}
-		require_once( 'Vista/CursoProfesor.html' );
+		$this -> calcularPromedioAlumnos( $id_curso, $alumnos );
+
+		//require_once( 'Vista/CursoProfesor.html' );
 	}
 
 	function mostrarPagina( $vista, $msj_nuevo, $msj_reemplazar ){
 		$vista_desplegar = file_get_contents(  $vista );
 		$vista_desplegar = str_replace( $msj_reemplazar, $msj_nuevo, $vista_desplegar );
 		echo $vista_desplegar;
+	}
+
+	function calcularPromedioAlumnos( $id_curso, $alumnos ){
+		$alumnos_length = count( $alumnos );
+		for( $i = 0 ; $i < $alumnos_length ; ++$i ){
+			$promedios = $this -> modelo -> obtenerPromediosAlumno( $id_curso, $alumnos[$i]['codigo'] );
+			$promedios_length = count( $promedios );
+			$suma_promedios = 0;
+			for( $j = 0 ; $j < $promedios_length ; ++$j )
+				$suma_promedios = $suma_promedios + $promedios[$j]['calificacion'];
+			$promedio_total = number_format( $suma_promedios / $promedios_length, 1);
+			$resultado = $this -> modelo -> guardarPromedioCurso( $id_curso, $alumnos[$i]['codigo'], 
+													  			  $promedio_total );
+		}
 	}
 
 }

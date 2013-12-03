@@ -64,8 +64,20 @@ class HojaEvaluacionMdl{
 
 	function eliminarHoja( $id_rubro ){
 		$consulta = "DELETE FROM rubrocolumna WHERE Rubro_idRubro = \"$id_rubro\"";
-		$resultado = $this -> bd -> insertar( $consulta );
-		var_dump( $resultado );
+		return $this -> bd -> insertar( $consulta );
+	}
+
+	function obtenerPromediosAlumno( $id_curso, $alumno ){
+		$consulta = "SELECT calificacion FROM rubrocelda INNER JOIN rubrocolumna ON Columna_idColumna = idColumna 
+		             WHERE nombre = 'Promedio' AND Alumno_has_Curso_Alumno_codigo = \"$alumno\" 
+		             						   AND Alumno_has_Curso_Curso_clave_curso = \"$id_curso\"";
+		return $this -> bd -> consultaGeneral( $consulta );
+	}
+
+	function guardarPromedioCurso( $id_curso, $id_alumno, $promedio ){
+		$consulta = "UPDATE alumno_has_curso SET promedio = \"$promedio\" WHERE Alumno_codigo = \"$id_alumno\" 
+					 AND Curso_clave_curso = \"$id_curso\"";
+		return $this -> bd -> insertar( $consulta );
 	}
 
 }
