@@ -41,4 +41,10 @@ class CursoProfesorCtl{
 				break;
 		}
 	}
+
+	public function eliminarRubros( $id_rubros ){
+        $rubros_length = count( $id_rubros );
+        for( $i = 0 ; $i < $rubros_length ; ++$i )
+            $this -> modelo -> eliminarRubro( $id_rubros[$i] );
+    }
 }
