@@ -66,7 +66,10 @@ class RegistroCursoCtl {
 		switch ( $_GET['act']) {
 			case 'alta':
 				if( empty( $_POST ) ) {
-					require_once( "Vista/RegistroCurso.html" );
+					$nombre = explode( " ", $_SESSION['nombre_usuario'] );
+					$vista = file_get_contents( "Vista/RegistroCurso.html" );
+					$vista = str_replace( "&lt;Nombre&gt;", $nombre[0], $vista );
+					echo $vista;
 				}
 				else {
 					$this -> altaCurso ();
