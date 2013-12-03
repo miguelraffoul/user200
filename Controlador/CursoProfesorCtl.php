@@ -14,8 +14,12 @@ class CursoProfesorCtl{
 					$_SESSION['clave_curso'] = $_POST['clave_curso'];
 					$_SESSION['nombre_curso'] = $_POST['nombre_curso'];
 				}
-				$this -> mostrarPagina( "Vista/CursoProfesor.html", $_SESSION['nombre_curso'],
-							   "&lt;Nombre de curso&gt;" );
+				$nombre = explode( " ", $_SESSION['nombre_usuario'] );
+				$curso = $_SESSION['nombre_curso'];
+				$vista = file_get_contents( "Vista/CursoProfesor.html" );
+				$vista = str_replace( "&lt;Nombre&gt;", $nombre[0], $vista );
+				$vista = str_replace( "&lt;Nombre de curso&gt;", $curso, $vista );
+				echo $vista;
 				break;
 
 			case "listar_rubros":
@@ -39,12 +43,5 @@ class CursoProfesorCtl{
 		$rubros_length = count( $id_rubros );
 		for( $i = 0 ; $i < $rubros_length ; ++$i )
 			$this -> modelo -> eliminarRubro( $id_rubros[$i] );
-	}
-
-
-	function mostrarPagina( $vista, $msj_nuevo, $msj_reemplazar ){
-		$vista_desplegar = file_get_contents(  $vista );
-		$vista_desplegar = str_replace( $msj_reemplazar, $msj_nuevo, $vista_desplegar );
-		echo $vista_desplegar;
 	}
 }

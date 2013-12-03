@@ -127,7 +127,10 @@ class AltaAlumnoCtl {
 
 		switch ( $_GET['act']) {
 			case 'mostrar_pagina':
-				require_once( "Vista/AltaAlumno.html" );
+				$nombre = explode( " ", $_SESSION['nombre_usuario'] );
+				$vista = file_get_contents( "Vista/AltaAlumno.html" );
+				$vista = str_replace( "&lt;Nombre&gt;", $nombre[0], $vista );
+				echo $vista;
 				break;
 			case 'alta_simple':
 				$this -> altaSimple();

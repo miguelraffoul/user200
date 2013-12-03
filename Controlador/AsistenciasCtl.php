@@ -104,7 +104,11 @@ class AsistenciasCtl {
 				$dias_clase = $this -> modelo -> obtenerDiasClase( $_SESSION['clave_curso'] );
 				$dias_habiles = $this -> calcularDiasHabiles( $ciclo[0]['fin'], $dias_inhabiles, $dias_clase, $ciclo[0]['inicio'] );
 				$_SESSION['dias_habiles'] = $dias_habiles;
-				require_once( "Vista/Asistencias.html" );
+				
+				$nombre = explode( " ", $_SESSION['nombre_usuario'] );
+				$vista = file_get_contents( "Vista/Asistencias.html" );
+				$vista = str_replace( "&lt;Nombre&gt;", $nombre[0], $vista );
+				echo $vista;
 				break;
 			case "carga_alumnos":
 				$lista_alumnos = $this -> modelo -> obtenerAlumnos( $_SESSION['clave_curso'] );

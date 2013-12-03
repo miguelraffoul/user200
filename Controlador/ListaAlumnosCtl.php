@@ -9,8 +9,11 @@ class ListaAlumnosCtl {
 
 		switch( $_GET['act'] ) {
 			case "lista":
+				$nombre = explode( " ", $_SESSION['nombre_usuario'] );
+				$curso = $_SESSION['nombre_curso'];
 				$vista = file_get_contents( "Vista/ModificarEliminar.html" );
-				$vista = str_replace( "&lt;Nombre Curso&gt;", $_SESSION['nombre_curso'], $vista );
+				$vista = str_replace( "&lt;Nombre&gt;", $nombre[0], $vista );
+				$vista = str_replace( "&lt;Nombre Curso&gt;", $curso, $vista );
 				echo $vista;
 				break;
 			case "carga_alumnos":

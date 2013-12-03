@@ -8,7 +8,10 @@ class ProfesorCtl {
 		$this -> modelo = new ProfesorMdl();
 		switch( $_GET['act'] ) {
 			case "cursos":
-				require_once( "Vista/Profesor.html" );
+				$nombre = explode( " ", $_SESSION['nombre_usuario'] );
+				$vista = file_get_contents( "Vista/Profesor.html" );
+				$vista = str_replace( "&lt;Nombre&gt;", $nombre[0], $vista );
+				echo $vista;
 				break;
 			case "carga_cursos":
 				$cursos = $this -> modelo -> obtenerCursos( $_SESSION['codigo_usuario'] ); //Implementar sesiones con id profesor

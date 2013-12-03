@@ -10,7 +10,13 @@ class ModificarAlumnoCtl {
 		switch ( $_GET['act'] ) {
 			case 'mostar_datos':
 				$_SESSION['codigo_alumno'] = $_POST['codigo'];
-				require_once( "Vista/ModificarA.html" );
+
+				$nombre = explode( " ", $_SESSION['nombre_usuario'] );
+				$curso = $_SESSION['nombre_curso'];
+				$vista = file_get_contents( "Vista/ModificarA.html" );
+				$vista = str_replace( "&lt;Nombre&gt;", $nombre[0], $vista );
+				$vista = str_replace( "&lt;Nombre Curso&gt;", $curso, $vista );
+				echo $vista;
 				break;
 			case 'cargar_datos':
 				$codigo = $_SESSION['codigo_alumno'];
