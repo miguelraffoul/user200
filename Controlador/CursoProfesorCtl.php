@@ -34,15 +34,11 @@ class CursoProfesorCtl{
 				break;
 
 			default:
-				$this -> mostrarPagina( "Vista/Error.html", "Acción inválida",
-							   "{ERROR}" );
+				$msj_error = "Acción inválida";
+				$vista = file_get_contents( "Vista/Error.html" );
+				$vista = str_replace( "{ERROR}", $msj_error, $vista );
+				echo $vista;
 				break;
 		}
-	}
-
-	function eliminarRubros( $id_rubros ){
-		$rubros_length = count( $id_rubros );
-		for( $i = 0 ; $i < $rubros_length ; ++$i )
-			$this -> modelo -> eliminarRubro( $id_rubros[$i] );
 	}
 }

@@ -77,7 +77,7 @@ class ClonarCursoCtl {
 				$this -> guardarCambios();
 				break;
 			default:
-				$msj_error = "Acción invalida";
+				$msj_error = "Acción inválida";
 				$vista = file_get_contents( "Vista/Error.html" );
 				$vista = str_replace( "{ERROR}", $msj_error, $vista );
 				echo $vista;
