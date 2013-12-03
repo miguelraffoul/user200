@@ -11,39 +11,23 @@ class RubroCtl{
 
 		switch ($_GET['act']){
 
-			/*case "mostrar_pagina":
-				$_SESSION['id_rubro'] = $_POST['nombre_rubro'];							
-				require_once("Vista/RubroEvaluacion.html");
-				break;
-
-			case "datos_rubro":
-				$this -> mostrarRubro();
-				break;*/
-
 			case "agregar_rubro":
-				if(empty($_POST))
-					require_once("Vista/RubroEvaluacion.html");
-				else{
+				if( !empty($_POST) )
 					$this -> nuevoRubro( $_SESSION['clave_curso']);
-				}
+				
+				$nombre = explode( " ", $_SESSION['nombre_usuario'] );
+				$vista = file_get_contents( "Vista/RubroEvaluacion.html" );
+				$vista = str_replace( "&lt;Nombre&gt;", $nombre[0], $vista );
+				echo $vista;
 				break;
 
 			default:
-				require_once("Vista/Error.html");
+				$msj_error = "Acción inválida";
+				$vista = file_get_contents( "Vista/Error.html" );
+				$vista = str_replace( "{ERROR}", $msj_error, $vista );
+				echo $vista;
 		}
 	}
-
-	/*function mostrarRubro(){		
-		$id_rubro = $_SESSION['id_rubro'];
-		$nombre_rubro = $this -> modelo -> obtenerNombreRubro( $id_rubro );
-		
-		$array_dias = $this -> modelo -> obtenerDiasInhabiles( $id_ciclo );
-				
-		if( is_array( $array_dias ) )
-			echo json_encode( array_merge( $array_ciclo, $array_dias ) );		
-		else
-			echo json_encode( $array_ciclo );	
-	}*/
 
 	function nuevoRubro( $id_curso ){
 		$nombre_rubro = $_POST['nombre_rubro'];
@@ -65,10 +49,14 @@ class RubroCtl{
 
 		 if( $id_rubro !== FALSE ){
 		 	$this -> agregarHojaEval( $id_rubro, $num_columnas_extra + 1, $id_curso );
-		 	require_once("Vista/CursoProfesor.html");
+		 	header( "Location: index.php?ctl=curso_profesor&act=mostrar_pagina" );
 		 }
-		 else
-		 	require_once("Vista/Error.html");
+		 else{
+		 	$msj_error = "No se agregó rubro correctamente.";
+			$vista = file_get_contents( "Vista/Error.html" );
+			$vista = str_replace( "{ERROR}", $msj_error, $vista );
+			echo $vista;
+		 }
 	}
 
 	

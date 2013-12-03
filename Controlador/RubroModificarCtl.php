@@ -11,12 +11,14 @@ class RubroModificarCtl{
 		switch ($_GET['act']){
 
 			case 'mostrar_pagina':
-				require_once( 'Vista/RubroModificar.html' ); 
+				$nombre = explode( " ", $_SESSION['nombre_usuario'] );
+				$vista = file_get_contents( "Vista/RubroModificar.html" );
+				$vista = str_replace( "&lt;Nombre&gt;", $nombre[0], $vista );
+				echo $vista;
 				break;
 
 			case 'cargar_rubro':
 				$_SESSION['id_rubro'] = $_POST['id_rubro'];
-				require_once( 'Vista/RubroModificar.html' ); 
 				break;
 
 			case 'mostrar_datos':
@@ -28,18 +30,14 @@ class RubroModificarCtl{
 				$nombre = $_POST['nombre_rubro'];
 				$valor = $_POST['valor_rubro'];
 				$this -> modelo -> actualizarDatos( $_SESSION['id_rubro'], $nombre, $valor );
-				require_once( 'Vista/CursoProfesor.html');
+				header( "Location: index.php?ctl=curso_profesor&act=mostrar_pagina" );
 				break;
 
 			default:
-				$this -> mostrarPagina( "Vista/Error.html", "Acción inválida",
-							   		    "{ERROR}" );
+				$msj_error = "No se agregó rubro correctamente.";
+				$vista = file_get_contents( "Vista/Error.html" );
+				$vista = str_replace( "{ERROR}", $msj_error, $vista );
+				echo $vista;
 		}
-	}
-
-	function mostrarPagina( $vista, $msj_nuevo, $msj_reemplazar ){
-		$vista_desplegar = file_get_contents(  $vista );
-		$vista_desplegar = str_replace( $msj_reemplazar, $msj_nuevo, $vista_desplegar );
-		echo $vista_desplegar;
 	}
 }
