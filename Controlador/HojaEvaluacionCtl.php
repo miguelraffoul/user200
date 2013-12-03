@@ -33,14 +33,13 @@ class HojaEvaluacionCtl{
 				break;
 
 			default:
-				$msj_error = "Acción inválida.";
+				$msj_error = "Acción inválida";
 				$vista = file_get_contents( "Vista/Error.html" );
 				$vista = str_replace( "{ERROR}", $msj_error, $vista );
 				echo $vista;
 				break;
 		}
 	}
-
 
 
 	function mostrarDatos( $id_curso, $id_rubro ){
@@ -63,11 +62,9 @@ class HojaEvaluacionCtl{
 		}
 
 		$hoja_evaluacion = [ $columnas, $alumnos, $celdas_totales, $nombre_rubro[0] ];
+		//var_dump( $hoja_evaluacion );
 		echo json_encode( $hoja_evaluacion );
 	}
-
-
-
 
 	function guardarHoja( $id_curso, $id_rubro ){
 		$this -> modelo -> eliminarHoja( $id_rubro );
@@ -86,6 +83,7 @@ class HojaEvaluacionCtl{
 			array_push( $id_columna, $id_temp );
 		}
 
+		//var_dump( $id_columna );
 		$count = 0;
 		for( $j = 0 ; $j < $alumnos_length ; $j++ ){
 			for( $i = 0 ; $i < $columnas_length ; $i++ ){
@@ -94,12 +92,15 @@ class HojaEvaluacionCtl{
 			}
 		}
 		$this -> calcularPromedioAlumnos( $id_curso, $alumnos );
-
+		
 		header( "Location: index.php?ctl=curso_profesor&act=mostrar_pagina" );
 	}
 
-
-
+	function mostrarPagina( $vista, $msj_nuevo, $msj_reemplazar ){
+		$vista_desplegar = file_get_contents(  $vista );
+		$vista_desplegar = str_replace( $msj_reemplazar, $msj_nuevo, $vista_desplegar );
+		echo $vista_desplegar;
+	}
 
 	function calcularPromedioAlumnos( $id_curso, $alumnos ){
 		$alumnos_length = count( $alumnos );
