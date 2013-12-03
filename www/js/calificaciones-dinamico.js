@@ -60,9 +60,9 @@ function mostrarTablaCalificaciones(){
 
 			}
 			else{
-				celda_template.removeAttribute( "style" );
-				celda_template.removeAttribute( "id" );
-				celda_template.textContent = "Promedio";
+				var promedio = document.getElementById("promedio_celda");
+				promedio.removeAttribute( "style" );
+				promedio.removeAttribute( "id" );
 			}
 		},
 		error: function (){

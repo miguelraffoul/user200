@@ -18,7 +18,7 @@ class CalificacionesCtl{
 				break;
 
 			case 'mostrar_datos':
-				$this -> obtenerDatosTabla( '12345' );//$_SESSION['clave_curso'] );
+				$this -> obtenerDatosTabla( $_SESSION['clave_curso'] );
 				break;
 			
 			default:
