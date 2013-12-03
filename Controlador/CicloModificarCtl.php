@@ -82,7 +82,7 @@ class CicloModificarCtl{
 			return FALSE;
 		}
 
-		require_once( 'Vista/CicloEscolar.html' );
+		header( "Location: index.php?ctl=ciclo_escolar&act=mostrar_pagina" );
 		return TRUE;
 	}
 

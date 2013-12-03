@@ -84,6 +84,19 @@ switch( $_GET["ctl"] ){
 	case "hoja_evaluacion":
 		require_once( "Controlador/HojaEvaluacionCtl.php" );
 		$ctl = new HojaEvaluacionCtl();
+		break;
+
+	case "calificaciones":
+		require_once( "Controlador/CalificacionesCtl.php" );
+		$ctl = new CalificacionesCtl();
+		break;
+
+	default:
+		$msj_error = "Controlador inválido";
+		$vista = file_get_contents( "Vista/Error.html" );
+		$vista = str_replace( "{ERROR}", $msj_error, $vista );
+		echo $vista;
+		break;
 }
 
 $ctl -> ejecutar();
