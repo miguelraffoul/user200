@@ -37,8 +37,12 @@ class CicloNuevoCtl{
 		$ciclo_select = $_POST["ciclo_select"];
 
 		if( is_array( $this -> modelo -> existe( $ciclo_select ) ) ){
-			if( is_array( $this -> modelo -> estaActivo( $ciclo_select ) ) )
-				require_once("Vista/Error.html");
+			if( is_array( $this -> modelo -> estaActivo( $ciclo_select ) ) ){
+				$msj_error = "Este ciclo ya existe.";
+				$vista = file_get_contents( "Vista/Error.html" );
+				$vista = str_replace( "{ERROR}", $msj_error, $vista );
+				echo $vista;
+			}
 			else
 				$this -> actualizarCiclo( $ciclo_select );
 		}
@@ -79,7 +83,7 @@ class CicloNuevoCtl{
 			return FALSE;
 		}
 
-		require_once("Vista/CicloEscolar.html");
+		header( "Location: index.php?ctl=ciclo_escolar&act=mostrar_pagina" );
 		return TRUE;
 	}
 
@@ -112,7 +116,7 @@ class CicloNuevoCtl{
 			return FALSE;
 		}
 
-		require_once("Vista/CicloEscolar.html");
+		header( "Location: index.php?ctl=ciclo_escolar&act=mostrar_pagina" );
 		return TRUE;
 	}
 
