@@ -59,6 +59,7 @@
 
 													<th id="template_columna" class="cell-columna" style="display: none;">
 														<input type="text" name="nombre_columnas[]" class="name-input">
+														<input type="checkbox" class="chbx">
 													</th>
 
 													<td id="template_alumno" class="cell-columna-alumno" style="display: none;">
@@ -84,8 +85,8 @@
 									</form>
 								</div>
 								<div>
-									<button class="btn" type="button">Eliminar Columnas</button>
-									<button class="btn" type="button">Añadir Columna</button>
+									<button class="btn" type="button" onclick="eliminarColumnas()">Eliminar Columnas</button>
+									<button class="btn" type="button" onclick="agregarColuma()">Añadir Columna</button>
 									<button class="btn" type="button" onclick="calcularPromedio()">Calcular Promedio</button>
 									<button id="boton_guardar" class="btn" type="button" onclick="validarHoja()" disabled>Guardar</button>
 								</div>
