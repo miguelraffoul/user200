@@ -13,6 +13,7 @@ class CursoProfesorCtl{
 				if( !empty($_POST) ){
 					$_SESSION['clave_curso'] = $_POST['clave_curso'];
 					$_SESSION['nombre_curso'] = $_POST['nombre_curso'];
+					header( "Location: index.php?ctl=curso_profesor&act=mostrar_pagina" );
 				}
 				$nombre = explode( " ", $_SESSION['nombre_usuario'] );
 				$curso = $_SESSION['nombre_curso'];
