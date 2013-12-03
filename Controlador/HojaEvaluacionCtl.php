@@ -9,12 +9,12 @@ class HojaEvaluacionCtl{
 		$this -> modelo = new HojaEvaluacionMdl();
 
 		switch( $_GET['act'] ){
-			/*case 'agregar_hoja':
-				$this -> agregarHoja( 3 );
-				break;*/
 
 			case 'mostrar_pagina':
-				require_once( "Vista/HojaEvaluacion.html" );
+				$nombre = explode( " ", $_SESSION['nombre_usuario'] );
+				$vista = file_get_contents( "Vista/HojaEvaluacion.html" );
+				$vista = str_replace( "&lt;Nombre&gt;", $nombre[0], $vista );
+				echo $vista;
 				break;
 
 			case 'cargar_hoja':
@@ -33,26 +33,14 @@ class HojaEvaluacionCtl{
 				break;
 
 			default:
-				$this -> mostrarPagina( "Vista/Error.html", "Acción inválida",
-							   		    "{ERROR}" );
+				$msj_error = "Acción inválida";
+				$vista = file_get_contents( "Vista/Error.html" );
+				$vista = str_replace( "{ERROR}", $msj_error, $vista );
+				echo $vista;
 				break;
 		}
 	}
 
-	/*function agregarHoja( $columnas_length ){
-		$alumnos = $this -> modelo -> obtenerAlumnosNombreId( $id_curso );
-		$alumnos_length = count( $alumnos );
-		
-		for( $i = 1 ; $i <= $columnas_length ; $i++ ){
-			$id_columna = $this -> modelo -> agregarColumna( "Columna"."$i", $id_rubro );
-			for( $j = 0 ; $j < $alumnos_length ; $j++ )
-				$this -> modelo -> agregarCelda( 0, $id_columna, $alumnos[$j]['codigo'], $id_curso );
-		}
-
-		$id_columna = $this -> modelo -> agregarColumna( "Promedio", $id_rubro );
-		for( $j = 0 ; $j < $alumnos_length ; $j++ )
-			$this -> modelo -> agregarCelda( 0, $id_columna, $alumnos[$j]['codigo'], $id_curso );
-	}*/
 
 	function mostrarDatos( $id_curso, $id_rubro ){
 		$columnas = $this -> modelo -> obtenerColumnasNombreId( $id_rubro ); 
@@ -104,8 +92,8 @@ class HojaEvaluacionCtl{
 			}
 		}
 		$this -> calcularPromedioAlumnos( $id_curso, $alumnos );
-
-		//require_once( 'Vista/CursoProfesor.html' );
+		
+		header( "Location: index.php?ctl=curso_profesor&act=mostrar_pagina" );
 	}
 
 	function mostrarPagina( $vista, $msj_nuevo, $msj_reemplazar ){
