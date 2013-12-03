@@ -72,7 +72,7 @@ function esValidaColumna( nombre_columna, div ){
 function esValidaCalificacion( calificacion, div ){
 	var error_calificacion_vacia = document.getElementById( "error_calificacion_vacia" );
 	
-	var calificacion_regexp = /^[0-9]$|^[0-9]\.[0-9]$|^10$|^NP$|^SD$/i;
+	var calificacion_regexp = /^[0-9]$|^[0-9]\.[0-9]$|^10$|^10\.0$|^NP$|^SD$/i;
 	var error_regexp = document.getElementById( "error_calificacion" ); 
 
 	if( calificacion.value.trim() == "" ){
