@@ -28,7 +28,7 @@ function enviarForm( enlace ) {
 }
 
 function eliminarAlumnos( boton ) {
-	var checkboxes = document.getElementById( 'cuerpo_tabla' ).getElementsByTagName( 'input' );
+	var checkboxes = document.getElementById( 'cuerpo_tabla' ).getElementsByClassName( 'chbx' );
 	var alumnos_seleccionados = false;
 	for( var i = 1; i < checkboxes.length; ++i ) {
 		if ( checkboxes[i].checked ) {
@@ -42,7 +42,7 @@ function eliminarAlumnos( boton ) {
 	if( alumnos_seleccionados ) {
 		var confirmacion = confirm( "Corfirme borrado de alumn@(s)" );
 		if( confirmacion ) {
-			for( var i = 0; i < checkboxes.length; ++i ){
+			for( var i = 1; i < checkboxes.length; ++i ){
 				if ( checkboxes[i].checked ) {
 					var tds = checkboxes[i].parentNode.parentNode.getElementsByTagName( 'td' );
 					var codigo = tds[2].innerHTML;
