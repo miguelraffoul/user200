@@ -128,10 +128,15 @@ class AsistenciasCtl {
 				break;
 			case "obtener_asistencias":
 				$fechas = $_POST['fechas'];
-				$alumnos = $_POST['alumnos'];
+				if( isset( $_POST['alumnos'] ) )
+					$alumnos = $_POST['alumnos'];
+				else
+					$alumnos = 0;
 				$asistencias_alumnos = array();
-				for( $it = 0; $it < count( $alumnos ); ++$it ) {
-					$asistencias_alumnos[] = $this -> modelo -> obtenerAsistenciasIntervalo( $alumnos[$it], $_SESSION['clave_curso'], $fechas[0], end( $fechas ) );
+				if( is_array( $alumnos ) ) {
+					for( $it = 0; $it < count( $alumnos ); ++$it ) {
+						$asistencias_alumnos[] = $this -> modelo -> obtenerAsistenciasIntervalo( $alumnos[$it], $_SESSION['clave_curso'], $fechas[0], end( $fechas ) );
+					}
 				}
 				echo json_encode( $asistencias_alumnos );
 				break;
