@@ -15,6 +15,7 @@ function mostrarTablaCalificaciones(){
 				for( var i = 0 ; i < json[1].length ; ++i )
 					mostrarColumna( tr_columnas, columna_template.cloneNode(), json[1][i].nombre );
 				mostrarColumna( tr_columnas, columna_template.cloneNode(), "Promedio"  );
+				document.getElementById( "pt_nombre" ).setAttribute( "colspan", json[1].length + 1 );
 			}
 
 			if( Array.isArray( json[0] ) ){
@@ -50,13 +51,11 @@ function mostrarTablaCalificaciones(){
 
 				}
 
-				document.getElementById( "pt_nombre" ).setAttribute( "colspan", json[1].length + 1 );
 				promedio_final_curso = promedio_final_curso / json[0].length;
 				document.getElementById( "total_promedio" ).textContent = promedio_final_curso.toFixed(1);
-
 			}
 			
-			if( true ){
+			if( !Array.isArray( json[1] ) ){
 				var promedio = document.getElementById("promedio_celda");
 				promedio.removeAttribute( "style" );
 				promedio.removeAttribute( "id" );
