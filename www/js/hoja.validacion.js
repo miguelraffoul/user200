@@ -88,7 +88,7 @@ function esValidaCalificacion( calificacion, div ){
 		error_regexp = document.createElement( "div" );
 		error_regexp.setAttribute( "class", "error" );
 		error_regexp.setAttribute( "id", "error_calificacion" );
-		error_regexp.appendChild( document.createTextNode( "Solo se permiten calificaciones del 1 al 10 incluyendo SD Y NP." ) );
+		error_regexp.appendChild( document.createTextNode( "Solo se permiten calificaciones del 0 al 10 incluyendo SD Y NP." ) );
 		div.insertBefore( error_regexp, div.lastChild );
 		return false;
 	}
@@ -124,7 +124,6 @@ function calcularPromedio(){
 
 	if( validarCalificaciones() ){
 		var filas = document.getElementsByTagName( "tr" );
-		console.log( filas ); 
 
 		var total_filas = filas.length - 3;
 		if( total_filas > 0 ){

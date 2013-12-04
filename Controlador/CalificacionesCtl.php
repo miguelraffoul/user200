@@ -40,19 +40,14 @@ class CalificacionesCtl{
 			$rubros_length = count( $rubros );
 			for( $i = 0 ; $i < $rubros_length ; ++$i ){
 				$columna_promedio = $this -> modelo -> obtenerPromediosRubro( $rubros[$i]['idRubro'] );
-				//var_dump( $columna_promedio );
 				array_push( $columnas, $columna_promedio );  
-			}
-			//var_dump( $columnas );			
+			}	
 			$datos_tabla = [ $alumnos, $rubros, $columnas ];
-			//var_dump( $datos_tabla );
-			echo json_encode( $datos_tabla );
 		}
-		else{
+		else
 			$datos_tabla = [ $alumnos, $rubros ];
-			//var_dump( $datos_tabla );
-			echo json_encode( $datos_tabla );
-		}
+
+		echo json_encode( $datos_tabla );
 	}
 
 

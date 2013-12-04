@@ -15,7 +15,7 @@ class CalificacionesMdl{
 	}
 
 	function obtenerRubros( $id_curso ){
-		$consulta = "SELECT nombre, idRubro FROM rubro WHERE Curso_clave_curso = \"$id_curso\" ";
+		$consulta = "SELECT nombre, idRubro, valor FROM rubro WHERE Curso_clave_curso = \"$id_curso\" ";
 		return $this -> bd -> consultaGeneral( $consulta );
 	}
 

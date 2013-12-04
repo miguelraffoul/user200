@@ -100,11 +100,7 @@ class HojaEvaluacionCtl{
 		header( "Location: index.php?ctl=curso_profesor&act=mostrar_pagina" );
 	}
 
-	function mostrarPagina( $vista, $msj_nuevo, $msj_reemplazar ){
-		$vista_desplegar = file_get_contents(  $vista );
-		$vista_desplegar = str_replace( $msj_reemplazar, $msj_nuevo, $vista_desplegar );
-		echo $vista_desplegar;
-	}
+	
 
 	function calcularPromedioAlumnos( $id_curso, $alumnos ){
 		$alumnos_length = count( $alumnos );
