@@ -4,18 +4,20 @@ function mostrarTablaCalificaciones(){
 		dataType: 'json',
 		success: function( json ){
 			var celda_template = document.getElementById( "celda_template" );
-			if( Array.isArray( json[0] ) && Array.isArray( json[1] ) ){
-				var filas_body = document.getElementById( "filas_body" );
-				var tr_columnas = document.getElementById( "tr_columnas" ); 
-				var columna_template = document.getElementById( "columna_template" );
-				var celda_template = document.getElementById( "celda_template" );
-				var tr_template = document.getElementById( "template_tr" );
-				
+			var filas_body = document.getElementById( "filas_body" );
+			var tr_columnas = document.getElementById( "tr_columnas" ); 
+			var columna_template = document.getElementById( "columna_template" );
+			var celda_template = document.getElementById( "celda_template" );
+			var tr_template = document.getElementById( "template_tr" );
+
+			if( Array.isArray( json[1] ) ){
 				//imprimir columnas
 				for( var i = 0 ; i < json[1].length ; ++i )
 					mostrarColumna( tr_columnas, columna_template.cloneNode(), json[1][i].nombre );
 				mostrarColumna( tr_columnas, columna_template.cloneNode(), "Promedio"  );
+			}
 
+			if( Array.isArray( json[0] ) ){
 				//imprimir alumnos
 				var promedio_final_curso = 0;
 				for( var i = 0 ; i < json[0].length ; ++i ){
@@ -31,14 +33,21 @@ function mostrarTablaCalificaciones(){
 					filas_body.appendChild( nuevo_tr );
 
 					//imprimir calificaciones de rubro
-					var promedio = 0;
-					for( var j = 0 ; j < json[2].length ; ++j ){
-						var rubro = json[2][j][i];
-						mostrarCelda( nuevo_tr, celda_template.cloneNode(), rubro.calificacion );
-						promedio = promedio + parseFloat( rubro.calificacion ) * ( parseFloat( json[1][j].valor ) / 100 );
+					if( Array.isArray( json[2] ) ){ 
+						var promedio = 0;
+						for( var j = 0 ; j < json[2].length ; ++j ){
+							var rubro = json[2][j][i];
+							mostrarCelda( nuevo_tr, celda_template.cloneNode(), rubro.calificacion );
+							promedio = promedio + parseFloat( rubro.calificacion ) * ( parseFloat( json[1][j].valor ) / 100 );
+						}
+						mostrarCelda( nuevo_tr, celda_template.cloneNode(), promedio.toFixed(1) );
+						promedio_final_curso = promedio_final_curso + parseFloat( promedio );
 					}
-					mostrarCelda( nuevo_tr, celda_template.cloneNode(), promedio.toFixed(1) );
-					promedio_final_curso = promedio_final_curso + parseFloat( promedio );
+					else{
+						mostrarCelda( nuevo_tr, celda_template.cloneNode(), 0 );
+						promedio_final_curso = 0;
+					}
+
 				}
 
 				document.getElementById( "pt_nombre" ).setAttribute( "colspan", json[1].length + 1 );
@@ -46,7 +55,8 @@ function mostrarTablaCalificaciones(){
 				document.getElementById( "total_promedio" ).textContent = promedio_final_curso.toFixed(1);
 
 			}
-			else{
+			
+			if( true ){
 				var promedio = document.getElementById("promedio_celda");
 				promedio.removeAttribute( "style" );
 				promedio.removeAttribute( "id" );
