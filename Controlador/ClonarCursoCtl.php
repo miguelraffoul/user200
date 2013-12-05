@@ -35,7 +35,7 @@ class ClonarCursoCtl {
 			if( is_array( $rubros ) ) {
 				for( $i = 0; $i < count( $rubros ); ++$i ) {
 					$id = $this -> modelo -> agergarRubro( $nrc, $rubros[$i]['nombre'], $rubros[$i]['valor'], 
-			        										 $rubros[$i]['tieneHojaEval'], $rubros[$i]['cantidad_columnas'] ); 
+			        										$rubros[$i]['tieneColumnasEx'], $rubros[$i]['cantidad_columnas'] ); 
 					$columnas = $this -> modelo -> obtenerColumnas( $rubros[$i]['idRubro'] );
 					for( $j = 0; $j < count( $columnas ); ++$j )
 						$this -> modelo -> agregarColumna( $id, $columnas[$j]['nombre'] );

@@ -60,13 +60,13 @@ class ClonarCursoMdl {
 		return $this -> bd -> consultaGeneral( $consulta );
 	}
 
-	public function agergarRubro( $curso, $nombre, $valor, $tiene_hoja, $columnas ) {
+	public function agergarRubro( $curso, $nombre, $valor, $tiene_columnas_ex, $columnas ) {
 		$consulta = "INSERT INTO rubro 
-					(nombre, valor, tieneHojaEval, cantidad_columnas, Curso_clave_curso)
+					(nombre, valor, tieneColumnasEx, cantidad_columnas, Curso_clave_curso)
 					 VALUES (
 					 	\"$nombre\",
 					 	\"$valor\",
-					 	\"$tiene_hoja\",
+					 	\"$tiene_columnas_ex\",
 					 	\"$columnas\",
 					 	\"$curso\"
 					 )";
