@@ -12,7 +12,7 @@ function agregarDiaInhabil(){
 	var div_dias_inhabiles = document.getElementById( "dias_inhabiles" );
 	var div_dia = document.getElementById( "dia_inhabil_template" )
 
-	var nuevo_dia_inhabil = div_dia.cloneNode();
+	var nuevo_dia_inhabil = div_dia.cloneNode( true );
 	nuevo_dia_inhabil.removeAttribute( "id" );
 	nuevo_dia_inhabil.removeAttribute( "style" );
 
@@ -33,7 +33,7 @@ function mostrarListaCiclos(){
 
 				for( i in json ){
 
-					var nuevo_elemento = elemento_lista_temp.cloneNode();
+					var nuevo_elemento = elemento_lista_temp.cloneNode( true );
 					nuevo_elemento.removeAttribute( "style" );
 					nuevo_elemento.setAttribute( "id", json[i].idCicloEscolar );
 					

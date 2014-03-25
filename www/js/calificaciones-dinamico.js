@@ -22,9 +22,9 @@ function mostrarTablaCalificaciones(){
 				//imprimir alumnos
 				var promedio_final_curso = 0;
 				for( var i = 0 ; i < json[0].length ; ++i ){
-					var nuevo_tr = tr_template.cloneNode();
+					var nuevo_tr = tr_template.cloneNode( true );
 					nuevo_tr.removeAttribute( "id" );
-					var nuevo_alumno = celda_template.cloneNode();
+					var nuevo_alumno = celda_template.cloneNode( true );
 					nuevo_alumno.setAttribute("class", "cell-columna-alumno" );
 					nuevo_alumno.removeAttribute( "style" ); 
 					nuevo_alumno.removeAttribute("id");

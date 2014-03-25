@@ -5,7 +5,7 @@ function cargarListaAlumnos() {
 		success: function( json ) {
 			var plantilla = document.getElementById( 'template' );
 			for( i in json ) {
-				var alumno = plantilla.cloneNode();
+				var alumno = plantilla.cloneNode( true );
 				alumno.removeAttribute( 'id' );
 				alumno.removeAttribute( 'style' );
 				var alumno_nombre = alumno.getElementsByTagName( 'a' );

@@ -8,7 +8,7 @@ function cargarAlumnos() {
 			var acumulador = 0;
 			var contador = 0;
 			for( i in json ) {
-				var fila = plantilla.cloneNode();
+				var fila = plantilla.cloneNode( true );
 				fila.removeAttribute( 'style' );
 				fila.setAttribute( 'id', json[i].codigo );
 				var tds = fila.getElementsByTagName( 'td' );
@@ -86,7 +86,7 @@ function desplegarFechas( fecha_input ) {
 					for( i in json ) {
 						var th = document.createElement( 'th' );
 						th.setAttribute( 'id', json[i] );
-						var temp_chbx = plantilla_fecha.cloneNode();
+						var temp_chbx = plantilla_fecha.cloneNode( true );
 						temp_chbx.removeAttribute( 'id' );
 						temp_chbx.removeAttribute( 'style' );
 						th.appendChild( temp_chbx );
@@ -102,13 +102,13 @@ function desplegarFechas( fecha_input ) {
 										if( json2[j][k].alumno == filas[it].id &&
 											json2[j][k].fecha == json[i] ){
 											if( json2[j][k].asistencia != 0 ) {
-												var asist = plantilla_asis.cloneNode();
+												var asist = plantilla_asis.cloneNode( true );
 												asist.removeAttribute( 'id' );
 												asist.removeAttribute( 'style' );
 												td.appendChild( asist );
 											}
 											else {
-												var falta = plantilla_falta.cloneNode();
+												var falta = plantilla_falta.cloneNode( true );
 												falta.removeAttribute( 'id' );
 												falta.removeAttribute( 'style' );
 												td.appendChild( falta );
@@ -167,7 +167,7 @@ function marcarAsistencia() {
 						if( tds[i].firstChild == null  ) {
 							alumnos.push( filas[j].id );
 							indices.push( j );
-							var asist = plantilla_asis.cloneNode();
+							var asist = plantilla_asis.cloneNode( true );
 							asist.removeAttribute( 'id' );
 							asist.removeAttribute( 'style' );
 							tds[i].appendChild( asist );
@@ -177,7 +177,7 @@ function marcarAsistencia() {
 								alumnos.push( filas[j].id );
 								indices.push( j );
 								tds[i].removeChild( tds[i].firstChild );
-								var asist = plantilla_asis.cloneNode();
+								var asist = plantilla_asis.cloneNode( true );
 								asist.removeAttribute( 'id' );
 								asist.removeAttribute( 'style' );
 								tds[i].appendChild( asist );
@@ -221,7 +221,7 @@ function marcarFalta() {
 						if( tds[i].firstChild == null  ) {
 							alumnos.push( filas[j].id );
 							indices.push( j );
-							var falta = plantilla_falta.cloneNode();
+							var falta = plantilla_falta.cloneNode( true );
 							falta.removeAttribute( 'id' );
 							falta.removeAttribute( 'style' );
 							tds[i].appendChild( falta );
@@ -231,7 +231,7 @@ function marcarFalta() {
 								alumnos.push( filas[j].id );
 								indices.push( j );
 								tds[i].removeChild( tds[i].firstChild );
-								var falta = plantilla_falta.cloneNode();
+								var falta = plantilla_falta.cloneNode( true );
 								falta.removeAttribute( 'id' );
 								falta.removeAttribute( 'style' );
 								tds[i].appendChild( falta );

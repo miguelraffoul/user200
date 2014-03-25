@@ -20,9 +20,9 @@ function mostrarHojaEvaluacion(){
 				var promedio_total = 0;
 
 				for( var i = 0 ; i < json[1].length ; ++i ){
-					nuevo_tr = document.getElementById( "template_tr" ).cloneNode();
+					nuevo_tr = document.getElementById( "template_tr" ).cloneNode( true );
 					nuevo_tr.removeAttribute( "id" );
-					var alumno = template_alumno.cloneNode();
+					var alumno = template_alumno.cloneNode( true );
 					var nombre_alumno = alumno.getElementsByTagName( "p" );
 
 					alumno.removeAttribute( "id" );
@@ -136,7 +136,7 @@ function eliminarColumnas() {
 
 function agregarColuma() {
 	var columnas = document.getElementsByTagName( "th" );
-	var nueva_columna = document.getElementById( "template_columna" ).cloneNode();
+	var nueva_columna = document.getElementById( "template_columna" ).cloneNode( true );
 	nueva_columna.removeAttribute( "id" );
 	nueva_columna.removeAttribute( "style" );
 	nueva_columna.firstChild.nextSibling.value = "Columna " + (columnas.length - 2) ;
@@ -146,7 +146,7 @@ function agregarColuma() {
 	var template_calificacion = document.getElementById( "template_calificacion" );
 	var alumnos = document.getElementById( "filas_body" ).getElementsByTagName( "tr" );	
 	for( var it = 1; it < alumnos.length; ++it ) {
-		var nueva_celda = template_calificacion.cloneNode();
+		var nueva_celda = template_calificacion.cloneNode( true );
 		nueva_celda.removeAttribute( "id" );
 		nueva_celda.removeAttribute( "style" );
 		nueva_celda.firstChild.nextSibling.value = 0;

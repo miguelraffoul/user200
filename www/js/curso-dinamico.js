@@ -8,7 +8,7 @@ function agregarDiaCurso( opcion ) {
 	}
 
 	var plantilla = document.getElementById( 'dia_curso_template' );
-	var nuevo_dia = plantilla.cloneNode();
+	var nuevo_dia = plantilla.cloneNode( true );
 	nuevo_dia.removeAttribute( 'style' );
 	nuevo_dia.setAttribute( 'id', opcion.value );
 	var input_dia = nuevo_dia.getElementsByTagName( 'input' );
@@ -145,7 +145,7 @@ function mostrarListaCursos() {
 			if( Array.isArray( json ) ) {
 				var plantilla = document.getElementById( 'template' );
 				for( i in json ) {
-					var curso = plantilla.cloneNode();
+					var curso = plantilla.cloneNode( true );
 					curso.removeAttribute( 'style' );
 					curso.setAttribute( 'id', json[i].clave_curso );
 					var curso_inputs = curso.getElementsByTagName( 'input' );
@@ -279,7 +279,7 @@ function cargarDiasClase() {
 			var opciones_select = document.getElementById( 'dias_curso' ).options;
 			for( i in json ) {
 				var plantilla = document.getElementById( 'dia_curso_template' );
-				var nuevo_dia = plantilla.cloneNode();
+				var nuevo_dia = plantilla.cloneNode( true );
 				nuevo_dia.removeAttribute( 'style' );
 				nuevo_dia.setAttribute( 'id', valorDia( json[i].dia ) );
 				var input_dia = nuevo_dia.getElementsByTagName( 'input' );
@@ -312,7 +312,7 @@ function mostrarListaRubros(){
 				var elemento_lista_temp = document.getElementById( 'template' );
 				for( i in json ){
 
-					var nuevo_elemento = elemento_lista_temp.cloneNode();
+					var nuevo_elemento = elemento_lista_temp.cloneNode( true );
 					nuevo_elemento.removeAttribute( "style" );
 					nuevo_elemento.removeAttribute( "id" );
 

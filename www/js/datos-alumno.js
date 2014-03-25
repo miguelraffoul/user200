@@ -8,7 +8,7 @@ function cargarDatos() {
 			var acumulador = 0;
 			var contador = 0;
 			for( i in json ) {
-				var fila = plantilla_fila.cloneNode();
+				var fila = plantilla_fila.cloneNode( true );
 				fila.removeAttribute( 'id' );
 				fila.removeAttribute( 'style' );
 				var tds = fila.getElementsByTagName( 'td' );
