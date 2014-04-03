@@ -9,8 +9,8 @@ function mostrarHojaEvaluacion(){
 				var template_columna = document.getElementById( "template_columna" );
 
 				for( var i = 0 ; i < json[0].length - 1 ; ++i )
-					agregarColumna( tr_columnas, template_columna.cloneNode(), json[0][i].nombre );
-				agregarColumnaPromedio( tr_columnas, template_columna.cloneNode(), json[0][i].nombre );
+					agregarColumna( tr_columnas, template_columna.cloneNode( true ), json[0][i].nombre );
+				agregarColumnaPromedio( tr_columnas, template_columna.cloneNode( true ), json[0][i].nombre );
 
 				var tabla_body = document.getElementById( "filas_body" );
 				var template_alumno = document.getElementById( "template_alumno" );
