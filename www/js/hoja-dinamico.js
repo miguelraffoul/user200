@@ -32,11 +32,11 @@ function mostrarHojaEvaluacion(){
 					
 
 					for( var j = 0 ; j < json[0].length - 1 ; ++j ){
-						agregarCalificacion( nuevo_tr, template_calificacion.cloneNode(), json[2][count].calificacion );
+						agregarCalificacion( nuevo_tr, template_calificacion.cloneNode( true ), json[2][count].calificacion );
 						count = count + 1;
 					}
 					promedio_total = promedio_total + parseFloat( json[2][count].calificacion );
-					agregarPromedio( nuevo_tr, template_calificacion.cloneNode(), json[2][count].calificacion );
+					agregarPromedio( nuevo_tr, template_calificacion.cloneNode( true ), json[2][count].calificacion );
 					count = count + 1;
 					tabla_body.appendChild( nuevo_tr );
 				}
